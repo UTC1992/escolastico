@@ -1,0 +1,79 @@
+/*==========================ANIMACION DE SLIDER ==>> IMAGENES SE DESPLASAN UNA DESPUES DE OTRAS============*/
+
+.animacion-imagenes img{
+	width: 600px;
+	height: 300px;
+}
+
+.animacion-imagenes{
+	width: 600px;
+	overflow: hidden;
+}
+
+ul, li{
+	margin: 0;
+	padding: 0;
+}
+
+.animacion-imagenes ul{
+	width: 10000px;
+	position: relative;
+	-webkit-animation: girar1 20s infinite linear;
+	-webkit-animation-iteration-count: infinite;
+    
+	-moz-animation-iteration-count:infinite;
+    -moz-animation: girar2 20s infinite;
+    
+   /*
+    -moz-animation: autoSlider 15s infinite linear;
+    -o-animation: autoSlider 15s infinite linear;
+    -webkit-animation: autoSlider 15s infinite linear;
+    animation: autoSlider 15s infinite linear;
+    */
+    
+}	
+.animacion-imagenes li{
+	float: left;
+	list-style: none;
+	position: relative;
+}
+
+@-webkit-keyframes girar1{
+	0%{
+		left: 0;
+	}
+	20%, 30%{
+		left: -620px;
+	}
+	40%, 50%{
+		left: -1220px;
+	}
+	60%, 70%{
+		left: -1820px;
+	}
+	80%, 90%{
+		left: -2420px;
+	}
+}
+
+@-moz-keyframes girar2{
+	0%{
+	 	 margin-left: 0;
+	}
+	20%, 30%{
+		 margin-left: -620px;
+	}
+	40%, 50%{
+		 margin-left: -1220px;
+	}
+	60%, 70%{
+		 margin-left: -1820px;
+	}
+	80%, 90%{
+		 margin-left: -2420px;
+	}
+}
+
+
+
+/*==========================ANIMACION DE SLIDER ==>> IMAGENES SE DESPLASAN UNA DESPUES DE OTRAS============*/

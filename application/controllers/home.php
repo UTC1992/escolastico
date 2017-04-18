@@ -5,6 +5,12 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		$data = array('title' => 'Inicio');
+		$this->load->view('/layout/head', $data);
+		$this->load->view('/layout/css_js_inicio');
+		$this->load->view('/layout/header');
+		$this->load->view('/layout/nav');
 		$this->load->view('/home/content');
+		$this->load->view('/layout/footer');
 	}
 }
