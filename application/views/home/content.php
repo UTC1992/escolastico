@@ -1,36 +1,56 @@
+<style>
+	.tabla{
+		float: left;
+		width: 50%;
+	}
+</style>
 
 <div class="container well">
     <a name="modulosCalificaciones"></a>
     <center><h2 >Calificaciones</h2></center>
-    
-	<table class="table">
+
+    <center>
+	<table class="tabla">
 		<caption><center>
-			<h3></h3>
+			<h3>Consultar notas</h3>
 		</center></caption>
 		<thead>
 			<tr>
-				<th>Consulta tus Notas (Estudiantes y padres de familia) </th>
-				<th>Ingreso de calificaciones (Docentes)</th>
+				<th>Para estudiantes y padres de familia</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>
                     <a href="#" >
-						<!-- <span><img class="img-responsive" src="<?= base_url() ?>disenio/img/notas1.jpg" ></span>
-                        -->
-                        <input type="button" class="btn btn-warning" value="Consultar...">
+                        <input type="button" class="btn btn-warning" value="Consultar notas...">
 					</a>
-                    <img class="img-responsive" src="<?= base_url() ?>disenio/img/estudiante1.png" >
+                    <img style="float: right;" class="img-responsive" src="<?= base_url() ?>disenio/img/estudiante1.png" >
 					
-				</td>
-				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Ingresar notas...">
-					</a>
-                    <img class="img-responsive" src="<?= base_url() ?>disenio/img/profesor1.png" >
 				</td>
 			</tr>
 		</tbody>
 	</table>
+
+	<table class="tabla" >
+		<caption><center>
+			<h3>Ingreso de notas</h3>
+		</center></caption>
+		<thead>
+			<tr>
+				<th>Unicamente Docentes</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a href="#" >
+                        <input type="button" class="btn btn-warning" value="Ingresar notas...">
+					</a>
+                    <img style="float: right;" class="img-responsive" src="<?= base_url() ?>disenio/img/profesor1.png" >
+				</td>
+			</tr>
+		</tbody>
+	</table>
+    </center>
 </div>

@@ -1,0 +1,50 @@
+<?php 
+	
+	/**
+	* 
+	*/
+	class Login_Admin extends CI_Controller
+	{
+		public function index()
+        {
+            $data = array('title' => 'Login Admin');
+		    $this->load->view('/layout/head', $data);
+            $this->load->view('/layout/disenio_css_js');
+            $this->load->view('/loginAdmin/content');
+        }
+
+		public function login()
+		{
+			$email  	= $this->input->post('email');
+			$password  	= $this->input->post('password');
+
+			$this->load->model('administrador_model');
+			$fila = $this->administrador_model->getAdmin($email);
+
+			if ($fila != null) {
+				if ($fila->password_admin == $password) {
+					$data = array(
+							'email' =>  $email ,
+							'id' 	=>  $fila->id,
+							'login_admin'	=> true
+							);
+					$this->session->set_userdata($data);
+                    //login exitoso
+					header("Location:" . base_url() . "admin_/dasboard");
+				} else {
+                    //contraseña incorrecta
+					header("Location:" . base_url() . "admin_/index");
+				}
+			} else {
+                //email incorrecto
+				header("Location:" . base_url() . "admin_/index");
+			}
+		}
+
+		public function logout()
+		{   
+            //cerrar sesion
+			$this->session->sess_destroy();
+			header('Location:' . base_url() . "admin_/index");
+		}		
+	}
