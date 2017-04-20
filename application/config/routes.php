@@ -56,8 +56,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //rutas login Admin
-$route['admin_/index'] = 'login_admin/index';
+$route['admin_/login'] = 'login_admin/index';
+$route['admin_/logout'] = 'login_admin/logout';
 
 //rutas administrador CRUD
 $route['admin_/registro'] = 'administrador_controller/nuevo';
-$route['admin_/dasboard'] = 'administrador_controller/index';
+$route['admin_/dashboard'] = 'administrador_controller/index';

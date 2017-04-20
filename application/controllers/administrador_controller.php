@@ -5,14 +5,28 @@ class Administrador_Controller extends CI_Controller
 {
 	public function index()
 	{
+		//si no existe la sesion se redirige al login
+		if (!$this->session->userdata('login_admin')) {
+			header('Location:' . base_url() . 'admin_/login');
+		}
 		$data = array('title' => 'Administración');
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/disenio_css_js');
+		$this->load->view('/layout/css_js_inicio');
+		$this->load->view('/layout/head');
+		$this->load->view('/layout/header_admin');
+		$this->load->view('/layout/nav_admin');
+		$this->load->view('/administrador/content');
+		$this->load->view('/layout/footer');
 	}
 
     public function nuevo($error = "")
     {
-        $data = array('title' => 'Registro Admin','error' => $error);
+		//se comprueba que la sesion exista y se redirecciona 
+		//si existe va a la parte administrativa
+		if ($this->session->userdata('login_admin')) {
+			header('Location:' . base_url() . 'admin_/dashboard');
+		}
+        $data = array('title' => 'Registro Admin', 'error' => $error);
 		$this->load->view('/layout/head', $data);
 		$this->load->view('/layout/disenio_css_js');
 		$this->load->view('/administrador/nuevo');

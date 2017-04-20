@@ -73,7 +73,7 @@
 							<span class="glyphicon glyphicon-floppy-saved"></span>
 							Guardar
 						</button>
-						<a  href="<?= base_url() ?>admin_/index" class="btn btn-lg btn-danger" type="button">
+						<a  href="<?= base_url() ?>admin_/login" class="btn btn-lg btn-danger" type="button">
 							<span class="glyphicon glyphicon-remove-circle"></span>
 							Cancelar
 						</a>

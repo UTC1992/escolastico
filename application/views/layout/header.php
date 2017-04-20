@@ -16,12 +16,12 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading" >
                     
-                    <p id="titulo"><strong>Consulta e ingreso de calificaciones</strong></p>
+                    <p id="titulo"><strong>Unidad Educativa <br>Patria</strong></p>
                     <!-- <input type="button" class="btn btn-default" value="Consulta e ingreso de calificaciones">
                     -->
                     <br>
                     <a href="#modulosCalificaciones">
-                        <input type="button" class="btn btn-default" value="Ver más...">
+                        <input type="button" class="btn btn-default" value="Calificaciones">
                     </a>
                 </div>
             </div>

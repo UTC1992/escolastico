@@ -7,6 +7,9 @@
 	{
 		public function index()
         {
+			if ($this->session->userdata('login_admin')) {
+				header('Location:' . base_url() . 'admin_/dashboard');
+			}
             $data = array('title' => 'Login Admin');
 		    $this->load->view('/layout/head', $data);
             $this->load->view('/layout/disenio_css_js');
@@ -30,7 +33,7 @@
 							);
 					$this->session->set_userdata($data);
                     //login exitoso
-					header("Location:" . base_url() . "admin_/dasboard");
+					header("Location:" . base_url() . "admin_/dashboard");
 				} else {
                     //contraseña incorrecta
 					header("Location:" . base_url() . "admin_/index");
@@ -45,6 +48,6 @@
 		{   
             //cerrar sesion
 			$this->session->sess_destroy();
-			header('Location:' . base_url() . "admin_/index");
+			header('Location:' . base_url() . "admin_/login");
 		}		
 	}

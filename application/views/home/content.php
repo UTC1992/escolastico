@@ -3,6 +3,10 @@
 		float: left;
 		width: 50%;
 	}
+
+	.container{
+		margin-bottom: 50px;
+	}
 </style>
 
 <div class="container well">
@@ -16,7 +20,7 @@
 		</center></caption>
 		<thead>
 			<tr>
-				<th>Para estudiantes y padres de familia</th>
+				<th>Si eres un estudiante o un padre de familia.</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,7 +42,7 @@
 		</center></caption>
 		<thead>
 			<tr>
-				<th>Unicamente Docentes</th>
+				<th>Si eres un Docente.</th>
 			</tr>
 		</thead>
 		<tbody>

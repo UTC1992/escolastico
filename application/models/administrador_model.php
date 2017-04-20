@@ -37,5 +37,16 @@
 				}
 			}
 			return false;
-		}	
+		}
+
+		public function getAdminAll()
+		{
+			$resutl = $this->db->query("SELECT * FROM administrador;");
+			
+            if ($resutl->num_rows() > 0) {
+				return $resutl->row();
+			} else {
+				return null;
+			}
+		}
 	}
