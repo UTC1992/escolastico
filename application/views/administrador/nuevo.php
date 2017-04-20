@@ -1,8 +1,11 @@
 <style>
     .container{
-        margin-top: 50px;
         font-family: Arial, Helvetica, sans-serif;
     }
+
+	label{
+		font-size: 12pt;
+	}
 </style>
 
 <div class="container well">
@@ -69,11 +72,11 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 					</label>
 					<div class="col-sm-6">
-						<button class="btn btn-lg btn-primary" type="submit" onclick="validarRegistro();">
+						<button class="btn btn-primary" type="submit" onclick="validarRegistro();">
 							<span class="glyphicon glyphicon-floppy-saved"></span>
 							Guardar
 						</button>
-						<a  href="<?= base_url() ?>admin_/login" class="btn btn-lg btn-danger" type="button">
+						<a  href="<?= base_url() ?>admin_/login" class="btn btn-warning" type="button">
 							<span class="glyphicon glyphicon-remove-circle"></span>
 							Cancelar
 						</a>

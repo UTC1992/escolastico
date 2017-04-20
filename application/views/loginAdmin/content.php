@@ -1,14 +1,15 @@
 <style>
     .container{
         width: 350px;
-        margin-top: 80px;
 		font-family: Arial, Helvetica, sans-serif;
     }
 </style>
 
 <div class="container well">
 		<center>
+			<!--
 		<img class="img-responsive" width="100" height="100" src="<?= base_url() ?>disenio/img/logo.png">
+		-->
 		<h2>Login Administración</h2>
 		</center>
 		<div class="row">
@@ -23,9 +24,8 @@
 			<div class="form-group">
 				<input type="password" class="form-control" placeholder="Contraseña" name="password" id="password" requered required="">
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+			<button class="btn btn-warning btn-block" type="submit">Iniciar Sesión</button>
 			<div class="checkbox">
-				<br>
 				<p><a href="<?= base_url() ?>admin_/registro" style="font-size: 13pt;">Registrarce</a></p>
 			</div>			
 		</form>
