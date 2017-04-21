@@ -10,4 +10,3 @@
     <meta name="author" content="">
 
     <title><?= $title ?></title>
-</head>

@@ -6,6 +6,10 @@
     body{
         font-family: Arial, Helvetica, sans-serif;
     }
+
+    h1{
+        height: 50px;
+    }
     
 </style>
 <!-- Page Header -->

@@ -14,7 +14,7 @@
 				<center>
 				<h2>Crear nueva cuenta</h2>
 				</center>
-			</div>
+			
 
 			<form  class="form-horizontal" action="<?= base_url() ?>administrador_controller/insertar" method="post">
 
@@ -83,5 +83,6 @@
 					</div>
 				</div>
 			</form>
+			</div>
 		</div>
 	</div>

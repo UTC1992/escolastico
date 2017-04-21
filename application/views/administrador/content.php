@@ -24,7 +24,7 @@
 		<tbody>
 			<tr>
 				<td>
-					<a href="#" >
+					<a href="<?= base_url() ?>admin_/periodoacademico" >
                         <input type="button" class="btn btn-warning" value="Mostrar...">
 					</a>
 				</td>

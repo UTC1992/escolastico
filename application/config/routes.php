@@ -62,3 +62,6 @@ $route['admin_/logout'] = 'login_admin/logout';
 //rutas administrador CRUD
 $route['admin_/registro'] = 'administrador_controller/nuevo';
 $route['admin_/dashboard'] = 'administrador_controller/index';
+
+//rutas periodo academico
+$route['admin_/periodoacademico'] = 'periodoa_controller/index';

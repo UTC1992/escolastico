@@ -1,3 +1,5 @@
+    
+    
     <!-- Footer -->
     <footer style="background-image: url('<?= base_url()?>disenio/img/pie3.jpg')">
         <div class="container" >

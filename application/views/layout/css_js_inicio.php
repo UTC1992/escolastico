@@ -21,3 +21,10 @@
 
     <!-- Theme JavaScript -->
     <script src="<?= base_url()?>plantilla2/js/clean-blog.min.js"></script>
+
+    <!-- Tablas dinamicas JS y CSS-->
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>disenio/css/jquery.dataTables.css" media="screen" />
+
+
+</head>
