@@ -65,3 +65,6 @@ $route['admin_/dashboard'] = 'administrador_controller/index';
 
 //rutas periodo academico
 $route['admin_/periodoacademico'] = 'periodoa_controller/index';
+$route['admin_/periodoacademico/nuevo'] = 'periodoa_controller/nuevo';
+$route['admin_/periodoacademico/edit/(:num)'] = 'periodoa_controller/edit/$1';
+$route['admin_/periodoacademico/actualizar/(:num)'] = 'periodoa_controller/actualizar/$1';

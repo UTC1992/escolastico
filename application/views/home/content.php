@@ -4,12 +4,12 @@
 		width: 50%;
 	}
 
-	.container{
+	#contenedorHome{
 		margin-bottom: 50px;
 	}
 </style>
 
-<div class="container well">
+<div id="contenedorHome" class="container well">
     <a name="modulosCalificaciones"></a>
     <center><h2 >Calificaciones</h2></center>
 

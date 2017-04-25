@@ -1,7 +1,7 @@
 <div class="container well">	
-    <center><h2>Lista de clientes</h2></center>
-    <strong>Nuevo Cliente: </strong>
-    <a href="nuevoCliente.php" class="btn btn-default">
+    <center><h2>Periodos Académicos</h2></center>
+    <strong>Nuevo periodo: </strong>
+    <a href="<?= base_url() ?>admin_/periodoacademico/nuevo" class="btn btn-default">
         <span><img class="img-responsive" src="./img/nuevo.png" width="35" height="35"></span>
     </a>
     <br><br>
@@ -14,6 +14,7 @@
                     <th>Año de inicio</th>
                     <th>Mes de finalización</th>
                     <th>Año de finalización</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
 
@@ -21,10 +22,19 @@
 
                 <?php 
                     foreach ($consulta->result() as $fila ) {
-                        echo $fila->mesinicio_pera;
-                        echo $fila->anioinicio_pera;
-                        echo $fila->mesfin_pera;
-                        echo $fila->aniofin_pera;
+                ?>
+                <tr>
+                    <td><?= $fila->mesinicio_pera ?></td>
+                    <td><?= $fila->anioinicio_pera ?></td>
+                    <td><?= $fila->mesfin_pera ?></td>
+                    <td><?= $fila->aniofin_pera ?></td>
+                    <td><div>
+                        <a class="btn btn-default" href="<?= base_url() ?>admin_/periodoacademico/edit/<?= $fila->id_pera ?>">
+                                <span><img class="img-responsive" src="<?= base_url() ?>disenio/img/editar.png" width="25" height="25"></span>
+                            </a>
+                    </div></td>
+                </tr>
+                <?php 
                     }
                 ?>
             </tbody>

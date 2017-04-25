@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+
+body {
+    background: #FFFFFA;
+}
+
+    header { 
+        width: 100%;
+        height: 80px;
+        /*para fijar el menu en el lugar que esta */
+        position: fixed;
+        background: #17202A;
+        z-index: 1000;
+    }
+
+        header nav {
+            width: 90%;
+            max-width: 1000px;
+            margin: 10px auto; 
+            background: #17202A;
+        }
+
+.menu_bar {
+    display: none;
+}
+
+            header nav ul {
+                overflow: hidden;
+                list-style: none;
+            }
+
+                header nav ul li {
+                    float: left;
+                }
+
+                    header nav ul li a {
+                        color: #fff;
+                        padding: 20px;
+                        display: block;
+                        text-decoration: 0;
+                        text-decoration: none;
+                    }
+
+                    header nav ul li span{
+                        margin-right: 10px;
+                    }
+
+                    header nav ul li a:hover {
+                        color: #fff;
+                        text-decoration: none;
+                        background: #566573;
+                    }
+
+@media screen and (max-width:800px) {
+    
+    /*tamaño y atributos del menu 
+    all aparecer desde el lado izquierdo*/
+    header nav {
+        width: 60%;
+        height: 100%;
+        left: -100%;
+        margin: 0;
+        position: fixed;
+    }
+
+        header nav ul li {
+            display: block;
+            float: none;
+            border-bottom: 1px solid rgba(255, 255, 255, .3);
+        }
+
+    .menu_bar {
+        display: block;
+        width: 100%;
+        background: #ccc;
+    }
+
+    .menu_bar .bt-menu {
+        display: block;
+        padding: 20px;
+        background: #17202A;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 25px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; 
+    }
+
+    .menu_bar span {
+        float: right;
+        font-size: 40px;
+    }
+}
+
+/*en esta seccion se debe poner el contenido de la pagina
+sea imagenes, texto, etc*/
+section {
+    padding: 20px;
+}
+
+/*esta clase debe asignarce al elemento 
+div que contenga el cuerpo de la pagina sea texto, etc*/
+.contenedorMenuCss {
+    padding-top: 70px;
+}

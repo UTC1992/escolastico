@@ -26,5 +26,7 @@
     <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/js/jquery.dataTables.js"></script>
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>disenio/css/jquery.dataTables.css" media="screen" />
 
+    <!--angula JS-->
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular.js"></script>
 
 </head>

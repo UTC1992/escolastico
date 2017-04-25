@@ -38,11 +38,11 @@
 					header("Location:" . base_url() . "admin_/dashboard");
 				} else {
                     //contraseña incorrecta
-					header("Location:" . base_url() . "admin_/index");
+					header("Location:" . base_url() . "admin_/login");
 				}
 			} else {
                 //email incorrecto
-				header("Location:" . base_url() . "admin_/index");
+				header("Location:" . base_url() . "admin_/login");
 			}
 		}
 
