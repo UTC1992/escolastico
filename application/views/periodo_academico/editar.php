@@ -8,8 +8,8 @@
 	}
 </style> 
 
-<div class="container well" ng-app="appPeriodoA">
-
+<div class="container well" ng-app="appPeriodoA" ng-controller="periodoAcademicoDatos">
+		<input type="hidden" id="url" value="<?= base_url()?>periodoa_controller/getDataJsonPeriodoId/<?= $id ?>">
 		<div class="row">
 			<div class="col-xs-12">
 				<center>
@@ -20,49 +20,49 @@
 			<form name="formularioPeriodo" class="form-horizontal" 
             action="<?= base_url() ?>admin_/periodoacademico/actualizar/<?= $id ?>" method="post">
 
-				<div class="form-group" ng-controller="periodoMeses">
+				<div class="form-group" >
 					<label class="col-sm-3 control-label" for="formGroup">
 						Mes de inicio de clases:
 					</label>
 					<div class="col-sm-6">
                         <select class="form-control" name="mesInicio" id="mesInicio" required >
-                            <option value="<?= $mesI ?>"><?= $mesI ?></option>
+                            <option value="{{mesinicio}}">{{mesinicio}}</option>
 							<option ng-repeat="m in meses" value="{{m.name}}">{{m.name}}</option>
                         </select>
 					</div>
 				</div>
 
-				<div class="form-group" ng-controller="periodoAnios">
+				<div class="form-group">
 					<label class="col-sm-3 control-label" for="formGroup">
 						Año de inicio de clases:
 					</label>
 					<div class="col-sm-6">
 						<select class="form-control" name="anioInicio" id="anioInicio" required>
-                            <option value="<?= $anioI ?>"><?= $anioI ?></option>
+                            <option value="{{anioinicio}}">{{anioinicio}}</option>
 							<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
                         </select>
 					</div>
 				</div>
 
-				<div class="form-group" ng-controller="periodoMeses">
+				<div class="form-group">
 					<label class="col-sm-3 control-label" for="formGroup">
 						Mes de finalización de clases:
 					</label>
 					<div class="col-sm-6">
 						<select class="form-control" name="mesFin" id="mesFin" required >
-                            <option value="<?= $mesF ?>"><?= $mesF ?></option>
+                            <option value="{{mesfin}}">{{mesfin}}</option>
 							<option ng-repeat="m in meses" value="{{m.name}}">{{m.name}}</option>
                         </select>
 					</div>
 				</div>
 				
-                <div class="form-group" ng-controller="periodoAnios">
+                <div class="form-group" >
 					<label class="col-sm-3 control-label" for="formGroup" >
 						Año de finalización de clases:
 					</label>
 					<div class="col-sm-6">
 						<select class="form-control" name="anioFin" id="anioFin" required >
-                            <option value="<?= $anioF ?>"><?= $anioF ?></option>
+                            <option value="{{aniofin}}">{{aniofin}}</option>
 							<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
                         </select>
 					</div>

@@ -10,6 +10,7 @@
         <table  id="Jtabla" class="table table-bordered">
             <thead>
                 <tr>
+                    <th>N°</th>
                     <th>Mes de inicio</th>
                     <th>Año de inicio</th>
                     <th>Mes de finalización</th>
@@ -18,12 +19,14 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody ng-app="" ng-controller="">
 
                 <?php 
+                    $numerador = 1;
                     foreach ($consulta->result() as $fila ) {
                 ?>
                 <tr>
+                    <td><?= $numerador ?></td>
                     <td><?= $fila->mesinicio_pera ?></td>
                     <td><?= $fila->anioinicio_pera ?></td>
                     <td><?= $fila->mesfin_pera ?></td>
@@ -35,12 +38,14 @@
                     </div></td>
                 </tr>
                 <?php 
+                        $numerador++;
                     }
                 ?>
             </tbody>
         </table>
     </div>
 </div>
+
 <script>
  
 $(document).ready(function() {

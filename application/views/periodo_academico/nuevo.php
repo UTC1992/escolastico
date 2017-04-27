@@ -8,7 +8,7 @@
 	}
 </style> 
 
-<div class="container well" ng-app="appPeriodoA">
+<div class="container well" ng-app="appPeriodoA" ng-controller="periodoAcademicoDatos">
 
 		<div class="row">
 			<div class="col-xs-12">
@@ -19,19 +19,19 @@
 
 			<form name="formularioPeriodo" class="form-horizontal" action="<?= base_url() ?>periodoa_controller/insertar" method="post">
 
-				<div class="form-group" ng-controller="periodoMeses">
+				<div class="form-group">
 					<label class="col-sm-3 control-label" for="formGroup">
 						Mes de inicio de clases:
 					</label>
 					<div class="col-sm-6">
-                        <select class="form-control" name="mesInicio" id="mesInicio" required ng-model="selectedMes">
+                        <select class="form-control" name="mesInicio" id="mesInicio" required>
                             <option value="">Seleccionar</option>
 							<option ng-repeat="m in meses" value="{{m.name}}">{{m.name}}</option>
                         </select>
 					</div>
 				</div>
 
-				<div class="form-group" ng-controller="periodoAnios">
+				<div class="form-group" >
 					<label class="col-sm-3 control-label" for="formGroup">
 						Año de inicio de clases:
 					</label>
@@ -43,19 +43,19 @@
 					</div>
 				</div>
 
-				<div class="form-group" ng-controller="periodoMeses">
+				<div class="form-group">
 					<label class="col-sm-3 control-label" for="formGroup">
 						Mes de finalización de clases:
 					</label>
 					<div class="col-sm-6">
-						<select class="form-control" name="mesFin" id="mesFin" required ng-model="selectedMes">
+						<select class="form-control" name="mesFin" id="mesFin" required>
                             <option value="">Seleccionar</option>
 							<option ng-repeat="m in meses" value="{{m.name}}">{{m.name}}</option>
                         </select>
 					</div>
 				</div>
 				
-                <div class="form-group" ng-controller="periodoAnios">
+                <div class="form-group">
 					<label class="col-sm-3 control-label" for="formGroup" >
 						Año de finalización de clases:
 					</label>

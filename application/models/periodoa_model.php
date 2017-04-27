@@ -7,7 +7,8 @@
 	{
 		public function getPeriodoAcademico()
 		{
-			return $this->db->get('periodo_academico');
+			$result = $this->db->get('periodo_academico');
+			return $result;
 		}
 
 		public function insertP($periodo = null)
@@ -28,7 +29,8 @@
 		public function getById($id = '')
 		{
 			$result = $this->db->query("SELECT * FROM periodo_academico WHERE id_pera = '" . $id . "'");
-			return $result->row();
+			//return $result->row();
+			return $result;
 		}
 
 		public function updateP($periodoEdit = null, $id = '')

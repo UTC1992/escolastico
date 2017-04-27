@@ -51,27 +51,9 @@ class Periodoa_Controller extends CI_Controller
 		}
 	}
 
-	public function getDataJson($id = "")
-	{
-		$json = new Services_JSON();
-
-		$datos = array();
-
-		$fila = $this->periodoa_model->getById($id);
-		
-		//llenamos el arreglo con los datos resultados de la consulta
-		foreach ($fila->result_array() as $row) {
-			$datos[] = $row;
-		}
-		//convertimos en datos json nuestros datos
-		return $json->encode($datos);
-		
-
-	}
-
 	public function edit($id = '')
     {
-		$fila = $this->periodoa_model->getById($id);
+		//$fila = $this->periodoa_model->getById($id);
 
 		//se comprueba que la sesion exista y se redirecciona 
 		//si existe va a la parte administrativa
@@ -83,11 +65,13 @@ class Periodoa_Controller extends CI_Controller
 		$this->load->view('/layout/css_js_inicio');
 		$this->load->view('/layout/header_admin');
 
-		$data = array( 	'id'		=> $fila->id_pera,
+		/*$data = array( 	'id'		=> $fila->id_pera,
 						'mesI'		=> $fila->mesinicio_pera, 
 						'anioI' 	=> $fila->anioinicio_pera,
 						'mesF'		=> $fila->mesfin_pera,
 						'anioF'		=> $fila->aniofin_pera );
+		*/
+		$data = array('id' => $id);
 		$this->load->view('/periodo_academico/editar', $data);
 		$this->load->view('/layout/footer');
     }
@@ -106,5 +90,46 @@ class Periodoa_Controller extends CI_Controller
 		}
 	}
 
+	/**
+	* obtener los datos en formato json para editar el periodo academico
+	*/
+	public function getDataJsonPeriodoId($id = "")
+	{
+		$json = new Services_JSON();
 
+		$datos = array();
+
+		$fila = $this->periodoa_model->getById($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
+
+	/**
+	* obtener los datos en formato json para editar el periodo academico
+	*/
+	public function getDataJsonPeriodoAll()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->periodoa_model->getPeriodoAcademico();
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
 }
