@@ -12,13 +12,33 @@ class Periodoa_Controller extends CI_Controller
 		}
 		$data = array('title' => 'Periodo Académico');
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/css_js_inicio');
-		$this->load->view('/layout/header_admin');
-		$this->load->view('/layout/nav_admin');
-        $result = $this->periodoa_model->getPeriodoAcademico();
+		$this->load->view('/layout/disenio_css_js');
+		//$this->load->view('/layout/header_admin');
+		//$this->load->view('/layout/nav_admin');
+        $this->load->view('/layout/menuAdmin');
+		$result = $this->periodoa_model->getPeriodoAcademico();
         $data = array('consulta' => $result );
-		$this->load->view('/periodo_academico/content', $data);
+		$this->load->view('/periodo_academico/index', $data);
         $this->load->view('/layout/footer');
+        //$this->load->view('/layout/footer_table_dinamic');
+	}
+
+	public function content()
+	{
+		//si no existe la sesion se redirige al login
+		if (!$this->session->userdata('login_admin')) {
+			header('Location:' . base_url() . 'admin_/login');
+		}
+		//$data = array('title' => 'Periodo Académico');
+		//$this->load->view('/layout/head', $data);
+		//$this->load->view('/layout/css_js_inicio');
+		//$this->load->view('/layout/header_admin');
+		//$this->load->view('/layout/nav_admin');
+        //$this->load->view('/layout/menu_admin');
+		$result = $this->periodoa_model->getPeriodoAcademico();
+        $data = array('consulta' => $result );
+		$this->load->view('/periodo_academico/listar', $data);
+        //$this->load->view('/layout/footer');
         //$this->load->view('/layout/footer_table_dinamic');
 	}
 
@@ -29,16 +49,16 @@ class Periodoa_Controller extends CI_Controller
 		if (!$this->session->userdata('login_admin')) {
 			header('Location:' . base_url() . 'admin_/dashboard');
 		}
-        $data = array('title' => 'Registro Periodo Académico');
-		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/css_js_inicio');
-		$this->load->view('/layout/header_admin');
+        //$data = array('title' => 'Registro Periodo Académico');
+		//$this->load->view('/layout/head', $data);
+		//$this->load->view('/layout/css_js_inicio');
+		//$this->load->view('/layout/header_admin');
 		$this->load->view('/periodo_academico/nuevo');
-		$this->load->view('/layout/footer');
+		//$this->load->view('/layout/footer');
     }
 
 	public function insertar()
-	{
+	{	
 		//se optiene los datos mediante el metodo POST
 		$periodo = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
@@ -62,8 +82,9 @@ class Periodoa_Controller extends CI_Controller
 		}
         $data = array('title' => 'Registro Periodo Académico');
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/css_js_inicio');
-		$this->load->view('/layout/header_admin');
+		$this->load->view('/layout/disenio_css_js');
+		//$this->load->view('/layout/header_admin');
+		$this->load->view('/layout/menuAdmin');
 
 		/*$data = array( 	'id'		=> $fila->id_pera,
 						'mesI'		=> $fila->mesinicio_pera, 
@@ -128,8 +149,8 @@ class Periodoa_Controller extends CI_Controller
 		}
 		
 		//convertimos en datos json nuestros datos
-		$datosP = $json->encode($datos);
+		$periodos = $json->encode($datos);
 		//imprimiendo datos asi se puede tomar desde angular ok 
-		echo $datosP;
+		echo $periodos;
 	}
 }

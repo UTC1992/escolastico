@@ -1,60 +1,32 @@
-<style>
-	.tabla{
-		float: left;
-		width: 50%;
-	}
 
-	#contenedorHome{
-		margin-bottom: 50px;
-	}
-</style>
+<div class="container">
+	<a name="modulosCalificaciones"></a>
+    <center><h2>Módulo de Calificaciones</h2></center>
 
-<div id="contenedorHome" class="container well">
-    <a name="modulosCalificaciones"></a>
-    <center><h2 >Calificaciones</h2></center>
-
-    <center>
-	<table class="tabla">
-		<caption><center>
-			<h3>Consultar notas</h3>
-		</center></caption>
-		<thead>
-			<tr>
-				<th>Si eres un estudiante o un padre de familia.</th>
-			</tr>
-		</thead>
+	<table id="tabla-inicio1" class="table">
 		<tbody>
 			<tr>
+				<th><center>Si eres un estudiante o un padre de familia.</center></th>
+			</tr>
+			<tr>
 				<td>
-                    <a href="#" >
-                        <input type="button" class="btn btn-warning" value="Consultar notas...">
-					</a>
-                    <img style="float: right;" class="img-responsive" src="<?= base_url() ?>disenio/img/estudiante1.png" >
-					
+                    <center>
+						<a class="btn btn-outline-primary" href="#" >Consultar notas...</a>
+                    	<img class="img-fluid" width="300"  height="300" src="<?= base_url() ?>disenio/img/estudiante1.png" >
+                    </center>
+				</td>
+			</tr>
+			<tr>
+				<th><center>Si eres un Docente.</center></th>
+			</tr>
+			<tr>
+				<td>
+					<center>
+						<a class="btn btn-outline-primary" href="#" >Ingresar notas...</a>
+						<img class="img-fluid" width="300"  height="300" src="<?= base_url() ?>disenio/img/profesor1.png" >
+					</center>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
-	<table class="tabla" >
-		<caption><center>
-			<h3>Ingreso de notas</h3>
-		</center></caption>
-		<thead>
-			<tr>
-				<th>Si eres un Docente.</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Ingresar notas...">
-					</a>
-                    <img style="float: right;" class="img-responsive" src="<?= base_url() ?>disenio/img/profesor1.png" >
-				</td>
-			</tr>
-		</tbody>
-	</table>
-    </center>
 </div>

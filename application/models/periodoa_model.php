@@ -14,7 +14,6 @@
 		public function insertP($periodo = null)
 		{
 			if ($periodo != null) {
-
 				$data = array(
 					'mesinicio_pera' => $periodo['mesInicio'],
 					'anioinicio_pera' => $periodo['anioInicio'],

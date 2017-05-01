@@ -12,8 +12,8 @@
 			}
             $data = array('title' => 'Login Admin');
 		    $this->load->view('/layout/head', $data);
-            $this->load->view('/layout/css_js_inicio');
-			$this->load->view('/layout/header_admin');
+            $this->load->view('/layout/disenio_css_js');
+			$this->load->view('/layout/menuAdmin');
             $this->load->view('/loginAdmin/content');
 			$this->load->view('/layout/footer');
         }

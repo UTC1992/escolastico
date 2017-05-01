@@ -28,5 +28,11 @@
 
     <!--angula JS-->
     <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular.js"></script>
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-route.js"></script>
+    <!--tipos de fonts o de letras-->
+    <link rel="stylesheet" href="<?= base_url() ?>disenio/fonts.css">
 
+    <!--AJAX jquery
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/ajax/periodos.js"></script>
+-->
 </head>

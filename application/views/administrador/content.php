@@ -6,60 +6,75 @@
     th{
         text-align: center;
     }
+
+	#modulosAdmin {
+		margin-top: 50px;
+	}
 </style>
 
 
-<div class="container well">
-    <table class="table">
-		<caption><center>
+<div id="modulosAdmin" class="container">
+	<center>
 			<h3>Datos a administrar</h3>
-		</center></caption>
+	</center>
+    <table class="table">
 		<thead>
 			<tr>
 				<th>Periodo Academico</th>
 				<th>Curso</th>
-				<th>Asignatura</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>
-					<a href="<?= base_url() ?>admin_/periodoacademico" >
-                        <input type="button" class="btn btn-warning" value="Mostrar...">
+					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+                        Mostrar...
 					</a>
 				</td>
 				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Mostrar...">
-					</a>
-				</td>
-				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Mostrar...">
+					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+                        Mostrar...
 					</a>
 				</td>
 			</tr>
-			<thead>
+		</tbody>
+		<thead>
 			<tr>
+				<th>Asignatura</th>
 				<th>Paralelo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+                        Mostrar...
+					</a>
+				</td>
+				<td>
+					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+                        Mostrar...
+					</a>
+				</td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				
 				<th>Estudiante</th>
 				<th>Matrícula</th>
 			</tr>
 		</thead>
+		<tbody>
 			<tr>
 				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Mostrar...">
+					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+                        Mostrar...
 					</a>
 				</td>
 				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Mostrar...">
-					</a>
-				</td>
-				<td>
-					<a href="#" >
-                        <input type="button" class="btn btn-warning" value="Mostrar...">
+					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+                        Mostrar...
 					</a>
 				</td>
 			</tr>
