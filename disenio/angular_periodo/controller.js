@@ -1,11 +1,10 @@
 var app = angular.module('appPeriodoA', ["ngRoute"]);
 
-app.controller('periodoAcademicoDatos', function($scope, $http) {
+app.controller('periodoAcademicoDatos', function($scope, $http, $location, $route) {
     //llenado de los selects de html
     listarMeses();
     listarAnios();
     listarPeriodos();
-    mostrarDatosEditar();
     inicializarSelects();
 
     //listar meses
@@ -37,7 +36,7 @@ app.controller('periodoAcademicoDatos', function($scope, $http) {
     }
 
     //obtener datos de un determinado periodo dependiendo del url obtenido desde la vista
-    function mostrarDatosEditar() {
+    /*function mostrarDatosEditar() {
         $scope.getUrl = $('#url').val();
         if ($scope.getUrl != null) {
             $http.get($scope.getUrl)
@@ -50,6 +49,7 @@ app.controller('periodoAcademicoDatos', function($scope, $http) {
             });
         }
     }
+    */
     
     //obtener todos los periodos de la tabla
     function listarPeriodos() {
@@ -92,14 +92,70 @@ app.controller('periodoAcademicoDatos', function($scope, $http) {
 
             $scope.mensajeInsertP = false;
         });
-        
     }
+
+
+    // declaro la función enviar
+    $scope.mostrarFormEditar = function (event) {
+        var url = event.target.id;
+        $http.get(url)
+        .success(function(datosP){
+            $scope.lista = datosP;
+            
+            $scope.idPeriodo =  datosP[0]['id_pera'];
+            $scope.mesinicio =  datosP[0]['mesinicio_pera'];
+            $scope.anioinicio =  datosP[0]['anioinicio_pera'];
+            $scope.mesfin =  datosP[0]['mesfin_pera'];
+            $scope.aniofin =  datosP[0]['aniofin_pera'];
+
+            $('#idPeriodo').val($scope.idPeriodo);
+            $('#mesInicio').val($scope.mesinicio);
+            $('#anioInicio').val($scope.anioinicio);
+            $('#mesFin').val($scope.mesfin);
+            $('#anioFin').val($scope.aniofin);
+        });
+    }
+
+    // funcion para enviar datos para actualizar periodo
+    $scope.actualizar = function () {
+        
+        //alert("actulizar");
+        $scope.getUrl = $('#urlActualizarP').val();
+        $scope.getId = $('#idPeriodo').val();
+        $scope.urlActualizar = $scope.getUrl + $scope.getId;
+        $http({
+            method: "post",
+            url: $scope.urlActualizar,
+            data: "mesInicio="+$scope.mesInicioEdit+"&anioInicio="+$scope.anioInicioEdit+"&mesFin="+$scope.mesFinEdit+"&anioFin="+$scope.anioFinEdit,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            //$location.path('#/');
+            //$route.reload();
+            //$location.href('/');
+            //$window.location.reload();
+            //$location.search('#/');
+            window.location.reload(false);
+            
+            $scope.mensajeInsertP = false;
+        });
+    }
+
     
+});
+
+//obtener dato del elemento que se aya presionado
+app.controller('periodoUrl', function($scope) {
+    $scope.obtenerUrlEditar = function (event) {
+        $scope.urlEditarP =  event.target.id;
+        alert($scope.urlEditarP);
+        $('#urlEditarPeriodo').val($scope.urlEditarP);
+    };
 });
 
 app.config(function($routeProvider) {
     var urlRegistro = $('#urlRegistroPeriodo').val();
     var urlConsultar = $('#urlConsultarPeriodos').val();
+    var urlEditar = $('#urlEditarPeriodo').val();    
     
     $routeProvider
     .when("/", {
@@ -109,9 +165,11 @@ app.config(function($routeProvider) {
         templateUrl : urlRegistro
     })
     .when("/editarPeriodo", {
-        templateUrl : "paris.html",
-        controller : "parisCtrl"
-    });
+        templateUrl : urlEditar
+    })
+    .otherwise({
+        redirectTo: '/'
+    });;
 });
 /*
 app.controller("londonCtrl", function ($scope) {

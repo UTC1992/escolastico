@@ -24,10 +24,10 @@
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/periodoacademico">Periodo</a>
           </li>
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Cursos</a>
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/asignaturas">Asignatura</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Asignatura</a>
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Curso</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Paralelo</a>

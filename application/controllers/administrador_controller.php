@@ -26,8 +26,8 @@ class Administrador_Controller extends CI_Controller
 		}
         $data = array('title' => 'Registro Admin', 'error' => $error);
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/css_js_inicio');
-		$this->load->view('/layout/header_admin');
+		$this->load->view('/layout/disenio_css_js');
+		$this->load->view('/layout/menuAdmin');
 		$this->load->view('/administrador/nuevo');
 		$this->load->view('/layout/footer');
     }

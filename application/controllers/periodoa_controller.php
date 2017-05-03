@@ -80,11 +80,11 @@ class Periodoa_Controller extends CI_Controller
 		if (!$this->session->userdata('login_admin')) {
 			header('Location:' . base_url() . 'admin_/dashboard');
 		}
-        $data = array('title' => 'Registro Periodo Académico');
-		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/disenio_css_js');
+        //$data = array('title' => 'Registro Periodo Académico');
+		//$this->load->view('/layout/head', $data);
+		//$this->load->view('/layout/disenio_css_js');
 		//$this->load->view('/layout/header_admin');
-		$this->load->view('/layout/menuAdmin');
+		//$this->load->view('/layout/menuAdmin');
 
 		/*$data = array( 	'id'		=> $fila->id_pera,
 						'mesI'		=> $fila->mesinicio_pera, 
@@ -94,7 +94,7 @@ class Periodoa_Controller extends CI_Controller
 		*/
 		$data = array('id' => $id);
 		$this->load->view('/periodo_academico/editar', $data);
-		$this->load->view('/layout/footer');
+		//$this->load->view('/layout/footer');
     }
 
 	public function actualizar($id = '')

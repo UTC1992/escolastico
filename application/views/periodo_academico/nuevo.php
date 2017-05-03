@@ -12,7 +12,7 @@
 					* Debe ingresar todos los datos porfavor.
 				</div>
 				<div class="col-11 alert alert-success" ng-hide="mensajeInsertP">
-						* Periodo ingresado correctamente.
+					Periodo ingresado correctamente.
 				</div>
 
 				<input type="hidden" id="urlInsertarP" value="<?= base_url()?>periodoa_controller/insertar">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="col-4 alert alert-danger" 
 						ng-show="fPeriodo.mesInicio.$invalid">
-						Debe ingresar el mes de inicio.
+						* Debe ingresar el mes de inicio.
 					</div>
 					
 				</div>
@@ -49,7 +49,7 @@
 					</div>
 					<div class="col-4 alert alert-danger" 
 						ng-show="fPeriodo.anioInicio.$invalid">
-						Debe ingresar el año de inicio.
+						* Debe ingresar el año de inicio.
 					</div>
 				</div>
 
@@ -67,7 +67,7 @@
 					</div>
 					<div class="col-4 alert alert-danger" 
 						ng-show="fPeriodo.mesFin.$invalid">
-						Debe ingresar el mes de finalización.
+						* Debe ingresar el mes de finalización.
 					</div>
 				</div>
 				
@@ -87,7 +87,7 @@
 					</div>
 					<div class="col-4 alert alert-danger" 
 						ng-show="fPeriodo.anioFin.$invalid">
-						Debe ingresar el año de finalización.
+						* Debe ingresar el año de finalización.
 					</div>
 				</div>
 

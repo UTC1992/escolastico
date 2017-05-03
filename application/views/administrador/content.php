@@ -21,7 +21,7 @@
 		<thead>
 			<tr>
 				<th>Periodo Academico</th>
-				<th>Curso</th>
+				<th>Asignatura</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,7 +32,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/asignaturas/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>
@@ -40,8 +40,8 @@
 		</tbody>
 		<thead>
 			<tr>
-				<th>Asignatura</th>
 				<th>Paralelo</th>
+				<th>Curso</th>
 			</tr>
 		</thead>
 		<tbody>

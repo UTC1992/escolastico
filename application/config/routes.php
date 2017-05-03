@@ -69,3 +69,7 @@ $route['admin_/periodoacademico/lista'] = 'periodoa_controller/content';
 $route['admin_/periodoacademico/nuevo'] = 'periodoa_controller/nuevo';
 $route['admin_/periodoacademico/edit/(:num)'] = 'periodoa_controller/edit/$1';
 $route['admin_/periodoacademico/actualizar/(:num)'] = 'periodoa_controller/actualizar/$1';
+
+//rutas de asginaturas
+$route['admin_/asignaturas'] = 'asignaturas_controller/index';
+$route['admin_/asignaturas/listar'] = 'asignaturas_controller/listar';

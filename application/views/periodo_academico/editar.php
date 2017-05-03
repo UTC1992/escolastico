@@ -7,19 +7,8 @@
     }
 </style> 
 
-<div id="contenidoPeriodoEdit" class="container" ng-app="appPeriodoA" ng-controller="periodoAcademicoDatos">
-		<div class="container">
-			<center><h2>Administrar Periodo academico</h2></center>
-			<ul class="nav nav-tabs">
-				<li class="nav-item">
-					<a href="<?= base_url() ?>admin_/periodoacademico" class="nav-link">Listar</a>
-					
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url() ?>admin_/periodoacademico" class="nav-link disabled">Registrar</a>
-				</li>
-			</ul>
-		</div>
+<div id="contenidoPeriodoEdit" class="container" ng-controller="periodoAcademicoDatos">
+		
 		<br>
 		<input type="hidden" id="url" value="<?= base_url()?>periodoa_controller/getDataJsonPeriodoId/<?= $id ?>">
 		
@@ -94,4 +83,3 @@
 			</div>
 		</div>
 	</div>
-    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_periodo/controller.js"></script>
