@@ -3,6 +3,10 @@
     <link href="<?= base_url() ?>disenio/css/jquery-ui.css" rel="stylesheet">
     <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- JS angular -->
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular.js"></script>
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-route.js"></script>
     
 <body>
 <header>   

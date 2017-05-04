@@ -1,7 +1,7 @@
 <style>
 </style> 
 
-<div class="container" ng-controller="periodoAcademicoDatos">
+<div class="container">
 
 		<div class="row justify-content-md-center">
 			<div class="col-11">

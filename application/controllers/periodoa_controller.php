@@ -12,14 +12,14 @@ class Periodoa_Controller extends CI_Controller
 		}
 		$data = array('title' => 'Periodo Académico');
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/disenio_css_js');
+		//$this->load->view('/layout/disenio_css_js');
 		//$this->load->view('/layout/header_admin');
 		//$this->load->view('/layout/nav_admin');
         $this->load->view('/layout/menuAdmin');
 		$result = $this->periodoa_model->getPeriodoAcademico();
         $data = array('consulta' => $result );
 		$this->load->view('/periodo_academico/index', $data);
-        $this->load->view('/layout/footer');
+        $this->load->view('/layout/footer_base');
         //$this->load->view('/layout/footer_table_dinamic');
 	}
 

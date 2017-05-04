@@ -11,10 +11,10 @@ class Administrador_Controller extends CI_Controller
 		}
 		$data = array('title' => 'Administración');
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/disenio_css_js');
+		//$this->load->view('/layout/disenio_css_js');
 		$this->load->view('/layout/menuAdmin');
 		$this->load->view('/administrador/content');
-		$this->load->view('/layout/footer');
+		$this->load->view('/layout/footer_base');
 	}
 
     public function nuevo($error = "")
@@ -26,10 +26,10 @@ class Administrador_Controller extends CI_Controller
 		}
         $data = array('title' => 'Registro Admin', 'error' => $error);
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/disenio_css_js');
+		//$this->load->view('/layout/disenio_css_js');
 		$this->load->view('/layout/menuAdmin');
 		$this->load->view('/administrador/nuevo');
-		$this->load->view('/layout/footer');
+		$this->load->view('/layout/footer_base');
     }
 
 	public function insertar()

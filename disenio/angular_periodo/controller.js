@@ -35,22 +35,7 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
         }
     }
 
-    //obtener datos de un determinado periodo dependiendo del url obtenido desde la vista
-    /*function mostrarDatosEditar() {
-        $scope.getUrl = $('#url').val();
-        if ($scope.getUrl != null) {
-            $http.get($scope.getUrl)
-            .success(function(datosP){
-                $scope.lista = datosP;
-                $scope.mesinicio =  datosP[0]['mesinicio_pera'];
-                $scope.anioinicio =  datosP[0]['anioinicio_pera'];
-                $scope.mesfin =  datosP[0]['mesfin_pera'];
-                $scope.aniofin =  datosP[0]['aniofin_pera'];
-            });
-        }
-    }
-    */
-    
+   
     //obtener todos los periodos de la tabla
     function listarPeriodos() {
         $scope.getUrl = $('#urlPeriodos').val();
@@ -77,7 +62,7 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
     $scope.mensajeInsertP = true;
 
     // declaro la función enviar
-    $scope.enviar = function () {
+    $scope.registrarNuevo = function () {
         $scope.getUrl = $('#urlInsertarP').val();
         $http({
             method: "post",
@@ -85,17 +70,13 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
             data: "mesInicio="+$scope.mesInicio+"&anioInicio="+$scope.anioInicio+"&mesFin="+$scope.mesFin+"&anioFin="+$scope.anioFin,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            $scope.mesInicio = "";
-            $scope.anioInicio = "";
-            $scope.mesFin = "";
-            $scope.anioFin = "";
-
+            window.location.reload(false);
             $scope.mensajeInsertP = false;
         });
     }
 
 
-    // declaro la función enviar
+    // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
         var url = event.target.id;
         $http.get(url)
@@ -103,16 +84,10 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
             $scope.lista = datosP;
             
             $scope.idPeriodo =  datosP[0]['id_pera'];
-            $scope.mesinicio =  datosP[0]['mesinicio_pera'];
-            $scope.anioinicio =  datosP[0]['anioinicio_pera'];
-            $scope.mesfin =  datosP[0]['mesfin_pera'];
-            $scope.aniofin =  datosP[0]['aniofin_pera'];
-
-            $('#idPeriodo').val($scope.idPeriodo);
-            $('#mesInicio').val($scope.mesinicio);
-            $('#anioInicio').val($scope.anioinicio);
-            $('#mesFin').val($scope.mesfin);
-            $('#anioFin').val($scope.aniofin);
+            $scope.mesInicioEdit =  datosP[0]['mesinicio_pera'];
+            $scope.anioInicioEdit =  datosP[0]['anioinicio_pera'];
+            $scope.mesFinEdit =  datosP[0]['mesfin_pera'];
+            $scope.anioFinEdit =  datosP[0]['aniofin_pera'];
         });
     }
 
@@ -129,21 +104,35 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
             data: "mesInicio="+$scope.mesInicioEdit+"&anioInicio="+$scope.anioInicioEdit+"&mesFin="+$scope.mesFinEdit+"&anioFin="+$scope.anioFinEdit,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            //$location.path('#/');
-            //$route.reload();
-            //$location.href('/');
-            //$window.location.reload();
-            //$location.search('#/');
             window.location.reload(false);
-            
-            $scope.mensajeInsertP = false;
         });
     }
 
     
 });
 
+
+//configuracion de rutas 
+app.config(function($routeProvider) {
+    var urlRegistro = $('#urlRegistroPeriodo').val();
+    var urlConsultar = $('#urlConsultarPeriodos').val();    
+    
+    $routeProvider
+    .when("/", {
+        templateUrl : urlConsultar,
+        controller : "periodoAcademicoDatos"
+    })
+    .when("/registro", {
+        templateUrl : urlRegistro,
+        controller : "periodoAcademicoDatos"
+    })
+    .otherwise({
+        redirectTo: '/'
+    });;
+});
+
 //obtener dato del elemento que se aya presionado
+/*
 app.controller('periodoUrl', function($scope) {
     $scope.obtenerUrlEditar = function (event) {
         $scope.urlEditarP =  event.target.id;
@@ -151,32 +140,4 @@ app.controller('periodoUrl', function($scope) {
         $('#urlEditarPeriodo').val($scope.urlEditarP);
     };
 });
-
-app.config(function($routeProvider) {
-    var urlRegistro = $('#urlRegistroPeriodo').val();
-    var urlConsultar = $('#urlConsultarPeriodos').val();
-    var urlEditar = $('#urlEditarPeriodo').val();    
-    
-    $routeProvider
-    .when("/", {
-        templateUrl : urlConsultar
-    })
-    .when("/registro", {
-        templateUrl : urlRegistro
-    })
-    .when("/editarPeriodo", {
-        templateUrl : urlEditar
-    })
-    .otherwise({
-        redirectTo: '/'
-    });;
-});
-/*
-app.controller("londonCtrl", function ($scope) {
-    $scope.msg = "I love London";
-});
-app.controller("parisCtrl", function ($scope) {
-    $scope.msg = "I love Paris";
-});
 */
-
