@@ -73,3 +73,7 @@ $route['admin_/periodoacademico/actualizar/(:num)'] = 'periodoa_controller/actua
 //rutas de asginaturas
 $route['admin_/asignaturas'] = 'asignaturas_controller/index';
 $route['admin_/asignaturas/listar'] = 'asignaturas_controller/listar';
+
+//rutas de asginaturas
+$route['admin_/curso'] = 'curso_controller/index';
+$route['admin_/curso/listar'] = 'curso_controller/listar';
