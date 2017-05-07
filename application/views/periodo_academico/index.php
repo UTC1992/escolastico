@@ -8,16 +8,19 @@
 <!--menu -->
 <div class="container">
     <center><h2>Administrar Periodo academico</h2></center>
+    <input id="urlConsultarPeriodos" type="hidden" value="<?= base_url() ?>admin_/periodoacademico/lista">
+    <!--
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <!--<a href="#/" class="nav-link">Listar</a>-->
+            <!--<a href="#/" class="nav-link">Listar</a>
             <input id="urlConsultarPeriodos" type="hidden" value="<?= base_url() ?>admin_/periodoacademico/lista">
         </li>
         <li class="nav-item">
-            <!--<a href="#/registro" class="nav-link">Registrar</a>-->
+            <a href="#/registro" class="nav-link">Registrar</a>
             <input id="urlRegistroPeriodo" type="hidden" value="<?= base_url() ?>admin_/periodoacademico/nuevo">
         </li>
     </ul>
+    -->
 </div>
 <br>
 <!--menu -->
@@ -31,4 +34,6 @@
 <!--cuerpo -->
 
 </div>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_periodo/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_periodo/controller.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_periodo/routesPeriodo.js"></script>

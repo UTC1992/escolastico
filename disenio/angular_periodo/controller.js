@@ -1,5 +1,3 @@
-var app = angular.module('appPeriodoA', ["ngRoute"]);
-
 app.controller('periodoAcademicoDatos', function($scope, $http, $location, $route) {
     //llenado de los selects de html
     listarMeses();
@@ -109,26 +107,6 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
     }
 
     
-});
-
-
-//configuracion de rutas 
-app.config(function($routeProvider) {
-    var urlRegistro = $('#urlRegistroPeriodo').val();
-    var urlConsultar = $('#urlConsultarPeriodos').val();    
-    
-    $routeProvider
-    .when("/", {
-        templateUrl : urlConsultar,
-        controller : "periodoAcademicoDatos"
-    })
-    .when("/registro", {
-        templateUrl : urlRegistro,
-        controller : "periodoAcademicoDatos"
-    })
-    .otherwise({
-        redirectTo: '/'
-    });;
 });
 
 //obtener dato del elemento que se aya presionado

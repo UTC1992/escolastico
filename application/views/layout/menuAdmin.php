@@ -25,10 +25,10 @@
             <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>admin_/dashboard">Inicio <span class="sr-only">(current)</span></a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/periodoacademico">Periodo</a>
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/periodoacademico/">Periodo</a>
           </li>
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/asignaturas">Asignatura</a>
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/asignaturas/">Asignatura</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Curso</a>

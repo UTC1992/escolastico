@@ -1,11 +1,10 @@
 //configuracion de rutas 
 app.config(function($routeProvider) {
-    var urlConsultar = $('#urlConsultarPeriodos').val();    
-    
+    var urlConsultar = $('#urlConsultarAsignaturas').val();
     $routeProvider
     .when("/", {
         templateUrl : urlConsultar,
-        controller : "periodoAcademicoDatos"
+        controller : "asignaturaCtrl"
     })
     .otherwise({
         redirectTo: '/'
