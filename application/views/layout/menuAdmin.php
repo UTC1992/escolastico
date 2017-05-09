@@ -34,9 +34,6 @@
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/curso/">Curso</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Paralelo</a>
-          </li>
-           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Estudiantes</a>
           </li>
           <li class="nav-item active" style="padding: 0px; margin: 5px;">

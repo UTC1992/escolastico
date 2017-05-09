@@ -40,14 +40,14 @@
 		</tbody>
 		<thead>
 			<tr>
-				<th>Paralelo</th>
-				<th>Curso</th>
+				<th>Cursos</th>
+				<th>N/A</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>
-					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/curso/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>
