@@ -29,9 +29,10 @@
 			if ($fila != null) {
 				if ($fila->password_admin == $password) {
 					$data = array(
-							'email' =>  $email ,
-							'id' 	=>  $fila->id,
-							'login_admin'	=> true
+							'email' 		=>  $email ,
+							'id' 			=>  $fila->id,
+							'tipo_admin' 	=>	$fila->tipo_admin,
+							'login_admin'	=> 	true
 							);
 					$this->session->set_userdata($data);
                     //login exitoso
