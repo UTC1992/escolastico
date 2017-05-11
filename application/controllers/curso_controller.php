@@ -22,9 +22,7 @@ class Curso_Controller extends CI_Controller
 		if (!$this->session->userdata('login_admin')) {
 			header('Location:' . base_url() . 'admin_/login');
 		}
-		$result = $this->curso_model->getCurso();
-        $data = array('consulta' => $result );
-		$this->load->view('/curso/listar', $data);
+		$this->load->view('/curso/listar');
 	}
 
 	/**

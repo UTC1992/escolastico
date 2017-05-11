@@ -136,5 +136,6 @@ $autoload['model'] = array('administrador_model',
                                 'periodoa_model', 
                                 'asignatura_model', 
                                 'curso_model',
-                                'curso_asignatura_model'
+                                'curso_asignatura_model',
+                                'docente_model'
                                 );

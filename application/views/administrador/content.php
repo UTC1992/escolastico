@@ -41,7 +41,7 @@
 		<thead>
 			<tr>
 				<th>Cursos</th>
-				<th>N/A</th>
+				<th>Docente</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,7 +52,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="<?= base_url() ?>admin_/curso/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/docente/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>

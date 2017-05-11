@@ -7,6 +7,7 @@
     <!-- JS angular -->
     <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular.js"></script>
     <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-route.js"></script>
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-animate1.5.5.js"></script>
     
 <body>
 <header>   
@@ -34,7 +35,7 @@
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/curso/">Curso</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Estudiantes</a>
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/docente/">Docentes</a>
           </li>
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Matrícula</a>

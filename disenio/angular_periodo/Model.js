@@ -1,1 +1,1 @@
-var app = angular.module('appPeriodoA', ["ngRoute"]);
+var app = angular.module('appPeriodoA', ["ngRoute", "ngAnimate"]);
