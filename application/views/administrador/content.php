@@ -61,14 +61,16 @@
 		<thead>
 			<tr>
 				
-				<th>Estudiante</th>
+				<th><label class="col-form-label">
+					Docente y Cargos
+					</label></th>
 				<th>Matrícula</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>
-					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/docente_cargo/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>

@@ -81,3 +81,7 @@ $route['admin_/curso/listar'] = 'curso_controller/listar';
 //rutas de docentes
 $route['admin_/docente'] = 'docente_controller/index';
 $route['admin_/docente/listar'] = 'docente_controller/listar';
+
+//rutas de docentes y cargos de materias o cursos
+$route['admin_/docente_cargo'] = 'docente_cargo_controller/index';
+$route['admin_/docente_cargo/listar'] = 'docente_cargo_controller/listar';
