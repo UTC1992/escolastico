@@ -51,4 +51,34 @@ class Docente_Controller extends CI_Controller
 		//se envian los datos del formulario al modelo al metodo insert
 		$bool = $this->docente_model->insertD($docente);
 	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonDocenteId($id = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->docente_model->getById($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
+
+	public function actualizar($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$docenteEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->docente_model->updateD($docenteEdit, $id);
+		
+	}
 }

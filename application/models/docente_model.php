@@ -30,9 +30,43 @@
 					'telefono_domicilio_doce' 				=> $docente['telefono_domicilio_doce'],
 					'telefono_movil_doce' 					=> $docente['telefono_movil_doce'],
 					'email_doce' 							=> $docente['email_doce'],
-					'estado_doce' 							=> $docente['estado_doce'],
+					'estado_doce' 							=> $docente['estado_doce']
 				);
 				return $this->db->insert('docente', $data);
+			}
+			return false;
+		}
+
+		public function getById($id = '')
+		{
+			$result = $this->db->query("SELECT * FROM docente WHERE id_doce = '" . $id . "'");
+			//return $result->row();
+			return $result;
+		}
+
+		public function updateD($docenteEdit = null, $id = '')
+		{
+			if ($docenteEdit != null && $id != '') {
+				$data = array(
+					'cedula_doce' 							=> $docenteEdit['cedula_doce'],
+					'nombres_doce' 							=> $docenteEdit['nombres_doce'],
+					'apellidos_doce' 						=> $docenteEdit['apellidos_doce'],
+					'fechanacimiento_doce'					=> $docenteEdit['fechanacimiento_doce'],
+					'titulo_especializacion_senescyt_doce' 	=> $docenteEdit['titulo_especializacion_senescyt_doce'],
+					'fecha_ingreso_magisterio_doce' 		=> $docenteEdit['fecha_ingreso_magisterio_doce'],
+					'fecha_ingreso_institucion_doce' 		=> $docenteEdit['fecha_ingreso_institucion_doce'],
+					'relacion_laboral_doce' 				=> $docenteEdit['relacion_laboral_doce'],
+					'categoria_contrato_doce' 				=> $docenteEdit['categoria_contrato_doce'],
+					'funcion_doce' 							=> $docenteEdit['funcion_doce'],
+					'numero_horas_pedagogicas_doce' 		=> $docenteEdit['numero_horas_pedagogicas_doce'],
+					'lugar_residencia_doce' 				=> $docenteEdit['lugar_residencia_doce'],
+					'telefono_domicilio_doce' 				=> $docenteEdit['telefono_domicilio_doce'],
+					'telefono_movil_doce' 					=> $docenteEdit['telefono_movil_doce'],
+					'email_doce' 							=> $docenteEdit['email_doce'],
+					'estado_doce' 							=> $docenteEdit['estado_doce']
+				);
+				$this->db->where('id_doce', $id);
+				return $this->db->update('docente', $data);
 			}
 			return false;
 		}
