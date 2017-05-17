@@ -24,4 +24,83 @@ class Docente_Cargo_Controller extends CI_Controller
 		}
 		$this->load->view('/docente_cargo/listar');
 	}
+
+	/**
+	* obtener los datos en formato json
+	*/
+	public function getDataJsonDocenteCargoAll()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->docente_cargo_model->getDocenteCargo();
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosDC = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosDC;
+	}
+
+	public function getDataJsonDocenteCargo()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		//obtener datos enviador por metodo post
+		$docenteCargo = $this->input->post();
+		//declarcion de variables para la consultas
+		$idCurso = $docenteCargo['id_curs'];
+		$idDoce = $docenteCargo['id_doce'];
+		$idAsig = $docenteCargo['id_asig'];
+		$idCargo = $docenteCargo['id_cargo'];
+
+		$fila = $this->docente_cargo_model->getDocenteCargoListar($idCurso, $idDoce, $idAsig, $idCargo);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosDC = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosDC;
+	}
+
+	public function insertar()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$docenteC = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->docente_cargo_model->insertDC($docenteC);
+	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonDocenteCargoId($id = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->docente_cargo_model->getById($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
+
 }

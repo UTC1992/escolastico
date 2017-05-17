@@ -993,6 +993,9 @@
                                     </div>
                                 </div>
                                 </fieldset>
+                                <div class="modal-footer">
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                </div>
                             </form>
                         
                         </div>
