@@ -103,4 +103,13 @@ class Docente_Cargo_Controller extends CI_Controller
 		echo $datosP;
 	}
 
+	public function actualizar($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$docenteCargo = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->docente_cargo_model->updateDC($docenteCargo, $id);
+		
+	}
+
 }

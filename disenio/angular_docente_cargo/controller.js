@@ -199,11 +199,34 @@ app.controller('docenteCargoCtrl', function($scope, $http, $location, $route) {
                 {id: idAsig, nombre: response[0]['nombre_asig']}
             ];
             $scope.cursoCompletoEdit =  response[0]['curso_completo_cargo'];
+            $scope.periodoAcademicoEdit =  response[0]['periodo_academico_cargo'];
         });
     }
 
     $scope.actualizarDocenteCardo = function (){
-        alert("hola mundo");
+
+        $scope.getUrl = $('#urlActualizarDC').val();
+        $scope.getId = $('#idDC').val();
+        $scope.urlActualizar = $scope.getUrl + $scope.getId;
+
+        $http({
+            method: "post",
+            url: $scope.urlActualizar,
+            data:   "id_doce="+$('#idDocente').val()
+                    +"&categoria_nivel_cargo="+$scope.categoriaNivelEdit
+                    +"&id_curs="+$('#idCursoCargo').val()
+                    +"&paralelo_cargo="+$scope.paraleloCargoEdit
+                    +"&id_asig="+$('#idAsignatura').val()
+                    +"&curso_completo_cargo="+$scope.cursoCompletoEdit
+                    +"&periodo_academico_cargo="+$scope.periodoAcademicoEdit,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            window.location.reload(false);
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });
+
     }
 
 

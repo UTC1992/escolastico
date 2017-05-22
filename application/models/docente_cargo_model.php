@@ -64,4 +64,22 @@
 			//return $result->row();
 			return $result;
 		}
+
+		public function updateDC($docenteCargo = null, $id = '')
+		{
+			if ($docenteCargo != null) {
+				$data = array(
+					'id_doce' => $docenteCargo['id_doce'],
+					'categoria_nivel_cargo' => $docenteCargo['categoria_nivel_cargo'],
+					'id_curs' => $docenteCargo['id_curs'],
+					'paralelo_cargo' => $docenteCargo['paralelo_cargo'],
+					'id_asig' => $docenteCargo['id_asig'],
+					'curso_completo_cargo' => $docenteCargo['curso_completo_cargo'],
+					'periodo_academico_cargo' => $docenteCargo['periodo_academico_cargo']
+				);
+				$this->db->where('id_cargo', $id);
+				return $this->db->update('cargo_docente_asignatura', $data);
+			}
+			return false;
+		}
     }

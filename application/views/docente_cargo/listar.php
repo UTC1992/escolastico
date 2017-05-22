@@ -263,11 +263,13 @@
                         <div class="col-12">
 
                         <form name="fDocenteCargoEdit" ng-submit="actualizarDocenteCardo()" class="form-horizontal" >
+                                
                                 <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
                                 <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
                                 <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
 
-                                <input type="hidden" id="urlInsertarDC" value="<?= base_url()?>docente_cargo_controller/insertar">
+                                <input type="hidden" id="urlActualizarDC" value="<?= base_url()?>docente_cargo_controller/actualizar/">
+                                <input type="hidden" id="idDC" value="{{idDC}}">
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Docente:</label>
                                     <div class="col-7">
@@ -276,15 +278,6 @@
                                             <option ng-repeat="d in docentes" value="{{d.id_doce}}">{{d.nombres_doce}} {{d.apellidos_doce}}</option>
                                         </select>
                                     </div>
-                                    <!--<div class="col-4" style="color: #28B463"
-                                        ng-show="fDocenteCargoEdit.idDocente.$valid">
-                                        <strong>Correcto.</strong>
-                                    </div>
-                                    <div class="col-4" style="color: crimson"
-                                        ng-show="fDocenteCargoEdit.idDocente.$invalid">
-                                        * Campo obligatorio.
-                                    </div>
-                                    -->
                                 </div>
 
                                 <div class="form-group row">
@@ -348,6 +341,20 @@
                                     </div>
                                     
                                 </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">Periodo Académico:</label>
+                                    <div class="col-7">
+                                        <select class="form-control" name="periodoAcademicoEdit" id="periodoAcademicoEdit" 
+                                        ng-model="periodoAcademicoEdit" required>
+                                            <option value="{{periodoAcademicoEdit}}">{{periodoAcademicoEdit}}</option>
+                                            <option ng-repeat="p in periodos" 
+                                            value="{{p.mesinicio_pera}}-{{p.anioinicio_pera}}-{{p.mesfin_pera}}-{{p.aniofin_pera}}">
+                                            {{p.mesinicio_pera}}-{{p.anioinicio_pera}}-{{p.mesfin_pera}}-{{p.aniofin_pera}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
 
                                 <div class="modal-footer">
                                     <button class="col-3 btn btn-primary" type="submit">
