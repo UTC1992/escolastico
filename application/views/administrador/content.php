@@ -20,7 +20,7 @@
     <table class="table">
 		<thead>
 			<tr>
-				<th>Periodo Academico</th>
+				<th>Año lectivo</th>
 				<th>Asignatura</th>
 			</tr>
 		</thead>
@@ -64,7 +64,7 @@
 				<th><label class="col-form-label">
 					Docente y Cargos
 					</label></th>
-				<th>Matrícula</th>
+				<th>Estudiantes</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -75,7 +75,7 @@
 					</a>
 				</td>
 				<td>
-					<a href="<?= base_url() ?>admin_/periodoacademico/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/estudiantes/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>

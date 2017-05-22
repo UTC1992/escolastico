@@ -40,7 +40,9 @@
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/docente_cargo/">Docente y Cargos</a>
           </li>
-
+          <li class="nav-item active" style="padding: 0px; margin: 5px;">
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/estudiantes/">Estudiantes</a>
+          </li>
            <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
             <li class="nav-item active" style="padding: 0px; margin: 5px;">
               <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/logout">Perfil</a>
