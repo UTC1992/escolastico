@@ -43,4 +43,42 @@ class Estudiante_Controller extends CI_Controller
 		//imprimiendo datos asi se puede tomar desde angular ok 
 		echo $datosE;
 	}
+
+	public function insertar()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$estudiante = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->estudiante_model->insertE($estudiante);
+	}
+	
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonEstudianteId($id = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->estudiante_model->getById($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function actualizar($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$estudianteEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->estudiante_model->updateE($estudianteEdit, $id);
+		
+	}
 }
