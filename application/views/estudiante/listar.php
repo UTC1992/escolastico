@@ -38,27 +38,17 @@
                         <td>{{e.lugar_nacimiento_estu}}</td>
                         
                         <td>
-                            <div>
-                                
-
+                            <div style="width: 210px;">
                                 <button style="width: 100px;" class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
                                 data-toggle="modal" data-target="#modalMostrarDatos">
                                     Datos
                                 </button>
-                                <br>
                                 <button style="width: 100px;" class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
-                                <br>
-                                <button style="width: 100px;" class="btn btn-outline-primary editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
-                                data-toggle="modal" data-target="#modalEditar">
-                                    Matricular
-                                </button>
-
                                 <!--<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
                                     Eliminar
                                 </a>
