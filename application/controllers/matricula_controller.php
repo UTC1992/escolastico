@@ -24,4 +24,35 @@ class Matricula_Controller extends CI_Controller
 		}
 		$this->load->view('/matricula/registro');
 	}
+
+	/**
+	* obtener los datos en formato json
+	*/
+	public function getDataJsonEstudiante($cedula = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->matricula_model->getEstudiante($cedula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$data = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $data;
+	}
+
+	public function insertar()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->matricula_model->insertM($matricula);
+	}
+
 }
