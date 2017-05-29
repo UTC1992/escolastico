@@ -27,4 +27,64 @@
 			}
 			return false;
 		}
+
+		public function getCertificado($cedula = '', $AI = "", $AF = "")
+		{
+			$result = $this->db->query("SELECT 
+												estudiante.id_estu,
+												id_matr,
+												cedula_estu, 
+												nombres_estu, 
+												apellidos_estu, 
+												nombre_curs, 
+												paralelo_matr, 
+												nivel_matr, 
+												fechainicio_matr, 
+												fechafin_matr
+										FROM 
+												estudiante, 
+												matricula, 
+												curso
+										WHERE 
+												estudiante.id_estu = matricula.id_estu AND 
+												curso.id_curs = matricula.id_curs AND 
+												matricula.fechainicio_matr LIKE '" . $AI . "%' AND 
+												matricula.fechafin_matr LIKE '" . $AF . "%' AND 
+												estudiante.cedula_estu = '" . $cedula . "';	
+			");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getCertificadoImprimir($idEstu = '', $fechaI = "", $fechaF = "")
+		{
+			$result = $this->db->query("SELECT 
+												estudiante.id_estu,
+												id_matr,
+												cedula_estu, 
+												nombres_estu, 
+												apellidos_estu, 
+												nombre_curs, 
+												paralelo_matr, 
+												nivel_matr, 
+												fechainicio_matr, 
+												fechafin_matr,
+												nombre_padre_estu,
+												nombre_madre_estu,
+												fechanacimiento_estu,
+												direccion_estu
+										FROM 
+												estudiante, 
+												matricula, 
+												curso
+										WHERE 
+												estudiante.id_estu = matricula.id_estu AND 
+												curso.id_curs = matricula.id_curs AND 
+												matricula.fechainicio_matr = '" . $fechaI . "' AND 
+												matricula.fechafin_matr LIKE '" . $fechaF . "' AND 
+												estudiante.id_estu = '" . $idEstu . "';	
+			");
+			//return $result->row();
+			return $result;
+		}
     }

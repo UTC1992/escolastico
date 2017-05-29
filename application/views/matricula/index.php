@@ -7,7 +7,7 @@
         
 <!--head -->
 <div class="container">
-    <center><h2>Matriculación</h2></center>
+    <center><h2>Matriculación y generación de certíficados</h2></center>
     <input id="urlConsultarMatri" type="hidden" value="<?= base_url() ?>admin_/matricula/resgitro">
 </div>
 <br>
@@ -22,6 +22,7 @@
 <!--cuerpo -->
 
 </div>
+
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_matricular/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_matricular/controller.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_matricular/routesMatricular.js"></script>

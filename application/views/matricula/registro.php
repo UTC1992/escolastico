@@ -6,71 +6,193 @@
 
 <!--INICIO CONTENEDOR-->
 <div id="contenidoEstu" class="container" ng-controller="matriculaCtrl">
-    
+
+    <!-- Nav tabs -->
     <div class="row justify-content-md-center">	
-    <input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
-        <div class="col-lg-6">
-            <div class="input-group">
-                <button class="btn btn-info nuevo" ng-click="buscarEstudiante()">
-                    Bucar
-                </button>
-                <input class="form-control" ng-model="cedulaEstu" type="text" name="" value=""
-                 placeholder="Ingrese la cédula del estudiante">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" style="margin-right: 5px;">
+                <a class="btn btn-outline-warning" data-toggle="tab" href="#matricula" role="tab">Matrícula</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-warning" data-toggle="tab" href="#certificado" role="tab">Certíficado</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Nav tabs fin -->
+    <br>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane" id="matricula" role="tabpanel">
+        
+        <!--inicio de tabla-->
+        <div class="row justify-content-md-center">
+                <h3>Registrar matrícula</h3>
+        </div>
+
+        <div class="row justify-content-md-center">
+            
+        <input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
+            <div class="col-lg-6">
+                <label class="col-form-label">Debe buscar al Sr/Srta. estudiante para realizar la matrícula:</label>
+                <div class="input-group">
+                    <button class="btn btn-info nuevo" ng-click="buscarEstudiante()">
+                        Bucar
+                    </button>
+                    <input class="form-control" ng-model="cedulaEstu" type="text" name="" value=""
+                    placeholder="Ingrese la cédula del estudiante porfavor">
+                </div>
+                <div class="" style="color: crimson;" 
+                    ng-show="validarBuscar">
+                    <strong>* Debe ingresar los 10 digitos de la cédula.</strong>
+                </div>
             </div>
             
         </div>
-        <div class="col-lg-4" style="color: crimson;" 
-            ng-show="validarBuscar">
-            <strong>* Debe ingresar los 10 digitos de la cédula.</strong>
-        </div>
-    </div>
-    
-    <div class="">
         
-        <br>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="e in datos | filter:buscar">
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ e.cedula_estu }}</td>
-                        <td>{{ e.apellidos_estu }} {{ e.nombres_estu }}</td>
-
-                        <td>
-                            <div style="width: 200px;">
-                                <button class="btn btn-outline-info" ng-click="enviarId($event)" 
-                                id="{{e.id_estu}}" 
-                                data-toggle="modal" data-target="#modalNuevo">
-                                    Matrícula
-                                </button>
-                                <button class="btn btn-outline-warning" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
-                                data-toggle="modal" data-target="#modalEditar">
-                                    Editar
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" ng-show="busqueda">
-                            <div  class="alert alert-danger" style="color: crimson;">
-                                <strong>* No existen estudiantes relacionados con la cedula ingresada.</strong>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="">
             
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="e in datos | filter:buscar">
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ e.cedula_estu }}</td>
+                            <td>{{ e.apellidos_estu }} {{ e.nombres_estu }}</td>
+
+                            <td>
+                                <div style="width: 200px;">
+                                    <button class="btn btn-outline-info" ng-click="enviarId($event)" 
+                                    id="{{e.id_estu}}" 
+                                    data-toggle="modal" data-target="#modalNuevo">
+                                        Matrícula
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" ng-show="busqueda">
+                                <div  class="alert alert-danger" style="color: crimson;">
+                                    <strong>* No existen estudiantes relacionados con la cedula ingresada.</strong>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
         </div>
+        <!--final de tabla-->
+
+        </div>
+        <div class="tab-pane" id="certificado" role="tabpanel">
+            
+            <!--inicio de tabla-->
+            <div class="row justify-content-md-center">
+                    <h3>Mostrar Certíficado</h3>
+            </div>
+            <div class="row justify-content-md-center">	
+            <input type="hidden" id="urlBuscarCerti" value="<?= base_url()?>matricula_controller/getDataJsonCertificado"> 
+                <div class="col-lg-6">
+                    <label class="col-form-label">Debe buscar al Sr/Srta. estudiante para consultar el certíficado de matrícula:</label>
+                    <div class="input-group">
+                        <input class="form-control" ng-model="cedulaCerti" type="text" name="cedulaCerti" value=""
+                        placeholder="Ingrese la cédula del estudiante porfavor">
+                    </div>
+                    <div class="" style="color: crimson;" 
+                        ng-show="validarBuscarCedula">
+                        <strong>* Debe ingresar los 10 digitos de la cédula.</strong>
+                    </div>
+                    <label>Seleccione el año lectivo:</label>
+                     <div class="form-inline">
+                        <select class="form-control" style="margin-right: 5px;" name="anioInicioCerti" 
+                        id="anioInicioCerti" ng-model="anioInicioCerti" required>
+                            <option value="">Año Inicio</option>
+                            <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+                        </select>
+                        <select class="form-control" name="anioFinCerti" id="anioFinCerti" 
+                        ng-model="anioFinCerti" required>
+                            <option value="">Año Fin</option>
+                            <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+                        </select>
+                    </div>
+                    <div class="" style="color: crimson;" 
+                        ng-show="validarBuscarAnios">
+                        <strong>* Debe seleccionar el año léctivo(inicio y fin).</strong>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <button class="btn btn-info nuevo" ng-click="buscarCertificado()">
+                            Bucar
+                        </button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="">
+                
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>N° Matrícula</th>
+                                <th>Cédula</th>
+                                <th>Nombre</th>
+                                <th>Nivel</th>
+                                <th>Curso</th>
+                                <th>Paralelo</th>
+                                <th>Año lectivo</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="e in datosCerti | filter:buscar">
+                                <td>{{ e.id_matr }}</td>
+                                <td>{{ e.cedula_estu }}</td>
+                                <td>{{ e.apellidos_estu }} {{ e.nombres_estu }}</td>
+                                <td>{{ e.nivel_matr }}</td>
+                                <td>{{ e.nombre_curs }}</td>
+                                <td>{{ e.paralelo_matr }}</td>
+                                <td>Desde {{ e.fechainicio_matr }} hasta {{ e.fechafin_matr }}</td>
+
+                                <td>
+                                    <div style="width: 200px;">
+                                        <button class="btn btn-outline-info" ng-click="generarCerti($event)" 
+                                        id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+                                        data-toggle="modal" data-target="#modalCertificado">
+                                            Generar Certíficado
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" ng-show="Mensaje">
+                                    <div  class="alert alert-danger" style="color: crimson;">
+                                        <strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            <!--final de tabla-->
+
+        </div>
+
     </div>
+    <!-- Tab panes FIN -->
 
     <!--INICIO MODAL NUEVO-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog" aria-labelledby="modalNuevoLabel" aria-hidden="true">
@@ -255,22 +377,156 @@
     </div>
     <!--FIN MODAL NUEVO-->
 
+    <!--INICIO MODAL CERTIFICADO-->
+    <div class="modal fade" id="modalCertificado" tabindex="-1" role="dialog" aria-labelledby="modalCertificadoLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalCertificadoLabel">Certificado de Matrícula.</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <div class="row justify-content-lg-center">
+                            <div class="col-12">
+                                
+                            <!--<form name="fMatricula" ng-submit="registrarNuevo()" class="form-horizontal" > -->
+                                <!--obtener los cursos disponibles en el colegio-->
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+                                
+                                <input type="hidden" id="urlInsertarM" value="<?= base_url()?>matricula_controller/insertar">
+                                
+                                <input type="hidden" id="idEstu" value="">
+
+                                <fieldset class="form-control" id="printSectionId" style="color: black;">
+                                    <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                                    <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+                                    <center>
+                                        <div class="">
+                                            <img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+                                            <h4>Unidad Educativa Fiscal</h4>
+                                            <h4>Patria</h4>
+                                            <br>
+                                            <h3>Certíficado de Matrícula</h3>
+                                            <br>
+                                        </div>
+                                    </center>
+                                    
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">Matrícula N°. {{matriculaNum}}</label>
+                                     </div>
+
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">Folio N°. {{matriculaNum}}</label>
+                                     </div>
+
+                                     <div class="row" >
+                                        <label class="col-form-label" style="position: absolute; right: 20px;">AÑO LECTIVO: {{anioI}} - {{anioF}}</label>
+                                     </div>
+                                     <br>
+                                     <br>
+                                     <center>
+                                        <div class="row" >
+                                            <label style="margin-left: 20px;" class="col-form-label">
+                                                LA UNIDAD EDUCATIVA FÍSCAL PATRIA, DE LA CIUDAD DE LATACUNGA, A
+                                            </label>
+                                        </div>
+                                        <div class="" style="width: 600px; border: 1px solid;">
+                                            <label>EL ALUMNO: {{estudiante}}</label>
+                                        </div>
+                                     </center>
+
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">PADRE: {{padre}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">MADRE: {{madre}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">FECHA DE NACIMIENTO: {{fechaN}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">EDAD:</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">DIRECCIÓN: {{direccion}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px; ">
+                                            PREVIA LA PRESENTACIÓN EN LA SECRETARÍA DEL PLANTEL DE LA DOCUMENTACIÓN LEGAL RESPECTIVA SE MATRICULA EN:
+                                        </label>
+                                        <label class="col-form-label" style="margin-left: 20px;">CURSO: {{curso}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">PARALELO: {{paralelo}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">CICLO: {{ciclo}}</label>
+                                     </div>
+
+                                     <div class="row" >
+                                        <label class="col-form-label" style="position: absolute; right: 20px;">{{fechaActual}}</label>
+                                     </div>
+                                     <br>
+                                     <hr style="border-top: 1px solid;">
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">LO CERTIFICO:</label>
+                                     </div>
+                                     <br>
+                                     <center>
+                                        <table>
+                                            <tr>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                                <td style="width: 50px;"></td>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL RECTOR</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL SECRETARIO GENERAL</label></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">LIC. AUGUSTO GUTIERREZ</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">SP. ELIZABETH GUAIÑA</label></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <br>
+                                                    <br>
+                                                    <hr style="width: 15em; background: black; border-top: 1px solid;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL REPRESENTANTE</label></center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                     </center>
+                                </fieldset>
+                                
+                                <div class="modal-footer">
+                                    <button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Imprimir
+                                    </button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                </div>
+                           <!-- </form>-->
+                            </div>
+                        </div>  
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL CERTIFICADO-->
+
 
 </div>
 <!--FIN CONTENEDOR-->
-<script>
-    
-    $('#modalEditar').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-    
-    $('#modalNuevo').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-    $('#modalMostrarDatos').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-
-    
-</script>
 

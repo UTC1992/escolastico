@@ -55,4 +55,48 @@ class Matricula_Controller extends CI_Controller
 		$bool = $this->matricula_model->insertM($matricula);
 	}
 
+	/**
+	* obtener los datos en formato json
+	*/
+	public function getDataJsonCertificado($cedula = "", $AI = "", $AF = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->matricula_model->getCertificado($cedula, $AI, $AF);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$data = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $data;
+	}
+	
+	/**
+	* obtener los datos en formato json
+	*/
+	public function getDataJsonCertiImprimir($idEstu = "", $fechaI = "", $fechaF = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->matricula_model->getCertificadoImprimir($idEstu, $fechaI, $fechaF);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$data = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $data;
+	}
+
 }
