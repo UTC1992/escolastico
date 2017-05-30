@@ -118,8 +118,9 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
     }
     
     $scope.enviarId = function(event){
-        var id = event.target.id;
+		var id = event.target.id;
         $('#idEstu').val(id);
+		inicializarInput();
     }
 
     // declaro la función enviar
@@ -172,6 +173,8 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
         }
     }
 
+	//buscarMatricula('0503254849', '1900', '1901');
+
     function buscarMatricula(cedula, anioI, anioF){
         var url = $('#urlBuscarCerti').val();
         //alert(url+"/"+cedula+"/"+anioI+"/"+anioF);
@@ -203,6 +206,7 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
     $scope.generarCerti = function(event){
         var id = event.target.id;
         var url = event.target.name;
+		//alert(url);
         $http.get(url)
             .success(function(datosP){
                 $scope.datosCertiImprimir = datosP;
@@ -220,7 +224,7 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
                 
                 $scope.direccion = datosP[0]['direccion_estu'].toUpperCase();
                 $scope.curso = datosP[0]['nombre_curs'].toUpperCase();
-                $scope.paralelo = datosP[0]['paralelo_matr'].toUpperCase();
+                $scope.paraleloCerti = datosP[0]['paralelo_matr'].toUpperCase();
                 $scope.ciclo = datosP[0]['nivel_matr'].toUpperCase();
                 $scope.fechaActual = "LATACUNGA, " + obtenerFechaActual().toUpperCase();
             });
@@ -229,7 +233,7 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
     function obtenerFechaActual(){
         var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         var date = new Date();
-        var fechaA = date.getDate() + " de " + meses[date.getMonth()-1] + " del " + date.getFullYear();
+        var fechaA = date.getDate() + " de " + meses[date.getMonth()] + " del " + date.getFullYear();
         return fechaA;
     }
 
@@ -237,8 +241,79 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
         var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         var vector = fecha.split("-");
         var date = new Date();
-        var fecha = vector[2] + " de " + meses[vector[1]-1] + " del " + vector[0];
+        var fecha = vector[2] + " de " + meses[vector[1]-1] + " de " + vector[0];
         return fecha;
     }
+
+	$scope.mostrarFormEdit = function(event){
+		$scope.confirmarMatriEdit = false;
+        var id = event.target.id;
+		var url = event.target.name;
+        $http.get(url)
+            .success(function(datosP){
+                $scope.datosCertiImprimir = datosP;
+				var idMatricula = datosP[0]['id_matr'];
+                $('#idMatri').val(idMatricula);
+                var fechaI = datosP[0]['fechainicio_matr'].split("-");
+                $scope.anioInicio = fechaI[0];
+				$scope.mesInicio = fechaI[1];
+				$scope.diaInicio = fechaI[2];
+                var fechaF = datosP[0]['fechafin_matr'].split("-");
+                $scope.anioFin = fechaF[0];
+				$scope.mesFin = fechaF[1];
+				$scope.diaFin = fechaF[2];
+				$scope.cursoID2 = datosP[0]['id_curs'];
+                $scope.cursoNombre = datosP[0]['nombre_curs'];
+                $scope.paraleloEdit = datosP[0]['paralelo_matr'];
+                $scope.categoriaNivel = datosP[0]['nivel_matr'];
+            });
+	}
+
+	$scope.actualizar = function(){
+		//alert("actulizar");
+        $scope.getUrl = $('#urlActualizarM').val();
+        $scope.getId = $('#idMatri').val();
+        $scope.urlActualizar = $scope.getUrl + $scope.getId;
+		$scope.cursoIdEdit = $('#cursosIDEdit').val();
+        $http({
+            method: "post",
+            url: $scope.urlActualizar,
+             data:   "id_curs="+$scope.cursoIdEdit
+                    +"&fechainicio_matr="+$scope.anioInicio+"-"
+                                            +$scope.mesInicio+"-"
+                                            +$scope.diaInicio
+                    +"&fechafin_matr="+$scope.anioFin+"-"
+                                            +$scope.mesFin+"-"
+                                            +$scope.diaFin
+                    +"&paralelo_matr="+$scope.paraleloEdit
+                    +"&nivel_matr="+$scope.categoriaNivel,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            $scope.confirmarMatriEdit = true;
+			buscarMatriculaActualizada($('#idMatri').val());
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	function buscarMatriculaActualizada(idMatri){
+		var url = $('#urlBuscarCertiActualizado').val();
+        //alert(url+"/"+cedula+"/"+anioI+"/"+anioF);
+            var datos = [];
+            $http.get(url+"/"+idMatri)
+            .success(function(datosP){
+                //alert(datosP.length);
+                if(datosP.length == 0){
+                    $scope.Mensaje = true;
+                    $scope.datosCerti = datosP;
+                }else{
+                    $scope.Mensaje = false;
+                    $scope.datosCerti = datosP;
+                    $scope.cedulaCerti = "";
+                    $scope.anioInicioCerti = "";
+                    $scope.anioFinCerti = "";
+                }
+            });
+	} 
 
 });

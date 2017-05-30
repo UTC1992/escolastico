@@ -7,7 +7,7 @@
         
 <!--head -->
 <div class="container">
-    <center><h2>Matriculación y generación de certíficados</h2></center>
+    <center><h2>Administrar Matrículas</h2></center>
     <input id="urlConsultarMatri" type="hidden" value="<?= base_url() ?>admin_/matricula/resgitro">
 </div>
 <br>

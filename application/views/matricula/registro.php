@@ -8,13 +8,13 @@
 <div id="contenidoEstu" class="container" ng-controller="matriculaCtrl">
 
     <!-- Nav tabs -->
-    <div class="row justify-content-md-center">	
+    <div class="">	
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" style="margin-right: 5px;">
-                <a class="btn btn-outline-warning" data-toggle="tab" href="#matricula" role="tab">Matrícula</a>
+                <a class="nav-link" data-toggle="tab" href="#matricula" role="tab">Matrícula</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-outline-warning" data-toggle="tab" href="#certificado" role="tab">Certíficado</a>
+                <a class="nav-link" data-toggle="tab" href="#certificado" role="tab">Certíficado</a>
             </li>
         </ul>
     </div>
@@ -22,18 +22,18 @@
     <br>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane" id="matricula" role="tabpanel">
+        <div class="tab-pane active" id="matricula" role="tabpanel">
         
         <!--inicio de tabla-->
         <div class="row justify-content-md-center">
-                <h3>Registrar matrícula</h3>
+                <h4>Registrar matrícula</h4>
         </div>
 
         <div class="row justify-content-md-center">
             
         <input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
             <div class="col-lg-6">
-                <label class="col-form-label">Debe buscar al Sr/Srta. estudiante para realizar la matrícula:</label>
+                <label class="col-form-label">Ingrese los siguientes datos para buscar al Sr/Srta. estudiante y realizar la matrícula:</label>
                 <div class="input-group">
                     <button class="btn btn-info nuevo" ng-click="buscarEstudiante()">
                         Bucar
@@ -97,12 +97,12 @@
             
             <!--inicio de tabla-->
             <div class="row justify-content-md-center">
-                    <h3>Mostrar Certíficado</h3>
+                    <h4>Consultar una matrícula y generar el respectivo certíficado</h4>
             </div>
             <div class="row justify-content-md-center">	
             <input type="hidden" id="urlBuscarCerti" value="<?= base_url()?>matricula_controller/getDataJsonCertificado"> 
                 <div class="col-lg-6">
-                    <label class="col-form-label">Debe buscar al Sr/Srta. estudiante para consultar el certíficado de matrícula:</label>
+                    <label class="col-form-label">Ingrese los siguientes datos para mostrar el registro del matrícula del estudiante:</label>
                     <div class="input-group">
                         <input class="form-control" ng-model="cedulaCerti" type="text" name="cedulaCerti" value=""
                         placeholder="Ingrese la cédula del estudiante porfavor">
@@ -114,12 +114,12 @@
                     <label>Seleccione el año lectivo:</label>
                      <div class="form-inline">
                         <select class="form-control" style="margin-right: 5px;" name="anioInicioCerti" 
-                        id="anioInicioCerti" ng-model="anioInicioCerti" required>
+                        id="anioInicioCerti" ng-model="anioInicioCerti">
                             <option value="">Año Inicio</option>
                             <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
                         </select>
                         <select class="form-control" name="anioFinCerti" id="anioFinCerti" 
-                        ng-model="anioFinCerti" required>
+                        ng-model="anioFinCerti">
                             <option value="">Año Fin</option>
                             <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
                         </select>
@@ -170,7 +170,12 @@
                                         <button class="btn btn-outline-info" ng-click="generarCerti($event)" 
                                         id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
                                         data-toggle="modal" data-target="#modalCertificado">
-                                            Generar Certíficado
+                                            Certíficado
+                                        </button>
+                                        <button class="btn btn-outline-warning" ng-click="mostrarFormEdit($event)" 
+                                        id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+                                        data-toggle="modal" data-target="#modalEditar">
+                                            Editar
                                         </button>
                                     </div>
                                 </td>
@@ -377,6 +382,134 @@
     </div>
     <!--FIN MODAL NUEVO-->
 
+    <!--INICIO MODAL EDITAR-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalEditarLabel">Registrar nueva matrícula.</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <div class="row justify-content-md-center">
+                            <div class="col-12">
+                                
+                            <form name="fMatriculaEdit" ng-submit="actualizar()" class="form-horizontal" >
+                                <!--obtener los cursos disponibles en el colegio-->
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+                                
+                                <input type="hidden" id="urlActualizarM" value="<?= base_url()?>matricula_controller/actualizar/">
+                                
+                                <input type="hidden" id="idMatri" value="">
+
+								<input type="hidden" id="urlBuscarCertiActualizado" value="<?= base_url()?>matricula_controller/getDataJsonMatriculaActualizada">
+
+                                <fieldset class="form-control">
+                                <legend class="form-control"><strong>Ingrese la siguiente información:</strong></legend>
+                                
+                                <div class="alert alert-success" 
+                                    ng-show="confirmarMatriEdit">
+                                    * Se actualizó correctamente la matrícula.
+                                </div>
+
+                                <div class="form-group row justify-content-md-center">
+                                    <label class="col-3 col-form-label">Año lectivo, fecha de inicio:</label>
+                                    <div class="col-5 form-inline">
+                                        <select class="form-control" name="anioInicio" id="anioInicio" 
+                                        ng-model="anioInicio" required>
+                                            <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+                                        </select>
+                                        
+                                        <select style="margin-left: 5px;" class="form-control" name="mesInicio" id="mesInicio" 
+                                        ng-model="mesInicio" required>
+                                            <option ng-repeat="m in meses" value="{{m.num}}">{{m.num}}</option>
+                                        </select>
+                                        
+                                        <select style="margin-left: 5px;" class="form-control" name="diaInicio" id="diaInicio" 
+                                        ng-model="diaInicio" required>
+                                            <option ng-repeat="d in dias" value="{{d}}">{{d}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row justify-content-md-center">
+                                    <label class="col-3 col-form-label">Año lectivo, fecha de finalización:</label>
+                                    <div class="col-5 form-inline">
+                                        <select class="form-control" name="anioFin" id="anioFin" 
+                                        ng-model="anioFin" required>
+                                            <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+                                        </select>
+                                        
+                                        <select style="margin-left: 5px;" class="form-control" name="mesFin" id="mesFin" 
+                                        ng-model="mesFin" required>
+                                            <option ng-repeat="m in meses" value="{{m.num}}">{{m.num}}</option>
+                                        </select>
+                                        
+                                        <select style="margin-left: 5px;" class="form-control" name="diaFin" id="diaFin" 
+                                        ng-model="diaFin" required>
+                                            <option ng-repeat="d in dias" value="{{d}}">{{d}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                 <div class="form-group row justify-content-md-center">
+                                    <label class="col-3 col-form-label">Nivel:</label>
+                                    <div class="col-5">
+                                        <select class="form-control" name="categoriaNivel" id="categoriaNivel" 
+                                        ng-model="categoriaNivel" required>
+                                            <option value="Inicial 1/2">Inicial 1/2</option>
+                                            <option value="Preparatoria">Preparatoria</option>
+                                            <option value="Básica Elemental">Básica Elemental</option>
+                                            <option value="Básica Media">Básica Media</option>
+                                            <option value="Basica Superior">Basica Superior</option>
+                                            <option value="Bachillerato">Bachillerato</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row justify-content-md-center">
+                                    <label class="col-3 col-form-label">Curso:</label>
+                                    <div class="col-5">
+                                        <select class="form-control" name="cursosIDEdit" id="cursosIDEdit" required>
+                                            <option value="{{cursoID2}}">{{cursoNombre}}</option>
+                                            <option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="form-group row justify-content-md-center">
+                                    <label class="col-3 col-form-label">Paralelo:</label>
+                                    <div class="col-5">
+                                        <select class="form-control" name="paraleloEdit" id="paraleloEdit" 
+                                        ng-model="paraleloEdit" required>
+                                            <option ng-repeat="p in paralelos" value="{{p}}">{{p}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                </fieldset>
+                                
+                                <div class="modal-footer">
+                                    <button class="col-3 btn btn-primary" type="submit"
+                                    ng-disabled="fMatriculaEdit.$error.required">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Guardar
+                                    </button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>  
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL EDITAR-->
+
     <!--INICIO MODAL CERTIFICADO-->
     <div class="modal fade" id="modalCertificado" tabindex="-1" role="dialog" aria-labelledby="modalCertificadoLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">
@@ -455,7 +588,7 @@
                                             PREVIA LA PRESENTACIÓN EN LA SECRETARÍA DEL PLANTEL DE LA DOCUMENTACIÓN LEGAL RESPECTIVA SE MATRICULA EN:
                                         </label>
                                         <label class="col-form-label" style="margin-left: 20px;">CURSO: {{curso}}</label>
-                                        <label class="col-form-label" style="margin-left: 20px;">PARALELO: {{paralelo}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">PARALELO: {{paraleloCerti}}</label>
                                         <label class="col-form-label" style="margin-left: 20px;">CICLO: {{ciclo}}</label>
                                      </div>
 

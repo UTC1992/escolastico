@@ -72,7 +72,8 @@
 												nombre_padre_estu,
 												nombre_madre_estu,
 												fechanacimiento_estu,
-												direccion_estu
+												direccion_estu,
+												curso.id_curs
 										FROM 
 												estudiante, 
 												matricula, 
@@ -84,6 +85,49 @@
 												matricula.fechafin_matr LIKE '" . $fechaF . "' AND 
 												estudiante.id_estu = '" . $idEstu . "';	
 			");
+			//return $result->row();
+			return $result;
+		}
+
+		public function updateM($matricula = null, $id = '')
+		{
+			if ($matricula != null) {
+				$data = array(
+					'id_curs' 			=> $matricula['id_curs'],
+					'fechainicio_matr' 	=> $matricula['fechainicio_matr'],
+					'fechafin_matr' 	=> $matricula['fechafin_matr'],
+					'paralelo_matr' 	=> $matricula['paralelo_matr'],
+					'nivel_matr' 		=> $matricula['nivel_matr']
+				);
+				$this->db->where('id_matr', $id);
+				return $this->db->update('matricula', $data);
+			}
+			return false;
+		}
+
+		public function getMatriculaActualizada($idMatri = "")
+		{
+			$result = $this->db->query("SELECT 
+												estudiante.id_estu,
+												id_matr,
+												cedula_estu, 
+												nombres_estu, 
+												apellidos_estu, 
+												nombre_curs, 
+												paralelo_matr, 
+												nivel_matr, 
+												fechainicio_matr, 
+												fechafin_matr
+										FROM 
+												estudiante, 
+												matricula, 
+												curso
+										WHERE 
+												estudiante.id_estu = matricula.id_estu AND 
+												curso.id_curs = matricula.id_curs AND  
+												matricula.id_matr = '" . $idMatri . "' AND 
+												estudiante.id_estu = matricula.id_estu;	
+									");
 			//return $result->row();
 			return $result;
 		}
