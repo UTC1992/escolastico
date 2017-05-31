@@ -25,9 +25,9 @@
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>admin_/dashboard">Inicio <span class="sr-only">(current)</span></a>
           </li>
-           <li class="nav-item active" style="padding: 0px; margin: 5px;">
+           <!--<li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/periodoacademico/">Periodo</a>
-          </li>
+          </li>-->
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/asignaturas/">Asignatura</a>
           </li>
@@ -37,15 +37,20 @@
            <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/docente/">Docentes</a>
           </li>
+					<!--
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/docente_cargo/">Docente y Cargos</a>
           </li>
+					-->
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/estudiantes/">Estudiantes</a>
           </li>
+					<li class="nav-item active" style="padding: 0px; margin: 5px;">
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/matricular/">Matrícula</a>
+          </li>
            <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
             <li class="nav-item active" style="padding: 0px; margin: 5px;">
-              <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/logout">Perfil</a>
+              <a class="btn nav-link btn-outline-warning" href="#">Perfil</a>
             </li>
             <li class="nav-item active" style="padding: 0px; margin: 5px;">
               <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/logout">Cerrar Sesión</a>
