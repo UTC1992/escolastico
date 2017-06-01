@@ -17,4 +17,5 @@
 <!-- necesario para el carusel -->
 <script src="<?= base_url()?>disenio/indexBootstrap/jquery-3.1.1.slim.min.js"></script>
 <script src="<?= base_url()?>disenio/indexBootstrap/holder.min.js"></script>
+<script src="<?= base_url() ?>disenio/bootstrap/js/tether.min.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>disenio/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

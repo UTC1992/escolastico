@@ -38,13 +38,19 @@
                         <td>{{ d.estado_doce }}</td>
                         
                         <td>
-                            <div>
+                            <div style="width: 250px;">
                                 
 
                                 <button class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
                                 data-toggle="modal" data-target="#modalMostrarDatos">
-                                    Ver más información...
+                                    Datos
+                                </button>
+
+								<button class="btn btn-outline-primary editar" ng-click="mostrarFormEditar($event)" 
+                                id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
+                                data-toggle="modal" data-target="#modalClave">
+                                    Clave
                                 </button>
 
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
@@ -444,7 +450,7 @@
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Guardar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
                             </div>
@@ -837,7 +843,7 @@
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Guardar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
                         
@@ -1006,6 +1012,75 @@
         </div>
     </div>
     <!--FIN MODAL MOSTRAR INFORMACION-->
+
+	<!--INICIO MODAL EDITAR-->
+    <div class="modal fade" id="modalClave" tabindex="-1" role="dialog" aria-labelledby="modalClaveLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalClaveLabel">Ingreso de clave.</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <input type="hidden" value="">
+                
+                    <div class="row justify-content-md-center">
+                        <div class="col-12">
+
+                        <form name="fDocenteClave" ng-submit="actualizarClave()" class="form-horizontal" >
+                                
+                                <input type="hidden" id="urlAClave" value="<?= base_url()?>docente_controller/actualizarClave/">
+                                <input type="hidden" id="idDocente" value="{{idDocente}}">
+
+								<div class="col-12" style="color: #28B463" 
+									ng-show="confirmar">
+									<strong> La clave se actualizó correctamente.</strong>
+								</div>
+
+                                <fieldset class="form-control">
+                                	<legend class="form-control"><strong>Clave o Password</strong></legend>
+									<div class="form-group row">
+										<label class="col-3 col-form-label">Clave:</label>
+										<div class="col-5">
+											<div class="input-group">
+												<input class="form-control" name="password" 
+												id="password" ng-model="password"
+												type="password" placeholder="Clave o Contraseña" 
+												ng-minlength="8" required value="{{password}}">
+												<span><input class="btn btn-outline-info" 
+												ng-mousedown="mostrarClave()" ng-mouseup="ocultarClave()" type="button" value="Ver"></span>
+											</div>
+										</div>
+										<div class="col-4" style="color: #28B463" 
+											ng-show="fDocenteClave.password.$valid">
+											<strong> Correcto.</strong>
+										</div>
+										<div class="col-4" style="color: crimson" 
+											ng-show="fDocenteClave.password.$invalid">
+											* Campo Obligatorio, ingrese 8 carácteres.
+										</div>
+									</div>
+                                </fieldset>
+                                <div class="modal-footer">
+                                    <button class="col-3 btn btn-primary" type="submit"
+                                    ng-disabled="fDocenteClave.password.$invalid">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Actualizar
+                                    </button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </form>
+                        
+                        </div>
+                    </div>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL EDITAR-->
 
 </div>
 <!--FIN CONTENEDOR-->

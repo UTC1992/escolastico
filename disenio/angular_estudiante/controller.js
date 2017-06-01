@@ -1,9 +1,38 @@
 app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
     //mostrar estudiantes
-    listarEstudiantes();
+    //listarEstudiantes();
     listarAnios();
     listarMeses();
     listarDias();
+
+	$scope.buscarEstudiante = function(){
+        //validar cedula
+        var cedula = String($scope.cedulaEstu);
+        if(cedula.length < 10){ 
+            $scope.validarBuscar = true;
+        }else{ 
+            $scope.validarBuscar = false;
+            //buscar studiante
+            obtenerEstudiante(cedula); 
+        }
+    }
+
+    function obtenerEstudiante(cedula) {
+            var url = $('#urlBuscarEstu').val();
+            var datos = [];
+            $http.get(url+"/"+cedula)
+            .success(function(datosP){
+                //alert(datosP.length);
+                if(datosP.length == 0){
+                    $scope.busqueda = true;
+                    $scope.datos = datosP;
+                }else{
+                    $scope.busqueda = false;
+                    $scope.datos = datosP;
+                    $scope.cedulaEstu = "";
+                }
+            });
+    }
 
     //obtener todos los periodos de la tabla
     function listarEstudiantes() {

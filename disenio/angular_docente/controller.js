@@ -131,6 +131,7 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
 
     // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
+		$scope.confirmar = false;
         var url = event.target.id;
         $http.get(url)
         .success(function(datosP){
@@ -170,6 +171,8 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
             $scope.movil = datosP[0]['telefono_movil_doce'];
             $scope.correo = datosP[0]['email_doce'];
             $scope.estado = datosP[0]['estado_doce'];
+
+			$scope.password = datosP[0]['password_doce'];
         });
     }
 
@@ -211,4 +214,29 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
                 console.log(error);
         });
     }
+
+	$scope.mostrarClave = function(){
+		$('#password').attr('type', 'text');
+	}
+
+	$scope.ocultarClave = function(){
+		$('#password').attr('type', 'password');
+	}
+
+	$scope.actualizarClave = function(){
+		$scope.getUrl = $('#urlAClave').val();
+        $scope.getId = $('#idDocente').val();
+        $scope.urlActualizar = $scope.getUrl + $scope.getId;
+        $http({
+            method: "post",
+            url: $scope.urlActualizar,
+            data: "password_doce="+$scope.password,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            $scope.confirmar = true;
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
 });

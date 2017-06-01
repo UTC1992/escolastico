@@ -18,23 +18,24 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="nav-link btn btn-outline-primary" href="<?= base_url() ?>">Inicio <span class="sr-only">(current)</span></a>
+            <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>" style="width: 130px;">
+						Inicio <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item" style="padding: 0px; margin: 5px; color: white;">
-              <div class="dropdown">
-                <a class="btn nav-link btn-outline-primary dropdown-toggle" 
+              <div class="dropdown active">
+                <a class="btn nav-link btn-outline-warning dropdown-toggle" 
                 href="#" id="dropdownMenuButton" data-toggle="dropdown" >
                     Cálificaciones
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Consultar</a>
-                    <a class="dropdown-item" href="#">Ingresar notas</a>
+                    <a class="dropdown-item" href="<?= base_url() ?>notas_/ingresar_notas/login">Ingresar notas</a>
                 </div>
               </div>
           </li>
           
-          <li class="nav-item" style="padding: 0px; margin: 5px;">
-            <a class="btn nav-link btn-outline-primary" href="<?= base_url() ?>">Iniciar Sesión</a>
+          <li class="nav-item active" style="padding: 0px; margin: 5px;">
+            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Iniciar Sesión</a>
           </li>
         </ul>
       </div>

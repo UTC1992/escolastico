@@ -81,4 +81,13 @@ class Docente_Controller extends CI_Controller
 		$bool = $this->docente_model->updateD($docenteEdit, $id);
 		
 	}
+
+	public function actualizarClave($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$docenteEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->docente_model->updateClave($docenteEdit, $id);
+		
+	}
 }

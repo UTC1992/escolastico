@@ -5,6 +5,17 @@
 	*/
 	class Docente_Model extends CI_Model
 	{
+		public function getDocenteLogin($email = '')
+		{
+			$resutl = $this->db->query("SELECT * FROM docente WHERE email_doce = '" . $email . "'");
+			
+            if ($resutl->num_rows() > 0) {
+				return $resutl->row();
+			} else {
+				return null;
+			}
+		}
+
 		public function getDocente()
 		{
 			$result = $this->db->get('docente');
@@ -64,6 +75,18 @@
 					'telefono_movil_doce' 					=> $docenteEdit['telefono_movil_doce'],
 					'email_doce' 							=> $docenteEdit['email_doce'],
 					'estado_doce' 							=> $docenteEdit['estado_doce']
+				);
+				$this->db->where('id_doce', $id);
+				return $this->db->update('docente', $data);
+			}
+			return false;
+		}
+
+		public function updateClave($docenteEdit = null, $id = '')
+		{
+			if ($docenteEdit != null && $id != '') {
+				$data = array(
+					'password_doce'		=> 		$docenteEdit['password_doce']
 				);
 				$this->db->where('id_doce', $id);
 				return $this->db->update('docente', $data);

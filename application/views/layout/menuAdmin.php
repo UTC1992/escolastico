@@ -22,6 +22,7 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
+					<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>admin_/dashboard">Inicio <span class="sr-only">(current)</span></a>
           </li>
@@ -48,7 +49,7 @@
 					<li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/matricular/">Matrícula</a>
           </li>
-           <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
+           
             <li class="nav-item active" style="padding: 0px; margin: 5px;">
               <a class="btn nav-link btn-outline-warning" href="#">Perfil</a>
             </li>
