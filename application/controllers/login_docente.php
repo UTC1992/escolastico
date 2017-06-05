@@ -33,8 +33,7 @@
 							);
 					$this->session->set_userdata($data);
                     //login exitoso
-					echo "login correcto";
-					//header("Location:" . base_url() . "notas_/dashboard");
+					header("Location:" . base_url() . "notas_/ingresar_notas/index/");
 				} else {
                     //contraseña incorrecta
 					header("Location:" . base_url() . "notas_/ingresar_notas/login");

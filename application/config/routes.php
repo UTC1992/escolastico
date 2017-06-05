@@ -96,4 +96,6 @@ $route['admin_/matricula/resgitro'] = 'matricula_controller/registrar';
 
 //rutas del ingreso de calificaciones
 $route['notas_/ingresar_notas/login'] = 'login_docente/index';
-//$route['admin_/matricula/resgitro'] = 'matricula_controller/registrar';
+$route['notas_/ingresar_notas/logout'] = 'login_docente/logout';
+$route['notas_/ingresar_notas/index'] = 'ingresar_notas_controller/index';
+

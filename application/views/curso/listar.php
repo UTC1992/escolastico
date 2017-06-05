@@ -22,7 +22,6 @@
                     <tr>
                         <th>N°</th>
                         <th>Nombre</th>
-                        <th>Número de Paralelos</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
@@ -30,7 +29,6 @@
                     <tr ng-repeat="c in cursos | filter:buscar">
                         <td>{{ $index + 1 }}</td>
                         <td>{{ c.nombre_curs }}</td>
-                        <td>{{ c.numparalelos_curs }}</td>
                         <td>
                             <div>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
@@ -38,7 +36,8 @@
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
-
+								
+								<!--
                                 <button class="btn btn-outline-info editar" ng-click="obtenerIdCursoAsig($event)" 
                                 id="{{c.id_curs}}" name="{{c.nombre_curs}}" 
                                 data-toggle="modal" data-target="#modalShowAsig">
@@ -50,7 +49,8 @@
                                 data-toggle="modal" data-target="#modalNewAsig">
                                     Añadir asignatura
                                 </button>
-                                <!--<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
+                                
+								<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
                                     Eliminar
                                 </a>
                                 -->

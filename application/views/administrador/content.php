@@ -41,7 +41,9 @@
 		<thead>
 			<tr>
 				<th>Docentes</th>
-				<th>Estudiantes</th>
+				<th>
+					Docente y Cargos
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -52,36 +54,37 @@
 					</a>
 				</td>
 				<td>
-					<a href="<?= base_url() ?>admin_/estudiantes/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/docente_cargo/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>
+				
 			</tr>
 		</tbody>
-		<!--<thead>
+		<thead>
 			<tr>
 				
-				<th><label class="col-form-label">
-					Docente y Cargos
-					</label></th>
 				<th>Estudiantes</th>
+				<th>
+					Matrículas
+				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>
-					<a href="<?= base_url() ?>admin_/docente_cargo/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/estudiantes/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>
 				<td>
-					<a href="<?= base_url() ?>admin_/estudiantes/" class="btn btn-outline-warning">
+					<a href="<?= base_url() ?>admin_/matricular/" class="btn btn-outline-warning">
                         Mostrar...
 					</a>
 				</td>
 			</tr>
 		</tbody>
-		-->
+		<!--
 		<thead>
 			<tr>
 				
@@ -105,6 +108,7 @@
 				</td>
 			</tr>
 		</tbody>
+		-->
 		
 	</table>
 </div>

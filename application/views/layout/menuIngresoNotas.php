@@ -2,7 +2,19 @@
     <link href="<?= base_url() ?>disenio/css/jquery-ui.css" rel="stylesheet">
     <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
-    
+		
+		<!-- JS angular -->
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular.js"></script>
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-route.js"></script>
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-animate1.5.5.js"></script>
+    <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/bower_components/v-accordion/dist/v-accordion.js"></script>
+
+		<link href="<?= base_url() ?>disenio/bower_components/v-accordion/dist/v-accordion.css" rel="stylesheet">
+
+		<!-- JS JQUERY -->
+		<script src="<?= base_url() ?>disenio/js/jquery-1.10.2.js" type="text/javascript"></script>
+		<script src="<?= base_url() ?>disenio/js/jquery-ui-1.9.2.custom.js" type="text/javascript" ></script>
+
 <body>
 <header>   
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">

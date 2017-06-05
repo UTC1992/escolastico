@@ -63,7 +63,7 @@
 						Password:
 					</label>
 					<div class="col-8">
-						<input class="form-control" type="password" name="password" id="formGroup" placeholder="Contraseña" required="">
+						<input class="form-control" type="password" name="password" id="formGroup" placeholder="Contraseña de 8 carácteres porfavor" required="">
 					</div>
 				</div>
 
