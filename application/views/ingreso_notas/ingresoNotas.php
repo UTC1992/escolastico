@@ -93,8 +93,6 @@
 									<option value="3ero">3ero</option>
 								</select>
 							</td>
-							<td colspan="2">
-							</td>
 						</tr>
 						<tr>
 							<td colspan="4">

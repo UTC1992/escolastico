@@ -14,7 +14,7 @@
 			<input id="urlIngresarNotas" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotas">
             </li>
             <li class="nav-item">
-              <a class="nav-link btn-outline-primary" href="#/mostrar_informes">Mostrar Informes</a>
+              <a class="nav-link btn-outline-primary" href="#/mostrar_informes">Informes</a>
 			<input id="urlMostrarInformes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/informesNotas">
             </li>
           </ul>

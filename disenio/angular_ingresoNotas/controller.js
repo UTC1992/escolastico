@@ -55,6 +55,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	$scope.mensaje = false;
 
 	$scope.mostrarEstudiantes = function(){
+		$scope.mensajeIngreso = false;
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
         $http({
             method: "post",
@@ -131,14 +132,10 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	
 	$scope.mensajeIngreso = false;
 	function ingresarNotasParcial1(idEstu, deberes, lecciones, trabajos, investigacion){
-		alert(idEstu + " - " 
-					+ deberes + " - "
-					+ lecciones+ " - " 
-					+ trabajos + "-" 
-					+ investigacion);
+		//alert(idEstu + " - "+ deberes + " - "+ lecciones+ " - " + trabajos + "-"+ investigacion);
 		$scope.mostrarCargando = true;
 		$scope.getUrl = $('#urlIngresarNotasParcial').val();
-		alert($scope.getUrl);
+		//alert($scope.getUrl);
 		$http({
             method: "post",
             url: $scope.getUrl,
@@ -153,6 +150,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 					+"&id_estu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
+				$scope.estudiantesMatriculados = [];
 				$scope.mensajeIngreso = true;
 				//console.log("exito");
         }, function (error) {

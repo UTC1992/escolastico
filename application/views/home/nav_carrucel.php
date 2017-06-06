@@ -17,26 +17,37 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active" style="padding: 0px; margin: 5px;">
-            <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>" style="width: 130px;">
+          <li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
+            <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>">
 						Inicio <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item" style="padding: 0px; margin: 5px; color: white;">
+          <li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
               <div class="dropdown active">
                 <a class="btn nav-link btn-outline-warning dropdown-toggle" 
                 href="#" id="dropdownMenuButton" data-toggle="dropdown" >
-                    Cálificaciones
+                    Docentes
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Consultar</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
                     <a class="dropdown-item" href="<?= base_url() ?>notas_/ingresar_notas/login">Ingresar notas</a>
                 </div>
               </div>
           </li>
-          
-          <li class="nav-item active" style="padding: 0px; margin: 5px;">
+					<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
+              <div class="dropdown active">
+                <a class="btn nav-link btn-outline-warning dropdown-toggle" 
+                href="#" id="dropdownMenuButton" data-toggle="dropdown" >
+                    Estudiantes
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
+                    <a class="dropdown-item" href="#">Consultar Notas</a>
+                </div>
+              </div>
+          </li>
+          <!--
+          <li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>">Iniciar Sesión</a>
           </li>
+					-->
         </ul>
       </div>
     </nav>
