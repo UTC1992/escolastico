@@ -10,19 +10,20 @@
 	<!-- Nav tabs -->
     <div class="">	
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#consultar" role="tab">Consultar</a>
-            </li>
-			<li class="nav-item" style="margin-right: 5px;">
+            <li class="nav-item" style="margin-right: 5px;">
                 <a class="nav-link" data-toggle="tab" href="#registro" role="tab">Registro</a>
             </li>
+			<li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#consultar" role="tab">Consultar</a>
+            </li>
+			
         </ul>
     </div>
     <!-- Nav tabs fin -->
     <br>
 	<!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="consultar" role="tabpanel">
+        <div class="tab-pane" id="consultar" role="tabpanel">
 			<div class="row justify-content-md-center">
 				<h4>Consultar estudiante</h4>
 			</div>
@@ -105,7 +106,7 @@
 	<!--fin table-->
 	</div>
 
-    <div class="tab-pane" id="registro" role="tabpanel">
+    <div class="tab-pane active" id="registro" role="tabpanel">
 
 		<!--INICIO MODAL NUEVO
 		<div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog" aria-labelledby="modalNuevoLabel" aria-hidden="true">

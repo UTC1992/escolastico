@@ -26,4 +26,33 @@ class Ingresar_Notas_Controller extends CI_Controller
 	{
 		$this->load->view('/ingreso_notas/informes');
 	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonEstudiantesMatriculados()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getEstudiantesMatriculados($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function insertar()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertN($notas);
+	}
 }

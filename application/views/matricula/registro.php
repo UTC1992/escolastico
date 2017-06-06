@@ -305,13 +305,15 @@
                                         <select class="form-control" name="categoriaNivel" id="categoriaNivel" 
                                         ng-model="categoriaNivel" required>
                                             <option value="">Seleccionar</option>
-                                            <option value="Inicial 1/2">Inicial 1/2</option>
+                                            <option value="Educacion Basica General">Educación Básica General</option>
+											<!--<option value="Inicial 1/2">Inicial 1/2</option>
                                             <option value="Preparatoria">Preparatoria</option>
                                             <option value="Básica Elemental">Básica Elemental</option>
                                             <option value="Básica Media">Básica Media</option>
                                             <option value="Basica Superior">Basica Superior</option>
                                             <option value="Bachillerato">Bachillerato</option>
-                                        </select>
+											-->
+										</select>
                                     </div>
                                     <div class="col-4" style="color: #28B463" 
                                         ng-show="fMatricula.categoriaNivel.$valid">
@@ -459,13 +461,16 @@
                                     <div class="col-5">
                                         <select class="form-control" name="categoriaNivel" id="categoriaNivel" 
                                         ng-model="categoriaNivel" required>
-                                            <option value="Inicial 1/2">Inicial 1/2</option>
+											<option value="Educacion Basica General">Educación Básica General</option>
+                                            
+											<!--<option value="Inicial 1/2">Inicial 1/2</option>
                                             <option value="Preparatoria">Preparatoria</option>
                                             <option value="Básica Elemental">Básica Elemental</option>
                                             <option value="Básica Media">Básica Media</option>
                                             <option value="Basica Superior">Basica Superior</option>
                                             <option value="Bachillerato">Bachillerato</option>
-                                        </select>
+											-->
+										</select>
                                     </div>
                                 </div>
                                 

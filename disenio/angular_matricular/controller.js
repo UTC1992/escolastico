@@ -118,6 +118,7 @@ app.controller('matriculaCtrl', function($scope, $http, $location, $route) {
     }
     
     $scope.enviarId = function(event){
+		$scope.confirmarMatri = false;
 		var id = event.target.id;
         $('#idEstu').val(id);
 		inicializarInput();
