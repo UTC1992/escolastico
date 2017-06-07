@@ -134,4 +134,58 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//imprimiendo datos asi se puede tomar desde angular ok 
 		echo $datosE;
 	}
+
+	public function getDataJsonContar1()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContar1($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonContar2()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContar2($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonContar3()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContar3($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
 }

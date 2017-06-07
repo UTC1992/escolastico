@@ -95,7 +95,6 @@
 									<option value="">Seleccione</option>
 									<option value="1ero">1ero</option>
 									<option value="2do">2do</option>
-									<option value="3ero">3ero</option>
 								</select>
 							</td>
 						</tr>

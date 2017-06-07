@@ -200,6 +200,85 @@
 			return $result;
 		}
 
+		public function getContar1($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+			$quimestre = $matricula['quimestre'];
 
+			$result = $this->db->query("SELECT 
+												COUNT(*) as 'conteo'
+										 FROM 
+										 		estudiante, matricula, parcial_1
+										 WHERE 
+												matricula.id_curs = '" . $cursoId . "'
+												AND matricula.paralelo_matr = '" . $paralelo . "'
+												AND parcial_1.anioInicio_p1 = '" . $anioI . "'
+												AND parcial_1.anioFin_p1 = '" . $anioF . "'
+												AND parcial_1.asignatura_p1 = '" . $materia . "'
+												AND parcial_1.quimestre_p1 = '" . $quimestre . "'
+												AND matricula.id_estu = estudiante.id_estu
+												AND estudiante.id_estu = parcial_1.id_estu
+										;");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getContar2($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+			$quimestre = $matricula['quimestre'];
+
+			$result = $this->db->query("SELECT 
+												COUNT(*) as 'conteo'
+										 FROM 
+										 		estudiante, matricula, parcial_2
+										 WHERE 
+												matricula.id_curs = '" . $cursoId . "'
+												AND matricula.paralelo_matr = '" . $paralelo . "'
+												AND parcial_2.anioInicio_p2 = '" . $anioI . "'
+												AND parcial_2.anioFin_p2 = '" . $anioF . "'
+												AND parcial_2.asignatura_p2 = '" . $materia . "'
+												AND parcial_2.quimestre_p2 = '" . $quimestre . "'
+												AND matricula.id_estu = estudiante.id_estu
+												AND estudiante.id_estu = parcial_2.id_estu
+										;");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getContar3($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+			$quimestre = $matricula['quimestre'];
+
+			$result = $this->db->query("SELECT 
+												COUNT(*) as 'conteo'
+										 FROM 
+										 		estudiante, matricula, parcial_3
+										 WHERE 
+												matricula.id_curs = '" . $cursoId . "'
+												AND matricula.paralelo_matr = '" . $paralelo . "'
+												AND parcial_3.anioInicio_p3 = '" . $anioI . "'
+												AND parcial_3.anioFin_p3 = '" . $anioF . "'
+												AND parcial_3.asignatura_p3 = '" . $materia . "'
+												AND parcial_3.quimestre_p3 = '" . $quimestre . "'
+												AND matricula.id_estu = estudiante.id_estu
+												AND estudiante.id_estu = parcial_3.id_estu
+										;");
+			//return $result->row();
+			return $result;
+		}
 	}
 

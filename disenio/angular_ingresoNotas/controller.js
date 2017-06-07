@@ -52,9 +52,65 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
         }
     }
 
-	$scope.mensaje = false;
+//////////////////////////////////////////////////////////////////////////
+	$scope.mensajeNumRegistros = false;
+	$scope.verificarRegistro = function(){
+		var parcial = $scope.parcial+"";
+		
+		switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlNumRegistros1').val();
+				conntarRegistros($scope.getUrl);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlNumRegistros2').val();
+				conntarRegistros($scope.getUrl);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlNumRegistros3').val();
+				conntarRegistros($scope.getUrl);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
 
-	$scope.mostrarEstudiantes = function(){
+	}
+
+	function conntarRegistros(url){
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoId="+$scope.cursoId
+                    +"&paralelo="+$scope.paralelo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&materia="+$scope.materia
+					+"&quimestre="+$scope.quimestre,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			
+			var numNotas = response[0]['conteo'];
+			//alert(numNotas);
+			if(numNotas == 0){
+				$scope.mensajeNumRegistros = false;
+				mostrarEstudiantes();
+			} else {
+				limpiarVariables();
+				$scope.mensajeNumRegistros = true;
+				$scope.estudiantesMatriculados = [];
+			}
+            
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+//////////////////////////////////////////////////////////////////////////
+	$scope.mensaje = false;
+	function mostrarEstudiantes(){
 		$scope.mensajeIngreso = false;
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
         $http({
@@ -70,12 +126,15 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 				$scope.mensaje = true;
 				limpiarVariables();
 				$scope.estudiantesMatriculados = response;
+				$scope.ingresarDesactivar = false;
 				
 			} else {
 				$scope.mensaje = false;
 				llenarDatosInformativos($scope.cursoId, $scope.paralelo, $scope.anioI, 
 				$scope.anioF, $scope.materia, $scope.parcial, $scope.quimestre);
 				$scope.estudiantesMatriculados = response;
+				//desaparecer el boton de envio de datos
+				$scope.ingresarDesactivar = false;
 			}
             
             //$scope.mensajeInsertC = false;
@@ -112,12 +171,8 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	$scope.mostrarDatos = function(){
 		var notas = document.getElementsByName('notaE');
 		for(var i = 0; i < notas.length; i+=5){
-			/*alert(notas[i].value + " - " 
-					+ notas[i+1].value + " - "
-					+ notas[i+2].value+ " - " 
-					+ notas[i+3].value + "-" 
-					+ notas[i+4].value);
-					*/
+			/*alert(notas[i].value + " - "+ notas[i+1].value + " - "+ notas[i+2].value+ " - "+ notas[i+3].value + "-"+ notas[i+4].value);
+			*/
 			var idEstu = notas[i].value;
 			var deberes = notas[i+1].value;
 			var lecciones = notas[i+2].value;
@@ -145,11 +200,15 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			}
 		}
 	}
-	
+
+	//desactivar boton de inrgeso
+	$scope.ingresarDesactivar = false;
 	$scope.mensajeIngreso = false;
 	function ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, urlIngresoNotas){
 		//alert(idEstu + " - "+ deberes + " - "+ lecciones+ " - " + trabajos + "-"+ investigacion);
 		$scope.mostrarCargando = true;
+		//desaparecer el boton de envio de datos
+		$scope.ingresarDesactivar = true;
 		//alert($scope.getUrl);
 		$http({
             method: "post",

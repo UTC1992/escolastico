@@ -17,6 +17,10 @@
 		<input type="hidden" id="urlIngresarNotasParcial1" value="<?= base_url() ?>ingresar_notas_controller/insertar1">
 		<input type="hidden" id="urlIngresarNotasParcial2" value="<?= base_url() ?>ingresar_notas_controller/insertar2">
 		<input type="hidden" id="urlIngresarNotasParcial3" value="<?= base_url() ?>ingresar_notas_controller/insertar3">
+
+		<input type="hidden" id="urlNumRegistros1" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar1">
+		<input type="hidden" id="urlNumRegistros2" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar2">
+		<input type="hidden" id="urlNumRegistros3" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar3">
 	<!--urls-->
 	
 	<!--head -->
@@ -28,7 +32,7 @@
 
 	<!--datos consultar-->
 		<div class="table-responsive">
-			<form ng-submit="mostrarEstudiantes()">
+			<form  ng-submit="verificarRegistro()">
 				<table class="table table-striped table-bordered table-sm">
 					<thead class="thead-inverse">
 						<tr>
@@ -93,7 +97,6 @@
 									<option value="">Seleccione</option>
 									<option value="1ero">1ero</option>
 									<option value="2do">2do</option>
-									<option value="3ero">3ero</option>
 								</select>
 							</td>
 						</tr>
@@ -112,9 +115,19 @@
 		
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
-            <form ng-submit="mostrarDatos()">
+            <form name="fIngresoNotas" ng-submit="mostrarDatos()">
 				<table class="table table-bordered table-striped table-sm">
 				<thead class="thead-inverse">
+					<tr ng-show="mensajeNumRegistros">
+						<td colspan="6" >
+							<center>
+								<div  class="alert alert-danger" style="color: crimson;">
+									<strong>La informamos que las notas ya se registraron, puede consultarlo 
+									dando clic en el menú (superior o lateral) en opción Consulta y Edición.</strong>
+								</div>
+							</center>
+						</td>
+					</tr>
 					<tr>
 					<th colspan="6"><center>ALUMNOS</center></th>
 					</tr>
@@ -198,7 +211,7 @@
 					<tr>
 						<td colspan="6">
 							<center>
-								<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
+								<button ng-disabled="ingresarDesactivar" type="submit" class="btn btn-outline-warning">Enviar Datos</button>
 							</center>
 						</td>
 					</tr>

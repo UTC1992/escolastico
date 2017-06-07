@@ -31,10 +31,10 @@
           
           <?php if($this->session->userdata('login_doce')) { ?>
           	<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
-							<a class="btn nav-link btn-outline-warning" href="#/ingreso_notas">Ingreso de Notas</a>
+							<a class="btn nav-link btn-outline-warning" href="#/ingreso_notas">Registro</a>
 						</li>
 						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
-							<a class="btn nav-link btn-outline-warning" href="#/mostrar_informes">Informes</a>
+							<a class="btn nav-link btn-outline-warning" href="#/mostrar_informes">Consulta y Edición</a>
 						</li>
 						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
 							<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>notas_/ingresar_notas/logout">Cerrar Sesión</a>
