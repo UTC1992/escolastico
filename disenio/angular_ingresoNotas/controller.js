@@ -68,12 +68,14 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
         }).success(function(response){
 			if(response.length == 0){
 				$scope.mensaje = true;
+				limpiarVariables();
 				$scope.estudiantesMatriculados = response;
+				
 			} else {
 				$scope.mensaje = false;
-				$scope.estudiantesMatriculados = response;
 				llenarDatosInformativos($scope.cursoId, $scope.paralelo, $scope.anioI, 
 				$scope.anioF, $scope.materia, $scope.parcial, $scope.quimestre);
+				$scope.estudiantesMatriculados = response;
 			}
             
             //$scope.mensajeInsertC = false;
@@ -122,31 +124,44 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			var trabajos = notas[i+3].value;
 			var investigacion = notas[i+4].value;
 			var parcial = $scope.parcial+"";
-			if (parcial == '1ero') {
-				ingresarNotasParcial1(idEstu, deberes, lecciones, trabajos, investigacion);
-			} else {
+
+			switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlIngresarNotasParcial1').val();
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlIngresarNotasParcial2').val();
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlIngresarNotasParcial3').val();
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl);
+				break;
+		
+			default:
 				alert("No hay parcial");
+				break;
 			}
 		}
 	}
 	
 	$scope.mensajeIngreso = false;
-	function ingresarNotasParcial1(idEstu, deberes, lecciones, trabajos, investigacion){
+	function ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, urlIngresoNotas){
 		//alert(idEstu + " - "+ deberes + " - "+ lecciones+ " - " + trabajos + "-"+ investigacion);
 		$scope.mostrarCargando = true;
-		$scope.getUrl = $('#urlIngresarNotasParcial').val();
 		//alert($scope.getUrl);
 		$http({
             method: "post",
-            url: $scope.getUrl,
-            data:   "parametro1_p1="+deberes
-                    +"&parametro2_p1="+lecciones
-                    +"&parametro3_p1="+trabajos
-                    +"&parametro4_p1="+investigacion
-					+"&quimestre_p1="+$scope.QuimestreInfo
-					+"&asignatura_p1="+$scope.MateriaInfo
-					+"&anioInicio_p1="+$scope.anioIInfo
-					+"&anioFin_p1="+$scope.anioFInfo
+            url: urlIngresoNotas,
+            data:   "parametro1="+deberes
+                    +"&parametro2="+lecciones
+                    +"&parametro3="+trabajos
+                    +"&parametro4="+investigacion
+					+"&quimestre="+$scope.QuimestreInfo
+					+"&asignatura="+$scope.MateriaInfo
+					+"&anioInicio="+$scope.anioIInfo
+					+"&anioFin="+$scope.anioFInfo
 					+"&id_estu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
@@ -159,6 +174,72 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
         });
 
 		$scope.mostrarCargando = false;
+	}
+
+	$scope.mostrarDatosInformes = function(){
+		$scope.mensajeIngreso = false;
+		var parcial = $scope.parcial+"";
+		
+		switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlInformes1').val();
+				consultarParcial($scope.getUrl);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlInformes2').val();
+				consultarParcial($scope.getUrl);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlInformes2').val();
+				consultarParcial($scope.getUrl);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+
+	}
+
+	function consultarParcial(urlInforme){
+		$scope.mensajeIngreso = false;
+        $http({
+            method: "post",
+            url: urlInforme,
+            data:   "cursoId="+$scope.cursoId
+                    +"&paralelo="+$scope.paralelo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&materia="+$scope.materia
+					+"&quimestre="+$scope.quimestre,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			if(response.length == 0){
+				$scope.mensaje = true;
+				limpiarVariables();
+				$scope.estudiantesInformes = response;
+			} else {
+				$scope.mensaje = false;
+				llenarDatosInformativos($scope.cursoId, $scope.paralelo, $scope.anioI, 
+				$scope.anioF, $scope.materia, $scope.parcial, $scope.quimestre);
+				$scope.estudiantesInformes = response;
+			}
+            
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	
+	function limpiarVariables(){
+		$scope.ParaleloInfo = "";
+		$scope.anioIInfo = "";
+		$scope.anioFInfo = "";
+		$scope.MateriaInfo = "";
+		$scope.ParcialInfo = "";
+		$scope.QuimestreInfo = "";
+		$scope.CursoInfo = "";
 	}
 
 });

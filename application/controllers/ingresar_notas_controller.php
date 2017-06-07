@@ -48,11 +48,90 @@ class Ingresar_Notas_Controller extends CI_Controller
 		echo $datosE;
 	}
 
-	public function insertar()
+	public function insertar1()
 	{	
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertN($notas);
+		$bool = $this->ingresar_notas_model->insertN1($notas);
+	}
+
+	public function insertar2()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertN2($notas);
+	}
+
+	public function insertar3()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertN3($notas);
+	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonInformesParcial1()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getInformeP1($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonInformesParcial2()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getInformeP2($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonInformesParcial3()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getInformeP3($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
 	}
 }
