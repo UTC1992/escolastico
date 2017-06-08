@@ -25,7 +25,7 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h4>Ingreso de Calificaciones</h4></center>
+		<center><h2>Registro de Notas</h2></center>
 	</div>
 	<br>
 	<!--head -->

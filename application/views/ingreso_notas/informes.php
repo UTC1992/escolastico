@@ -19,11 +19,21 @@
 		<input type="hidden" id="urlInformes1" value="<?= base_url()?>ingresar_notas_controller/getDataJsonInformesParcial1">
 		<input type="hidden" id="urlInformes2" value="<?= base_url()?>ingresar_notas_controller/getDataJsonInformesParcial2">
 		<input type="hidden" id="urlInformes3" value="<?= base_url()?>ingresar_notas_controller/getDataJsonInformesParcial3">
+
+		<!--MOSTRAR NOTAS DE CADA ESTUDIANTES POR PARCIAL PARA EDITAR-->
+		<input type="hidden" id="urlNotasEdit1" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEdit1">
+		<input type="hidden" id="urlNotasEdit2" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEdit2">
+		<input type="hidden" id="urlNotasEdit3" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEdit3">
+
+		<!--URL PARA ACTUALIZAR LAS NOTAS DE UN PARCIAL-->
+		<input type="hidden" id="urlActualizarParcial1" value="<?= base_url()?>ingresar_notas_controller/actualizar1/">
+		<input type="hidden" id="urlActualizarParcial2" value="<?= base_url()?>ingresar_notas_controller/actualizar2/">
+		<input type="hidden" id="urlActualizarParcial3" value="<?= base_url()?>ingresar_notas_controller/actualizar3/">
 	<!--urls-->
 	
 	<!--head -->
 	<div class="container">
-		<center><h4>Informes por parciales</h4></center>
+		<center><h2>Consulta y Edición de Notas</h2></center>
 	</div>
 	<br>
 	<!--head -->
@@ -118,7 +128,7 @@
 					
 				<thead class="thead-inverse">
 					<tr ng-show="mensaje">
-						<td colspan="9" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -127,7 +137,7 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="9"><center>ALUMNOS</center></th>
+					<th colspan="10"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
 						<td colspan="2"><label style="margin-right: 5px;">
@@ -139,6 +149,7 @@
 						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Parcial:</strong></label><label> {{ParcialInfo}}</label>
 						</td>
+						<td></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -153,6 +164,7 @@
 							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
 						<td></td>
+						<td></td>
 					</tr>
 
 					<tr>
@@ -165,6 +177,7 @@
 						<th colspan="2">
 							<center>Totalizados</center>
 						</th>
+						<th></th>
 					</tr>
 					<tr>
 						<th rowspan="2">N°</th>
@@ -176,6 +189,7 @@
 						<th>Trabajos de investigación</th>
 						<th>Sumatoria</th>
 						<th>Promedio</th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -184,16 +198,23 @@
 						<td>
 							<label style="width: 400px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 						</td>
-						<td>{{estu.asignatura_p1}}</td>
-						<td>{{estu.parametro1_p1}}</td>
-						<td>{{estu.parametro2_p1}}</td>
-						<td>{{estu.parametro3_p1}}</td>
-						<td>{{estu.parametro4_p1}}</td>
+						<td>{{estu.asignatura}}</td>
+						<td>{{estu.parametro1}}</td>
+						<td>{{estu.parametro2}}</td>
+						<td>{{estu.parametro3}}</td>
+						<td>{{estu.parametro4}}</td>
 						<td>{{estu.sumatoria}}</td>
 						<td>{{estu.promedio}}</td>
+						<td>
+							<button style="width: 100px;" class="btn btn-outline-warning editar" 
+							ng-click="mostrarNotasEditar($event)" 
+							id="{{estu.id_p}}" data-toggle="modal" data-target="#modalEditar">
+								Editar
+							</button>
+						</td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="9" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -202,14 +223,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="9" >
+						<td colspan="10" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="9" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -231,6 +252,121 @@
             </form>
           </div>
 		  <!--tabla de estudiantes-->
+
+		  <!--INICIO MODAL EDITAR-->
+			<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+				<div class="modal-dialog  modal-lg" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="modalEditarLabel">Editar las notas del parcial.</h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+							<input type="hidden" value="">
+						
+							<div class="row justify-content-md-center">
+								<div class="col-12">
+								
+								<div  class="alert alert-success" ng-show="edicionExitosa">
+									<strong>* Las notas fueron actualizadas con éxito.</strong>
+								</div>
+								<div  class="alert alert-danger" ng-show="edicionFallida">
+									<strong>* Error al actualizar las notas.</strong>
+								</div>
+								<form name="fParcialEditar" ng-submit="procesoActualizar()" class="form-horizontal">
+									
+									<input type="hidden" id="idParcialEdit" value="{{idP}}">
+
+									<div class="form-group row">
+											<label class="col-3 col-form-label">Deberes:</label>
+											<div class="col-4">
+												<input class="form-control" name="deberesP" id="deberesP" ng-model="deberesP"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.deberesP.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.deberesP.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Lecciones orales o escritas:</label>
+											<div class="col-4">
+												<input class="form-control" name="leccionesP" id="leccionesP" ng-model="leccionesP"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.leccionesP.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.leccionesP.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Trabajos grupales:</label>
+											<div class="col-4">
+												<input class="form-control" name="trabajosP" id="trabajosP" 
+												ng-model="trabajosP"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.trabajosP.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.trabajosP.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Trabajos de Investigación:</label>
+											<div class="col-4">
+												<input class="form-control" name="investigacionP" id="investigacionP" 
+												ng-model="investigacionP"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.investigacionP.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.investigacionP.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+
+									<div class="modal-footer">
+										<button class="col-3 btn btn-primary" type="submit" 
+										ng-disabled="fParcialEditar.$error.required">
+											<span class="glyphicon glyphicon-floppy-saved"></span>
+											Actualizar
+										</button>
+										<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+									</div>
+								</form>
+								</div>
+							</div>
+					</div>
+					
+					</div>
+				</div>
+			</div>
+			<!--FIN MODAL EDITAR-->
+
 
 </div>
 <!--INICIO CONTENEDOR-->

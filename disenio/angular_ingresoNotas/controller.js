@@ -55,8 +55,8 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 //////////////////////////////////////////////////////////////////////////
 	$scope.mensajeNumRegistros = false;
 	$scope.verificarRegistro = function(){
+		$scope.mensajeIngreso = false;
 		var parcial = $scope.parcial+"";
-		
 		switch (parcial) {
 			case '1ero':
 				$scope.getUrl = $('#urlNumRegistros1').val();
@@ -249,7 +249,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 				consultarParcial($scope.getUrl);
 				break;
 			case '3ero':
-				$scope.getUrl = $('#urlInformes2').val();
+				$scope.getUrl = $('#urlInformes3').val();
 				consultarParcial($scope.getUrl);
 				break;
 		
@@ -299,6 +299,119 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 		$scope.ParcialInfo = "";
 		$scope.QuimestreInfo = "";
 		$scope.CursoInfo = "";
+	}
+
+	$scope.mostrarNotasEditar = function(event){
+		var parcial = $scope.parcial+"";
+		var idParcial = event.target.id;
+		//alert(parcial+idParcial);
+		switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlNotasEdit1').val();
+				consultarNotasParcial($scope.getUrl, idParcial);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlNotasEdit2').val();
+				consultarNotasParcial($scope.getUrl, idParcial);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlNotasEdit3').val();
+				consultarNotasParcial($scope.getUrl, idParcial);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+	}
+
+	function consultarNotasParcial(url, id){
+		$scope.edicionExitosa = false;
+		$scope.edicionFallida = false;
+		var urlParcial = url +'/'+id;
+		$http.get(urlParcial).success(function(response){
+			//console.log(response);
+			$scope.datos = response;
+
+			$scope.idP 				= 	response[0]['id_p'];
+			$scope.deberesP 		= 	response[0]['parametro1'];
+			$scope.leccionesP 		= 	response[0]['parametro2'];
+			$scope.trabajosP 		= 	response[0]['parametro3'];
+			$scope.investigacionP 	= 	response[0]['parametro4'];
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	$scope.procesoActualizar = function(){
+		var idParcialEdit = $('#idParcialEdit').val();
+		var idParcial = event.target.id;
+		var parcial = $scope.parcial+"";
+		switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlActualizarParcial1').val();
+				actualizarNotasParcial($scope.getUrl, idParcialEdit);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlActualizarParcial2').val();
+				actualizarNotasParcial($scope.getUrl, idParcialEdit);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlActualizarParcial3').val();
+				actualizarNotasParcial($scope.getUrl, idParcialEdit);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+	}
+
+	$scope.edicionExitosa = false;
+	$scope.edicionFallida = false;
+	function actualizarNotasParcial(url, id){
+		$scope.urlActualizar = url + id;
+        $http({
+            method: "post",
+            url: $scope.urlActualizar,
+            data: 	"parametro1="+$scope.deberesP
+					+"&parametro2="+$scope.leccionesP
+					+"&parametro3="+$scope.trabajosP
+					+"&parametro4="+$scope.investigacionP,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            mostrarDatosActualizados();
+			$scope.edicionExitosa = true;
+        }, function (error) {
+                $scope.edicionFallida = true;
+				console.log(error);
+
+        });
+	}
+
+	function mostrarDatosActualizados(){
+		$scope.mensajeIngreso = false;
+		var parcial = $scope.parcial+"";
+		
+		switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlInformes1').val();
+				consultarParcial($scope.getUrl);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlInformes2').val();
+				consultarParcial($scope.getUrl);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlInformes3').val();
+				consultarParcial($scope.getUrl);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+
 	}
 
 });

@@ -188,4 +188,83 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//imprimiendo datos asi se puede tomar desde angular ok 
 		echo $datosE;
 	}
+
+	public function getDataJsonNotasEdit1($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasEdit1($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonNotasEdit2($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasEdit2($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonNotasEdit3($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasEdit3($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function actualizar1($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateP1($notasEdit, $id);
+		
+	}
+
+	public function actualizar2($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateP2($notasEdit, $id);
+		
+	}
+
+	public function actualizar3($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateP3($notasEdit, $id);
+		
+	}
+
 }

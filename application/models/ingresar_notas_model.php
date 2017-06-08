@@ -102,12 +102,12 @@
 												estudiante.id_estu,
 												nombres_estu,
 												apellidos_estu,
-												parcial_1.asignatura_p1,
-												parcial_1.id_p1,
-												parametro1_p1, 
-												parametro2_p1, 
-												parametro3_p1, 
-												parametro4_p1,
+												parcial_1.asignatura_p1 as 'asignatura',
+												parcial_1.id_p1 as 'id_p',
+												parametro1_p1 as 'parametro1', 
+												parametro2_p1 as 'parametro2', 
+												parametro3_p1 as 'parametro3', 
+												parametro4_p1 as 'parametro4',
 												(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria',
 												ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio'
 										 FROM 
@@ -139,14 +139,14 @@
 												estudiante.id_estu,
 												nombres_estu,
 												apellidos_estu,
-												parcial_2.asignatura_p2,
-												parcial_2.id_p2,
-												parametro1_p2, 
-												parametro2_p2, 
-												parametro3_p2, 
-												parametro4_p2,
+												parcial_2.asignatura_p2 as 'asignatura',
+												parcial_2.id_p2 as 'id_p',
+												parametro1_p2 as 'parametro1', 
+												parametro2_p2 as 'parametro2', 
+												parametro3_p2 as 'parametro3', 
+												parametro4_p2 as 'parametro4',
 												(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria',
-												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2)
+												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio'
 										 FROM 
 										 		estudiante, matricula, parcial_2
 										 WHERE 
@@ -176,12 +176,12 @@
 												estudiante.id_estu,
 												nombres_estu,
 												apellidos_estu,
-												parcial_3.asignatura_p3,
-												parcial_3.id_p3,
-												parametro1_p3, 
-												parametro2_p3, 
-												parametro3_p3, 
-												parametro4_p3,
+												parcial_3.asignatura_p3 as 'asignatura',
+												parcial_3.id_p3 as 'id_p',
+												parametro1_p3 as 'parametro1', 
+												parametro2_p3 as 'parametro2', 
+												parametro3_p3 as 'parametro3', 
+												parametro4_p3 as 'parametro4',
 												(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria',
 												ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio'
 										 FROM 
@@ -279,6 +279,90 @@
 										;");
 			//return $result->row();
 			return $result;
+		}
+
+		public function getNotasEdit1($id = '')
+		{
+			$result = $this->db->query("SELECT 
+						 					id_p1 as 'id_p',
+											parametro1_p1 as 'parametro1', 
+											parametro2_p1 as 'parametro2', 
+											parametro3_p1 as 'parametro3', 
+											parametro4_p1 as 'parametro4'
+										 FROM parcial_1 WHERE id_p1 = '" . $id . "'");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getNotasEdit2($id = '')
+		{
+			$result = $this->db->query("SELECT 
+											id_p2 as 'id_p',
+											parametro1_p2 as 'parametro1', 
+											parametro2_p2 as 'parametro2', 
+											parametro3_p2 as 'parametro3', 
+											parametro4_p2 as 'parametro4'
+										 FROM parcial_2 WHERE id_p2 = '" . $id . "'");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getNotasEdit3($id = '')
+		{
+			$result = $this->db->query("SELECT
+											id_p3 as 'id_p',
+											parametro1_p3 as 'parametro1', 
+											parametro2_p3 as 'parametro2', 
+											parametro3_p3 as 'parametro3', 
+											parametro4_p3 as 'parametro4'
+										FROM parcial_3 WHERE id_p3 = '" . $id . "'");
+			//return $result->row();
+			return $result;
+		}
+
+		public function updateP1($parcial = null, $id = '')
+		{
+			if ($parcial != null) {
+				$data = array(
+					'parametro1_p1' 		=> $parcial['parametro1'],
+					'parametro2_p1' 		=> $parcial['parametro2'],
+					'parametro3_p1' 		=> $parcial['parametro3'],
+					'parametro4_p1' 		=> $parcial['parametro4']
+				);
+				$this->db->where('id_p1', $id);
+				return $this->db->update('parcial_1', $data);
+			}
+			return false;
+		}
+
+		public function updateP2($parcial = null, $id = '')
+		{
+			if ($parcial != null) {
+				$data = array(
+					'parametro1_p2' 		=> $parcial['parametro1'],
+					'parametro2_p2' 		=> $parcial['parametro2'],
+					'parametro3_p2' 		=> $parcial['parametro3'],
+					'parametro4_p2' 		=> $parcial['parametro4']
+				);
+				$this->db->where('id_p2', $id);
+				return $this->db->update('parcial_2', $data);
+			}
+			return false;
+		}
+
+		public function updateP3($parcial = null, $id = '')
+		{
+			if ($parcial != null) {
+				$data = array(
+					'parametro1_p3' 		=> $parcial['parametro1'],
+					'parametro2_p3' 		=> $parcial['parametro2'],
+					'parametro3_p3' 		=> $parcial['parametro3'],
+					'parametro4_p3' 		=> $parcial['parametro4']
+				);
+				$this->db->where('id_p3', $id);
+				return $this->db->update('parcial_3', $data);
+			}
+			return false;
 		}
 	}
 

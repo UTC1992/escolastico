@@ -27,11 +27,11 @@
 
 	<!--cuerpo -->
 	<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-		<!--head -->
+		<!--head 
 		<div class="container">
 			<center><h2><strong>Getión de Calificaciones</strong></h2></center>
 		</div>
-		<br>
+		<br>-->
 		<!--head -->
 		<div ng-view>
 
