@@ -33,7 +33,8 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Consulta y Edición de Notas</h2></center>
+		<center><h2>Notas parciales</h2></center>
+		<center><h3>Consulta y Edición</h3></center>
 	</div>
 	<br>
 	<!--head -->

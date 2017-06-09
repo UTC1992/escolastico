@@ -25,7 +25,8 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Registro de Notas</h2></center>
+		<center><h2>Notas parciales</h2></center>
+		<center><h3>Registro</h3></center>
 	</div>
 	<br>
 	<!--head -->

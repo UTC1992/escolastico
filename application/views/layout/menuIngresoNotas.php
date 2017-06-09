@@ -37,8 +37,8 @@
 											Registro
 									</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
-											<a class="dropdown-item" href="#/ingreso_notas">Calificaciones</a>
-											<a class="dropdown-item" href="#/ingresar_examenes">Exámenes</a>
+											<a class="dropdown-item" href="#/ingreso_notas">Notas parciales</a>
+											<a class="dropdown-item" href="#/ingresar_examenes">Exámenes quimestrales</a>
 									</div>
 								</div>
 						</li>
@@ -49,8 +49,8 @@
 											Consulta y Edición
 									</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
-											<a class="dropdown-item" href="#/consultar_notas">Calificaciones</a>
-											<a class="dropdown-item" href="#/consultas_examenes">Exámenes</a>
+											<a class="dropdown-item" href="#/consultar_notas">Notas parciales</a>
+											<a class="dropdown-item" href="#/consultas_examenes">Exámenes quimestrales</a>
 									</div>
 								</div>
 						</li>

@@ -22,7 +22,7 @@
 	<!--head -->
 	<div class="container">
 		<center><h2>Exámenes Quimestrales</h2></center>
-		<center><h3>Registro de notas</h3></center>
+		<center><h3>Registro</h3></center>
 	</div>
 	<br>
 	<!--head -->
