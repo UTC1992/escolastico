@@ -364,5 +364,103 @@
 			}
 			return false;
 		}
+
+		/*==============================EXAMENES====================================*/
+
+		public function getContarExa1($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+			$quimestre = $matricula['quimestre'];
+
+			$result = $this->db->query("SELECT 
+												COUNT(*) as 'conteo'
+										 FROM 
+										 		estudiante, matricula, examen
+										 WHERE 
+												matricula.id_curs = '" . $cursoId . "'
+												AND matricula.paralelo_matr = '" . $paralelo . "'
+												AND examen.anioInicio_exa = '" . $anioI . "'
+												AND examen.anioFin_exa = '" . $anioF . "'
+												AND examen.asignatura_exa = '" . $materia . "'
+												AND examen.quimestre_exa = '" . $quimestre . "'
+												AND matricula.id_estu = estudiante.id_estu
+												AND estudiante.id_estu = examen.id_estu 
+										;");
+			//return $result->row();
+			return $result;
+		}
+
+		public function insertExa($notas = null)
+		{
+			if ($notas != null) {
+				$data = array(
+					'nota_exa'		 					=> $notas['examen'],
+					'quimestre_exa' 					=> $notas['quimestre'],
+					'asignatura_exa' 					=> $notas['asignatura'],
+					'anioInicio_exa' 					=> $notas['anioInicio'],
+					'anioFin_exa' 						=> $notas['anioFin'],
+					'id_estu' 							=> $notas['id_estu']
+
+				);
+				return $this->db->insert('examen', $data);
+			}
+			return false;
+		}
+
+		public function getExamenes($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+			$quimestre = $matricula['quimestre'];
+
+			$result = $this->db->query("SELECT 
+												estudiante.id_estu,
+												nombres_estu,
+												apellidos_estu,
+												examen.asignatura_exa as 'asignatura',
+												examen.id_exa as 'id_exa',
+												nota_exa
+										 FROM 
+										 		estudiante, matricula, examen
+										 WHERE 
+												matricula.id_curs = '" . $cursoId . "'
+												AND matricula.paralelo_matr = '" . $paralelo . "'
+												AND examen.anioInicio_exa = '" . $anioI . "'
+												AND examen.anioFin_exa = '" . $anioF . "'
+												AND examen.asignatura_exa = '" . $materia . "'
+												AND examen.quimestre_exa = '" . $quimestre . "'
+												AND matricula.id_estu = estudiante.id_estu
+												AND estudiante.id_estu = examen.id_estu 
+										;");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getNotasExaEdit($id = '')
+		{
+			$result = $this->db->query("SELECT * FROM examen WHERE id_exa = '" . $id . "'");
+			//return $result->row();
+			return $result;
+		}
+
+		public function updateExa($notasEdit = '', $id = '')
+		{
+			if ($notasEdit != null) {
+				$data = array(
+					'nota_exa' 		=> $notasEdit['notaExa']
+				);
+				$this->db->where('id_exa', $id);
+				return $this->db->update('examen', $data);
+			}
+			return false;
+		}
+
 	}
 

@@ -10,17 +10,52 @@
 		<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-			  <a class="nav-link btn-outline-primary" href="#/ingreso_notas" >Ingreso de Notas</a>
-			<input id="urlIngresarNotas" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotas">
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn-outline-primary" href="#/mostrar_informes">Consulta y Edición</a>
-			<input id="urlMostrarInformes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/informesNotas">
+				<label for="" class="nav-link"><strong>MENÚ</strong></label>
+			</li>
+			<li class="nav-item">
+				<label for="" class="nav-link"><strong>Registro</strong></label>
+			</li>
+			<li class="nav-item">
+				<ul class="flex-column" style="margin-bottom: 10px;">
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/ingreso_notas" >Notas parciales</a>
+						<input id="urlIngresarNotas" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotas">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/ingresar_examenes">Exámenes quimestrales</a>
+						<input id="urlIngresarExamenes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotasExa">
+					</li>
+				</ul>
             </li>
 			<li class="nav-item">
-              <a class="nav-link btn-outline-primary" href="#/mostrar_informes">Informe Total</a>
-			<input id="urlMostrarInformes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/informesNotas">
+				<label for="" class="nav-link"><strong>Consulta y Edición</strong></label>
+			</li>
+            <li class="nav-item">
+				<ul class="flex-column" style="margin-bottom: 10px;">
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/consultar_notas">Notas parciales</a>
+						<input id="urlMostrarInformes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/informesNotas">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/consultas_examenes">Exámenes quimestrales</a>
+						<input id="urlMostrarExa" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultarExa">
+					</li>
+				</ul>
             </li>
+			<!--
+				<li class="nav-item">
+				<label for="" class="nav-link"><strong>Informes</strong></label>
+			</li>
+			<li class="nav-item">
+				<ul class="flex-column" style="margin-bottom: 10px;">
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/informe_final">Informe Final</a>
+						<input id="urlInformeFinal" type="hidden" 
+						value="<?= base_url() ?>ingresar_notas_controller/consultarInformeFinal">
+					</li>
+				</ul>
+            </li>
+			-->
           </ul>
         </nav>
 	<!--Nav menu-->
@@ -44,4 +79,5 @@
 
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controller.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExa.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/routes.js"></script>

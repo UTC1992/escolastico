@@ -27,6 +27,21 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$this->load->view('/ingreso_notas/informes');
 	}
 
+	public function ingresoNotasExa()
+	{
+		$this->load->view('/ingreso_notas/ingresarNotasExa');
+	}
+
+	public function consultarExa()
+	{
+		$this->load->view('/ingreso_notas/consultasExa');
+	}
+
+	public function consultarInformeFinal()
+	{
+		
+	}
+
 	/**
 	* obtener los datos en formato json para la asignatura
 	*/
@@ -266,5 +281,80 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$bool = $this->ingresar_notas_model->updateP3($notasEdit, $id);
 		
 	}
+
+	/*===============================EXAMENES======================================*/
+	public function getDataJsonContarExa1()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContarExa1($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function insertarExa()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertExa($notas);
+	}
+
+	/**
+	* obtener los datos en formato json para la asignatura
+	*/
+	public function getDataJsonConsultaExa()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getExamenes($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonNotasEditExa($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasExaEdit($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function actualizarExa($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateExa($notasEdit, $id);
+		
+	}
+
 
 }

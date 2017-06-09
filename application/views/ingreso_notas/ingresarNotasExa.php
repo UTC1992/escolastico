@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="notasIngresoCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="notasIngresoExaCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -14,18 +14,15 @@
 		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
 		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
 
-		<input type="hidden" id="urlIngresarNotasParcial1" value="<?= base_url() ?>ingresar_notas_controller/insertar1">
-		<input type="hidden" id="urlIngresarNotasParcial2" value="<?= base_url() ?>ingresar_notas_controller/insertar2">
-		<input type="hidden" id="urlIngresarNotasParcial3" value="<?= base_url() ?>ingresar_notas_controller/insertar3">
+		<input type="hidden" id="urlIngresarNotasExamen" value="<?= base_url() ?>ingresar_notas_controller/insertarExa">
 
-		<input type="hidden" id="urlNumRegistros1" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar1">
-		<input type="hidden" id="urlNumRegistros2" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar2">
-		<input type="hidden" id="urlNumRegistros3" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar3">
+		<input type="hidden" id="urlNumRegistros1" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContarExa1">
 	<!--urls-->
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Registro de Notas</h2></center>
+		<center><h2>Exámenes Quimestrales</h2></center>
+		<center><h3>Registro de notas</h3></center>
 	</div>
 	<br>
 	<!--head -->
@@ -80,17 +77,7 @@
 								</select>
 							</td>
 						</tr>
-						<tr>
-							<td><label>Parcial:</label></td>
-							<td>
-								<select class="form-control" style="width: 200px;" ng-model="parcial" required>
-									<option value="">Seleccione</option>
-									<option value="1ero">1ero</option>
-									<option value="2do">2do</option>
-									<option value="3ero">3ero</option>
-								</select>
-							</td>
-							</td>
+						<tr>	
 							<td><label>Quimestre:</label></td>
 							<td>
 								<select class="form-control" style="width: 200px;" ng-model="quimestre" required>
@@ -99,6 +86,8 @@
 									<option value="2do">2do</option>
 								</select>
 							</td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
 							<td colspan="4">
@@ -115,7 +104,7 @@
 		
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
-            <form name="fIngresoNotas" ng-submit="mostrarDatos()">
+            <form name="fIngresoNotas" ng-submit="enviarDatosExa()">
 				<table class="table table-bordered table-striped table-sm">
 				<thead class="thead-inverse">
 					<tr ng-show="mensajeNumRegistros">
@@ -147,8 +136,9 @@
 						<td colspan="2"><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
-							<strong>Parcial:</strong></label><label> {{ParcialInfo}}</label>
+						<td colspan="2">
+							<label style="margin-right: 5px;">
+							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
 					</tr>
 					<tr>
@@ -159,38 +149,25 @@
 							<strong>Materia:</strong></label><label> {{MateriaInfo}}</label>
 						</td>
 						<td colspan="2">
-							<label style="margin-right: 5px;">
-							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
 					</tr>
-
 					<tr>
-						<th></th>
-						<th></th>
-						<th colspan="4">
-							<center> Parámetros </center>
-						</th>
-					</tr>
-					<tr>
-						<th rowspan="2">N°</th>
-						<th rowspan="2" style="width: 300px;">Estudiantes</th>
-						<th>Deberes</th>
-						<th>Lecciones orales o escritas</th>
-						<th>Trabajos grupales</th>
-						<th>Trabajos de investigación</th>
+						<th colspan="2">N°</th>
+						<th colspan="2">Estudiantes</th>
+						<th colspan="2">Exámen Quimestral</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="estu in estudiantesMatriculados">
-						<td>{{$index + 1}}</td>
-						<td>
-							<label style="width: 400px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
+						<td colspan="2">{{$index + 1}}</td>
+						<td colspan="2">
+							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
+						<td colspan="2">
+							<input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required>
+						</td>
+						
 					</tr>
 					<tr ng-show="mensaje">
 						<td colspan="6" >
