@@ -414,5 +414,50 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$bool = $this->ingresar_notas_model->insertExaSuple($notas);
 	}
 
+	public function getDataJsonConsultaNotasTotalesSupletorio()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getNotasTotalesSupletorio($matricula);
+		
+		//$fila = $this->ingresar_notas_model->getNotasTotales();
+
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonNotasEditSuple($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasSupleEdit($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function actualizarSuple($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateSuple($notasEdit, $id);
+		
+	}
 
 }
