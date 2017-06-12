@@ -4,6 +4,9 @@ app.config(function($routeProvider) {
     var urlConsultasN = $('#urlMostrarInformes').val();
 	var urlIngresarExa = $('#urlIngresarExamenes').val();
 	var urlConsultasExa = $('#urlMostrarExa').val();
+	var urlIngresarExaSuple = $('#urlIngresarExaSuple').val();
+	var urlConsultasExaSuple = $('#urlMostrarExaSuple').val();
+	//informes
 	var urlInformeFinal = $('#urlInformeFinal').val();
 
     $routeProvider
@@ -22,6 +25,14 @@ app.config(function($routeProvider) {
 	.when("/consultas_examenes", {
         templateUrl : urlConsultasExa,
         controller : "notasIngresoExaCtrl"
+    })
+	.when("/ingresar_supletorio", {
+        templateUrl : urlIngresarExaSuple,
+        controller : "ingresoExaSupleCtrl"
+    })
+	.when("/consultas_supletorios", {
+        templateUrl : urlConsultasExaSuple,
+        controller : "ingresoExaSupleCtrl"
     })
 	.when("/informe_final", {
         templateUrl : urlInformeFinal,

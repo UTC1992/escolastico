@@ -25,6 +25,10 @@
 						<a class="nav-link btn-outline-warning" href="#/ingresar_examenes">Exámenes quimestrales</a>
 						<input id="urlIngresarExamenes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotasExa">
 					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámenes supletorio</a>
+						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
+					</li>
 				</ul>
             </li>
 			<li class="nav-item">
@@ -39,6 +43,10 @@
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_examenes">Exámenes quimestrales</a>
 						<input id="urlMostrarExa" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultarExa">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámenes supletorio</a>
+						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
 					</li>
 				</ul>
             </li>
@@ -80,4 +88,5 @@
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controller.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExa.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaSuple.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/routes.js"></script>

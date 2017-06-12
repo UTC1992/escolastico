@@ -37,6 +37,16 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$this->load->view('/ingreso_notas/consultasExa');
 	}
 
+	public function ingresoExaSuple()
+	{
+		$this->load->view('/ingreso_notas/ingresoExaSuple');
+	}
+
+	public function consultaExaSuple()
+	{
+		$this->load->view('/ingreso_notas/consultaExaSuple');
+	}
+
 	public function consultarInformeFinal()
 	{
 		
@@ -354,6 +364,54 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se envian los datos del formulario al modelo al metodo insert
 		$bool = $this->ingresar_notas_model->updateExa($notasEdit, $id);
 		
+	}
+
+	/*===============================EXAMENES SUPLETORIOS=============================================*/
+
+	public function getDataJsonConsultaNotasTotales()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getNotasTotales($matricula);
+		
+		//$fila = $this->ingresar_notas_model->getNotasTotales();
+
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonContarExaSuple()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContarExaSuple($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function insertarExaSuple()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertExaSuple($notas);
 	}
 
 
