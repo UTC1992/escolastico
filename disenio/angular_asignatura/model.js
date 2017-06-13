@@ -1,1 +1,1 @@
-var app = angular.module('appAsignatura', ["ngRoute"]);
+var app = angular.module('appAsignatura', ["ngRoute", "ngTable"]);

@@ -53,8 +53,8 @@
             
             <br>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
+                <table class="table table-bordered table-condensed table-striped table-sm">
+                    <thead class="thead-inverse">
                         <tr>
                             <th>N°</th>
                             <th>Cédula</th>
@@ -81,8 +81,10 @@
                         <tr>
                             <td colspan="4" ng-show="busqueda">
                                 <div  class="alert alert-danger" style="color: crimson;">
-                                    <strong>* No existen estudiantes relacionados con la cedula ingresada.</strong>
-                                </div>
+                                    <center>
+										<strong>* No existen estudiantes relacionados con la cédula ingresada.</strong>
+									</center>
+								</div>
                             </td>
                         </tr>
                     </tbody>
@@ -142,8 +144,8 @@
                 
                 <br>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
+                    <table class="table table-bordered table-condensed table-striped table-sm">
+                        <thead class="thead-inverse">
                             <tr>
                                 <th>N° Matrícula</th>
                                 <th>Cédula</th>
@@ -181,10 +183,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4" ng-show="Mensaje">
+                                <td colspan="8" ng-show="Mensaje">
                                     <div  class="alert alert-danger" style="color: crimson;">
-                                        <strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
-                                    </div>
+                                        <center>
+											<strong>* No existe un estudiante relacionado con los datos ingresados.</strong>
+										</center>
+									</div>
                                 </td>
                             </tr>
                         </tbody>
@@ -372,7 +376,7 @@
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Guardar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
                             </div>
@@ -389,7 +393,7 @@
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modalEditarLabel">Registrar nueva matrícula.</h3>
+                    <h3 class="modal-title" id="modalEditarLabel">Editar matrícula.</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -409,11 +413,11 @@
 								<input type="hidden" id="urlBuscarCertiActualizado" value="<?= base_url()?>matricula_controller/getDataJsonMatriculaActualizada">
 
                                 <fieldset class="form-control">
-                                <legend class="form-control"><strong>Ingrese la siguiente información:</strong></legend>
+                                <legend class="form-control"><strong>Puede editar la siguiente información:</strong></legend>
                                 
                                 <div class="alert alert-success" 
                                     ng-show="confirmarMatriEdit">
-                                    * Se actualizó correctamente la matrícula.
+                                    * La matrícula se actualizó correctamente.
                                 </div>
 
                                 <div class="form-group row justify-content-md-center">
@@ -501,9 +505,9 @@
                                     <button class="col-3 btn btn-primary" type="submit"
                                     ng-disabled="fMatriculaEdit.$error.required">
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
-                                        Guardar
+                                        Actualizar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
                             </div>
@@ -652,7 +656,7 @@
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Imprimir
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                            <!-- </form>-->
                             </div>

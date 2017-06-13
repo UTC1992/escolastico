@@ -16,8 +16,8 @@
         </button>
         <br><br>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
+            <table class="table table-bordered table-condensed table-striped table-sm">
+                <thead class="thead-inverse">
                     <tr>
                         <th>N°</th>
                         <th>Cédula</th>

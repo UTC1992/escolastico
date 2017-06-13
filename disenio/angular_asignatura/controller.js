@@ -1,7 +1,9 @@
-app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
+app.controller('asignaturaCtrl', function($scope, $http, $location, $route, $filter, NgTableParams) {
     //activar funcion
     listarAsginaturas();
     inicializarInput();
+	$scope.personasTable;
+	$scope.asignatura = [];
 
     //obtener todos los periodos de la tabla
     function listarAsginaturas() {
@@ -10,6 +12,23 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
             $http.post($scope.getUrl)
             .success(function(response){
                 $scope.asignatura = response;
+				
+				$scope.personasTable = new NgTableParams(
+                {
+                 count: 5
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+                        params.total($scope.asignatura.length);
+
+   						$scope.dataAsig = params.filter() ? $filter('filter')($scope.asignatura, params.filter()) : $scope.asignatura;
+
+                        $scope.dataAsig = $scope.dataAsig.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });
+
             }, function (error) {
                 console.log(error);
             });
@@ -22,7 +41,11 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
         $scope.nombreA = "";
     };
 
-    $scope.mensajeInsertA = true;
+	$scope.limpiarVariables = function(){
+		inicializarInput();
+	}
+
+    $scope.mensajeInsertA = false;
 
     // declaro la función enviar
     $scope.registrarNuevo = function () {
@@ -33,8 +56,9 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
             data: "nombre_asig="+$scope.nombreA,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
-            $scope.mensajeInsertA = false;
+            $scope.mensajeInsertA = true;
+			inicializarInput();
+			listarAsginaturas();
         }, function (error) {
                 console.log(error);
         });
@@ -42,6 +66,7 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
 
     // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
+		$scope.mensajeActualizar = false;
         var url = event.target.id;
         $http.get(url)
         .success(function(datosP){
@@ -53,6 +78,7 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
     }
 
      // funcion para enviar datos para actualizar periodo
+	 $scope.mensajeActualizar = false;
     $scope.actualizar = function () {
         //alert("actulizar");
         $scope.getUrl = $('#urlActualizarA').val();
@@ -64,7 +90,9 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route) {
             data: "nombre_asig="+$scope.nombreEditA,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+            $scope.mensajeActualizar = true;
+			inicializarInput();
+			listarAsginaturas();
         }, function (error) {
                 console.log(error);
         });

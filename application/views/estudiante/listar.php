@@ -58,15 +58,17 @@
 				</div>
 				<br><br>
 				<div class="table-responsive">
-					<table class="table table-bordered table-striped" style="width: 1000px">
-						<thead>
+					<table class="table table-bordered table-condensed table-striped table-sm" style="width: 1000px">
+						<thead class="thead-inverse">
 							<tr>
 								<th>N°</th>
 								<th>Cédula</th>
 								<th>Nombre</th>
+								<!--
 								<th>Fecha Nacimiento</th>
 								<th>Dirección</th>
 								<th>Lugar de Nacimiento</th>
+								-->
 								<th>Acción</th>
 							</tr>
 						</thead>
@@ -74,11 +76,12 @@
 							<tr ng-repeat="e in datos | filter:buscar">
 								<td>{{ $index + 1 }}</td>
 								<td>{{e.cedula_estu}}</td>
-								<td>{{e.nombres_estu}} {{e.apellidos_estu}}</td>
+								<td style="width: 400px;">{{e.nombres_estu}} {{e.apellidos_estu}}</td>
+								<!--
 								<td>{{e.fechanacimiento_estu}}</td>
 								<td>{{e.direccion_estu}}</td>
 								<td>{{e.lugar_nacimiento_estu}}</td>
-								
+								-->
 								<td>
 									<div style="width: 210px;">
 										<button style="width: 100px;" class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
