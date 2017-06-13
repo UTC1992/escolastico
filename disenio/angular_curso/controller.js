@@ -1,4 +1,4 @@
-app.controller('cursoCtrl', function($scope, $http, $location, $route) {
+app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, NgTableParams) {
     //activar funcion
     listarCursos();
     inicializarInput();
@@ -10,6 +10,22 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route) {
             $http.post($scope.getUrl)
             .success(function(response){
                 $scope.cursos = response;
+
+				$scope.cursosTable = new NgTableParams(
+                {
+                 count: 5
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+                        params.total($scope.cursos.length);
+
+   						$scope.dataAsig = params.filter() ? $filter('filter')($scope.cursos, params.filter()) : $scope.asignatura;
+
+                        $scope.dataAsig = $scope.dataAsig.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });
             }, function (error) {
                 console.log(error);
             });
@@ -22,8 +38,12 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route) {
         $scope.nombreC = "";
     };
 
-    $scope.mensajeInsertC = true;
+	$scope.limpiarVariables = function(){
+		inicializarInput();
+		$scope.mensajeInsertC = false;
+	}
 
+    $scope.mensajeInsertC = false;
     // declaro la función enviar
     $scope.registrarNuevo = function () {
         $scope.getUrl = $('#urlInsertarC').val();
@@ -33,16 +53,17 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route) {
             data: "nombre_curs="+$scope.nombreC+"&numparalelos_curs="+$scope.numParalelos,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
-            $scope.mensajeInsertC = false;
+            inicializarInput();
+            $scope.mensajeInsertC = true;
+			listarCursos();
         }, function (error) {
                 console.log(error);
         });
     }
-    
 
      // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
+		$scope.actualizarMensaje = false;
         var url = event.target.id;
         $http.get(url)
         .success(function(datosP){
@@ -55,6 +76,7 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route) {
     }
 
      // funcion para enviar datos para actualizar periodo
+	$scope.actualizarMensaje = false;
     $scope.actualizar = function () {
         //alert("actulizar");
         $scope.getUrl = $('#urlActualizarC').val();
@@ -66,11 +88,14 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route) {
             data: "nombre_curs="+$scope.nombreEditC+"&numparalelos_curs="+$scope.paralelosEditC,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+            $scope.actualizarMensaje = true;
+			listarCursos();
         }, function (error) {
                 console.log(error);
         });
     }
+
+//////////////////////////////////////////////////////////////////////////////////////////////7
 
      // obtener id curso para añadir nueva asignatura al curso presente
     $scope.obtenerIdCurso = function (event) {

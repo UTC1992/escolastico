@@ -7,36 +7,42 @@
 
 <!--INICIO CONTENEDOR-->
 <div id="contenidoAsig" class="container" ng-controller="cursoCtrl">
-    <h3>Lista de Cursos</h3>
+    
     <div >	
         <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
         
-
-        <button class="btn btn-primary nuevo" data-toggle="modal" data-target="#modalNuevo">
-            Nuevo Curso
-        </button>
-        <br><br>
+		<center>
+			<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
+				Nuevo Curso
+			</button>
+		</center>
+		<h3>Lista de Cursos</h3>
+        <br>
         <div class="table-responsive">
-            <table class="table table-bordered table-condensed table-striped table-sm">
-                <thead class="thead-inverse">
-                    <tr>
+            <table class="table table-bordered table-condensed table-striped table-sm"
+			ng-table ="cursosTable" show-filter="true">
+                <!--
+				<thead class="thead-inverse">
+					<tr>
                         <th>N°</th>
                         <th>Nombre</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
+				-->
                 <tbody>
-                    <tr ng-repeat="c in cursos | filter:buscar">
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ c.nombre_curs }}</td>
-                        <td>
+                    <tr ng-repeat="c in $data">
+                        <td data-title="'N°'">{{ $index + 1 }}</td>
+                        <td data-title="'Cursos'" filter="{nombre_curs: 'text'}">{{ c.nombre_curs }}</td>
+                        <td data-title="'Acciones'">
                             <div>
+								<center>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>curso_controller/getDataJsonCursoId/{{c.id_curs}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
-								
+								</center>
 								<!--
                                 <button class="btn btn-outline-info editar" ng-click="obtenerIdCursoAsig($event)" 
                                 id="{{c.id_curs}}" name="{{c.nombre_curs}}" 
@@ -62,7 +68,7 @@
             
         </div>
     </div>
-
+	<br>
      <!--INICIO MODAL NUEVO-->
     <div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog" aria-labelledby="modalNuevoLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">
@@ -79,11 +85,8 @@
                                 
                             <form name="fCurso" ng-submit="registrarNuevo()" class="form-horizontal" >
                                 
-                                <div class="col-12 alert alert-warning" ng-hide="!mensajeInsertC">
-                                    * Debe ingresar todos los datos porfavor.
-                                </div>
-                                <div class="col-12 alert alert-success" ng-hide="mensajeInsertC">
-                                    Curso ingresada correctamente.
+                                <div class="col-12 alert alert-success" ng-show="mensajeInsertC">
+                                    El curso se ingresó correctamente.
                                 </div>
 
                                 <input type="hidden" id="urlInsertarC" value="<?= base_url()?>curso_controller/insertar">
@@ -93,41 +96,42 @@
                                         <input class="form-control" name="nombreC" id="nombreC" ng-model="nombreC"
                                          type="text" ng-minlength="5" placeholder="Curso" required>
                                     </div>
-                                    <div class="col-4 alert alert-success" 
+                                    <div class="col-4" style="color: #28B463"
                                         ng-show="fCurso.nombreC.$valid">
-                                        Correcto.
+                                        <strong>* Correcto.</strong>
                                     </div>
-                                    <div class="col-4 alert alert-danger" 
+                                    <div class="col-4" style="color: crimson"
                                         ng-show="fCurso.nombreC.$invalid">
-                                        * Debe ingresar el nombre del curso.
+                                        <strong>* Campo Obligatorio.</strong>
                                     </div>
                                     
                                 </div>
 
+								<!--
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Número de paralelos:</label>
                                     <div class="col-4">
                                         <input class="form-control" name="numParalelos" id="numParalelos" ng-model="numParalelos"
                                          type="text" placeholder="Número de paralelos" required>
                                     </div>
-                                    <div class="col-4 alert alert-success" 
+                                    <div class="col-4" style="color: #28B463" 
                                         ng-show="fCurso.numParalelos.$valid">
                                         Correcto.
                                     </div>
-                                    <div class="col-4 alert alert-danger" 
+                                    <div class="col-4" style="color: crimson" 
                                         ng-show="fCurso.numParalelos.$invalid">
                                         * Debe ingresar el numero de paralelos que tiene el curso.
                                     </div>
                                     
                                 </div>
-
+								-->
                                 <div class="modal-footer">
                                     <button class="col-3 btn btn-primary" type="submit"
                                     ng-disabled="fCurso.nombreC.$invalid && fCurso.numParalelos.$invalid">
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Guardar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
                             </div>
@@ -158,6 +162,9 @@
                         <form name="fCursoEditar" ng-submit="actualizar()" class="form-horizontal">
                             <input type="hidden" id="urlActualizarC" value="<?= base_url()?>curso_controller/actualizar/">
                             <input type="hidden" id="idCurso" value="{{idCurso}}">
+							<div class="col-12 alert alert-success" ng-show="actualizarMensaje">
+								El curso se actualizó correctamente.
+							</div>
 
                             <div class="form-group row">
                                     <label class="col-3 col-form-label">Nombre del Curso:</label>
@@ -165,17 +172,17 @@
                                         <input class="form-control" name="nombreEditC" id="nombreEditC" ng-model="nombreEditC"
                                          type="text" ng-minlength="5" placeholder="Curso" required>
                                     </div>
-                                    <div class="col-4 alert alert-success" 
+                                    <div class="col-4" style="color: #28B463"
                                         ng-show="fCursoEditar.nombreEditC.$valid">
-                                        Correcto.
+                                        <strong>* Correcto.</strong>
                                     </div>
-                                    <div class="col-4 alert alert-danger" 
+                                    <div class="col-4" style="color: crimson"
                                         ng-show="fCursoEditar.nombreEditC.$invalid">
-                                        * Debe ingresar el nombre del curso.
+                                        <strong>* Campo Obligatorio.</strong>
                                     </div>
                                     
                                 </div>
-
+								<!--
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Número de paralelos:</label>
                                     <div class="col-4">
@@ -183,24 +190,24 @@
                                         ng-model="paralelosEditC"
                                          type="text" placeholder="Número de paralelos" required>
                                     </div>
-                                    <div class="col-4 alert alert-success" 
+                                    <div class="col-4" style="color: #28B463"
                                         ng-show="fCursoEditar.paralelosEditC.$valid">
-                                        Correcto.
+                                        <strong>* Correcto.</strong>
                                     </div>
-                                    <div class="col-4 alert alert-danger" 
+                                    <div class="col-4" style="color: crimson"
                                         ng-show="fCursoEditar.paralelosEditC.$invalid">
-                                        * Debe ingresar el numero de paralelos que tiene el curso.
+                                        <strong>* Campo Obligatorio.</strong>
                                     </div>
                                     
                                 </div>
-
+								-->
                             <div class="modal-footer">
                                 <button class="col-3 btn btn-primary" type="submit" 
                                 ng-disabled="fCursoEditar.nombreEditC.$invalid && fCursoEditar.paralelosEditC.$invalid">
                                     <span class="glyphicon glyphicon-floppy-saved"></span>
                                     Guardar
                                 </button>
-                                <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                             </div>
                         </form>
                         </div>

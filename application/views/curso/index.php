@@ -3,6 +3,7 @@
         margin-top: 50px;
     }
 </style>
+<link href="<?= base_url() ?>disenio/angular_js/ng-table.min.css" rel="stylesheet">
 <div  class="contenidoAsig" ng-app="appCurso">
         
 <!--head -->
@@ -25,3 +26,4 @@
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_curso/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_curso/controller.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_curso/routesCurso.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/ng-table.min.js"></script>

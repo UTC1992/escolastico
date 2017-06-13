@@ -43,6 +43,7 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route, $fil
 
 	$scope.limpiarVariables = function(){
 		inicializarInput();
+		$scope.mensajeInsertA = false;	
 	}
 
     $scope.mensajeInsertA = false;
