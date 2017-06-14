@@ -15,15 +15,21 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route, $fil
 				
 				$scope.personasTable = new NgTableParams(
                 {
-                 count: 5
+                 count: 5,
+				 sorting: {
+					nombre_asig: 'asc'     // initial sorting
+				}
                 }, {
                     counts: [5, 10, 20, 50, 100],
                     getData: function (params) {
-                        params.total($scope.asignatura.length);
+   						$scope.dataAsig = params.filter() ? 
+						   $filter('filter')($scope.asignatura, params.filter()) : $scope.asignatura;
+						
+						var orderedData = params.sorting() ?
+								$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.asignatura;
 
-   						$scope.dataAsig = params.filter() ? $filter('filter')($scope.asignatura, params.filter()) : $scope.asignatura;
-
-                        $scope.dataAsig = $scope.dataAsig.slice((params.page() - 1) * params.count(), params.page() * params.count());
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                         return $scope.dataAsig;
                     }
 					

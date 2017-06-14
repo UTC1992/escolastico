@@ -1,4 +1,4 @@
-app.controller('docenteCtrl', function($scope, $http, $location, $route) {
+app.controller('docenteCtrl', function($scope, $http, $location, $route, $filter, NgTableParams) {
     
     //activar funcion
     listarDias();
@@ -14,6 +14,30 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
             $http.post($scope.getUrl)
             .success(function(response){
                 $scope.docentes = response;
+
+				$scope.docentesTable = new NgTableParams(
+                {
+                 count: 5,
+				 sorting : {
+					 apellidos_doce : 'asc'
+				 }
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+						//filtros
+   						$scope.dataAsig = params.filter() ? 
+							$filter('filter')($scope.docentes, params.filter()) : $scope.docentes;
+						//ordenar
+						var orderedData = params.sorting() ?
+								$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.docentes;
+
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });
+
             }, function (error) {
                 console.log(error);
             });
@@ -66,8 +90,13 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
         }
     }
 
-    $scope.inicializarInput = function (){
-        $scope.cedula = "";
+    $scope.limpiarVariables = function (){
+        inicializarInput();
+		$scope.mensajeInsertDoce = false;
+    }
+
+	function inicializarInput(){
+		$scope.cedula = "";
         $scope.nombres = "";
         $scope.apellidos = "";
         $scope.anioNacimiento = "";
@@ -89,10 +118,10 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
         $scope.movil = "";
         $scope.correo = "";
         $scope.estado = "";
-
-    }
+	}
 
     // declaro la función enviar
+	$scope.mensajeInsertDoce = false;
     $scope.registrarNuevo = function () {
         $scope.getUrl = $('#urlInsertarD').val();
         $http({
@@ -122,8 +151,9 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
                     +"&estado_doce="+$scope.estado,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
-            //$scope.mensajeInsertC = false;
+			inicializarInput();
+            $scope.mensajeInsertDoce = true;
+			listarDocente();
         }, function (error) {
                 console.log(error);
         });
@@ -131,6 +161,7 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
 
     // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
+		$scope.mensajeDoceEdit = false;
 		$scope.confirmar = false;
         var url = event.target.id;
         $http.get(url)
@@ -177,6 +208,7 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
     }
 
     // funcion para enviar datos para actualizar periodo
+	$scope.mensajeDoceEdit = false;
     $scope.actualizar = function () {
         //alert("actulizar");
         $scope.getUrl = $('#urlActualizarD').val();
@@ -209,7 +241,8 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route) {
                     +"&estado_doce="+$scope.estado,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+            $scope.mensajeDoceEdit = true;
+			listarDocente();
         }, function (error) {
                 console.log(error);
         });

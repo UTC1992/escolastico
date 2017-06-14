@@ -51,7 +51,7 @@
           </li>
            
             <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-              <a class="btn nav-link btn-outline-warning" href="#">Perfil</a>
+              <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/perfil">Perfil</a>
             </li>
             <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
               <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/logout">Cerrar Sesión</a>

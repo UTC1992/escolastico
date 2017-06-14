@@ -13,15 +13,21 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
 
 				$scope.cursosTable = new NgTableParams(
                 {
-                 count: 5
+                 count: 5,
+				 sorting: {
+					id_curs: 'asc'     // initial sorting
+				}
                 }, {
                     counts: [5, 10, 20, 50, 100],
                     getData: function (params) {
-                        params.total($scope.cursos.length);
+   						$scope.dataAsig = params.filter() ? 
+						   	$filter('filter')($scope.cursos, params.filter()) : $scope.cursos;
 
-   						$scope.dataAsig = params.filter() ? $filter('filter')($scope.cursos, params.filter()) : $scope.asignatura;
+                        var orderedData = params.sorting() ?
+							$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.cursos;
 
-                        $scope.dataAsig = $scope.dataAsig.slice((params.page() - 1) * params.count(), params.page() * params.count());
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                         return $scope.dataAsig;
                     }
 					

@@ -29,8 +29,8 @@
 			if ($fila != null) {
 				if ($fila->password_admin == $password) {
 					$data = array(
-							'email' 		=>  $email ,
-							'id' 			=>  $fila->id,
+							'email_admin' 		=>  $email ,
+							'id_admin' 			=>  $fila->id_admin,
 							'tipo_admin' 	=>	$fila->tipo_admin,
 							'login_admin'	=> 	true
 							);

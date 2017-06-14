@@ -39,7 +39,7 @@
 				<tbody>
                     <tr ng-repeat="a in $data">
                         <td data-title="'N°'">{{ $index + 1 }}</td>
-                        <td data-title="'Asignatura'" filter="{nombre_asig: 'text'}">{{ a.nombre_asig }}</td>
+                        <td data-title="'Asignatura'" sortable="'nombre_asig'" filter="{nombre_asig: 'text'}">{{ a.nombre_asig }}</td>
                         <td data-title="'Acciones'">
                             <div>
 								<center>

@@ -32,7 +32,7 @@
 				-->
                 <tbody>
                     <tr ng-repeat="c in $data">
-                        <td data-title="'N°'">{{ $index + 1 }}</td>
+                        <td data-title="'N°'" >{{ $index +1 }}</td>
                         <td data-title="'Cursos'" filter="{nombre_curs: 'text'}">{{ c.nombre_curs }}</td>
                         <td data-title="'Acciones'">
                             <div>

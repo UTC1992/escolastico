@@ -32,7 +32,7 @@
 					ng-disabled="flogin.email.$invalid || flogin.password.$invalid"
 					>Iniciar Sesión</button>
 					<div class="checkbox">
-						<p><a href="<?= base_url() ?>admin_/registro" style="font-size: 13pt;">Registrarce</a></p>
+						<p><a href="<?= base_url() ?>admin_/registro" style="font-size: 13pt;">Registrarse</a></p>
 					</div>			
 				</form>
 			</div>

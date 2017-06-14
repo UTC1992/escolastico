@@ -27,7 +27,7 @@
 				if ($fila->password_doce == $password) {
 					$data = array(
 							'email' 		=>  $email ,
-							'id' 			=>  $fila->id_doce,
+							'id_doce' 			=>  $fila->id_doce,
 							'tipo_admin' 	=>	'docente',
 							'login_doce'	=> 	true
 							);
