@@ -81,4 +81,64 @@ class Estudiante_Controller extends CI_Controller
 		$bool = $this->estudiante_model->updateE($estudianteEdit, $id);
 		
 	}
+
+	public function inicial()
+	{
+		$this->load->view('/estudiante/inicial');
+	}
+
+	public function preparatoria()
+	{
+		$this->load->view('/estudiante/preparatoria');
+	}
+
+	public function basica()
+	{
+		$this->load->view('/estudiante/general_basica');
+	}
+
+	public function superior()
+	{
+		$this->load->view('/estudiante/general_superior');
+	}
+
+	public function getDataJsonEstudiantesAllInicial()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosNivel = $this->input->post();
+		$fila = $this->estudiante_model->getInicial($datosNivel);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonBuscarIdEstu($cedula = "")
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->estudiante_model->getIdEstudiante($cedula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
 }

@@ -94,7 +94,14 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
     }
 
     $scope.inicializarInput = function(){
-        $scope.cedula = "";
+        inicializarVariablesEstu();
+		inicializarInputMatricula();
+		$scope.confirmarMatri = false;
+		$scope.confirmarMatriEdit = false;
+    }
+
+	function inicializarVariablesEstu(){
+		$scope.cedula = "";
         $scope.nombres = "";
         $scope.apellidos = "";
         $scope.anioNacimiento = "";
@@ -109,7 +116,7 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
         $scope.madre = "";
         $scope.cedulaMadre = "";
         $scope.telefonoRepre = "";
-    }
+	}
 
     // declaro la función enviar
     $scope.registrarNuevo = function () {
@@ -134,17 +141,60 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
                     +"&telefono_representante_estu="+$scope.telefonoRepre,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            alert();
-            window.location.reload(false);
+			obtenerIdEstudiante($scope.cedula);
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);
         });
     }
 
+	/////////////////////////MATRICULA
+	function obtenerIdEstudiante(cedula){
+		var url = $('#urlBuscarIdEstu').val();
+		$http.get(url+"/"+cedula)
+        .success(function(datosP){
+			
+            $scope.lista = datosP;
+            $scope.idEstu =  datosP[0]['id_estu'];
+			alert('id ==>' +$scope.idEstu);
+			registrarMatricula($scope.idEstu);
+        });
+	}
+	$scope.confirmarMatri = false;
+	// declaro la función enviar
+    function registrarMatricula(idEstu) {
+        $scope.getUrl = $('#urlInsertarM').val();
+        $http({
+            method: "post",
+            url: $scope.getUrl,
+            data:   "id_curs="+$scope.cursosID
+                    +"&id_estu="+idEstu
+                    +"&fechainicio_matr="+$scope.anioInicio+"-"
+                                            +$scope.mesInicio+"-"
+                                            +$scope.diaInicio
+                    +"&fechafin_matr="+$scope.anioFin+"-"
+                                            +$scope.mesFin+"-"
+                                            +$scope.diaFin
+                    +"&paralelo_matr="+$scope.paralelo
+                    +"&nivel_matr="+$scope.categoriaNivel,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            inicializarVariablesEstu();
+			inicializarInputMatricula();
+            $scope.confirmarMatri = true;
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });
+    }
+	
+
+	////////////////////////MATRICULA
+
     // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
         var url = event.target.id;
+		var urlMostrarMatri = event.target.name;
         $http.get(url)
         .success(function(datosP){
             $scope.lista = datosP;
@@ -168,8 +218,39 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
             $scope.cedulaMadre = datosP[0]['cedula_madre_estu'];
             $scope.telefonoRepre = datosP[0]['telefono_representante_estu'];
 
+			mostrarFormEditMatricula(urlMostrarMatri);
+
         });
     }
+
+	function mostrarFormEditMatricula(url){
+		$scope.confirmarMatriEdit = false;
+        $http.get(url)
+            .success(function(datosP){
+                $scope.datosCertiImprimir = datosP;
+				var idMatricula = datosP[0]['id_matr'];
+                $('#idMatri').val(idMatricula);
+                var fechaI = datosP[0]['fechainicio_matr'].split("-");
+                $scope.anioInicio = fechaI[0];
+				$scope.mesInicio = fechaI[1];
+				$scope.diaInicio = fechaI[2];
+                var fechaF = datosP[0]['fechafin_matr'].split("-");
+                $scope.anioFin = fechaF[0];
+				$scope.mesFin = fechaF[1];
+				$scope.diaFin = fechaF[2];
+				$scope.cursoID2 = datosP[0]['id_curs'];
+				var idCurso = $scope.cursoID2 + "";
+				if (idCurso != "") {
+					$scope.cursosMostrarVerficacion = true;
+				} else {
+					$scope.cursosMostrarVerficacion = false;
+				}
+				
+                $scope.cursoNombre = datosP[0]['nombre_curs'];
+                $scope.paraleloEdit = datosP[0]['paralelo_matr'];
+                $scope.categoriaNivel = datosP[0]['nivel_matr'];
+            });
+	}
 
      // funcion para enviar datos para actualizar periodo
     $scope.actualizar = function () {
@@ -197,10 +278,96 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
                     +"&telefono_representante_estu="+$scope.telefonoRepre,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+            actualizarMatricula();
         }, function (error) {
                 console.log(error);
         });
     }
+
+	function actualizarMatricula () {
+		//alert("actulizar");
+        $scope.getUrl = $('#urlActualizarM').val();
+        $scope.getId = $('#idMatri').val();
+        $scope.urlActualizar = $scope.getUrl + $scope.getId;
+		$scope.cursoIdEdit = $('#cursosIDEdit').val();
+        $http({
+            method: "post",
+            url: $scope.urlActualizar,
+             data:   "id_curs="+$scope.cursoIdEdit
+                    +"&fechainicio_matr="+$scope.anioInicio+"-"
+                                            +$scope.mesInicio+"-"
+                                            +$scope.diaInicio
+                    +"&fechafin_matr="+$scope.anioFin+"-"
+                                            +$scope.mesFin+"-"
+                                            +$scope.diaFin
+                    +"&paralelo_matr="+$scope.paraleloEdit
+                    +"&nivel_matr="+$scope.categoriaNivel,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(){
+            $scope.confirmarMatriEdit = true;
+			//buscarMatriculaActualizada($('#idMatri').val());
+        }, function (error) {
+                console.log(error);
+        });
+	}
+///////////////////////////////////////////MATRICULA
+
+	listarCursos();
+	listarParalelos();
+	inicializarInputMatricula();
+
+	function listarCursos() {
+        $scope.getUrl = $('#urlCursos').val();
+        if ($scope.getUrl != null) {
+            $http.post($scope.getUrl)
+            .success(function(response){
+                $scope.cursos = response;
+            }, function (error) {
+                console.log(error);
+            });
+        } else {
+            $scope.mensaje = "No existen datos por el momento.";
+        }
+    }
+
+    function listarParalelos(){
+        $scope.paralelos = [
+            'A', 'B', 'C',
+            'D', 'E', 'F',
+            'G', 'H', 'I',
+            'J'
+        ];
+    }
+
+	$scope.mostrarEstudiantes = function(){
+		var nivel = $('#nivelEstudiantes').val();
+		var url = $('#urlEstudiantes').val();
+		$http({
+			method: "post",
+            url: url,
+            data: 	"fechainicio_matr="+$scope.anioInicio
+                    +"&fechafin_matr="+$scope.anioFin
+					+"&nivel_matr="+nivel,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		})
+		.success(function(response){
+			$scope.datos = response;
+		}, function (error) {
+			console.log(error);
+		});
+	}
+
+    function inicializarInputMatricula(){
+        $scope.anioInicio = "";
+        $scope.mesInicio = "";
+        $scope.diaInicio = "";
+        $scope.anioFin = "";
+        $scope.mesFin = "";
+        $scope.diaFin = "";
+        $scope.categoriaNivel = "";
+        $scope.cursosID = "";
+        $scope.paralelo = "";
+    }
+
 
 });

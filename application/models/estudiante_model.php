@@ -65,4 +65,28 @@
 			return false;
 		}
 
+		public function getInicial($datosNivel = null)
+		{
+			$anioI = $datosNivel['fechainicio_matr'];
+			$anioF = $datosNivel['fechafin_matr'];
+			$nivel = $datosNivel['nivel_matr'];
+
+			$result = $this->db->query("SELECT *
+										FROM estudiante, matricula
+										WHERE matricula.id_estu = estudiante.id_estu
+										AND matricula.nivel_matr = '" . $nivel . "'
+										AND matricula.fechainicio_matr LIKE '" . $anioI . "%'
+										AND matricula.fechafin_matr LIKE '" . $anioF . "%'
+										;");
+			//return $result->row();
+			return $result;
+		}
+
+		public function getIdEstudiante($cedula = '')
+		{
+			$result = $this->db->query("SELECT * FROM estudiante WHERE cedula_estu = '" . $cedula . "'");
+			//return $result->row();
+			return $result;
+		}
+
     }
