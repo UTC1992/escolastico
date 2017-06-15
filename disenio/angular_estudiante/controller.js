@@ -182,6 +182,7 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
             inicializarVariablesEstu();
 			inicializarInputMatricula();
             $scope.confirmarMatri = true;
+			$scope.mostrarEstudiantes();
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);
@@ -305,6 +306,7 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             $scope.confirmarMatriEdit = true;
+			$scope.mostrarEstudiantes();
 			//buscarMatriculaActualizada($('#idMatri').val());
         }, function (error) {
                 console.log(error);

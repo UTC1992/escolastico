@@ -15,7 +15,7 @@
 				Nuevo Estudiante
 			</button>
 		</center>
-		<h4>Estudiantes del Nivel Inicial</h4>
+		<h4>Nivel: Inicial 2</h4>
 		
 		<div class="col-lg-6">
 			<label>Seleccione el año lectivo:</label>
