@@ -30,7 +30,7 @@
 	} );
 	</script>
 	<center>
-			<h3>Datos a administrar</h3>
+			<h3>Menú de la Administración</h3>
 	</center>
 	<br>
 	<div id="tabs">
