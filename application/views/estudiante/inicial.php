@@ -98,7 +98,7 @@
 								data-toggle="modal" data-target="#modalEditar">
 									Editar
 								</button>
-								<button style="margin-right: 5px;" class="btn btn-outline-info" 
+								<button style="margin-right: 5px;" class="btn btn-outline-success" 
 									ng-click="generarCerti($event)" for="inlineFormInput" 
 									id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 									data-toggle="modal" data-target="#modalCertificado">
@@ -552,7 +552,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- FIN MODAL NUEVO-->
+	<!-- FIN MODAL NUEVO-->
 
 	<!--INICIO MODAL EDITAR-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
@@ -991,129 +991,317 @@
     <div class="modal fade" id="modalMostrarDatos" tabindex="-1" role="dialog" aria-labelledby="modalMostrarDatosLabel" aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalMostrarDatosLabel">Información del estudiante.</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                    <input type="hidden" value="">
-                
-                    <div class="row justify-content-md-center">
-                        <div class="col-12">
+				<div class="modal-header">
+					<h3 class="modal-title" id="modalMostrarDatosLabel">Información del estudiante.</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+						<input type="hidden" value="">
+					
+						<div class="row justify-content-md-center">
+							<div class="col-12">
 
-                        <form class="form-horizontal" >
-                                <fieldset class="form-control">
-                                <legend class="form-control"><strong>Información Personal</strong></legend>
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Cédula:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{cedula}}</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Nombres:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{nombres}}</label>
-                                    </div>
-                                </div>
+								<form class="form-horizontal" >
+										<fieldset class="form-control">
+										<legend class="form-control"><strong>Información Personal</strong></legend>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Cédula:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{cedula}}</label>
+											</div>
+										</div>
+										
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Nombres:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{nombres}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Apellidos:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{apellidos}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Apellidos:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{apellidos}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Fecha de nacimiento:</label>
-                                    <div class="col-5 form-inline">
-                                        <label class="col-form-label">{{anioNacimiento}}-{{mesNacimiento}}-{{diaNacimiento}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Fecha de nacimiento:</label>
+											<div class="col-5 form-inline">
+												<label class="col-form-label">{{anioNacimiento}}-{{mesNacimiento}}-{{diaNacimiento}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Dirección domiciliaria:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{domicilio}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Dirección domiciliaria:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{domicilio}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Lugar de nacimiento:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{lugarNacimiento}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Lugar de nacimiento:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{lugarNacimiento}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Representante:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{representante}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Representante:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{representante}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Cédula del Representante:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{cedulaRepre}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Cédula del Representante:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{cedulaRepre}}</label>
+											</div>
+										</div>
 
-                                </fieldset>
-                                <br>
-                                <fieldset class="form-control">
-                                <legend class="form-control"><strong>Información de los padres</strong></legend>
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Padre:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{padre}}</label>
-                                    </div>
-                                </div>
+										</fieldset>
+										<br>
+										<fieldset class="form-control">
+										<legend class="form-control"><strong>Información de los padres</strong></legend>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Padre:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{padre}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Cédula del padre:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{cedulaPadre}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Cédula del padre:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{cedulaPadre}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Madre:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{madre}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Madre:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{madre}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Cédula de la madre:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{cedulaMadre}}</label>
-                                    </div>
-                                </div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Cédula de la madre:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{cedulaMadre}}</label>
+											</div>
+										</div>
 
-                                <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Teléfono del representante:</label>
-                                    <div class="col-5">
-                                        <label class="col-form-label">{{telefonoRepre}}</label>
-                                    </div>
-                                </div>
-                                </fieldset>
-                                <div class="modal-footer">
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
-                                </div>
-                            </form>
-                        
-                        </div>
-                    </div>
-            </div>
-            
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Teléfono del representante:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{telefonoRepre}}</label>
+											</div>
+										</div>
+										</fieldset>
+										<br>
+										<fieldset class="form-control">
+											<legend class="form-control"><strong>Información de la Matrícula</strong></legend>
+											<div class="form-group row justify-content-md-center">
+												<label class="col-3 col-form-label">Año lectivo, fecha de inicio:</label>
+												<div class="col-5">
+													<label class="col-form-label">{{anioInicio}}- {{mesInicio}} - {{diaInicio}}</label>
+												</div>
+											</div>
+
+											<div class="form-group row justify-content-md-center">
+												<label class="col-3 col-form-label">Año lectivo, fecha de finalización:</label>
+												<div class="col-5 form-inline">
+													<label class="col-form-label">{{anioFin}}- {{mesFin}} - {{diaFin}}</label>
+												</div>
+											</div>
+											
+											<div class="form-group row justify-content-md-center">
+												<label class="col-3 col-form-label">Nivel:</label>
+												<div class="col-5">
+													<label class="col-form-label">{{categoriaNivel}}</label>
+												</div>
+											</div>
+											
+											<div class="form-group row justify-content-md-center">
+												<label class="col-3 col-form-label">Curso:</label>
+												<div class="col-5">
+													<label class="col-form-label">{{cursoNombre}}</label>
+												</div>
+											</div>
+
+											<div class="form-group row justify-content-md-center">
+												<label class="col-3 col-form-label">Paralelo:</label>
+												<div class="col-5">
+													<label class="col-form-label">{{paraleloEdit}}</label>
+												</div>
+											</div>
+
+										</fieldset>
+
+										<div class="modal-footer">
+											<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+										</div>
+								</form>
+							
+							</div>
+						</div>
+				</div>
             </div>
         </div>
     </div>
     <!--FIN MODAL MOSTRAR INFORMACION-->
+
+	<!--INICIO MODAL CERTIFICADO-->
+    <div class="modal fade" id="modalCertificado" tabindex="-1" role="dialog" aria-labelledby="modalCertificadoLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalCertificadoLabel">Certificado de Matrícula.</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <div class="row justify-content-lg-center">
+                            <div class="col-12">
+                                
+                            <!--<form name="fMatricula" ng-submit="registrarNuevo()" class="form-horizontal" > -->
+                                <!--obtener los cursos disponibles en el colegio-->
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+                                
+                                <input type="hidden" id="urlInsertarM" value="<?= base_url()?>matricula_controller/insertar">
+                                
+                                <input type="hidden" id="idEstu" value="">
+
+                                <fieldset class="form-control" id="printSectionId" style="color: black;">
+                                    <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                                    <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+                                    <center>
+                                        <div class="">
+                                            <img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+                                            <h4>Unidad Educativa Fiscal</h4>
+                                            <h4>Patria</h4>
+                                            <br>
+                                            <h3>Certíficado de Matrícula</h3>
+                                            <br>
+                                        </div>
+                                    </center>
+                                    
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">Matrícula N°. {{matriculaNum}}</label>
+                                     </div>
+
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">Folio N°. {{matriculaNum}}</label>
+                                     </div>
+
+                                     <div class="row" >
+                                        <label class="col-form-label" style="position: absolute; right: 20px;">AÑO LECTIVO: {{anioI}} - {{anioF}}</label>
+                                     </div>
+                                     <br>
+                                     <br>
+                                     <center>
+                                        <div class="row" >
+                                            <label style="margin-left: 20px;" class="col-form-label">
+                                                LA UNIDAD EDUCATIVA FÍSCAL PATRIA, DE LA CIUDAD DE LATACUNGA, A
+                                            </label>
+                                        </div>
+                                        <div class="" style="width: 600px; border: 1px solid;">
+                                            <label>EL ALUMNO: {{estudiante}}</label>
+                                        </div>
+                                     </center>
+
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">PADRE: {{padre}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">MADRE: {{madre}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">FECHA DE NACIMIENTO: {{fechaN}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">EDAD:</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">DIRECCIÓN: {{direccion}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px; ">
+                                            PREVIA LA PRESENTACIÓN EN LA SECRETARÍA DEL PLANTEL DE LA DOCUMENTACIÓN LEGAL RESPECTIVA SE MATRICULA EN:
+                                        </label>
+                                        <label class="col-form-label" style="margin-left: 20px;">CURSO: {{curso}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">PARALELO: {{paraleloCerti}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">CICLO: {{ciclo}}</label>
+                                     </div>
+
+                                     <div class="row" >
+                                        <label class="col-form-label" style="position: absolute; right: 20px;">{{fechaActual}}</label>
+                                     </div>
+                                     <br>
+                                     <hr style="border-top: 1px solid;">
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">LO CERTIFICO:</label>
+                                     </div>
+                                     <br>
+                                     <center>
+                                        <table>
+                                            <tr>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                                <td style="width: 50px;"></td>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL RECTOR</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL SECRETARIO GENERAL</label></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">LIC. AUGUSTO GUTIERREZ</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">SP. ELIZABETH GUAIÑA</label></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <br>
+                                                    <br>
+                                                    <hr style="width: 15em; background: black; border-top: 1px solid;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL REPRESENTANTE</label></center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                     </center>
+                                </fieldset>
+                                
+                                <div class="modal-footer">
+                                    <button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Imprimir
+                                    </button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                </div>
+                           <!-- </form>-->
+                            </div>
+                        </div>  
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL CERTIFICADO-->
 
 </div>
 <!--FIN CONTENEDOR-->
