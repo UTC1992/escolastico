@@ -6,6 +6,11 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route, $filter
     listarAnios();
     listarDocente();
     
+	activarMenu();
+	function activarMenu(){
+		$('#docenteMenu').addClass('active');
+		$('#dropdownMenuButtonTablas').addClass('active');
+	}
     
     //obtener todos los periodos de la tabla
     function listarDocente() {

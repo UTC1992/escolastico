@@ -10,12 +10,8 @@
     <div class="">
 		<br>
 		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAllInicial">
-		<center>
-			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">
-				Nuevo Estudiante
-			</button>
-		</center>
-		<h4>Nivel: Preparatoria</h4>
+		
+		<center><h4>Preparatoria</h4></center>
 		
 		<div class="col-lg-6">
 			<label>Seleccione el año lectivo:</label>
@@ -38,27 +34,13 @@
 				</div>
 			</form>
 		</div>
-		<!--
-		<div class="row justify-content-md-center">
-	
-			<input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
-				<div class="col-lg-6">
-					<label class="col-form-label">Ingrese los siguientes datos para buscar al estudiante:</label>
-					<div class="input-group">
-						<button class="btn btn-info nuevo" ng-click="buscarEstudiante()">
-							Bucar
-						</button>
-						<input class="form-control" ng-model="cedulaEstu" type="text" name="" value=""
-						placeholder="Ingrese la cédula del estudiante porfavor">
-					</div>
-					<div class="" style="color: crimson;" 
-						ng-show="validarBuscar">
-						<strong>* Debe ingresar los 10 digitos de la cédula.</strong>
-					</div>
-				</div>		
-		</div>
-		-->
-		<br><br>
+		<br>
+		<center>
+			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">
+				Registrar Estudiante
+			</button>
+		</center>
+		<br>
 		<div class="table-responsive">
 			<table class="table table-bordered table-condensed table-striped table-sm" style="width: 1000px">
 				<thead class="thead-inverse">

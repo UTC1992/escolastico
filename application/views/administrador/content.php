@@ -12,9 +12,16 @@
 	}
 </style>
 
-<link href="<?= base_url() ?>disenio/css/jquery-ui.css" rel="stylesheet">
+<link href="<?= base_url() ?>disenio/css/jquery-ui-v12.css" rel="stylesheet">
 <script src="<?= base_url() ?>disenio/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>disenio/js/jquery-ui-1.9.2.custom.js" type="text/javascript" ></script>
+
+<!--activar boton de inicio-->
+<script>
+	$( function() {
+		$('#inicioMenu').addClass('active');
+	});
+</script>
 
 <div id="modulosAdmin" class="container">
 	 <script>
@@ -57,9 +64,7 @@
 				<tr>
 					
 					<th>Estudiantes</th>
-					<th>
-						Matrículas
-					</th>
+					<th>Docentes</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -70,22 +75,24 @@
 						</a>
 					</td>
 					<td>
-						<a href="<?= base_url() ?>admin_/matricular/" class="btn btn-outline-warning">
+						<a href="<?= base_url() ?>admin_/docente/" class="btn btn-outline-warning">
 							Mostrar...
 						</a>
 					</td>
 				</tr>
 			</tbody>
+			<!--
 			<thead>
 				<tr>
 					<th>Docentes</th>
-					<!--
+					
 					<th>
 						Docente y Cargos
 					</th>
-					-->
+					
 				</tr>
 			</thead>
+			
 			<tbody>
 				<tr>
 					<td>
@@ -93,15 +100,16 @@
 							Mostrar...
 						</a>
 					</td>
-					<!--
+					
 					<td>
 						<a href="<?= base_url() ?>admin_/docente_cargo/" class="btn btn-outline-warning">
 							Mostrar...
 						</a>
 					</td>
-					-->
+					
 				</tr>
 			</tbody>
+			-->
 			
 		</table>
 

@@ -4,11 +4,13 @@
 </style>
 <div class="container"  class="contenidoEstu" ng-app="appEstudiante">
 <br>
+<br>
 <!--head -->
 <div>
-    <center><h2>Gestión de Estudiantes</h2></center>
+    <center><h2>Administrar Estudiantes</h2></center>
     <input id="urlConsultarEstudiante" type="hidden" value="<?= base_url() ?>admin_/estudiante/listar">
 </div>
+<br>
 <!--head -->
 <!--url para las paginas-->
 <input id="urlConsultarInicial" type="hidden" value="<?= base_url() ?>estudiante_controller/inicial">

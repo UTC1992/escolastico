@@ -1,5 +1,10 @@
 app.controller('adminCtrl', function($scope, $http) {
-	
+
+	activarMenu();
+	function activarMenu(){
+		$('#perfilMenu').addClass('active');
+	}
+
 	if ($('#urlAdminMostrar').val() != "" && $('#idAdmin').val() != "") {
 		mostrarDatosAdmin();
 	}

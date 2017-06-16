@@ -10,12 +10,8 @@
     <div class="">
 		<br>
 		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAllInicial">
-		<center>
-			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">
-				Nuevo Estudiante
-			</button>
-		</center>
-		<h4>Nivel: Inicial 2</h4>
+		
+		<center><h4>Inicial 2</h4></center>
 		
 		<div class="col-lg-6">
 			<label>Seleccione el año lectivo:</label>
@@ -37,6 +33,7 @@
 					</button>
 				</div>
 			</form>
+			
 		</div>
 		<!--
 		<div class="row justify-content-md-center">
@@ -58,7 +55,13 @@
 				</div>		
 		</div>
 		-->
-		<br><br>
+		<br>
+		<center>
+			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">
+				Registrar Estudiante
+			</button>
+		</center>
+		<br>
 		<div class="table-responsive">
 			<table class="table table-bordered table-condensed table-striped table-sm" style="width: 1000px">
 				<thead class="thead-inverse">

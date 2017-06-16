@@ -3,6 +3,12 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
     listarCursos();
     inicializarInput();
 
+	activarMenu();
+	function activarMenu(){
+		$('#cursosMenu').addClass('active');
+		$('#dropdownMenuButtonTablas').addClass('active');
+	}
+
     //obtener todos los periodos de la tabla
     function listarCursos() {
         $scope.getUrl = $('#urlCursos').val();

@@ -5,6 +5,12 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
     listarMeses();
     listarDias();
 
+	activarMenu();
+	function activarMenu(){
+		$('#estudiantesMenu').addClass('active');
+		$('#dropdownMenuButtonTablas').addClass('active');
+	}
+
 	$scope.buscarEstudiante = function(){
         //validar cedula
         var cedula = String($scope.cedulaEstu);
@@ -370,6 +376,58 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
         $scope.cursosID = "";
         $scope.paralelo = "";
     }
+
+///////////////////////////CERTIFICADO
+	$scope.printToCart = function(printSectionId) {
+        var innerContents = document.getElementById(printSectionId).innerHTML;
+        var popupWinindow = window.open('', '_blank', 'width=1000px,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWinindow.document.open();
+        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css"/></head><body onload="window.print()">' + innerContents + '</html>');
+        popupWinindow.document.close();
+    }
+
+    $scope.generarCerti = function(event){
+        var id = event.target.id;
+        var url = event.target.name;
+		//alert(url);
+        $http.get(url)
+            .success(function(datosP){
+                $scope.datosCertiImprimir = datosP;
+
+                $scope.matriculaNum = datosP[0]['id_matr'];
+                var fechaI = datosP[0]['fechainicio_matr'].split("-");
+                $scope.anioI = fechaI[0];
+                var fechaF = datosP[0]['fechafin_matr'].split("-");
+                $scope.anioF = fechaF[0];
+                var nombreEstu = datosP[0]['apellidos_estu'] + " " + datosP[0]['nombres_estu'];
+                $scope.estudiante = nombreEstu.toUpperCase();
+                $scope.padre = datosP[0]['nombre_padre_estu'].toUpperCase();;
+                $scope.madre = datosP[0]['nombre_madre_estu'].toUpperCase();;
+                $scope.fechaN = obtenerFechaTexto(datosP[0]['fechanacimiento_estu']).toUpperCase();
+                
+                $scope.direccion = datosP[0]['direccion_estu'].toUpperCase();
+                $scope.curso = datosP[0]['nombre_curs'].toUpperCase();
+                $scope.paraleloCerti = datosP[0]['paralelo_matr'].toUpperCase();
+                $scope.ciclo = datosP[0]['nivel_matr'].toUpperCase();
+                $scope.fechaActual = "LATACUNGA, " + obtenerFechaActual().toUpperCase();
+            });
+    }
+
+    function obtenerFechaActual(){
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var date = new Date();
+        var fechaA = date.getDate() + " de " + meses[date.getMonth()] + " del " + date.getFullYear();
+        return fechaA;
+    }
+
+    function obtenerFechaTexto(fecha){
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var vector = fecha.split("-");
+        var date = new Date();
+        var fecha = vector[2] + " de " + meses[vector[1]-1] + " de " + vector[0];
+        return fecha;
+    }
+
 
 
 });

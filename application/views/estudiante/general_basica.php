@@ -10,12 +10,8 @@
     <div class="">
 		<br>
 		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAllInicial">
-		<center>
-			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">
-				Nuevo Estudiante
-			</button>
-		</center>
-		<h4>Nivel: Educación General Básica</h4>
+		
+		<center><h4>Educación General Básica</h4></center>
 		
 		<div class="col-lg-6">
 			<label>Seleccione el año lectivo:</label>
@@ -38,27 +34,13 @@
 				</div>
 			</form>
 		</div>
-		<!--
-		<div class="row justify-content-md-center">
-	
-			<input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
-				<div class="col-lg-6">
-					<label class="col-form-label">Ingrese los siguientes datos para buscar al estudiante:</label>
-					<div class="input-group">
-						<button class="btn btn-info nuevo" ng-click="buscarEstudiante()">
-							Bucar
-						</button>
-						<input class="form-control" ng-model="cedulaEstu" type="text" name="" value=""
-						placeholder="Ingrese la cédula del estudiante porfavor">
-					</div>
-					<div class="" style="color: crimson;" 
-						ng-show="validarBuscar">
-						<strong>* Debe ingresar los 10 digitos de la cédula.</strong>
-					</div>
-				</div>		
-		</div>
-		-->
-		<br><br>
+		<br>
+		<center>
+			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">
+				Registrar Estudiante
+			</button>
+		</center>
+		<br>
 		<div class="table-responsive">
 			<table class="table table-bordered table-condensed table-striped table-sm" style="width: 1000px">
 				<thead class="thead-inverse">
@@ -75,20 +57,28 @@
 						<td>{{ $index + 1 }}</td>
 						<td>{{e.cedula_estu}}</td>
 						<td>{{e.apellidos_estu}}</td>
-						<td style="width: 400px;">{{e.nombres_estu}}</td>
+						<td>{{e.nombres_estu}}</td>
 						<td>
-							<div style="width: 210px;">
-								<button style="width: 100px;" class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
+							<div style="" class="form-inline">
+								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-info editar" for="inlineFormInput" 
+								ng-click="mostrarFormEditar($event)" 
 								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
 								name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 								data-toggle="modal" data-target="#modalMostrarDatos">
 									Datos
 								</button>
-								<button style="width: 100px;" class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
+								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-warning editar" for="inlineFormInput"
+								ng-click="mostrarFormEditar($event)" 
 								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}"
 								name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 								data-toggle="modal" data-target="#modalEditar">
 									Editar
+								</button>
+								<button style="margin-right: 5px;" class="btn btn-outline-info" 
+									ng-click="generarCerti($event)" for="inlineFormInput" 
+									id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+									data-toggle="modal" data-target="#modalCertificado">
+									Certíficado
 								</button>
 							</div>
 						</td>
@@ -1091,6 +1081,155 @@
         </div>
     </div>
     <!--FIN MODAL MOSTRAR INFORMACION-->
+
+	<!--INICIO MODAL CERTIFICADO-->
+    <div class="modal fade" id="modalCertificado" tabindex="-1" role="dialog" aria-labelledby="modalCertificadoLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalCertificadoLabel">Certificado de Matrícula.</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <div class="row justify-content-lg-center">
+                            <div class="col-12">
+                                
+                            <!--<form name="fMatricula" ng-submit="registrarNuevo()" class="form-horizontal" > -->
+                                <!--obtener los cursos disponibles en el colegio-->
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+                                
+                                <input type="hidden" id="urlInsertarM" value="<?= base_url()?>matricula_controller/insertar">
+                                
+                                <input type="hidden" id="idEstu" value="">
+
+                                <fieldset class="form-control" id="printSectionId" style="color: black;">
+                                    <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                                    <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+                                    <center>
+                                        <div class="">
+                                            <img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+                                            <h4>Unidad Educativa Fiscal</h4>
+                                            <h4>Patria</h4>
+                                            <br>
+                                            <h3>Certíficado de Matrícula</h3>
+                                            <br>
+                                        </div>
+                                    </center>
+                                    
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">Matrícula N°. {{matriculaNum}}</label>
+                                     </div>
+
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">Folio N°. {{matriculaNum}}</label>
+                                     </div>
+
+                                     <div class="row" >
+                                        <label class="col-form-label" style="position: absolute; right: 20px;">AÑO LECTIVO: {{anioI}} - {{anioF}}</label>
+                                     </div>
+                                     <br>
+                                     <br>
+                                     <center>
+                                        <div class="row" >
+                                            <label style="margin-left: 20px;" class="col-form-label">
+                                                LA UNIDAD EDUCATIVA FÍSCAL PATRIA, DE LA CIUDAD DE LATACUNGA, A
+                                            </label>
+                                        </div>
+                                        <div class="" style="width: 600px; border: 1px solid;">
+                                            <label>EL ALUMNO: {{estudiante}}</label>
+                                        </div>
+                                     </center>
+
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">PADRE: {{padre}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">MADRE: {{madre}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">FECHA DE NACIMIENTO: {{fechaN}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">EDAD:</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">DIRECCIÓN: {{direccion}}</label>
+                                     </div>
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px; ">
+                                            PREVIA LA PRESENTACIÓN EN LA SECRETARÍA DEL PLANTEL DE LA DOCUMENTACIÓN LEGAL RESPECTIVA SE MATRICULA EN:
+                                        </label>
+                                        <label class="col-form-label" style="margin-left: 20px;">CURSO: {{curso}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">PARALELO: {{paraleloCerti}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">CICLO: {{ciclo}}</label>
+                                     </div>
+
+                                     <div class="row" >
+                                        <label class="col-form-label" style="position: absolute; right: 20px;">{{fechaActual}}</label>
+                                     </div>
+                                     <br>
+                                     <hr style="border-top: 1px solid;">
+                                     <div class="row">
+                                        <label class="col-form-label" style="margin-left: 20px;">LO CERTIFICO:</label>
+                                     </div>
+                                     <br>
+                                     <center>
+                                        <table>
+                                            <tr>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                                <td style="width: 50px;"></td>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL RECTOR</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL SECRETARIO GENERAL</label></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">LIC. AUGUSTO GUTIERREZ</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">SP. ELIZABETH GUAIÑA</label></center>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <br>
+                                                    <br>
+                                                    <hr style="width: 15em; background: black; border-top: 1px solid;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL REPRESENTANTE</label></center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                     </center>
+                                </fieldset>
+                                
+                                <div class="modal-footer">
+                                    <button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Imprimir
+                                    </button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                </div>
+                           <!-- </form>-->
+                            </div>
+                        </div>  
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <!--FIN MODAL CERTIFICADO-->
 
 </div>
 <!--FIN CONTENEDOR-->

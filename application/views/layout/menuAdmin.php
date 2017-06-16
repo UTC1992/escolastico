@@ -24,36 +24,68 @@
         <ul class="navbar-nav mr-auto">
 					<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
           <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-            <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>admin_/dashboard">Menú <span class="sr-only">(current)</span></a>
+            <a class="nav-link btn btn-outline-warning" id="inicioMenu" href="<?= base_url() ?>admin_/dashboard">Inicio<span class="sr-only">(current)</span></a>
           </li>
+					<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 120px;">
+						<div class="dropdown active">
+							<a class="btn nav-link btn-outline-warning dropdown-toggle" 
+							href="#" id="dropdownMenuButtonTablas" data-toggle="dropdown" >
+									Tablas
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonTablas" style="width: 200px;">
+									<a class="dropdown-item" id="asignaturaMenu" href="<?= base_url() ?>admin_/asignaturas/">Asignaturas</a>
+									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/curso/">Cursos</a>
+									<a class="dropdown-item" id="docenteMenu" href="<?= base_url() ?>admin_/docente/">Docentes</a>
+									<a class="dropdown-item" id="estudiantesMenu" href="<?= base_url() ?>admin_/estudiantes/">Estudiantes</a>
+							</div>
+						</div>
+					</li>
+
+					<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 120px;">
+						<div class="dropdown active">
+							<a class="btn nav-link btn-outline-warning dropdown-toggle" 
+							href="#" id="dropdownMenuButtonRepo" data-toggle="dropdown" >
+									Reportes
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonRepo" style="width: 200px;">
+									<a class="dropdown-item" id="asignaturaMenu" href="<?= base_url() ?>admin_/asignaturas/">Matrículas</a>
+									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/curso/">Notas</a>
+							</div>
+						</div>
+					</li>
+					
            <!--<li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/periodoacademico/">Periodo</a>
           </li>-->
+					<!--
           <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/asignaturas/">Asignaturas</a>
+            <a class="btn nav-link btn-outline-warning" id="asignaturaMenu" href="<?= base_url() ?>admin_/asignaturas/">Asignaturas</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/curso/">Cursos</a>
+            <a class="btn nav-link btn-outline-warning" id="cursosMenu" href="<?= base_url() ?>admin_/curso/">Cursos</a>
           </li>
            <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/docente/">Docentes</a>
+            <a class="btn nav-link btn-outline-warning" id="docenteMenu" href="<?= base_url() ?>admin_/docente/">Docentes</a>
           </li>
+					-->
 					<!--
           <li class="nav-item active" style="padding: 0px; margin: 5px;">
             <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/docente_cargo/">Docente y Cargos</a>
           </li>
 					-->
+					<!--
           <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/estudiantes/">Estudiantes</a>
+            <a class="btn nav-link btn-outline-warning" id="estudiantesMenu" href="<?= base_url() ?>admin_/estudiantes/">Estudiantes</a>
           </li>
+					
 					<li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-            <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/matricular/">Matrículas</a>
+            <a class="btn nav-link btn-outline-warning" id="matriculaMenu" href="<?= base_url() ?>admin_/matricular/">Matrículas</a>
           </li>
-           
-            <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
-              <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/perfil">Perfil</a>
+          --> 
+            <li class="nav-item active"  style="padding: 0px; margin: 5px; width: 120px;">
+              <a class="btn nav-link btn-outline-warning" id="perfilMenu" href="<?= base_url() ?>admin_/perfil">Perfil</a>
             </li>
-            <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
+            <li class="nav-item active"  style="padding: 0px; margin: 5px; width: 120px;">
               <a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>admin_/logout">Cerrar Sesión</a>
             </li>
            <?php }else{ ?>
@@ -64,5 +96,6 @@
     </nav>
 
 </header>
+
     
     

@@ -5,6 +5,13 @@ app.controller('asignaturaCtrl', function($scope, $http, $location, $route, $fil
 	$scope.personasTable;
 	$scope.asignatura = [];
 
+	activarMenu();
+	function activarMenu(){
+		$('#asignaturaMenu').addClass('active');
+		$('#dropdownMenuButtonTablas').addClass('active');
+	}
+	
+
     //obtener todos los periodos de la tabla
     function listarAsginaturas() {
         $scope.getUrl = $('#urlAsignaturas').val();
