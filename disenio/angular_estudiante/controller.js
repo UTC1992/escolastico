@@ -1,4 +1,4 @@
-app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
+app.controller('estudianteCtrl', function($scope, $http, $location, $route, $filter, NgTableParams) {
     //mostrar estudiantes
     //listarEstudiantes();
     listarAnios();
@@ -46,7 +46,9 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
         if ($scope.getUrl != null) {
             $http.post($scope.getUrl)
             .success(function(response){
+				
                 $scope.estudiantes = response;
+
             }, function (error) {
                 console.log(error);
             });
@@ -347,7 +349,10 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
         ];
     }
 
+	$scope.mensajeEstudiantes = false;
 	$scope.mostrarEstudiantes = function(){
+		$scope.mensajeEstudiantes = false;
+
 		var nivel = $('#nivelEstudiantes').val();
 		var url = $('#urlEstudiantes').val();
 		$http({
@@ -359,7 +364,56 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 		.success(function(response){
-			$scope.datos = response;
+			$scope.datosEstu = response;
+			if (response.length > 0) {
+				$scope.estudiantesTable = new NgTableParams(
+                {
+                 count: 5,
+				 sorting: {
+					apellidos_estu: 'asc'     // initial sorting
+				}
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+   						$scope.dataAsig = params.filter() ? 
+						   $filter('filter')($scope.datosEstu, params.filter()) : $scope.datosEstu;
+						
+						var orderedData = params.sorting() ?
+								$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.datosEstu;
+
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });	
+				$scope.mensajeEstudiantes = false;
+			} else{
+				$scope.estudiantesTable = new NgTableParams(
+                {
+                 count: 5,
+				 sorting: {
+					apellidos_estu: 'asc'     // initial sorting
+				}
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+   						$scope.dataAsig = params.filter() ? 
+						   $filter('filter')($scope.datosEstu, params.filter()) : $scope.datosEstu;
+						
+						var orderedData = params.sorting() ?
+								$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.datosEstu;
+
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });	
+				$scope.mensajeEstudiantes = true;
+			}
+			
+
 		}, function (error) {
 			console.log(error);
 		});

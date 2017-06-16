@@ -42,7 +42,9 @@
 		</center>
 		<br>
 		<div class="table-responsive">
-			<table class="table table-bordered table-condensed table-striped table-sm" style="width: 1000px">
+			<table class="table table-bordered table-condensed table-striped table-sm"
+			ng-table ="estudiantesTable" show-filter="true">
+				<!--
 				<thead class="thead-inverse">
 					<tr>
 						<th>N°</th>
@@ -52,14 +54,15 @@
 						<th>Acción</th>
 					</tr>
 				</thead>
+				-->
 				<tbody>
-					<tr ng-repeat="e in datos">
-						<td>{{ $index + 1 }}</td>
-						<td>{{e.cedula_estu}}</td>
-						<td>{{e.apellidos_estu}}</td>
-						<td>{{e.nombres_estu}}</td>
-						<td>
-							<div style="" class="form-inline">
+					<tr ng-repeat="e in $data">
+						<td data-title="'N°'">{{ $index + 1 }}</td>
+						<td data-title="'Cédula'"  filter="{cedula_estu: 'text'}">{{e.cedula_estu}}</td>
+						<td data-title="'Apellidos'" sortable="'apellidos_estu'" filter="{apellidos_estu: 'text'}">{{e.apellidos_estu}}</td>
+						<td data-title="'Nombres'"  filter="{nombres_estu: 'text'}">{{e.nombres_estu}}</td>
+						<td data-title="'Acciones'">
+							<div style="width: 350px;" class="form-inline">
 								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-info editar" for="inlineFormInput" 
 								ng-click="mostrarFormEditar($event)" 
 								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
@@ -84,6 +87,15 @@
 						</td>
 					</tr>
 				</tbody>
+				<tr ng-show="mensajeEstudiantes">
+					<td colspan="6" >
+						<center>
+							<div  class="alert alert-danger" style="color: crimson;">
+								<strong>* No existen estudiantes en el año lectivo seleccionado.</strong>
+							</div>
+						</center>
+					</td>
+				</tr>
 			</table>
 		</div>
 	<!--fin table-->

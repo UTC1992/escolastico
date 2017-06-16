@@ -42,7 +42,9 @@
 		</center>
 		<br>
 		<div class="table-responsive">
-			<table class="table table-bordered table-condensed table-striped table-sm" style="width: 1000px">
+			<table class="table table-bordered table-condensed table-striped table-sm"
+			ng-table ="estudiantesTable" show-filter="true">
+				<!--
 				<thead class="thead-inverse">
 					<tr>
 						<th>N°</th>
@@ -52,35 +54,53 @@
 						<th>Acción</th>
 					</tr>
 				</thead>
+				-->
 				<tbody>
-					<tr ng-repeat="e in datos">
-						<td>{{ $index + 1 }}</td>
-						<td>{{e.cedula_estu}}</td>
-						<td>{{e.apellidos_estu}}</td>
-						<td style="width: 400px;">{{e.nombres_estu}}</td>
-						<td>
-							<div style="width: 210px;">
-								<button style="width: 100px;" class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
+					<tr ng-repeat="e in $data">
+						<td data-title="'N°'">{{ $index + 1 }}</td>
+						<td data-title="'Cédula'"  filter="{cedula_estu: 'text'}">{{e.cedula_estu}}</td>
+						<td data-title="'Apellidos'" sortable="'apellidos_estu'" filter="{apellidos_estu: 'text'}">{{e.apellidos_estu}}</td>
+						<td data-title="'Nombres'"  filter="{nombres_estu: 'text'}">{{e.nombres_estu}}</td>
+						<td data-title="'Acciones'">
+							<div style="width: 350px;" class="form-inline">
+								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-info editar" for="inlineFormInput" 
+								ng-click="mostrarFormEditar($event)" 
 								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
 								name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 								data-toggle="modal" data-target="#modalMostrarDatos">
 									Datos
 								</button>
-								<button style="width: 100px;" class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
+								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-warning editar" for="inlineFormInput"
+								ng-click="mostrarFormEditar($event)" 
 								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}"
 								name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 								data-toggle="modal" data-target="#modalEditar">
 									Editar
 								</button>
+								<button style="margin-right: 5px;" class="btn btn-outline-info" 
+									ng-click="generarCerti($event)" for="inlineFormInput" 
+									id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+									data-toggle="modal" data-target="#modalCertificado">
+									Certíficado
+								</button>
 							</div>
 						</td>
 					</tr>
 				</tbody>
+				<tr ng-show="mensajeEstudiantes">
+					<td colspan="6" >
+						<center>
+							<div  class="alert alert-danger" style="color: crimson;">
+								<strong>* No existen estudiantes en el año lectivo seleccionado.</strong>
+							</div>
+						</center>
+					</td>
+				</tr>
 			</table>
 		</div>
 	<!--fin table-->
 	</div>
-
+	
 	<!--INICIO MODAL NUEVO-->
 		<div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog" aria-labelledby="modalNuevoLabel" aria-hidden="true">
 			<div class="modal-dialog  modal-lg" role="document">
@@ -1076,3 +1096,4 @@
 
 </div>
 <!--FIN CONTENEDOR-->
+

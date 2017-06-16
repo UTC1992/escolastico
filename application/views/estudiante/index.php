@@ -2,6 +2,7 @@
     .contenidoEstu {
     }
 </style>
+<link href="<?= base_url() ?>disenio/angular_js/ng-table.min.css" rel="stylesheet">
 <div class="container"  class="contenidoEstu" ng-app="appEstudiante">
 <br>
 <br>
@@ -46,6 +47,8 @@
 <!--cuerpo -->
 
 </div>
+<br>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_estudiante/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_estudiante/controller.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_estudiante/routesEstudiante.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/ng-table.min.js"></script>
