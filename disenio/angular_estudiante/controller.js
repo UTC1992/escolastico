@@ -1,4 +1,4 @@
-app.controller('estudianteCtrl', function($scope, $http, $location, $route, $filter, NgTableParams) {
+app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams) {
     //mostrar estudiantes
     //listarEstudiantes();
     listarAnios();
@@ -146,7 +146,8 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route, $fil
                     +"&cedula_padre_estu="+$scope.cedulaPadre
                     +"&nombre_madre_estu="+$scope.madre
                     +"&cedula_madre_estu="+$scope.cedulaMadre
-                    +"&telefono_representante_estu="+$scope.telefonoRepre,
+                    +"&telefono_representante_estu="+$scope.telefonoRepre
+					+"&correo_repre_estu="+$scope.correoRepre,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
 			obtenerIdEstudiante($scope.cedula);
@@ -226,6 +227,7 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route, $fil
             $scope.madre = datosP[0]['nombre_madre_estu'];
             $scope.cedulaMadre = datosP[0]['cedula_madre_estu'];
             $scope.telefonoRepre = datosP[0]['telefono_representante_estu'];
+			$scope.correoRepre = datosP[0]['correo_repre_estu'];
 
 			mostrarFormEditMatricula(urlMostrarMatri);
 
@@ -284,7 +286,8 @@ app.controller('estudianteCtrl', function($scope, $http, $location, $route, $fil
                     +"&cedula_padre_estu="+$scope.cedulaPadre
                     +"&nombre_madre_estu="+$scope.madre
                     +"&cedula_madre_estu="+$scope.cedulaMadre
-                    +"&telefono_representante_estu="+$scope.telefonoRepre,
+                    +"&telefono_representante_estu="+$scope.telefonoRepre
+					+"&correo_repre_estu="+$scope.correoRepre,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             actualizarMatricula();

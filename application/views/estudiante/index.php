@@ -24,16 +24,16 @@
     <div class="">	
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" style="margin-right: 5px;">
-                <a class="nav-link active" data-toggle="tab" href="#inicial" role="tab">Inicial 2</a>
+                <a class="nav-link active" data-toggle="tab" href="#/" role="tab">Inicial 2</a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#preparatoria" role="tab">Preparatoria</a>
+                <a class="nav-link" data-toggle="tab" href="#/preparatoria" role="tab">Preparatoria</a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#basica" role="tab">Educación General Básica</a>
+                <a class="nav-link" data-toggle="tab" href="#/basica" role="tab">Educación General Básica</a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#superior" role="tab">Educación General Superior</a>
+                <a class="nav-link" data-toggle="tab" href="#/superior" role="tab">Educación General Superior</a>
             </li>
         </ul>
     </div>

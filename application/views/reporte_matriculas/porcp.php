@@ -5,23 +5,18 @@
 </style>
 <!--INICIO CONTENEDOR-->
 <div id="contenidoEstudiante" ng-controller="repoMatriculasCtrl">
-	<!--URLS acciones del controlador-->
-	<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-	<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>reporte_matriculas_controller/getDataJsonEstudiantesReporte">
-		
-	<!--URLS acciones del controlador-->
-
+	
 	<!-- tabla -->
     <div class="">
 		<br>
 		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAllInicial">
 		
-		<center><h4>Reportes por Curso</h4></center>
+		<center><h4>Reportes por Curso y Paralelo</h4></center>
 		
 		<div class="col-lg-6">
 			
-			<form ng-submit="mostrarEstudiantesPorCurso()">
-				<label>Seleccione el año lectivo y el curso:</label>
+			<form ng-submit="mostrarEstudiantes()">
+				<label>Seleccione el año lectivo, el curso y el paralelo:</label>
 				<input type="hidden" id="nivelEstudiantes" value="Inicial 2">
 				<div class="form-inline">
 					<select class="form-control" style="margin-right: 5px;" name="anioInicio" 
@@ -35,9 +30,14 @@
 						<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
 					</select>
 					<select class="form-control" style="margin-right: 5px;" 
-					name="cursoEstu" id="cursoEstu" ng-model="cursoEstu" required>
+					name="anioFin" id="anioFin" ng-model="anioFin" required>
 						<option value="">Curso</option>
-						<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
+						<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+					</select>
+					<select class="form-control" style="margin-right: 5px;" 
+					name="anioFin" id="anioFin" ng-model="anioFin" required>
+						<option value="">Paralelo</option>
+						<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
 					</select>
 					<button class="btn btn-info nuevo" type="submit">
 						Listar
@@ -52,32 +52,36 @@
 				
 				<thead class="thead-inverse">
 					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th colspan="4"><center>Representante</center></th>
+					</tr>
+					<tr>
 						<th>N°</th>
-						<th>Apellidos</th>
-						<th>Nombres</th>
+						<th>Nombre</th>
 						<th>Cédula</th>
-						<th>Paralelo</th>
-						<th>Dirección Domiciliaria</th>
-						<th>N° Matrícula</th>
-						<th>N° Folio</th>
+						<th>Fecha de Nacimiento</th>
+						<th>Dirección</th>
+						<th>Nombre</th>
+						<th>Cédula</th>
 						<th>Teléfono</th>
+						<th>Correo Electrónico</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="repo in datosMatri | orderBy : 'apellidos_estu'">
+					<tr ng-repeat="e in $data">
 						<td>{{ $index + 1 }}</td>
-						<td>{{repo.cedula_estu}}</td>
-						<td>{{repo.apellidos_estu}}</td>
-						<td>{{repo.nombres_estu}}</td>
-						<td>{{repo.paralelo_matr}}</td>
-						<td>{{repo.direccion_estu}}</td>
-						<td>{{repo.id_matr}}</td>
-						<td>{{repo.id_matr}}</td>
-						<td>{{repo.telefono_representante_estu}}</td>
+						<td>{{e.cedula_estu}}</td>
+						<td>{{e.apellidos_estu}}</td>
+						<td>{{e.nombres_estu}}</td>
+						
 					</tr>
 				</tbody>
 				<tr ng-show="mensajeEstudiantes">
-					<td colspan="9" >
+					<td colspan="6" >
 						<center>
 							<div  class="alert alert-danger" style="color: crimson;">
 								<strong>* No existen estudiantes en el año lectivo y curso seleccionados.</strong>

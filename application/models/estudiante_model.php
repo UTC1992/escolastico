@@ -27,7 +27,8 @@
 					'cedula_padre_estu'				=> $estudiante['cedula_padre_estu'],
 					'nombre_madre_estu'				=> $estudiante['nombre_madre_estu'],
 					'cedula_madre_estu'				=> $estudiante['cedula_madre_estu'],
-					'telefono_representante_estu'	=> $estudiante['telefono_representante_estu']
+					'telefono_representante_estu'	=> $estudiante['telefono_representante_estu'],
+					'correo_repre_estu'				=> $estudiante['correo_repre_estu']
 				);
 				return $this->db->insert('estudiante', $data);
 			}
@@ -57,7 +58,8 @@
 					'cedula_padre_estu'				=> $estudiante['cedula_padre_estu'],
 					'nombre_madre_estu'				=> $estudiante['nombre_madre_estu'],
 					'cedula_madre_estu'				=> $estudiante['cedula_madre_estu'],
-					'telefono_representante_estu'	=> $estudiante['telefono_representante_estu']
+					'telefono_representante_estu'	=> $estudiante['telefono_representante_estu'],
+					'correo_repre_estu'				=> $estudiante['correo_repre_estu']
 				);
 				$this->db->where('id_estu', $id);
 				return $this->db->update('estudiante', $data);

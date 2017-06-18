@@ -131,11 +131,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463"  
 											ng-show="fEstudiante.cedula.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.cedula.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 									
@@ -147,11 +147,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463"  
 											ng-show="fEstudiante.nombres.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.nombres.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -163,11 +163,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.apellidos.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.apellidos.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -196,13 +196,13 @@
 											ng-show="fEstudiante.diaNacimiento.$valid && 
 											fEstudiante.mesNacimiento.$valid && 
 											fEstudiante.anioNacimiento.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.diaNacimiento.$invalid && 
 											fEstudiante.mesNacimiento.$invalid && 
 											fEstudiante.anioNacimiento.$invalid">
-											* Campos Obligatorios.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -215,11 +215,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.domicilio.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.domicilio.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -232,11 +232,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.lugarNacimiento.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.lugarNacimiento.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -249,11 +249,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.representante.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.representante.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -266,11 +266,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.cedulaRepre.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.cedulaRepre.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -286,11 +286,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463"  
 											ng-show="fEstudiante.padre.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.padre.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -303,11 +303,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463"  
 											ng-show="fEstudiante.cedulaPadre.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.cedulaPadre.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -317,13 +317,13 @@
 											<input class="form-control" name="madre" id="madre" ng-model="madre"
 											type="text" ng-minlength="2" placeholder="Apellidos y nombres" required>
 										</div>
-										<div class="col-4 alert alert-success" 
+										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.madre.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.madre.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -334,13 +334,13 @@
 											ng-model="cedulaMadre"
 											type="text" ng-minlength="2" ng-maxlength="10" placeholder="Ingrese la cédula" required>
 										</div>
-										<div class="col-4" style="color: crimson"
+										<div class="col-4" style="color: #28B463"
 											ng-show="fEstudiante.cedulaMadre.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.cedulaMadre.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -351,13 +351,30 @@
 											id="telefonoRepre" ng-model="telefonoRepre"
 											type="text" ng-minlength="6" ng-maxlength="15" placeholder="Teléfono" required>
 										</div>
-										<div class="col-4" style="color: crimson" 
+										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.telefonoRepre.$valid">
-											Correcto.
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.telefonoRepre.$invalid">
-											* Campo Obligatorio.
+											<strong>* Campo obligatorio.</strong>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="col-3 col-form-label">Correo electrónico del representante:</label>
+										<div class="col-5">
+											<input class="form-control" name="correoRepre" 
+											id="correoRepre" ng-model="correoRepre"
+											type="email" placeholder="Correo Electrónico" required>
+										</div>
+										<div class="col-4" style="color: #28B463" 
+											ng-show="fEstudiante.correoRepre.$valid">
+											<strong>* Correcto.</strong>
+										</div>
+										<div class="col-4" style="color: crimson" 
+											ng-show="fEstudiante.correoRepre.$invalid">
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 									</fieldset>
@@ -398,13 +415,13 @@
 											ng-show="fEstudiante.anioInicio.$valid && 
 											fEstudiante.mesInicio.$valid && 
 											fEstudiante.diaInicio.$valid">
-											<strong>Correcto.</strong>
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.anioInicio.$invalid || 
 											fEstudiante.mesInicio.$invalid ||
 											fEstudiante.diaInicio.$invalid">
-											* Campos Obligatorios.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -433,13 +450,13 @@
 											ng-show="fEstudiante.anioFin.$valid && 
 											fEstudiante.mesFin.$valid && 
 											fEstudiante.diaFin.$valid">
-											<strong>Correcto.</strong>
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.anioFin.$invalid ||
 											fEstudiante.mesFin.$invalid ||
 											fEstudiante.diaFin.$invalid">
-											* Campos Obligatorios.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 									
@@ -458,11 +475,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.categoriaNivel.$valid">
-											<strong>Correcto.</strong>
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson" 
 											ng-show="fEstudiante.categoriaNivel.$invalid">
-											* Campo obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 									
@@ -477,11 +494,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.cursosID.$valid">
-											<strong>Correcto.</strong>
+											<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson"
 											ng-show="fEstudiante.cursosID.$invalid">
-										* Campo obligatorio.
+										<strong>* Campo obligatorio.</strong>
 										</div>
 										
 									</div>
@@ -497,11 +514,11 @@
 										</div>
 										<div class="col-4" style="color: #28B463" 
 											ng-show="fEstudiante.paralelo.$valid">
-										<strong>Correcto.</strong>
+										<strong>* Correcto.</strong>
 										</div>
 										<div class="col-4" style="color: crimson"
 											ng-show="fEstudiante.paralelo.$invalid">
-											* Campo obligatorio.
+											<strong>* Campo obligatorio.</strong>
 										</div>
 									</div>
 
@@ -531,7 +548,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- FIN MODAL NUEVO-->
+	<!-- FIN MODAL NUEVO-->
 
 	<!--INICIO MODAL EDITAR-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
@@ -633,8 +650,8 @@
                                         <strong>* Correcto.</strong>
                                     </div>
                                     <div class="col-4" style="color: crimson" 
-                                        ng-show="fEstudianteEdit.diaNacimiento.$invalid && 
-                                        fEstudianteEdit.mesNacimiento.$invalid && 
+                                        ng-show="fEstudianteEdit.diaNacimiento.$invalid || 
+                                        fEstudianteEdit.mesNacimiento.$invalid ||
                                         fEstudianteEdit.anioNacimiento.$invalid">
                                         <strong>* Campo obligatorio.</strong>
                                     </div>
@@ -766,7 +783,7 @@
                                     <div class="col-5">
                                         <input class="form-control" name="cedulaMadre" id="cedulaMadre" 
                                         ng-model="cedulaMadre"
-                                         type="text" ng-minlength="2" ng-maxlength="10" placeholder="Ingrese la cédula" required>
+                                         type="text" ng-minlength="2" placeholder="Ingrese la cédula" required>
                                     </div>
                                     <div class="col-3" style="color: #28B463"
                                         ng-show="fEstudianteEdit.cedulaMadre.$valid">
@@ -794,6 +811,22 @@
                                         <strong>* Campo obligatorio.</strong>
                                     </div>
                                 </div>
+								<div class="form-group row">
+										<label class="col-3 col-form-label">Correo electrónico del representante:</label>
+										<div class="col-5">
+											<input class="form-control" name="correoRepre" 
+											id="correoRepre" ng-model="correoRepre"
+											type="email" placeholder="Correo Electrónico" required>
+										</div>
+										<div class="col-4" style="color: #28B463" 
+											ng-show="fEstudianteEdit.correoRepre.$valid">
+											<strong>* Correcto.</strong>
+										</div>
+										<div class="col-4" style="color: crimson" 
+											ng-show="fEstudianteEdit.correoRepre.$invalid">
+											<strong>* Campo obligatorio.</strong>
+										</div>
+									</div>
                                 </fieldset>
 								<br>
 									  <!--obtener los cursos disponibles en el colegio-->
@@ -1077,6 +1110,12 @@
 											<label class="col-3 col-form-label">Teléfono del representante:</label>
 											<div class="col-5">
 												<label class="col-form-label">{{telefonoRepre}}</label>
+											</div>
+										</div>
+										<div class="form-group row justify-content-md-center">
+											<label class="col-3 col-form-label">Correo electrónico del representante:</label>
+											<div class="col-5">
+												<label class="col-form-label">{{correoRepre}}</label>
 											</div>
 										</div>
 										</fieldset>

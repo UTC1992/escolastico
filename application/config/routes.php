@@ -87,7 +87,7 @@ $route['admin_/docente/listar'] = 'docente_controller/listar';
 $route['admin_/docente_cargo'] = 'docente_cargo_controller/index';
 $route['admin_/docente_cargo/listar'] = 'docente_cargo_controller/listar';
 
-//rutas de docentes y cargos de materias o cursos
+//rutas de los estudiantes
 $route['admin_/estudiantes'] = 'estudiante_controller/index';
 $route['admin_/estudiante/listar'] = 'estudiante_controller/listar';
 
@@ -100,3 +100,5 @@ $route['notas_/ingresar_notas/login'] = 'login_docente/index';
 $route['notas_/ingresar_notas/logout'] = 'login_docente/logout';
 $route['notas_/ingresar_notas/index'] = 'ingresar_notas_controller/index';
 
+//rutas de los estudiantes
+$route['admin_/reportes/matriculas'] = 'reporte_matriculas_controller/index';
