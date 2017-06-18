@@ -2,6 +2,7 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
 	
 	listarAnios();
 	listarCursos();
+	listarParalelos();
 
 	//listar años desde 1900 hasta 2100
     function listarAnios(){
@@ -27,6 +28,15 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
         }
     }
 
+	function listarParalelos(){
+        $scope.paralelos = [
+            'A', 'B', 'C',
+            'D', 'E', 'F',
+            'G', 'H', 'I',
+            'J'
+        ];
+    }
+
 	$scope.mensajeEstudiantes = false;
 	$scope.mostrarEstudiantesPorCurso = function(){
 		$scope.mensajeEstudiantes = false;
@@ -38,6 +48,34 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
             data: 	"fechainicio_matr="+$scope.anioInicio
                     +"&fechafin_matr="+$scope.anioFin
 					+"&id_curs="+$scope.cursoEstu,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		})
+		.success(function(response){
+			if (response.length != 0) {
+				$scope.datosMatri = response;
+				$scope.mensajeEstudiantes = false;
+			} else {
+				$scope.datosMatri = [];
+				$scope.mensajeEstudiantes = true;
+			}
+	
+		}, function (error) {
+			console.log(error);
+			
+		});
+	}
+
+	$scope.mostrarEstudiantesPorCursoP = function(){
+		$scope.mensajeEstudiantes = false;
+		//var nivel = $('#nivelEstudiantes').val();
+		var url = $('#urlEstudiantes').val();
+		$http({
+			method: "post",
+            url: url,
+            data: 	"fechainicio_matr="+$scope.anioInicio
+                    +"&fechafin_matr="+$scope.anioFin
+					+"&id_curs="+$scope.cursoEstu
+					+"&paralelo_matr="+$scope.paraleloRepo,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 		.success(function(response){
