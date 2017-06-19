@@ -16,7 +16,8 @@
 												estudiante.id_estu,
 												nombres_estu,
 												apellidos_estu,
-												cedula_estu
+												cedula_estu,
+												matricula.id_curs
 										 FROM 
 										 		estudiante, matricula 
 										 WHERE 

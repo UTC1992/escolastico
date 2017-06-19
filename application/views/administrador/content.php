@@ -130,7 +130,7 @@
 						</a>
 					</td>
 					<td>
-						<a href="<?= base_url() ?>admin_/curso/" class="btn btn-outline-warning">
+						<a href="<?= base_url() ?>admin_/reportes/notas/" class="btn btn-outline-warning">
 							Mostrar...
 						</a>
 					</td>

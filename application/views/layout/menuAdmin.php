@@ -49,7 +49,7 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonRepo" style="width: 200px;">
 									<a class="dropdown-item" id="asignaturaMenu" href="<?= base_url() ?>admin_/reportes/matriculas/">Matrículas</a>
-									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/curso/">Notas</a>
+									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/reportes/notas/">Notas</a>
 							</div>
 						</div>
 					</li>

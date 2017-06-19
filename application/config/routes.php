@@ -102,3 +102,6 @@ $route['notas_/ingresar_notas/index'] = 'ingresar_notas_controller/index';
 
 //rutas de los estudiantes
 $route['admin_/reportes/matriculas'] = 'reporte_matriculas_controller/index';
+
+//rutas de los estudiantes
+$route['admin_/reportes/notas'] = 'reporte_notasadmin_controller/index';

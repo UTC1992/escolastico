@@ -165,7 +165,7 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 			
             $scope.lista = datosP;
             $scope.idEstu =  datosP[0]['id_estu'];
-			alert('id ==>' +$scope.idEstu);
+			//alert('id ==>' +$scope.idEstu);
 			registrarMatricula($scope.idEstu);
         });
 	}
