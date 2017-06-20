@@ -37,7 +37,7 @@
 				if ($fila->password_estu == $password) {
 					$data = array(
 							'cedula' 		=>  $fila->cedula_estu,
-							'id_doce' 		=>  $fila->id_estu,
+							'id_estu' 		=>  $fila->id_estu,
 							'tipo_admin' 	=>	'estudiante',
 							'login_estu'	=> 	true
 							);

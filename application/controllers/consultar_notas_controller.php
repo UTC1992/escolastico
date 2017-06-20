@@ -15,4 +15,19 @@ class Consultar_Notas_Controller extends CI_Controller
 		$this->load->view('/consultas_estudiante/index');
 		$this->load->view('/layout/footer_base');
 	}
+
+	public function repoParcial() {
+		$cedula = $this->session->userdata('cedula');
+		$idEstu = $this->session->userdata('id_estu');
+		$data = array('cedula' => $cedula, 'idEstu' => $idEstu);
+		$this->load->view('/consultas_estudiante/porparcial', $data);
+	}
+
+	public function repoQuimestral() {
+		$this->load->view('/consultas_estudiante/porquimestre');
+	}
+
+	public function repoAnual() {
+		$this->load->view('/consultas_estudiante/poranio');
+	}
 }

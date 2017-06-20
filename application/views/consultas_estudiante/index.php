@@ -3,19 +3,19 @@
     }
 </style>
 <link href="<?= base_url() ?>disenio/angular_js/ng-table.min.css" rel="stylesheet">
-<div class="container"  ng-app="appReportesNotas">
+<div class="container"  ng-app="appNotasEstu">
 <br>
 <br>
 <!--head -->
 <div>
-    <center><h2>Consulta de Notas</h2></center>
+    <center><h2>Calificaciones</h2></center>
 </div>
 <br>
 <!--head -->
 <!--url para las paginas-->
-<input id="urlConsultarParciales" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/repoParcial">
-<input id="urlConsultarQuimestre" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/repoQuimestral">
-<input id="urlConsultarAnuales" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/repoAnual">
+<input id="urlConsultarParciales" type="hidden" value="<?= base_url() ?>consultar_notas_controller/repoParcial">
+<input id="urlConsultarQuimestre" type="hidden" value="<?= base_url() ?>consultar_notas_controller/repoQuimestral">
+<input id="urlConsultarAnuales" type="hidden" value="<?= base_url() ?>consultar_notas_controller/repoAnual">
 <!--url para las paginas-->
 
 <!-- Nav tabs -->
