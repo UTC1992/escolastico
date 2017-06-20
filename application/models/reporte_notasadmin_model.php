@@ -92,7 +92,7 @@
 			return $result;
 		}
 
-		public function getRepoNotasQuimestre1($datos = null)
+		public function getRepoNotasQuimestre($datos = null)
 		{
 			$anioI = $datos['anioI'];
 			$anioF = $datos['anioF'];
@@ -141,6 +141,17 @@
 										AND examen.asignatura_exa = parcial_3.asignatura_p3
 										;");
 			//return $result->row();
+			return $result;
+		}
+
+		public function getRepoNotasFinales($datos = null)
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idCurso = $datos['idCurso'];
+			$paralelo = $datos['paralelo'];
+			$idEstu = $datos['idEstu'];
+
 			return $result;
 		}
 

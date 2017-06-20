@@ -16,8 +16,7 @@
 		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
 
 		<!--MOSTRAR INFORMES DE NOTAS-->
-		<input type="hidden" id="urlNotasQuimestre1" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasQuimestre1">
-		<input type="hidden" id="urlNotasQuimestre2" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasQuimestre2">
+		<input type="hidden" id="urlNotasQuimestre" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasQuimestre">
 		
 	<!--urls-->
 	
@@ -113,24 +112,24 @@
 					<th colspan="5"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
 						<td><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
 						
-						<td colspan="2"></td>
+						<td></td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="3">
 							<label style="margin-right: 5px;">
 							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
 						<td><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
-						<td colspan="2"></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>N°</th>

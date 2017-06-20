@@ -169,12 +169,12 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 		//alert(parcial+idParcial);
 		switch (quimestre) {
 			case '1ero':
-				$scope.getUrl = $('#urlNotasQuimestre1').val();
+				$scope.getUrl = $('#urlNotasQuimestre').val();
 				$scope.mostrarNotasQuimestre($scope.getUrl, idCurso, idEstu);
 				break;
 			case '2do':
-				$scope.getUrl = $('#urlNotasQuimestre2').val();
-				$scope.mostrarNotasQuimestre($scope.getUrl, idCurso, idEstu);
+				$scope.getUrl = $('#urlNotasQuimestre').val();
+				$scope.mostrarNotasQuimestre($scope.getUrl, idCurso, idEstu)
 				break;
 		
 			default:
@@ -211,5 +211,46 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
                 console.log(error);
         });	
 	}
+
+	////////////////////////QUIMESTRALES
+	$scope.verificarNotasFinales = function(event){
+		var idEstuYCurso = event.target.id;
+		var vector = idEstuYCurso.split("/");
+		var idCurso = vector[0];
+		var idEstu = vector[1];
+
+		$scope.mensajeNotas = false;
+		$scope.getUrl = $('#urlNotasAnual').val();
+		$scope.mostrarNotasFinales($scope.getUrl, idCurso, idEstu);
+	}
+
+	$scope.mensajeNotas = false;
+	$scope.mostrarNotasFinales = function(urlNotaFinal, idCurso, idEstu){
+        $http({
+            method: "post",
+            url: urlNotaFinal,
+            data:   "idCurso="+idCurso
+                    +"&paralelo="+$scope.paralelo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&idEstu="+idEstu,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			console.log(response);
+			if(response.length == 0){
+				$scope.mensajeNotas = true;
+				$scope.notasParcial = [];
+			} else {
+				$scope.mensajeNotas = false;
+				$scope.notasParcial = response;
+				
+			}
+            
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });	
+	}
+
 
 });
