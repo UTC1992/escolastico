@@ -143,5 +143,6 @@ $autoload['model'] = array('administrador_model',
                                 'matricula_model',
 								'ingresar_notas_model',
 								'reporte_matriculas_model',
-								'reporte_notasadmin_model'
+								'reporte_notasadmin_model',
+								'consultar_notas_model'
                                 );

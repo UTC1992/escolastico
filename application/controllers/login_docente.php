@@ -5,13 +5,23 @@
 	*/
 	class Login_Docente extends CI_Controller
 	{
-		public function index()
+		public function index($error = '')
         {
+			if ($this->session->userdata('login_doce')) {
+				header('Location:' . base_url() . 'notas_/ingresar_notas/index/');
+			}
             $data = array('title' => 'Login Admin');
 		    $this->load->view('/layout/head', $data);
             $this->load->view('/layout/disenio_css_js');
 			$this->load->view('/layout/menuIngresoNotas');
-            $this->load->view('/ingreso_notas/login');
+			if ($error != '') {
+				$data = array('error' => $error);
+				$this->load->view('/ingreso_notas/login', $data);
+			} else {
+				$data = array('error' => '');
+				$this->load->view('/ingreso_notas/login', $data);
+			}
+            
 			$this->load->view('/layout/footer');
         }
 
@@ -36,11 +46,13 @@
 					header("Location:" . base_url() . "notas_/ingresar_notas/index/");
 				} else {
                     //contraseña incorrecta
-					header("Location:" . base_url() . "notas_/ingresar_notas/login");
+					$error = 'E-mail o contraseña incorrectos';
+					$this->index($error);
 				}
 			} else {
                 //email incorrecto
-				header("Location:" . base_url() . "notas_/ingresar_notas/login");
+				$error = 'E-mail o contraseña incorrectos';
+				$this->index($error);
 			}
 		}
 

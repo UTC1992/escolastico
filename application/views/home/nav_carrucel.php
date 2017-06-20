@@ -39,7 +39,7 @@
                     Estudiantes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
-                    <a class="dropdown-item" href="#">Consultar Notas</a>
+                    <a class="dropdown-item" href="<?= base_url() ?>notas_/consultar/notas/login">Consultar Notas</a>
                 </div>
               </div>
           </li>

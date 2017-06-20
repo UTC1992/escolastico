@@ -16,21 +16,20 @@
 				<div class="">
 					<img src="" alt="" class="img-responsive" id="login">
 				</div>
-			
-				<form name="flogin" class="loginAdmin" action="<?= base_url() ?>login_admin/login" method="post" accept-charset='UTF-8' role="form">
+				
+				<label style="color: crimson; font-size: 14pt;"><strong><?= $error ?></strong></label>
+				<form name="flogin" class="loginAdmin" action="<?= base_url() ?>login_admin/login" 
+				method="post" accept-charset='UTF-8' role="form">
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="Email" 
-						name="email" id="email" ng-model="email"  requered autofocus>
-						<span ng-show="flogin.email.$invalid">Correo electronico incorrecto.</span>
+						name="email" id="email" ng-model="email"  required autofocus>
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="Contraseña" 
-						name="password" id="password" ng-model="password" ng-minlength="8" required>
-						<span ng-show="flogin.password.$invalid">Debe ingresar una contraseña de 8 carácteres.</span>
+						name="password" id="password" ng-model="password" required>
 					</div>
-					<button class="btn btn-warning btn-block" type="submit"
-					ng-disabled="flogin.email.$invalid || flogin.password.$invalid"
-					>Iniciar Sesión</button>
+					<button class="btn btn-warning btn-block" type="submit">
+						Iniciar Sesión</button>
 					<div class="checkbox">
 						<p><a href="<?= base_url() ?>admin_/registro" style="font-size: 13pt;">Registrarse</a></p>
 					</div>			

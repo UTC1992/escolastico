@@ -105,3 +105,8 @@ $route['admin_/reportes/matriculas'] = 'reporte_matriculas_controller/index';
 
 //rutas de los estudiantes
 $route['admin_/reportes/notas'] = 'reporte_notasadmin_controller/index';
+
+//rutas del ingreso de calificaciones
+$route['notas_/consultar/notas/login'] = 'login_estu/index';
+$route['notas_/consultar/notas/logout'] = 'login_estu/logout';
+$route['notas_/consultar/notas/index'] = 'consultar_notas_controller/index';

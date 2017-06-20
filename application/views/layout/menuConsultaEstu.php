@@ -29,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           
-          <?php if($this->session->userdata('login_doce')) { ?>
+          <?php if($this->session->userdata('login_estu')) { ?>
 						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
 								<div class="dropdown active">
 									<a class="btn nav-link btn-outline-warning dropdown-toggle" 

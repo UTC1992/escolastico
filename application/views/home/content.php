@@ -11,7 +11,7 @@
 			<tr>
 				<td>
                     <center>
-						<a class="btn btn-outline-primary" href="#" >Consultar notas...</a>
+						<a class="btn btn-outline-primary" href="<?= base_url() ?>notas_/consultar/notas/login" >Consultar notas...</a>
                     	<img class="img-fluid" width="300"  height="300" src="<?= base_url() ?>disenio/img/estudiante1.png" >
                     </center>
 				</td>

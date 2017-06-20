@@ -5,7 +5,7 @@
 	*/
 	class Login_Admin extends CI_Controller
 	{
-		public function index()
+		public function index($error = '')
         {
 			if ($this->session->userdata('login_admin')) {
 				header('Location:' . base_url() . 'admin_/dashboard');
@@ -14,7 +14,13 @@
 		    $this->load->view('/layout/head', $data);
             $this->load->view('/layout/disenio_css_js');
 			$this->load->view('/layout/menuAdmin');
-            $this->load->view('/loginAdmin/content');
+			if ($error != '') {
+				$data = array('error' => $error);
+				$this->load->view('/loginAdmin/content', $data);
+			} else {
+				$data = array('error' => '');
+				$this->load->view('/loginAdmin/content', $data);
+			}
 			$this->load->view('/layout/footer');
         }
 
@@ -39,11 +45,13 @@
 					header("Location:" . base_url() . "admin_/dashboard");
 				} else {
                     //contraseña incorrecta
-					header("Location:" . base_url() . "admin_/login");
+					$error = 'E-mail o contraseña incorrectos';
+					$this->index($error);
 				}
 			} else {
                 //email incorrecto
-				header("Location:" . base_url() . "admin_/login");
+				$error = 'E-mail o contraseña incorrectos';
+				$this->index($error);
 			}
 		}
 
