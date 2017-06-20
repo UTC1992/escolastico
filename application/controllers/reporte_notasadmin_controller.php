@@ -47,4 +47,64 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		//imprimiendo datos asi se puede tomar desde angular ok 
 		echo $datosE;
 	}
+
+	public function getDataJsonNotasParcial2()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosNotas = $this->input->post();
+		$fila = $this->reporte_notasadmin_model->getRepoNotasParcial2($datosNotas);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonNotasParcial3()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosNotas = $this->input->post();
+		$fila = $this->reporte_notasadmin_model->getRepoNotasParcial3($datosNotas);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function getDataJsonNotasQuimestre1()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosNotas = $this->input->post();
+		$fila = $this->reporte_notasadmin_model->getRepoNotasQuimestre1($datosNotas);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
 }

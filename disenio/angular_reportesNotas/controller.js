@@ -101,14 +101,93 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
         });
     }
 
+	$scope.verificarParcial = function(){
+		$scope.mensajeNotas = false;
+		var parcial = $scope.parcial+"";
+		//alert(parcial+idParcial);
+		switch (parcial) {
+			case '1ero':
+				$scope.getUrl = $('#urlNotasParcial1').val();
+				$scope.mostrarNotasParcial($scope.getUrl);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlNotasParcial2').val();
+				$scope.mostrarNotasParcial($scope.getUrl);
+				break;
+			case '3ero':
+				$scope.getUrl = $('#urlNotasParcial3').val();
+				$scope.mostrarNotasParcial($scope.getUrl);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+	}
+
+
 	$scope.mensajeNotas = false;
-	$scope.mostrarNotasParcial = function(){
+	$scope.mostrarNotasParcial = function(urlParcial){
 		var idCurso = $('#idCurso').val();
 		var idEstu = $('#idEstudiante').val();
-		$scope.getUrl = $('#urlNotasParcial1').val();
+		//$scope.getUrl = $('#urlNotasParcial1').val();
         $http({
             method: "post",
-            url: $scope.getUrl,
+            url: urlParcial,
+            data:   "idCurso="+idCurso
+                    +"&paralelo="+$scope.paralelo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&quimestre="+$scope.QuimestreInfo
+					+"&idEstu="+idEstu,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			console.log(response);
+			if(response.length == 0){
+				$scope.mensajeNotas = true;
+				$scope.notasParcial = [];
+			} else {
+				$scope.mensajeNotas = false;
+				$scope.notasParcial = response;
+				
+			}
+            
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });	
+	}
+////////////////////////QUIMESTRALES
+	$scope.verificarQuimestre = function(event){
+		var idEstuYCurso = event.target.id;
+		var vector = idEstuYCurso.split("/");
+		var idCurso = vector[0];
+		var idEstu = vector[1];
+
+		$scope.mensajeNotas = false;
+		var quimestre = $scope.QuimestreInfo+"";
+		//alert(parcial+idParcial);
+		switch (quimestre) {
+			case '1ero':
+				$scope.getUrl = $('#urlNotasQuimestre1').val();
+				$scope.mostrarNotasQuimestre($scope.getUrl, idCurso, idEstu);
+				break;
+			case '2do':
+				$scope.getUrl = $('#urlNotasQuimestre2').val();
+				$scope.mostrarNotasQuimestre($scope.getUrl, idCurso, idEstu);
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+	}
+
+	$scope.mensajeNotas = false;
+	$scope.mostrarNotasQuimestre = function(urlQime, idCurso, idEstu){
+        $http({
+            method: "post",
+            url: urlQime,
             data:   "idCurso="+idCurso
                     +"&paralelo="+$scope.paralelo
                     +"&anioI="+$scope.anioI

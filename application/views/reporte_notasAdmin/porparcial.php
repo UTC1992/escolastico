@@ -17,8 +17,8 @@
 
 		<!--MOSTRAR INFORMES DE NOTAS-->
 		<input type="hidden" id="urlNotasParcial1" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial1">
-		<input type="hidden" id="urlInformes2" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial2">
-		<input type="hidden" id="urlInformes3" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial3">
+		<input type="hidden" id="urlNotasParcial2" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial2">
+		<input type="hidden" id="urlNotasParcial3" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial3">
 		
 	<!--urls-->
 	
@@ -172,7 +172,7 @@
 							<input type="hidden" id="idCurso" value="{{e.id_curs}}">
 							<input type="hidden" id="idEstudiante" value="{{e.id_estu}}">
 							<button  class="btn btn-outline-warning editar" 
-							ng-click="mostrarNotasParcial()" 
+							ng-click="verificarParcial()" 
 							id="" data-toggle="modal" data-target="#modalEditar">
 								Mostrar Notas
 							</button>
@@ -232,11 +232,11 @@
 										</thead>
 										<tbody>
 											<tr ng-repeat="n in notasParcial">
-												<td>{{n.asignatura_p1}}</td>
-												<td>{{n.parametro1_p1}}</td>
-												<td>{{n.parametro2_p1}}</td>
-												<td>{{n.parametro3_p1}}</td>
-												<td>{{n.parametro4_p1}}</td>
+												<td>{{n.asignatura}}</td>
+												<td>{{n.p1}}</td>
+												<td>{{n.p2}}</td>
+												<td>{{n.p3}}</td>
+												<td>{{n.p4}}</td>
 												<td>{{n.Promedio}}</td>
 											</tr>
 										</tbody>
