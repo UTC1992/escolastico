@@ -12,7 +12,7 @@
         
 		<center>
 			<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
-				Nuevo Docente
+				Registrar Docente
 			</button>
 		</center>
         <h3>Lista de Docentes</h3>

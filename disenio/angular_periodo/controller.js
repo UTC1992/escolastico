@@ -1,9 +1,15 @@
-app.controller('periodoAcademicoDatos', function($scope, $http, $location, $route) {
+app.controller('periodoAcademicoDatos', function($scope, $http, $filter, NgTableParams) {
     //llenado de los selects de html
     listarMeses();
     listarAnios();
     listarPeriodos();
     inicializarSelects();
+	
+	activarMenu();
+	function activarMenu(){
+		$('#anioMenu').addClass('active');
+		$('#dropdownMenuButtonTablas').addClass('active');
+	}
 
     //listar meses
     function listarMeses(){
@@ -41,6 +47,29 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
             $http.post($scope.getUrl)
             .success(function(response){
                 $scope.periodos = response;
+
+				$scope.periodoTable = new NgTableParams(
+                {
+                 count: 5,
+				 sorting: {
+					anioinicio_pera: 'asc'     // initial sorting
+				}
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+   						$scope.dataAsig = params.filter() ? 
+						   	$filter('filter')($scope.periodos, params.filter()) : $scope.periodos;
+
+                        var orderedData = params.sorting() ?
+							$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.periodos;
+
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });
+
             }, function (error) {
                 console.log(error);
             });
@@ -55,9 +84,15 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
         $scope.anioInicio = "";
         $scope.mesFin = "";
         $scope.anioFin = "";
+		$scope.estado = "";
     }
+
+	$scope.limpiarVarianles = function(){
+		$scope.mensajeInsertP = false;
+		inicializarSelects();
+	}
     
-    $scope.mensajeInsertP = true;
+    $scope.mensajeInsertP = false;
 
     // declaro la función enviar
     $scope.registrarNuevo = function () {
@@ -68,14 +103,16 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
             data: "mesInicio="+$scope.mesInicio+"&anioInicio="+$scope.anioInicio+"&mesFin="+$scope.mesFin+"&anioFin="+$scope.anioFin,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
-            $scope.mensajeInsertP = false;
+            $scope.mensajeInsertP = true;
+			inicializarSelects();
+			listarPeriodos();
         });
     }
 
 
     // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
+		$scope.mensajeUpdate = false;
         var url = event.target.id;
         $http.get(url)
         .success(function(datosP){
@@ -86,10 +123,12 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
             $scope.anioInicioEdit =  datosP[0]['anioinicio_pera'];
             $scope.mesFinEdit =  datosP[0]['mesfin_pera'];
             $scope.anioFinEdit =  datosP[0]['aniofin_pera'];
+			$scope.estadoEdit =  datosP[0]['estado_pera'];
         });
     }
 
     // funcion para enviar datos para actualizar periodo
+	$scope.mensajeUpdate = false;
     $scope.actualizar = function () {
         
         //alert("actulizar");
@@ -99,10 +138,15 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $location, $rout
         $http({
             method: "post",
             url: $scope.urlActualizar,
-            data: "mesInicio="+$scope.mesInicioEdit+"&anioInicio="+$scope.anioInicioEdit+"&mesFin="+$scope.mesFinEdit+"&anioFin="+$scope.anioFinEdit,
+            data: 	"mesInicio="+$scope.mesInicioEdit
+					+"&anioInicio="+$scope.anioInicioEdit
+					+"&mesFin="+$scope.mesFinEdit
+					+"&anioFin="+$scope.anioFinEdit
+					+"&estado="+$scope.estadoEdit,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+            $scope.mensajeUpdate = true;
+			listarPeriodos();
         });
     }
 

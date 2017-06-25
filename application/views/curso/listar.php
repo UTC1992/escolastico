@@ -13,7 +13,7 @@
         
 		<center>
 			<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
-				Nuevo Curso
+				Registrar Curso
 			</button>
 		</center>
 		<h3>Lista de Cursos</h3>

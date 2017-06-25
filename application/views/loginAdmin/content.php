@@ -30,9 +30,10 @@
 					</div>
 					<button class="btn btn-warning btn-block" type="submit">
 						Iniciar Sesión</button>
-					<div class="checkbox">
+					<!--<div class="checkbox">
 						<p><a href="<?= base_url() ?>admin_/registro" style="font-size: 13pt;">Registrarse</a></p>
-					</div>			
+					</div>
+					-->			
 				</form>
 			</div>
 		</div>

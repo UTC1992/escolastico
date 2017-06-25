@@ -40,7 +40,8 @@
 					'mesinicio_pera' => $periodoEdit['mesInicio'],
 					'anioinicio_pera' => $periodoEdit['anioInicio'],
 					'mesfin_pera' => $periodoEdit['mesFin'],
-					'aniofin_pera' => $periodoEdit['anioFin']
+					'aniofin_pera' => $periodoEdit['anioFin'],
+					'estado_pera' => $periodoEdit['estado']
 				);
 				$this->db->where('id_pera', $id);
 				return $this->db->update('periodo_academico', $data);

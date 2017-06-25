@@ -33,6 +33,7 @@
 									Tablas
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonTablas" style="width: 200px;">
+									<a class="dropdown-item" id="anioMenu" href="<?= base_url() ?>admin_/periodoacademico/">Año Lectivo</a>
 									<a class="dropdown-item" id="asignaturaMenu" href="<?= base_url() ?>admin_/asignaturas/">Asignaturas</a>
 									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/curso/">Cursos</a>
 									<a class="dropdown-item" id="docenteMenu" href="<?= base_url() ?>admin_/docente/">Docentes</a>

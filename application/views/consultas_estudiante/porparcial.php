@@ -32,7 +32,7 @@
 
 	<!--datos consultar-->
 		<div class="table-responsive">
-			<form ng-submit="mostrarEstudiantesNotas()">
+			<form ng-submit="verificarParcial()">
 				<table class="table table-striped table-bordered table-sm">
 					<thead class="thead-inverse">
 						<tr>

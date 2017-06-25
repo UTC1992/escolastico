@@ -19,7 +19,7 @@
 		-->
 		<center>
 			<button class="btn btn-primary nuevoP" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
-				Nueva Asignatura
+				Registrar Asignatura
 			</button>
 		</center>
 		<h3>Lista de Asignaturas</h3>
