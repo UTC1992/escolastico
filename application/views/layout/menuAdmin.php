@@ -49,8 +49,8 @@
 									Reportes
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonRepo" style="width: 200px;">
-									<a class="dropdown-item" id="asignaturaMenu" href="<?= base_url() ?>admin_/reportes/matriculas/">Matrículas</a>
-									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/reportes/notas/">Notas</a>
+									<a class="dropdown-item" id="matriculaMenu" href="<?= base_url() ?>admin_/reportes/matriculas/">Matrículas</a>
+									<a class="dropdown-item" id="notasMenu" href="<?= base_url() ?>admin_/reportes/notas/">Notas</a>
 							</div>
 						</div>
 					</li>

@@ -2,6 +2,13 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
     listarAnios();
 	listarCursos();
 	listarParalelos();
+	listarAniosLectivos();
+
+	activarMenu();
+	function activarMenu(){
+		$('#notasMenu').addClass('active');
+		$('#dropdownMenuButtonRepo').addClass('active');
+	}
 
 	//listar años desde 1900 hasta 2100
     function listarAnios(){
@@ -12,6 +19,18 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
             contador++;
         }
     }
+
+	function listarAniosLectivos(){
+		if ($('#urlBuscarAniosLectivos').val() != null) {
+			var url = $('#urlBuscarAniosLectivos').val();
+			$http.get(url)
+			.success(function(response){
+				//console.log(response);
+				$scope.aniosLectivos = response;
+			});
+		}
+	
+	}
 
 	function listarCursos() {
         $scope.getUrl = $('#urlCursos').val();
@@ -38,13 +57,15 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 
 	$scope.mostrarEstudiantesNotas = function(){
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
         $http({
             method: "post",
             url: $scope.getUrl,
             data:   "cursoId="+$scope.cursoId
                     +"&paralelo="+$scope.paralelo
-                    +"&anioI="+$scope.anioI
-                    +"&anioF="+$scope.anioF,
+                    +"&anioI="+vectorAL[0]
+                    +"&anioF="+vectorAL[1],
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
 			if(response.length == 0){
@@ -55,8 +76,10 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				
 			} else {
 				$scope.mensaje = false;
-				llenarDatosInformativos($scope.cursoId, $scope.paralelo, $scope.anioI, 
-				$scope.anioF, $scope.parcial, $scope.quimestre);
+				var anioslectivos = $scope.aniosL+"";
+				var vectorAL = anioslectivos.split('-');
+				llenarDatosInformativos($scope.cursoId, $scope.paralelo, vectorAL[0], 
+				vectorAL[1], $scope.parcial, $scope.quimestre);
 				$scope.estudiantesMatriculados = response;
 				//desaparecer el boton de envio de datos
 				$scope.ingresarDesactivar = false;
@@ -131,13 +154,16 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 		var idCurso = $('#idCurso').val();
 		var idEstu = $('#idEstudiante').val();
 		//$scope.getUrl = $('#urlNotasParcial1').val();
+
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
         $http({
             method: "post",
             url: urlParcial,
             data:   "idCurso="+idCurso
                     +"&paralelo="+$scope.paralelo
-                    +"&anioI="+$scope.anioI
-                    +"&anioF="+$scope.anioF
+                    +"&anioI="+vectorAL[0]
+                    +"&anioF="+vectorAL[1]
 					+"&quimestre="+$scope.QuimestreInfo
 					+"&idEstu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -167,6 +193,7 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 		$scope.mensajeNotas = false;
 		var quimestre = $scope.QuimestreInfo+"";
 		//alert(parcial+idParcial);
+		
 		switch (quimestre) {
 			case '1ero':
 				$scope.getUrl = $('#urlNotasQuimestre').val();
@@ -185,13 +212,17 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 
 	$scope.mensajeNotas = false;
 	$scope.mostrarNotasQuimestre = function(urlQime, idCurso, idEstu){
+
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
+
         $http({
             method: "post",
             url: urlQime,
             data:   "idCurso="+idCurso
                     +"&paralelo="+$scope.paralelo
-                    +"&anioI="+$scope.anioI
-                    +"&anioF="+$scope.anioF
+                    +"&anioI="+vectorAL[0]
+                    +"&anioF="+vectorAL[1]
 					+"&quimestre="+$scope.QuimestreInfo
 					+"&idEstu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}

@@ -153,4 +153,23 @@ class Periodoa_Controller extends CI_Controller
 		//imprimiendo datos asi se puede tomar desde angular ok 
 		echo $periodos;
 	}
+
+	public function getDataJsonPeriodoActivo()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$fila = $this->periodoa_model->getPeriodoActivo();
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$periodos = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $periodos;
+	}
 }

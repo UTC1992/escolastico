@@ -6,6 +6,10 @@
 <!--INICIO CONTENEDOR-->
 <div id="contenidoEstudiante" ng-controller="estudianteCtrl">
 	
+	<!--url para las paginas-->
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+	<!--url para las paginas-->
+
 	<!-- tabla -->
     <div class="">
 		<br>
@@ -18,15 +22,12 @@
 			<form ng-submit="mostrarEstudiantes()">
 				<input type="hidden" id="nivelEstudiantes" value="Preparatoria">
 				<div class="form-inline">
-					<select class="form-control" style="margin-right: 5px;" name="anioInicio" 
-					id="anioInicio" ng-model="anioInicio" required>
-						<option value="">Inicio</option>
-						<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-					</select>
 					<select class="form-control" style="margin-right: 5px;" 
-					name="anioFin" id="anioFin" ng-model="anioFin" required>
-						<option value="">Fin</option>
-						<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+					name="aniosL" id="aniosL" ng-model="aniosL" required>
+						<option value="">Seleccionar</option>
+						<option ng-repeat="a in aniosLectivos" value="{{a.anioinicio_pera}}-{{a.aniofin_pera}}">
+						{{a.mesinicio_pera}} {{a.anioinicio_pera}} - {{a.mesfin_pera}} {{a.aniofin_pera}}
+						</option>
 					</select>
 					<button class="btn btn-info nuevo" type="submit">
 						Listar

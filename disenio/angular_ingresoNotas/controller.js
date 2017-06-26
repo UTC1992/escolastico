@@ -3,6 +3,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	listarCursos();
 	listarParalelos();
 	listarAsginaturas();
+	listarAniosLectivos();
 
 	//listar años desde 1900 hasta 2100
     function listarAnios(){
@@ -13,6 +14,19 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
             contador++;
         }
     }
+
+	function listarAniosLectivos(){
+		if ($('#urlBuscarAniosLectivosActivo').val() != null) {
+			var url = $('#urlBuscarAniosLectivosActivo').val();
+			$http.get(url)
+			.success(function(response){
+				//console.log(response);
+				$scope.AL = response[0];
+				$scope.aniosL = response[0]['anioinicio_pera'] + "-" + response[0]['aniofin_pera'];
+			});
+		}
+	
+	}
 
 	function listarCursos() {
         $scope.getUrl = $('#urlCursos').val();
@@ -55,6 +69,10 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 //////////////////////////////////////////////////////////////////////////
 	$scope.mensajeNumRegistros = false;
 	$scope.verificarRegistro = function(){
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
+		$scope.anioI = vectorAL[0];
+		$scope.anioF = vectorAL[1];
 		$scope.mensajeIngreso = false;
 		var parcial = $scope.parcial+"";
 		switch (parcial) {
@@ -236,6 +254,11 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	}
 
 	$scope.mostrarDatosInformes = function(){
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
+		$scope.anioI = vectorAL[0];
+		$scope.anioF = vectorAL[1];
+		
 		$scope.mensajeIngreso = false;
 		var parcial = $scope.parcial+"";
 		

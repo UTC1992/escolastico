@@ -3,6 +3,13 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
 	listarAnios();
 	listarCursos();
 	listarParalelos();
+	listarAniosLectivos();
+
+	activarMenu();
+	function activarMenu(){
+		$('#matriculaMenu').addClass('active');
+		$('#dropdownMenuButtonRepo').addClass('active');
+	}
 
 	//listar años desde 1900 hasta 2100
     function listarAnios(){
@@ -13,6 +20,18 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
             contador++;
         }
     }
+
+	function listarAniosLectivos(){
+		if ($('#urlBuscarAniosLectivos').val() != null) {
+			var url = $('#urlBuscarAniosLectivos').val();
+			$http.get(url)
+			.success(function(response){
+				//console.log(response);
+				$scope.aniosLectivos = response;
+			});
+		}
+	
+	}
 
 	function listarCursos() {
         $scope.getUrl = $('#urlCursos').val();
@@ -42,11 +61,13 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
 		$scope.mensajeEstudiantes = false;
 		//var nivel = $('#nivelEstudiantes').val();
 		var url = $('#urlEstudiantes').val();
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
 		$http({
 			method: "post",
             url: url,
-            data: 	"fechainicio_matr="+$scope.anioInicio
-                    +"&fechafin_matr="+$scope.anioFin
+            data: 	"fechainicio_matr="+vectorAL[0]
+                    +"&fechafin_matr="+vectorAL[1]
 					+"&id_curs="+$scope.cursoEstu,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
@@ -69,11 +90,13 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
 		$scope.mensajeEstudiantes = false;
 		//var nivel = $('#nivelEstudiantes').val();
 		var url = $('#urlEstudiantes').val();
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
 		$http({
 			method: "post",
             url: url,
-            data: 	"fechainicio_matr="+$scope.anioInicio
-                    +"&fechafin_matr="+$scope.anioFin
+            data: 	"fechainicio_matr="+vectorAL[0]
+                    +"&fechafin_matr="+vectorAL[1]
 					+"&id_curs="+$scope.cursoEstu
 					+"&paralelo_matr="+$scope.paraleloRepo,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}

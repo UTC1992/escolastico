@@ -4,12 +4,26 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
     listarAnios();
     listarMeses();
     listarDias();
+	listarAniosLectivos();
 
 	activarMenu();
 	function activarMenu(){
 		$('#estudiantesMenu').addClass('active');
 		$('#dropdownMenuButtonTablas').addClass('active');
 	}
+
+	function listarAniosLectivos(){
+		if ($('#urlBuscarAniosLectivos').val() != null) {
+			var url = $('#urlBuscarAniosLectivos').val();
+			$http.get(url)
+			.success(function(response){
+				//console.log(response);
+				$scope.aniosLectivos = response;
+			});
+		}
+	
+	}
+
 
 	$scope.buscarEstudiante = function(){
         //validar cedula
@@ -358,11 +372,14 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 
 		var nivel = $('#nivelEstudiantes').val();
 		var url = $('#urlEstudiantes').val();
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
+
 		$http({
 			method: "post",
             url: url,
-            data: 	"fechainicio_matr="+$scope.anioInicio
-                    +"&fechafin_matr="+$scope.anioFin
+            data: 	"fechainicio_matr="+vectorAL[0]
+                    +"&fechafin_matr="+vectorAL[1]
 					+"&nivel_matr="+nivel,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})

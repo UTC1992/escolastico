@@ -11,6 +11,10 @@
 		
 	<!--URLS acciones del controlador-->
 
+	<!--url para años lectivos-->
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+	<!--url para años lectivos-->
+
 	<!-- tabla -->
     <div class="">
 		<br>
@@ -18,12 +22,13 @@
 		
 		<center><h4>Reportes por Curso</h4></center>
 		
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			
 			<form ng-submit="mostrarEstudiantesPorCurso()">
 				<label>Seleccione el año lectivo y el curso:</label>
 				<input type="hidden" id="nivelEstudiantes" value="Inicial 2">
 				<div class="form-inline">
+					<!--
 					<select class="form-control" style="margin-right: 5px;" name="anioInicio" 
 					id="anioInicio" ng-model="anioInicio" required>
 						<option value="">Inicio</option>
@@ -33,6 +38,14 @@
 					name="anioFin" id="anioFin" ng-model="anioFin" required>
 						<option value="">Fin</option>
 						<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+					</select>
+					-->
+					<select class="form-control" style="margin-right: 5px;" 
+					name="aniosL" id="aniosL" ng-model="aniosL" required>
+						<option value="">Seleccionar</option>
+						<option ng-repeat="a in aniosLectivos" value="{{a.anioinicio_pera}}-{{a.aniofin_pera}}">
+						{{a.mesinicio_pera}} {{a.anioinicio_pera}} - {{a.mesfin_pera}} {{a.aniofin_pera}}
+						</option>
 					</select>
 					<select class="form-control" style="margin-right: 5px;" 
 					name="cursoEstu" id="cursoEstu" ng-model="cursoEstu" required>

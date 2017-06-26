@@ -49,4 +49,11 @@
 			return false;
 		}
 
+		public function getPeriodoActivo()
+		{
+			$result = $this->db->query("SELECT * FROM periodo_academico WHERE estado_pera = 'Activo'");
+			//return $result->row();
+			return $result;
+		}
+
     }
