@@ -106,7 +106,27 @@
 												ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'parcial1',
 												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'parcial2',
 												ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'parcial3',
-												nota_exa
+												nota_exa,
+												ROUND
+												(
+													(
+														( 
+															(
+																(
+																	((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ) +
+																	((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ) +
+																	((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 )
+																) / 3
+															) * 0.8
+														)
+														+
+														(
+															nota_exa * 0.2
+														)
+													)
+													, 2
+												) as 'Promedio'
+
 										FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
 										WHERE estudiante.id_estu = '" . $idEstu . "'
 										AND matricula.id_curs = '" . $idCurso . "'

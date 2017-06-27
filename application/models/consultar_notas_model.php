@@ -15,4 +15,20 @@
 				return null;
 			}
 		}
+
+		public function getMatricula($datos = '')
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idEstu = $datos['idEstu'];
+
+			$result = $this->db->query("SELECT * 
+										FROM matricula 
+										WHERE matricula.id_estu = '" . $idEstu . "' 
+										AND matricula.fechainicio_matr LIKE '" . $anioI . "%' 
+										AND matricula.fechafin_matr LIKE '" . $anioF . "%'
+										");
+			
+			return $result;
+		}
 	}

@@ -20,7 +20,12 @@
 		<input type="hidden" id="urlNotasParcial2" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial2">
 		<input type="hidden" id="urlNotasParcial3" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial3">
 		
+		<input type="hidden" id="urlBuscarMatricula" value="<?= base_url()?>consultar_notas_controller/getDataJsonMatricula">
 	<!--urls-->
+
+	<!--url para años lectivos-->
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+	<!--url para años lectivos-->
 	
 	<!--head -->
 	<br>
@@ -32,7 +37,7 @@
 
 	<!--datos consultar-->
 		<div class="table-responsive">
-			<form ng-submit="verificarParcial()">
+			<form ng-submit="buscarMatricula()">
 				<table class="table table-striped table-bordered table-sm">
 					<thead class="thead-inverse">
 						<tr>
@@ -46,20 +51,21 @@
 							<td><label>Año lectivo:</label></td>
 							<td>
 								<div class="form-inline">
-									<select class="form-control" style="width: 97px; margin-right: 5px;" ng-model="anioI" required>
-										<option value="">Inicio</option>
-										<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-									</select>
-									<select class="form-control" style="width: 97px;" ng-model="anioF" required>
-										<option value="">Fin</option>
-										<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+									<select class="form-control" style="margin-right: 5px;" 
+									name="aniosL" id="aniosL" ng-model="aniosL" required>
+										<option value="">Seleccione</option>
+										<option ng-repeat="a in aniosLectivos" value="{{a.anioinicio_pera}}-{{a.aniofin_pera}}">
+										{{a.mesinicio_pera}} {{a.anioinicio_pera}} - {{a.mesfin_pera}} {{a.aniofin_pera}}
+										</option>
 									</select>
 								</div>
 							</td>
 							
 							<td><label>Cédula:</label></td>
 							<td>
-								<input class="form-control" ng-model="cedulaEstu" type="text" style="width: 200px;" name="" value="<?= $cedula?>" disabled>	
+								<input type="hidden" name="" id="idEstudiante" value="<?= $idEstu ?>">
+								<input class="form-control" type="text" style="width: 200px;" 
+								name="" value="<?= $cedula ?>" disabled>	
 							</td>
 						</tr>
 						<tr>
@@ -101,26 +107,33 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th></th>
-							<th colspan="4"><center>Parámetros</center></th>
 							<th></th>
+							<th colspan="4"><center>PARÁMETROS</center></th>
+							<th colspan="2"><center>PROMEDIO</center></th>
 						</tr>
 						<tr>
+							<th>N°</th>
 							<th>Asignaturas</th>
 							<th>Deberes</th>
 							<th>Lecciones orales o escritas</th>
 							<th>Trabajos grupales</th>
 							<th>Trabajos de investigación</th>
 							<th>Promedio</th>
+							<th>Comportamiento</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="n in notasParcial">
+							<td>{{ $index + 1}}</td>
 							<td>{{n.asignatura}}</td>
 							<td>{{n.p1}}</td>
 							<td>{{n.p2}}</td>
 							<td>{{n.p3}}</td>
 							<td>{{n.p4}}</td>
-							<td>{{n.Promedio}}</td>
+							<td>
+								<strong>{{n.Promedio}}</strong>
+							</td>
+							<th></th>
 						</tr>
 					</tbody>
 					<tr ng-show="mensajeNotas">
