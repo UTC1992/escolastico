@@ -17,6 +17,7 @@ class Consultar_Notas_Controller extends CI_Controller
 	}
 
 	public function repoParcial() {
+		$this->load->view('/layout/menuAdmin');
 		$cedula = $this->session->userdata('cedula');
 		$idEstu = $this->session->userdata('id_estu');
 		$data = array('cedula' => $cedula, 'idEstu' => $idEstu);
@@ -24,6 +25,7 @@ class Consultar_Notas_Controller extends CI_Controller
 	}
 
 	public function repoQuimestral() {
+		$this->load->view('/layout/menuAdmin');
 		$cedula = $this->session->userdata('cedula');
 		$idEstu = $this->session->userdata('id_estu');
 		$data = array('cedula' => $cedula, 'idEstu' => $idEstu);

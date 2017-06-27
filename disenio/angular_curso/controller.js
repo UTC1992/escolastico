@@ -142,11 +142,14 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
         $http({
             method: "post",
             url: $scope.getUrl,
-            data: "id_curs="+$scope.idCurs+"&id_asig="+$scope.idAsig,
+            data: 	"id_curs="+$scope.idCurs
+					+"&id_asig="+$scope.idAsig,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+            //window.location.reload(false);
             //$scope.mensajeInsertAC = false;
+			listarAsignaturasCurso( $scope.idCurs );
+			$scope.idAsig = "";
         }, function (error) {
                 console.log(error);
         });
@@ -154,9 +157,12 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
 
      $scope.obtenerIdCursoAsig = function (event) {
         var id = event.target.id;
+		 $('#idCursoNewA').val(id);
+
         var name = event.target.name;
         $scope.nombreCurso = name;
 
+		listarAsignaturas();
         listarAsignaturasCurso( id );
     }
 
@@ -183,7 +189,8 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
         if ($scope.urlEliminarAC != null) {
             $http.post($scope.urlEliminarAC)
             .success(function(response){
-                window.location.reload(false);
+				var id = $('#idCursoNewA').val();
+                listarAsignaturasCurso( id );
             }, function (error) {
                 console.log(error);
             });

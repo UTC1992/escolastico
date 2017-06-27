@@ -91,7 +91,22 @@
             </li>
            <?php }else{ ?>
            <?php } ?>
-          
+					
+					<?php
+					if($this->session->userdata('login_estu') ) { 
+						$estudiante = $this->session->userdata('nombreApellido_estu');
+						?>
+							<li class="nav-item" style="padding: 0px; margin: 5px;" >
+								<label class="btn nav-link btn-outline-default" style="width: 400px; color: white;">
+									<strong><?= $estudiante ?></strong>
+								</label>	
+							</li>
+							<li class="nav-item active"  style="padding: 0px; margin: 5px; width: 200px;">
+								<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>login_estu/logout">Cerrar Sesión</a>
+							</li>
+					<?php }else{ ?>
+          <?php } ?>
+
         </ul>
       </div>
     </nav>

@@ -38,6 +38,7 @@
 					$data = array(
 							'cedula' 		=>  $fila->cedula_estu,
 							'id_estu' 		=>  $fila->id_estu,
+							'nombreApellido_estu' 	=>  $fila->nombres_estu . " " . $fila->apellidos_estu,
 							'tipo_admin' 	=>	'estudiante',
 							'login_estu'	=> 	true
 							);

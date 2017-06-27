@@ -34,7 +34,7 @@
                     <tr ng-repeat="c in $data">
                         <td data-title="'N°'" >{{ $index +1 }}</td>
                         <td data-title="'Cursos'" filter="{nombre_curs: 'text'}">{{ c.nombre_curs }}</td>
-                        <td data-title="'Acciones'">
+                        <td data-title="'Acciones'" style="width: 500px;">
                             <div>
 								<center>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
@@ -42,20 +42,20 @@
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
-								</center>
-								<!--
+								
                                 <button class="btn btn-outline-info editar" ng-click="obtenerIdCursoAsig($event)" 
                                 id="{{c.id_curs}}" name="{{c.nombre_curs}}" 
                                 data-toggle="modal" data-target="#modalShowAsig">
                                     Mostrar asignaturas
                                 </button>
-
+								</center>
+								<!--
                                 <button class="btn btn-outline-primary nuevaAsig" ng-click="obtenerIdCurso($event)" 
                                 id="{{c.id_curs}}" name="{{c.nombre_curs}}"
                                 data-toggle="modal" data-target="#modalNewAsig">
                                     Añadir asignatura
                                 </button>
-                                
+								
 								<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
                                     Eliminar
                                 </a>
@@ -224,7 +224,7 @@
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="modalNewAsigLabel">Añadir una nueva asignatura en el {{nombreCurso}} curso.</h3>
+                <h3 class="modal-title" id="modalNewAsigLabel">Añadir una nueva asignatura en: {{nombreCurso}}.</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -240,8 +240,8 @@
                             <!--URL consulta de asignaturas-->
                             <input type="hidden" id="urlNewAsigCurso" value="<?= base_url() ?>asignaturas_controller/getDataJsonAsignaturaAll">
                             
-                            <!--ID para registro de nueva asignatura en un curso-->
-                            <input type="hidden" id="idCursoNewA" value="{{idCursoNewA}}">
+                            <!--ID para registro de nueva asignatura en un curso
+                            <input type="hidden" id="idCursoNewA" value="{{idCursoNewA}}">-->
 
                             <!--URL insertar-->
                             <input type="hidden" id="urlInsertarAsigCurso" value="<?= base_url() ?>curso_asignatura_controller/insertar">
@@ -288,7 +288,7 @@
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="modalShowAsigLabel">{{nombreCurso}} Curso.</h3>
+                <h3 class="modal-title" id="modalShowAsigLabel">Curso: {{nombreCurso}}</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -298,26 +298,61 @@
                 
                     <div class="row justify-content-md-center">
                         <div class="col-11">
-                        <label>Asignaturas del curso seleccionado:</label>
+						<label>Elija una nueva asignatura para éste curso:</label>
                         <form name="fAsigCurso" ng-submit="nuevaAsigCurso()" class="form-horizontal">
+                            
+                            <!--URL consulta de asignaturas-->
+                            <input type="hidden" id="urlNewAsigCurso" value="<?= base_url() ?>asignaturas_controller/getDataJsonAsignaturaAll">
+                            
+                            <!--ID para registro de nueva asignatura en un curso-->
+                            <input type="hidden" id="idCursoNewA" value="{{idCursoNewA}}">
+
+                            <!--URL insertar-->
+                            <input type="hidden" id="urlInsertarAsigCurso" value="<?= base_url() ?>curso_asignatura_controller/insertar">
+                            
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Asignaturas:</label>
+                                <div class="col-5">
+                                    <select class="form-control" id="idAsig" name="idAsig" 
+									ng-model="idAsig" required>
+                                        <option value="">Seleccionar</option>
+                                        <option ng-repeat="a in asignaturas" value="{{a.id_asig}}">{{a.nombre_asig}}</option>
+                                    </select>
+                                </div>
+                                <button class="col-3 btn btn-primary" type="submit">
+									<span class="glyphicon glyphicon-floppy-saved"></span>
+									Añadir
+								</button>
+                            </div>
+
+							
+                        </form>
+                        <label></label>
                             
                             <!--URL consulta de asignaturas-->
                             <input type="hidden" id="urlAsigCurso" value="<?= base_url() ?>curso_asignatura_controller/getDataJsonAsigCurso">
                             
                             <div class="form-group row">
                                     <div class="table-responsive">
-                                            <table class="table table-bordered table-striped">
-                                                <tbody>
+                                            <table class="table table-bordered table-condensed table-striped table-sm">
+                                                <thead>
+													<tr class="thead-inverse">
+														<th colspan="3"><strong>Lista de Asignaturas:</strong></th>
+													</tr>
+												</thead>
+												<tbody>
                                                     <tr ng-repeat="a in asignaturasCurso">
                                                         <td>{{ $index + 1 }}</td>
                                                         <td>{{ a.nombre_asig }}</td>
                                                         <td>
                                                             <div>
-                                                                <button class="btn btn-outline-danger eliminar" 
-                                                                ng-click="eliminarAsignaturaDeCurso($event)" 
-                                                                id="<?= base_url() ?>curso_asignatura_controller/eliminar/{{a.id_cura}}">
-                                                                    Eliminar
-                                                                </button>
+                                                                <center>
+																	<button class="btn btn-outline-danger eliminar" 
+																	ng-click="eliminarAsignaturaDeCurso($event)" 
+																	id="<?= base_url() ?>curso_asignatura_controller/eliminar/{{a.id_cura}}">
+																		Eliminar
+																	</button>
+																</center>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -329,14 +364,15 @@
                                 </div>
 
                             <div class="modal-footer">
-                                <button class="col-3 btn btn-primary" type="submit" 
+                                <!--
+								<button class="col-3 btn btn-primary" type="submit" 
                                 ng-disabled="fAsigCurso.asignaturaCurso.$invalid">
                                     <span class="glyphicon glyphicon-floppy-saved"></span>
                                     Registrar
                                 </button>
-                                <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                -->
+								<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                             </div>
-                        </form>
                         </div>
                     </div>
             </div>
@@ -348,21 +384,3 @@
 
 </div>
 <!--FIN CONTENEDOR-->
-<script>
-    
-    $('#modalEditar').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-    
-    $('#modalNuevo').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-    $('#modalNewAsig').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-    $('#modalShowAsig').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-    });
-
-    
-</script>
