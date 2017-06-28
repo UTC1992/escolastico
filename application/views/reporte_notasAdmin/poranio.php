@@ -18,7 +18,13 @@
 		<!--MOSTRAR INFORMES DE NOTAS-->
 		<input type="hidden" id="urlNotasAnual" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasFinales">
 		
+		<!--buscar asignaturas segun id del Curso-->
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
 	<!--urls-->
+
+	<!--url para años lectivos-->
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+	<!--url para años lectivos-->
 	
 	<!--head -->
 	<br>
@@ -44,13 +50,12 @@
 							<td><label>Año lectivo:</label></td>
 							<td>
 								<div class="form-inline">
-									<select class="form-control" style="width: 97px; margin-right: 5px;" ng-model="anioI" required>
-										<option value="">Inicio</option>
-										<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-									</select>
-									<select class="form-control" style="width: 97px;" ng-model="anioF" required>
-										<option value="">Fin</option>
-										<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
+									<select class="form-control" style="margin-right: 5px;" 
+									name="aniosL" id="aniosL" ng-model="aniosL" required>
+										<option value="">Seleccionar</option>
+										<option ng-repeat="a in aniosLectivos" value="{{a.anioinicio_pera}}-{{a.aniofin_pera}}">
+										{{a.mesinicio_pera}} {{a.anioinicio_pera}} - {{a.mesfin_pera}} {{a.aniofin_pera}}
+										</option>
 									</select>
 								</div>
 							</td>
@@ -174,7 +179,7 @@
 				<div class="modal-dialog  modal-lg" role="document">
 					<div class="modal-content">
 					<div class="modal-header">
-						<h3 class="modal-title" id="modalEditarLabel">Notas parciales</h3>
+						<h3 class="modal-title" id="modalEditarLabel">Notas Finales</h3>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 						</button>
@@ -186,24 +191,32 @@
 									<table style="font-size: 8pt; width: 500px;" class="" border="1">
 										<thead class="thead-inverse">
 											<tr>
-												<th></th>
-												<th colspan="4"><center>Parámetros</center></th>
-											</tr>
-											<tr>
-												<th>Asignaturas</th>
-												<th>Parcial 1</th>
-												<th>Parcial 2</th>
-												<th>Parcial 3</th>
-												<th>Examen</th>
+												<th>N°</th>
+												<th>ASIGNATURAS</th>
+												<th>I QUIM</th>
+												<th>II QUIM</th>
+												<th>PROM</th>
+												<th>MEJORA</th>
+												<th>SUPLE</th>
+												<th>REMEDIAL</th>
+												<th>GRACIA</th>
+												<th>PROM FIN</th>
+												<th>EQUIVALENCIA</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr ng-repeat="n in notasParcial">
+												<td>{{ $index + 1 }}</td>
 												<td>{{n.asignatura}}</td>
-												<td>{{n.parcial1}}</td>
-												<td>{{n.parcial2}}</td>
-												<td>{{n.parcial3}}</td>
-												<td>{{n.nota_exa}}</td>
+												<td>{{n.Q1}}</td>
+												<td>{{n.Q2}}</td>
+												<td>{{}}</td>
+												<td>{{}}</td>
+												<td>{{}}</td>
+												<td>{{}}</td>
+												<td>{{}}</td>
+												<td>{{}}</td>
+												<td>{{}}</td>
 											</tr>
 										</tbody>
 										<tr ng-show="mensajeNotas">

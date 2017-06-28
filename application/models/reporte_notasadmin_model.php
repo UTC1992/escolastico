@@ -164,6 +164,22 @@
 			return $result;
 		}
 
+		public function getAsignaturasCurso($datos = null)
+		{
+			$idCurso = $datos['idCurso'];
+
+			$result = $this->db->query("SELECT asignatura.nombre_asig as 'asig' FROM asignatura, curso, curso_asignatura
+										WHERE
+										asignatura.id_asig = curso_asignatura.id_asig
+										AND
+										curso.id_curs = curso_asignatura.id_curs
+										AND
+										curso.id_curs = '" . $idCurso . "'
+										;");
+
+			return $result;
+		}
+		
 		public function getRepoNotasFinales($datos = null)
 		{
 			$anioI = $datos['anioI'];
@@ -171,6 +187,134 @@
 			$idCurso = $datos['idCurso'];
 			$paralelo = $datos['paralelo'];
 			$idEstu = $datos['idEstu'];
+			$asignatura = $datos['asignatura'];
+
+			$result = $this->db->query("SELECT T1.asignatura, T1.Promedio as 'Q1', T2.Promedio as 'Q2'
+										FROM
+										(
+											SELECT
+													asignatura_p1 as 'asignatura',
+													ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'parcial1',
+													ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'parcial2',
+													ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'parcial3',
+													nota_exa,
+													ROUND
+													(
+														(
+															( 
+																(
+																	(
+																		((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ) +
+																		((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ) +
+																		((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 )
+																	) / 3
+																) * 0.8
+															)
+															+
+															(
+																nota_exa * 0.2
+															)
+														)
+														, 2
+													) as 'Promedio'
+
+											FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
+											WHERE estudiante.id_estu = '" . $idEstu . "'
+											AND matricula.id_curs = '" . $idCurso . "'
+											AND parcial_1.quimestre_p1 = '1ero'
+											AND parcial_1.anioInicio_p1 = '" . $anioI . "'
+											AND parcial_1.anioFin_p1 = '" . $anioF . "'
+											AND parcial_2.quimestre_p2 = '1ero'
+											AND parcial_2.anioInicio_p2 = '" . $anioI . "'
+											AND parcial_2.anioFin_p2 = '" . $anioF . "'
+											AND parcial_3.quimestre_p3 = '1ero'
+											AND parcial_3.anioInicio_p3 = '" . $anioI . "'
+											AND parcial_3.anioFin_p3 = '" . $anioF . "'
+											AND parcial_1.asignatura_p1 = parcial_2.asignatura_p2
+											AND parcial_1.asignatura_p1 = parcial_3.asignatura_p3
+											AND parcial_2.asignatura_p2 = parcial_1.asignatura_p1
+											AND parcial_2.asignatura_p2 = parcial_3.asignatura_p3
+											AND parcial_3.asignatura_p3 = parcial_1.asignatura_p1
+											and parcial_3.asignatura_p3 = parcial_2.asignatura_p2
+											AND parcial_1.id_estu = estudiante.id_estu
+											AND parcial_2.id_estu = estudiante.id_estu
+											AND parcial_3.id_estu = estudiante.id_estu
+											AND matricula.id_estu = estudiante.id_estu
+											AND matricula.fechainicio_matr LIKE '" . $anioI . "%'
+											AND matricula.fechafin_matr LIKE '" . $anioF . "%'
+											AND matricula.paralelo_matr = '" . $paralelo . "'
+											AND examen.id_estu = estudiante.id_estu
+											AND examen.quimestre_exa = '1ero'
+											AND examen.anioInicio_exa = '" . $anioI . "'
+											AND examen.anioFin_exa = '" . $anioF . "'
+											AND examen.asignatura_exa = parcial_1.asignatura_p1
+											AND examen.asignatura_exa = parcial_2.asignatura_p2
+											AND examen.asignatura_exa = parcial_3.asignatura_p3
+											AND examen.asignatura_exa = '" . $asignatura . "'
+										) T1
+										INNER JOIN 
+										(
+											SELECT
+													asignatura_p1 as 'asignatura',
+													ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'parcial1',
+													ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'parcial2',
+													ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'parcial3',
+													nota_exa,
+													ROUND
+													(
+														(
+															( 
+																(
+																	(
+																		((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ) +
+																		((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ) +
+																		((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 )
+																	) / 3
+																) * 0.8
+															)
+															+
+															(
+																nota_exa * 0.2
+															)
+														)
+														, 2
+													) as 'Promedio'
+
+											FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
+											WHERE estudiante.id_estu = '" . $idEstu . "'
+											AND matricula.id_curs = '" . $idCurso . "'
+											AND parcial_1.quimestre_p1 = '2do'
+											AND parcial_1.anioInicio_p1 = '" . $anioI . "'
+											AND parcial_1.anioFin_p1 = '" . $anioF . "'
+											AND parcial_2.quimestre_p2 = '2do'
+											AND parcial_2.anioInicio_p2 = '" . $anioI . "'
+											AND parcial_2.anioFin_p2 = '" . $anioF . "'
+											AND parcial_3.quimestre_p3 = '2do'
+											AND parcial_3.anioInicio_p3 = '" . $anioI . "'
+											AND parcial_3.anioFin_p3 = '" . $anioF . "'
+											AND parcial_1.asignatura_p1 = parcial_2.asignatura_p2
+											AND parcial_1.asignatura_p1 = parcial_3.asignatura_p3
+											AND parcial_2.asignatura_p2 = parcial_1.asignatura_p1
+											AND parcial_2.asignatura_p2 = parcial_3.asignatura_p3
+											AND parcial_3.asignatura_p3 = parcial_1.asignatura_p1
+											and parcial_3.asignatura_p3 = parcial_2.asignatura_p2
+											AND parcial_1.id_estu = estudiante.id_estu
+											AND parcial_2.id_estu = estudiante.id_estu
+											AND parcial_3.id_estu = estudiante.id_estu
+											AND matricula.id_estu = estudiante.id_estu
+											AND matricula.fechainicio_matr LIKE '" . $anioI . "%'
+											AND matricula.fechafin_matr LIKE '" . $anioF . "%'
+											AND matricula.paralelo_matr = '" . $paralelo . "'
+											AND examen.id_estu = estudiante.id_estu
+											AND examen.quimestre_exa = '2do'
+											AND examen.anioInicio_exa = '" . $anioI . "'
+											AND examen.anioFin_exa = '" . $anioF . "'
+											AND examen.asignatura_exa = parcial_1.asignatura_p1
+											AND examen.asignatura_exa = parcial_2.asignatura_p2
+											AND examen.asignatura_exa = parcial_3.asignatura_p3
+											AND examen.asignatura_exa = '" . $asignatura . "'
+										) T2
+										;");
 
 			return $result;
 		}

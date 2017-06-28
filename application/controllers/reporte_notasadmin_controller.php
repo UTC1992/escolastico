@@ -108,6 +108,26 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		echo $datosE;
 	}
 
+	public function getDataJsonAsignaturasDeCurso()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosCurso = $this->input->post();
+		$fila = $this->reporte_notasadmin_model->getAsignaturasCurso($datosCurso);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
 	public function getDataJsonNotasFinales()
 	{
 		$json = new Services_JSON();

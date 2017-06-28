@@ -148,7 +148,6 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 		}
 	}
 
-
 	$scope.mensajeNotas = false;
 	$scope.mostrarNotasParcial = function(urlParcial){
 		var idCurso = $('#idCurso').val();
@@ -243,38 +242,68 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
         });	
 	}
 
-	////////////////////////QUIMESTRALES
+	////////////////////////ANUALES
 	$scope.verificarNotasFinales = function(event){
+		$scope.notasParcial = [];
 		var idEstuYCurso = event.target.id;
 		var vector = idEstuYCurso.split("/");
 		var idCurso = vector[0];
 		var idEstu = vector[1];
 
-		$scope.mensajeNotas = false;
-		$scope.getUrl = $('#urlNotasAnual').val();
-		$scope.mostrarNotasFinales($scope.getUrl, idCurso, idEstu);
+		//año lectivo
+		var anioslectivos = $scope.aniosL+"";
+		var vectorAL = anioslectivos.split('-');
+		$scope.anioI = vectorAL[0];
+		$scope.anioF = vectorAL[1];
+
+		buscarAsignaturasDeCurso(idCurso, idEstu);
+
 	}
 
-	$scope.mensajeNotas = false;
-	$scope.mostrarNotasFinales = function(urlNotaFinal, idCurso, idEstu){
-        $http({
+	function buscarAsignaturasDeCurso(idCurso, idEstu){
+		var urlAsig = $('#urlAsignaturasCurso').val();
+		$http({
             method: "post",
-            url: urlNotaFinal,
-            data:   "idCurso="+idCurso
-                    +"&paralelo="+$scope.paralelo
-                    +"&anioI="+$scope.anioI
-                    +"&anioF="+$scope.anioF
-					+"&idEstu="+idEstu,
+            url: urlAsig,
+            data:   "idCurso="+idCurso,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
 			console.log(response);
+
+			for (var i = 0; i < response.length; i++) {
+				//alert(response[i]['asig']);
+				var asignatura = response[i]['asig'];
+				//alert(idCurso +" - " + idEstu + " - " + asignatura);
+				$scope.mostrarNotasFinales(idCurso, idEstu, asignatura);
+			}
+
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	$scope.mensajeNotas = false;
+	$scope.notasParcial = [];
+	$scope.mostrarNotasFinales = function(idCurso, idEstu, asignatura){
+		var urlNotaFinalAsig = $('#urlNotasAnual').val();
+        $http({
+            method: "post",
+            url: urlNotaFinalAsig,
+            data:   "idCurso="+idCurso
+                    +"&paralelo="+$scope.ParaleloInfo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&idEstu="+idEstu
+					+"&asignatura="+asignatura,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			console.log(response[0]);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
-				$scope.notasParcial = [];
+				$scope.notasParcial.push(" ");
 			} else {
 				$scope.mensajeNotas = false;
-				$scope.notasParcial = response;
-				
+				$scope.notasParcial.push(response[0]);
 			}
             
             //$scope.mensajeInsertC = false;
