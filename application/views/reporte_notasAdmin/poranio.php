@@ -20,6 +20,8 @@
 		
 		<!--buscar asignaturas segun id del Curso-->
 		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+	
+		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonDatosBoletin">
 	<!--urls-->
 
 	<!--url para años lectivos-->
@@ -188,6 +190,43 @@
 							<input type="hidden" value="">
 							<div class="">
 								<div class="col-12 row justify-content-lg-center">
+								<fieldset class="form-control" id="printSectionId"
+									 style="color: black; font-size: 10pt;">
+										
+										<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                                    	<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+										<center>
+											<div class="">
+												<img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+												<h4>UNIDAD EDUCATIVA FICAL</h4>
+												<h4>PATRIA</h4>
+												<br>
+												<h4>LIBRETA DE CALIFICACIONES FINAL</h4>
+												<br>
+											</div>
+										</center>
+										<center>
+										<table border="1" style=" font-size: 10pt; width: 700px;">
+											<tbody>
+												<tr>
+													<td>CADETE: {{cadete}}</td>
+													<td>CÉDULA: {{cedula}}</td>
+												</tr>
+												<tr>
+													<td>CURSO Y PARALELO: {{cursoParalelo}}</td>
+													<td>AÑO LECTIVO: {{anioLectivo}}</td>
+												</tr>
+												<tr>
+													<td>ESPECIALIDAD: {{especialidad}}</td>
+													<td>NIVEL / SECCIÓN: {{nivel}}</td>
+												</tr>
+												<tr>
+													<td>FECHA DE EMISIÓN: {{fechaActual}}</td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+										<br>
 									<table style="font-size: 8pt; width: 500px;" class="" border="1">
 										<thead class="thead-inverse">
 											<tr>
@@ -219,19 +258,40 @@
 												<td>{{}}</td>
 											</tr>
 										</tbody>
-										<tr ng-show="mensajeNotas">
-											<td colspan="6" >
-												<center>
-													<div  class="alert alert-danger" style="color: crimson;">
-														<strong>* No existen notas registradas por el momento.</strong>
-													</div>
-												</center>
-											</td>
-										</tr>
 									</table>
+									<br>
+										</center>
+										<label>OBSERVACIONES:</label>
+										<center>
+											<textarea class="form-control"></textarea>
+										<br>
+										<br>
+										<br>
+										<table>
+											<tr>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                                <td style="width: 50px;"></td>
+                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL RECTOR</label></center>
+                                                </td>
+                                                <td style="width: 50px;"></td>
+                                                <td>
+                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL SECRETARIO GENERAL</label></center>
+                                                </td>
+                                            </tr>
+										</table>
+										</center>
+									</fieldset>
 								</div>
 								<br>
 								<div class="modal-footer">
+									<button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Imprimir
+                                    </button>
 									<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
 								</div>
 							</div>

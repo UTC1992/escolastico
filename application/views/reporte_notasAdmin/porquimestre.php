@@ -208,7 +208,7 @@
 											<h4>UNIDAD EDUCATIVA FICAL</h4>
 											<h4>PATRIA</h4>
 											<br>
-											<h4>INFORME PARCIAL DEL APRENDIZAJE</h4>
+											<h4>INFORME QUIMESTRAL DEL APRENDIZAJE</h4>
 											<br>
 										</div>
 									</center>

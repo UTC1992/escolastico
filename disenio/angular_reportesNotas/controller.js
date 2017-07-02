@@ -232,7 +232,7 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				break;
 		
 			default:
-				alert("No hay parcial");
+				periodo = 'N/A';
 				break;
 		}
 		return periodo;
@@ -325,7 +325,7 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
             data:   "idCurso="+idCurso,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			console.log(response);
+			//console.log(response);
 
 			for (var i = 0; i < response.length; i++) {
 				//alert(response[i]['asig']);
@@ -354,7 +354,7 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			console.log(response[0]);
+			//console.log(response[0]);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
 				$scope.notasParcial.push(" ");
@@ -362,6 +362,8 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				$scope.mensajeNotas = false;
 				$scope.notasParcial.push(response[0]);
 			}
+
+			llenarBoletin($scope.anioI, $scope.anioF, idEstu);
 
             //$scope.mensajeInsertC = false;
         }, function (error) {
