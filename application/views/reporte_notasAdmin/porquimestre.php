@@ -18,6 +18,8 @@
 		<!--MOSTRAR INFORMES DE NOTAS-->
 		<input type="hidden" id="urlNotasQuimestre" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasQuimestre">
 		
+		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonDatosBoletin">
+
 	<!--urls-->
 
 	<!--url para años lectivos-->
@@ -195,22 +197,59 @@
 							<input type="hidden" value="">
 							<div class="">
 								<div class="col-12 row justify-content-lg-center">
-									<table style="font-size: 8pt; width: 500px;" class="" border="1">
-										<thead class="thead-inverse">
+								<fieldset class="form-control" id="printSectionId"
+									style="color: black; font-size: 10pt;">
+									
+									<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+									<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+									<center>
+										<div class="">
+											<img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+											<h4>UNIDAD EDUCATIVA FICAL</h4>
+											<h4>PATRIA</h4>
+											<br>
+											<h4>INFORME PARCIAL DEL APRENDIZAJE</h4>
+											<br>
+										</div>
+									</center>
+									<center>
+									<table border="1" style=" font-size: 10pt; width: 700px;">
+										<tbody>
 											<tr>
-												<th></th>
-												<th colspan="4"><center>Parámetros</center></th>
+												<td>CADETE: {{cadete}}</td>
+												<td>CÉDULA: {{cedula}}</td>
 											</tr>
 											<tr>
-												<th>Asignaturas</th>
-												<th>Parcial 1</th>
-												<th>Parcial 2</th>
-												<th>Parcial 3</th>
-												<th>Examen</th>
+												<td>CURSO Y PARALELO: {{cursoParalelo}}</td>
+												<td>AÑO LECTIVO: {{anioLectivo}}</td>
+											</tr>
+											<tr>
+												<td>ESPECIALIDAD: {{especialidad}}</td>
+												<td>NIVEL / SECCIÓN: {{nivel}}</td>
+											</tr>
+											<tr>
+												<td>FECHA DE EMISIÓN: {{fechaActual}}</td>
+												<td>PERIODO: {{periodo}}</td>
+											</tr>
+										</tbody>
+									</table>
+									<br>
+									<table style="font-size: 8pt; width: 500px;" class="" border="1">
+										<thead class="thead-inverse">
+											<tr style="background: black; color: white;">
+												<th></th>
+												<th colspan="4"><center>PARCIALES</center></th>
+											</tr>
+											<tr style="background: black; color: white;">
+												<th>ASIGNATURAS</th>
+												<th>PARCIAL 1</th>
+												<th>PARCIAL 2</th>
+												<th>PARCIAL 3</th>
+												<th>EXAMEN</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="n in notasParcial">
+											<tr ng-repeat="n in notasParcial" >
 												<td>{{n.asignatura}}</td>
 												<td>{{n.parcial1}}</td>
 												<td>{{n.parcial2}}</td>
@@ -218,19 +257,36 @@
 												<td>{{n.nota_exa}}</td>
 											</tr>
 										</tbody>
-										<tr ng-show="mensajeNotas">
-											<td colspan="6" >
-												<center>
-													<div  class="alert alert-danger" style="color: crimson;">
-														<strong>* No existen notas registradas por el momento.</strong>
-													</div>
-												</center>
-											</td>
-										</tr>
 									</table>
+									<br>
+										</center>
+										<label>OBSERVACIONES:</label>
+										<center>
+											<textarea class="form-control"></textarea>
+										</center>
+										<table>
+											<tr>
+												<td>
+													<br>
+													<br>
+													<br>
+													<hr style="width: 15em; background: black; border-top: 1px solid;">
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<center><label class="col-form-label" style="font-size: 10pt;">FIRMA DEL PROFESOR DIRIGENTE</label></center>
+												</td>
+											</tr>
+										</table>
+									</fieldset>
 								</div>
 								<br>
 								<div class="modal-footer">
+									<button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Imprimir
+                                    </button>
 									<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
 								</div>
 							</div>

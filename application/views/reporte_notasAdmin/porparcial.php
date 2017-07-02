@@ -236,7 +236,7 @@
 							<div class="">
 								<div class="col-12 row justify-content-lg-center">
 									<fieldset class="form-control" id="printSectionId"
-									 style="color: black;font-size: 10pt;">
+									 style="color: black; font-size: 10pt;">
 										
 										<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
                                     	<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">

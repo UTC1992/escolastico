@@ -281,7 +281,7 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 					+"&idEstu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			console.log(response);
+			//console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
 				$scope.notasParcial = [];
@@ -290,6 +290,8 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				$scope.notasParcial = response;
 				
 			}
+
+			llenarBoletin(vectorAL[0], vectorAL[1], idEstu);
             
             //$scope.mensajeInsertC = false;
         }, function (error) {
