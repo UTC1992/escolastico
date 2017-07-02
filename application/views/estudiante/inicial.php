@@ -1262,7 +1262,7 @@
                                      </div>
                                      <div class="row">
                                         <label class="col-form-label" style="margin-left: 20px;">FECHA DE NACIMIENTO: {{fechaN}}</label>
-                                        <label class="col-form-label" style="margin-left: 20px;">EDAD:</label>
+                                        <label class="col-form-label" style="margin-left: 20px;">EDAD: {{edadEstu}} AÑOS</label>
                                      </div>
                                      <div class="row">
                                         <label class="col-form-label" style="margin-left: 20px;">DIRECCIÓN: {{direccion}}</label>

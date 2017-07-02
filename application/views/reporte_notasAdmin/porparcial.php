@@ -20,6 +20,8 @@
 		<input type="hidden" id="urlNotasParcial2" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial2">
 		<input type="hidden" id="urlNotasParcial3" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasParcial3">
 		
+		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonDatosBoletin">
+
 	<!--urls-->
 
 	<!--url para años lectivos-->
@@ -211,9 +213,15 @@
 				</table>
             </form>
           </div>
+		  <!--
+		  <button type="button" class="col-3 btn btn-warning" data-dismiss="modal" 
+				ng-click="descargarPdf()">
+				Descargar PDF</button>
+		  -->
+
 		  <!--tabla de estudiantes-->
 
-		  <!--INICIO MODAL EDITAR-->
+		  <!--INICIO Notas-->
 			<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
 				<div class="modal-dialog  modal-lg" role="document">
 					<div class="modal-content">
@@ -227,46 +235,102 @@
 							<input type="hidden" value="">
 							<div class="">
 								<div class="col-12 row justify-content-lg-center">
-									<table style="font-size: 8pt; width: 500px;" class="" border="1">
-										<thead class="thead-inverse">
+									<fieldset class="form-control" id="printSectionId"
+									 style="color: black;font-size: 10pt;">
+										
+										<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                                    	<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
+										<center>
+											<div class="">
+												<img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+												<h4>UNIDAD EDUCATIVA FICAL</h4>
+												<h4>PATRIA</h4>
+												<br>
+												<h4>INFORME PARCIAL DEL APRENDIZAJE</h4>
+												<br>
+											</div>
+										</center>
+										<center>
+										<table border="1" style=" font-size: 10pt; width: 700px;">
+											<tbody>
+												<tr>
+													<td>CADETE: {{cadete}}</td>
+													<td>CÉDULA: {{cedula}}</td>
+												</tr>
+												<tr>
+													<td>CURSO Y PARALELO: {{cursoParalelo}}</td>
+													<td>AÑO LECTIVO: {{anioLectivo}}</td>
+												</tr>
+												<tr>
+													<td>ESPECIALIDAD: {{especialidad}}</td>
+													<td>NIVEL / SECCIÓN: {{nivel}}</td>
+												</tr>
+												<tr>
+													<td>FECHA DE EMISIÓN: {{fechaActual}}</td>
+													<td>PERIODO: {{periodo}}</td>
+												</tr>
+											</tbody>
+										</table>
+										<br>
+										<table style="font-size: 8pt; width: 700px;" class="" border="1">
+											<thead>
+												<tr style="background: black; color: white;">
+													<th></th>
+													<th colspan="4"><center>PARÁMETROS</center></th>
+													<th></th>
+												</tr>
+												<tr style="background: black; color: white;">
+													<th>ASIGNATURAS</th>
+													<th>DEBERES</th>
+													<th>LECCIONES ORALES Y ESCRITAS</th>
+													<th>TRABAJOS GRUPALES</th>
+													<th>TRABAJOS DE INVESTIGACIÓN</th>
+													<th>PROMEDIO</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="n in notasParcial">
+													<td>{{n.asignatura}}</td>
+													<td>{{n.p1}}</td>
+													<td>{{n.p2}}</td>
+													<td>{{n.p3}}</td>
+													<td>{{n.p4}}</td>
+													<td>{{n.Promedio}}</td>
+												</tr>
+											</tbody>
+										</table>
+										<br>
+										</center>
+										<label>OBSERVACIONES:</label>
+										<center>
+											<textarea class="form-control"></textarea>
+										</center>
+										<table>
 											<tr>
-												<th></th>
-												<th colspan="4"><center>Parámetros</center></th>
-												<th></th>
+												<td>
+													<br>
+													<br>
+													<br>
+													<hr style="width: 15em; background: black; border-top: 1px solid;">
+												</td>
 											</tr>
 											<tr>
-												<th>Asignaturas</th>
-												<th>Deberes</th>
-												<th>Lecciones orales o escritas</th>
-												<th>Trabajos grupales</th>
-												<th>Trabajos de investigación</th>
-												<th>Promedio</th>
+												<td>
+													<center><label class="col-form-label" style="font-size: 10pt;">FIRMA DEL PROFESOR DIRIGENTE</label></center>
+												</td>
 											</tr>
-										</thead>
-										<tbody>
-											<tr ng-repeat="n in notasParcial">
-												<td>{{n.asignatura}}</td>
-												<td>{{n.p1}}</td>
-												<td>{{n.p2}}</td>
-												<td>{{n.p3}}</td>
-												<td>{{n.p4}}</td>
-												<td>{{n.Promedio}}</td>
-											</tr>
-										</tbody>
-										<tr ng-show="mensajeNotas">
-											<td colspan="6" >
-												<center>
-													<div  class="alert alert-danger" style="color: crimson;">
-														<strong>* No existen notas registradas por el momento.</strong>
-													</div>
-												</center>
-											</td>
-										</tr>
-									</table>
+										</table>
+									</fieldset>
 								</div>
 								<br>
+							
 								<div class="modal-footer">
+									<button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
+                                        <span class="glyphicon glyphicon-floppy-saved"></span>
+                                        Imprimir
+                                    </button>
 									<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
+									
 								</div>
 							</div>
 					</div>

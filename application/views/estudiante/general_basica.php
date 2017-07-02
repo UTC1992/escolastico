@@ -1201,24 +1201,24 @@
                                     <center>
                                         <div class="">
                                             <img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
-                                            <h4>Unidad Educativa Fiscal</h4>
-                                            <h4>Patria</h4>
+                                            <h4>UNIDAD EDUCATIVA FISCAL</h4>
+                                            <h4>PATRIA</h4>
                                             <br>
-                                            <h3>Certíficado de Matrícula</h3>
+                                            <h4>CERTÍFICADO DE MATRÍCULA</h4>
                                             <br>
                                         </div>
                                     </center>
                                     
                                      <div class="row">
-                                        <label class="col-form-label" style="margin-left: 20px;">Matrícula N°. {{matriculaNum}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;"><strong>MATRÍCULA N°.</strong> {{matriculaNum}}</label>
                                      </div>
 
                                      <div class="row">
-                                        <label class="col-form-label" style="margin-left: 20px;">Folio N°. {{matriculaNum}}</label>
+                                        <label class="col-form-label" style="margin-left: 20px;"><strong>FOLIO N°.</strong> {{matriculaNum}}</label>
                                      </div>
 
                                      <div class="row" >
-                                        <label class="col-form-label" style="position: absolute; right: 20px;">AÑO LECTIVO: {{anioI}} - {{anioF}}</label>
+                                        <label class="col-form-label" style="position: absolute; right: 20px;"><strong>AÑO LECTIVO:</strong> {{anioI}} - {{anioF}}</label>
                                      </div>
                                      <br>
                                      <br>

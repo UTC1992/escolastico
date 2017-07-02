@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-06-2017 a las 01:48:52
+-- Tiempo de generación: 29-06-2017 a las 04:39:38
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -81,11 +81,7 @@ INSERT INTO `asignatura` (`id_asig`, `nombre_asig`) VALUES
 (19, 'EMPRENDIMIENTO Y GESTION'),
 (20, 'INVESTIGACION'),
 (21, 'MATEMATICAS SUP.'),
-(22, 'QUIMICA SUP.'),
-(23, 'Sicología'),
-(24, 'test12'),
-(25, 'test12'),
-(26, 'test23');
+(22, 'QUIMICA SUP.');
 
 -- --------------------------------------------------------
 
@@ -166,7 +162,27 @@ CREATE TABLE `curso_asignatura` (
 INSERT INTO `curso_asignatura` (`id_cura`, `id_curs`, `id_asig`) VALUES
 (19, 0, 0),
 (21, 0, 0),
-(22, 667, 1);
+(38, 668, 1),
+(43, 668, 3),
+(44, 668, 2),
+(45, 668, 11),
+(46, 668, 8),
+(47, 668, 7),
+(48, 668, 4),
+(49, 668, 6),
+(50, 677, 3),
+(51, 677, 15),
+(52, 677, 16),
+(53, 677, 10),
+(54, 677, 14),
+(55, 677, 13),
+(56, 677, 12),
+(57, 677, 1),
+(58, 677, 4),
+(59, 677, 8),
+(60, 677, 7),
+(61, 677, 19),
+(62, 677, 20);
 
 -- --------------------------------------------------------
 
@@ -202,7 +218,7 @@ CREATE TABLE `docente` (
 INSERT INTO `docente` (`id_doce`, `cedula_doce`, `nombres_doce`, `apellidos_doce`, `fechanacimiento_doce`, `titulo_especializacion_senescyt_doce`, `fecha_ingreso_magisterio_doce`, `fecha_ingreso_institucion_doce`, `relacion_laboral_doce`, `categoria_contrato_doce`, `funcion_doce`, `numero_horas_pedagogicas_doce`, `lugar_residencia_doce`, `telefono_domicilio_doce`, `telefono_movil_doce`, `email_doce`, `estado_doce`, `password_doce`) VALUES
 (1, '0501502702', 'CESAR AUGUSTO', 'GUTIERREZ ESPIN', '1967-07-04', 'LIC. EN CIENCIAS DE EDUCACION, CASTELLANO Y LITERATURA', '1997-11-04', '1991-10-01', 'Nombramiento', 'D', 'Rector', 6, 'LATACUNGA', '032663247', '0984511205', 'a-c-ge@hotmail.com', 'Activo', '12345678'),
 (2, '0503254849', 'Mauro Omar', 'Guanoluisa Arciniega', '2000-12-25', 'Ingeniero en Sistemas', '2006-03-12', '2010-05-23', 'Nombramiento', 'D', 'Vicerrector', 6, 'Latacunga', '2 103 005', '0979208483', 'omar@gmail.com', 'Activo', '87654321'),
-(3, '0503632473', 'Nelly Estefania', 'Gualpa Tipan', '1993-02-04', 'Ingeniera en Sistemas', '2007-03-03', '2010-01-01', 'Nombramiento Provisional', 'Contrato 1', 'Trabajadora Social', 10, 'Saquisilí', '032722325', '0998559296', 'nellygualpa@gmail.com', 'Inactivo', '09090909'),
+(3, '0503632473', 'Nelly Estefania', 'Gualpa Tipan', '1993-02-04', 'Ingeniera en Sistemas', '2007-03-03', '2010-01-01', 'Nombramiento Provisional', 'Contrato 1', 'Trabajadora Social', 10, 'Saquisilí', '032722325', '0998559296', 'nellygualpa@gmail.com', 'Activo', '09090909'),
 (4, '0503254848', 'Pablo Pedro', 'Moran Pérez', '1916-04-16', 'N/A', '1916-01-17', '1900-02-03', 'Nombramiento', 'Contrato 1', 'Docente', 2, 'Latacunga', '2 103 005', '0984511205', 'pablo@gmail.com', 'Activo', NULL);
 
 -- --------------------------------------------------------
@@ -418,27 +434,15 @@ INSERT INTO `examen` (`id_exa`, `nota_exa`, `quimestre_exa`, `asignatura_exa`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `examen_gracia`
+-- Estructura de tabla para la tabla `examenemes_anuales`
 --
 
-CREATE TABLE `examen_gracia` (
-  `id_gra` int(11) NOT NULL,
-  `nota_gra` decimal(4,2) DEFAULT NULL,
-  `asignatura_gra` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `anioInicio_gra` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `anioFin_gra` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `id_estu` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `examen_supletorio`
---
-
-CREATE TABLE `examen_supletorio` (
+CREATE TABLE `examenemes_anuales` (
   `id_suple` int(11) NOT NULL,
+  `mejora_suple` decimal(4,2) DEFAULT NULL,
   `nota_suple` decimal(4,2) DEFAULT NULL,
+  `remedial_suple` decimal(4,2) DEFAULT NULL,
+  `gracia_suple` decimal(4,2) DEFAULT NULL,
   `asignatura_suple` varchar(100) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `anioInicio_suple` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `anioFin_suple` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
@@ -446,29 +450,12 @@ CREATE TABLE `examen_supletorio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `examen_supletorio`
+-- Volcado de datos para la tabla `examenemes_anuales`
 --
 
-INSERT INTO `examen_supletorio` (`id_suple`, `nota_suple`, `asignatura_suple`, `anioInicio_suple`, `anioFin_suple`, `id_estu`) VALUES
-(1, '7.00', 'LENGUA Y LITERATURA', '2016', '2017', 1),
-(2, '9.50', 'LENGUA Y LITERATURA', '2016', '2017', 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ingreso_notas_estado`
---
-
-CREATE TABLE `ingreso_notas_estado` (
-  `id_ine` int(4) NOT NULL,
-  `estado_ine` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `parcial1_ine` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `parcial2_ine` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `parcial3_ine` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `quimestre1_ine` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `quimestre2_ine` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `examenes` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+INSERT INTO `examenemes_anuales` (`id_suple`, `mejora_suple`, `nota_suple`, `remedial_suple`, `gracia_suple`, `asignatura_suple`, `anioInicio_suple`, `anioFin_suple`, `id_estu`) VALUES
+(1, NULL, '7.00', NULL, NULL, 'LENGUA Y LITERATURA', '2016', '2017', 1),
+(2, NULL, '9.70', NULL, NULL, 'LENGUA Y LITERATURA', '2016', '2017', 2);
 
 -- --------------------------------------------------------
 
@@ -492,71 +479,71 @@ CREATE TABLE `matricula` (
 --
 
 INSERT INTO `matricula` (`id_matr`, `fechainicio_matr`, `fechafin_matr`, `estado_matr`, `paralelo_matr`, `id_curs`, `id_estu`, `nivel_matr`) VALUES
-(1, '2016-09-01', '2017-07-28', NULL, 'A', 667, 1, 'Educacion General Basica'),
-(2, '2016-09-01', '2017-07-28', NULL, 'A', 667, 2, 'Educacion General Basica'),
-(3, '2016-09-01', '2017-07-28', NULL, 'A', 667, 3, 'Educacion General Basica'),
-(4, '2016-09-01', '2017-07-28', NULL, 'A', 667, 4, 'Educacion General Basica'),
-(5, '2016-09-01', '2017-07-28', NULL, 'A', 667, 5, 'Educacion General Basica'),
-(7, '2016-09-01', '2017-07-28', NULL, 'A', 667, 6, 'Educacion General Basica'),
-(8, '2016-09-01', '2017-07-28', NULL, 'A', 667, 7, 'Educacion General Basica'),
-(9, '2016-09-01', '2017-07-28', NULL, 'A', 667, 8, 'Educacion General Basica'),
-(10, '2016-09-01', '2017-07-28', NULL, 'A', 667, 9, 'Educacion General Basica'),
-(11, '2016-09-01', '2017-07-28', NULL, 'A', 667, 10, 'Educacion General Basica'),
-(12, '2016-09-01', '2017-07-28', NULL, 'A', 667, 11, 'Educacion General Basica'),
-(13, '2016-09-01', '2017-07-28', NULL, 'A', 667, 12, 'Educacion General Basica'),
-(14, '2016-09-01', '2017-07-28', NULL, 'A', 667, 13, 'Educacion General Basica'),
-(15, '2016-09-01', '2017-07-28', NULL, 'A', 667, 14, 'Educacion General Basica'),
-(16, '2016-09-01', '2017-07-28', NULL, 'A', 667, 15, 'Educacion General Basica'),
-(17, '2016-09-01', '2017-07-28', NULL, 'A', 667, 16, 'Educacion General Basica'),
-(18, '2016-09-01', '2017-07-28', NULL, 'A', 667, 17, 'Educacion General Basica'),
-(19, '2016-09-01', '2017-07-28', NULL, 'A', 667, 18, 'Educacion General Basica'),
-(20, '2016-09-01', '2017-07-28', NULL, 'A', 667, 19, 'Educacion General Basica'),
-(21, '2016-09-01', '2017-07-28', NULL, 'A', 667, 20, 'Educacion General Basica'),
-(22, '2016-09-01', '2017-07-28', NULL, 'A', 667, 21, 'Educacion General Basica'),
-(23, '2016-09-01', '2017-07-28', NULL, 'A', 667, 22, 'Educacion General Basica'),
-(24, '2016-09-01', '2017-07-28', NULL, 'A', 667, 23, 'Educacion General Basica'),
-(25, '2016-09-01', '2017-07-28', NULL, 'A', 667, 24, 'Educacion General Basica'),
-(26, '2016-09-01', '2017-07-28', NULL, 'A', 667, 25, 'Educacion General Basica'),
-(27, '2016-09-01', '2017-07-28', NULL, 'A', 667, 26, 'Educacion General Basica'),
-(28, '2016-09-01', '2017-07-28', NULL, 'A', 667, 27, 'Educacion General Basica'),
-(29, '2016-09-01', '2017-07-28', NULL, 'A', 667, 28, 'Educacion General Basica'),
-(30, '2016-09-01', '2017-07-28', NULL, 'A', 667, 29, 'Educacion General Basica'),
-(31, '2016-09-01', '2017-07-28', NULL, 'A', 667, 30, 'Educacion General Basica'),
-(32, '2016-09-01', '2017-07-28', NULL, 'A', 667, 31, 'Educacion General Basica'),
-(33, '2016-09-01', '2017-07-28', NULL, 'A', 667, 32, 'Educacion General Basica'),
+(1, '2016-09-01', '2017-07-28', NULL, 'A', 668, 1, 'Educacion General Basica'),
+(2, '2016-09-01', '2017-07-28', NULL, 'A', 668, 2, 'Educacion General Basica'),
+(3, '2016-09-01', '2017-07-28', NULL, 'A', 668, 3, 'Educacion General Basica'),
+(4, '2016-09-01', '2017-07-28', NULL, 'A', 668, 4, 'Educacion General Basica'),
+(5, '2016-09-01', '2017-07-28', NULL, 'A', 668, 5, 'Educacion General Basica'),
+(7, '2016-09-01', '2017-07-28', NULL, 'A', 668, 6, 'Educacion General Basica'),
+(8, '2016-09-01', '2017-07-28', NULL, 'A', 668, 7, 'Educacion General Basica'),
+(9, '2016-09-01', '2017-07-28', NULL, 'A', 668, 8, 'Educacion General Basica'),
+(10, '2016-09-01', '2017-07-28', NULL, 'A', 668, 9, 'Educacion General Basica'),
+(11, '2016-09-01', '2017-07-28', NULL, 'A', 668, 10, 'Educacion General Basica'),
+(12, '2016-09-01', '2017-07-28', NULL, 'A', 668, 11, 'Educacion General Basica'),
+(13, '2016-09-01', '2017-07-28', NULL, 'A', 668, 12, 'Educacion General Basica'),
+(14, '2016-09-01', '2017-07-28', NULL, 'A', 668, 13, 'Educacion General Basica'),
+(15, '2016-09-01', '2017-07-28', NULL, 'A', 668, 14, 'Educacion General Basica'),
+(16, '2016-09-01', '2017-07-28', NULL, 'A', 668, 15, 'Educacion General Basica'),
+(17, '2016-09-01', '2017-07-28', NULL, 'A', 668, 16, 'Educacion General Basica'),
+(18, '2016-09-01', '2017-07-28', NULL, 'A', 668, 17, 'Educacion General Basica'),
+(19, '2016-09-01', '2017-07-28', NULL, 'A', 668, 18, 'Educacion General Basica'),
+(20, '2016-09-01', '2017-07-28', NULL, 'A', 668, 19, 'Educacion General Basica'),
+(21, '2016-09-01', '2017-07-28', NULL, 'A', 668, 20, 'Educacion General Basica'),
+(22, '2016-09-01', '2017-07-28', NULL, 'A', 668, 21, 'Educacion General Basica'),
+(23, '2016-09-01', '2017-07-28', NULL, 'A', 668, 22, 'Educacion General Basica'),
+(24, '2016-09-01', '2017-07-28', NULL, 'A', 668, 23, 'Educacion General Basica'),
+(25, '2016-09-01', '2017-07-28', NULL, 'A', 668, 24, 'Educacion General Basica'),
+(26, '2016-09-01', '2017-07-28', NULL, 'A', 668, 25, 'Educacion General Basica'),
+(27, '2016-09-01', '2017-07-28', NULL, 'A', 668, 26, 'Educacion General Basica'),
+(28, '2016-09-01', '2017-07-28', NULL, 'A', 668, 27, 'Educacion General Basica'),
+(29, '2016-09-01', '2017-07-28', NULL, 'A', 668, 28, 'Educacion General Basica'),
+(30, '2016-09-01', '2017-07-28', NULL, 'A', 668, 29, 'Educacion General Basica'),
+(31, '2016-09-01', '2017-07-28', NULL, 'A', 668, 30, 'Educacion General Basica'),
+(32, '2016-09-01', '2017-07-28', NULL, 'A', 668, 31, 'Educacion General Basica'),
+(33, '2016-09-01', '2017-07-28', NULL, 'A', 668, 32, 'Educacion General Basica'),
 (34, '2016-01-01', '2017-01-01', NULL, 'A', 677, 33, 'Educacion General Superior'),
-(35, '2016-09-01', '2017-07-28', NULL, 'B', 667, 34, 'Educacion General Basica'),
-(36, '2016-09-02', '2017-07-29', NULL, 'B', 667, 35, 'Educacion General Basica'),
-(37, '2016-09-03', '2017-07-30', NULL, 'B', 667, 36, 'Educacion General Basica'),
-(38, '2016-09-04', '2017-07-31', NULL, 'B', 667, 37, 'Educacion General Basica'),
-(39, '2016-09-05', '2017-08-01', NULL, 'B', 667, 38, 'Educacion General Basica'),
-(40, '2016-09-06', '2017-08-02', NULL, 'B', 667, 39, 'Educacion General Basica'),
-(41, '2016-09-07', '2017-08-03', NULL, 'B', 667, 40, 'Educacion General Basica'),
-(42, '2016-09-08', '2017-08-04', NULL, 'B', 667, 41, 'Educacion General Basica'),
-(43, '2016-09-09', '2017-08-05', NULL, 'B', 667, 42, 'Educacion General Basica'),
-(44, '2016-09-10', '2017-08-06', NULL, 'B', 667, 43, 'Educacion General Basica'),
-(45, '2016-09-11', '2017-08-07', NULL, 'B', 667, 44, 'Educacion General Basica'),
-(46, '2016-09-12', '2017-08-08', NULL, 'B', 667, 45, 'Educacion General Basica'),
-(47, '2016-09-13', '2017-08-09', NULL, 'B', 667, 46, 'Educacion General Basica'),
-(48, '2016-09-14', '2017-08-10', NULL, 'B', 667, 47, 'Educacion General Basica'),
-(49, '2016-09-15', '2017-08-11', NULL, 'B', 667, 48, 'Educacion General Basica'),
-(50, '2016-09-16', '2017-08-12', NULL, 'B', 667, 49, 'Educacion General Basica'),
-(51, '2016-09-17', '2017-08-13', NULL, 'B', 667, 50, 'Educacion General Basica'),
-(52, '2016-09-18', '2017-08-14', NULL, 'B', 667, 51, 'Educacion General Basica'),
-(53, '2016-09-19', '2017-08-15', NULL, 'B', 667, 52, 'Educacion General Basica'),
-(54, '2016-09-20', '2017-08-16', NULL, 'B', 667, 53, 'Educacion General Basica'),
-(55, '2016-09-21', '2017-08-17', NULL, 'B', 667, 54, 'Educacion General Basica'),
-(56, '2016-09-22', '2017-08-18', NULL, 'B', 667, 55, 'Educacion General Basica'),
-(57, '2016-09-23', '2017-08-19', NULL, 'B', 667, 56, 'Educacion General Basica'),
-(58, '2016-09-24', '2017-08-20', NULL, 'B', 667, 57, 'Educacion General Basica'),
-(59, '2016-09-25', '2017-08-21', NULL, 'B', 667, 58, 'Educacion General Basica'),
-(60, '2016-09-26', '2017-08-22', NULL, 'B', 667, 59, 'Educacion General Basica'),
-(61, '2016-09-27', '2017-08-23', NULL, 'B', 667, 60, 'Educacion General Basica'),
-(62, '2016-09-28', '2017-08-24', NULL, 'B', 667, 61, 'Educacion General Basica'),
-(63, '2016-09-29', '2017-08-25', NULL, 'B', 667, 62, 'Educacion General Basica'),
-(64, '2016-09-30', '2017-08-26', NULL, 'B', 667, 63, 'Educacion General Basica'),
-(65, '2016-10-01', '2017-08-27', NULL, 'B', 667, 64, 'Educacion General Basica'),
-(66, '2016-10-02', '2017-08-28', NULL, 'B', 667, 65, 'Educacion General Basica');
+(35, '2016-09-01', '2017-07-28', NULL, 'B', 668, 34, 'Educacion General Basica'),
+(36, '2016-09-02', '2017-07-29', NULL, 'B', 668, 35, 'Educacion General Basica'),
+(37, '2016-09-03', '2017-07-30', NULL, 'B', 668, 36, 'Educacion General Basica'),
+(38, '2016-09-04', '2017-07-31', NULL, 'B', 668, 37, 'Educacion General Basica'),
+(39, '2016-09-05', '2017-08-01', NULL, 'B', 668, 38, 'Educacion General Basica'),
+(40, '2016-09-06', '2017-08-02', NULL, 'B', 668, 39, 'Educacion General Basica'),
+(41, '2016-09-07', '2017-08-03', NULL, 'B', 668, 40, 'Educacion General Basica'),
+(42, '2016-09-08', '2017-08-04', NULL, 'B', 668, 41, 'Educacion General Basica'),
+(43, '2016-09-09', '2017-08-05', NULL, 'B', 668, 42, 'Educacion General Basica'),
+(44, '2016-09-10', '2017-08-06', NULL, 'B', 668, 43, 'Educacion General Basica'),
+(45, '2016-09-11', '2017-08-07', NULL, 'B', 668, 44, 'Educacion General Basica'),
+(46, '2016-09-12', '2017-08-08', NULL, 'B', 668, 45, 'Educacion General Basica'),
+(47, '2016-09-13', '2017-08-09', NULL, 'B', 668, 46, 'Educacion General Basica'),
+(48, '2016-09-14', '2017-08-10', NULL, 'B', 668, 47, 'Educacion General Basica'),
+(49, '2016-09-15', '2017-08-11', NULL, 'B', 668, 48, 'Educacion General Basica'),
+(50, '2016-09-16', '2017-08-12', NULL, 'B', 668, 49, 'Educacion General Basica'),
+(51, '2016-09-17', '2017-08-13', NULL, 'B', 668, 50, 'Educacion General Basica'),
+(52, '2016-09-18', '2017-08-14', NULL, 'B', 668, 51, 'Educacion General Basica'),
+(53, '2016-09-19', '2017-08-15', NULL, 'B', 668, 52, 'Educacion General Basica'),
+(54, '2016-09-20', '2017-08-16', NULL, 'B', 668, 53, 'Educacion General Basica'),
+(55, '2016-09-21', '2017-08-17', NULL, 'B', 668, 54, 'Educacion General Basica'),
+(56, '2016-09-22', '2017-08-18', NULL, 'B', 668, 55, 'Educacion General Basica'),
+(57, '2016-09-23', '2017-08-19', NULL, 'B', 668, 56, 'Educacion General Basica'),
+(58, '2016-09-24', '2017-08-20', NULL, 'B', 668, 57, 'Educacion General Basica'),
+(59, '2016-09-25', '2017-08-21', NULL, 'B', 668, 58, 'Educacion General Basica'),
+(60, '2016-09-26', '2017-08-22', NULL, 'B', 668, 59, 'Educacion General Basica'),
+(61, '2016-09-27', '2017-08-23', NULL, 'B', 668, 60, 'Educacion General Basica'),
+(62, '2016-09-28', '2017-08-24', NULL, 'B', 668, 61, 'Educacion General Basica'),
+(63, '2016-09-29', '2017-08-25', NULL, 'B', 668, 62, 'Educacion General Basica'),
+(64, '2016-09-30', '2017-08-26', NULL, 'B', 668, 63, 'Educacion General Basica'),
+(65, '2016-10-01', '2017-08-27', NULL, 'B', 668, 64, 'Educacion General Basica'),
+(66, '2016-10-02', '2017-08-28', NULL, 'B', 668, 65, 'Educacion General Basica');
 
 -- --------------------------------------------------------
 
@@ -926,8 +913,7 @@ CREATE TABLE `periodo_academico` (
 --
 
 INSERT INTO `periodo_academico` (`id_pera`, `mesinicio_pera`, `anioinicio_pera`, `mesfin_pera`, `aniofin_pera`, `estado_pera`) VALUES
-(1, 'Octubre', '1900', 'Agosto', '1901', 'Inactivo'),
-(2, 'Octubre', '1901', 'Agosto', '1902', 'Activo');
+(2, 'Septiembre', '2016', 'Julio', '2017', 'Activo');
 
 --
 -- Índices para tablas volcadas
@@ -989,27 +975,12 @@ ALTER TABLE `examen`
   ADD KEY `fk_table1_estudiante1_idx` (`id_estu`);
 
 --
--- Indices de la tabla `examen_gracia`
+-- Indices de la tabla `examenemes_anuales`
 --
-ALTER TABLE `examen_gracia`
-  ADD PRIMARY KEY (`id_gra`),
-  ADD UNIQUE KEY `id_exa_UNIQUE` (`id_gra`),
-  ADD KEY `fk_examen_gracia_estudiante1_idx` (`id_estu`);
-
---
--- Indices de la tabla `examen_supletorio`
---
-ALTER TABLE `examen_supletorio`
+ALTER TABLE `examenemes_anuales`
   ADD PRIMARY KEY (`id_suple`),
   ADD UNIQUE KEY `id_exa_UNIQUE` (`id_suple`),
   ADD KEY `fk_examen_supletorio_estudiante1_idx` (`id_estu`);
-
---
--- Indices de la tabla `ingreso_notas_estado`
---
-ALTER TABLE `ingreso_notas_estado`
-  ADD PRIMARY KEY (`id_ine`),
-  ADD UNIQUE KEY `id_ine_UNIQUE` (`id_ine`);
 
 --
 -- Indices de la tabla `matricula`
@@ -1081,7 +1052,7 @@ ALTER TABLE `curso`
 -- AUTO_INCREMENT de la tabla `curso_asignatura`
 --
 ALTER TABLE `curso_asignatura`
-  MODIFY `id_cura` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_cura` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
@@ -1098,20 +1069,10 @@ ALTER TABLE `estudiante`
 ALTER TABLE `examen`
   MODIFY `id_exa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
--- AUTO_INCREMENT de la tabla `examen_gracia`
+-- AUTO_INCREMENT de la tabla `examenemes_anuales`
 --
-ALTER TABLE `examen_gracia`
-  MODIFY `id_gra` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `examen_supletorio`
---
-ALTER TABLE `examen_supletorio`
+ALTER TABLE `examenemes_anuales`
   MODIFY `id_suple` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `ingreso_notas_estado`
---
-ALTER TABLE `ingreso_notas_estado`
-  MODIFY `id_ine` int(4) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `matricula`
 --
@@ -1163,15 +1124,9 @@ ALTER TABLE `examen`
   ADD CONSTRAINT `fk_table1_estudiante1` FOREIGN KEY (`id_estu`) REFERENCES `estudiante` (`id_estu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `examen_gracia`
+-- Filtros para la tabla `examenemes_anuales`
 --
-ALTER TABLE `examen_gracia`
-  ADD CONSTRAINT `fk_examen_gracia_estudiante1` FOREIGN KEY (`id_estu`) REFERENCES `estudiante` (`id_estu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `examen_supletorio`
---
-ALTER TABLE `examen_supletorio`
+ALTER TABLE `examenemes_anuales`
   ADD CONSTRAINT `fk_examen_supletorio_estudiante1` FOREIGN KEY (`id_estu`) REFERENCES `estudiante` (`id_estu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

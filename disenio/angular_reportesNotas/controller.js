@@ -177,10 +177,65 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				
 			}
             
+			llenarBoletin(vectorAL[0], vectorAL[1], idEstu);
+
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);
         });	
+	}
+
+	function llenarBoletin(anioI, anioF, idEstu){
+
+		var urlDatosMatri = $('#urlDatosBoletin').val();
+		$http({
+            method: "post",
+            url: urlDatosMatri,
+            data:   "&anioI="+anioI
+                    +"&anioF="+anioF
+					+"&idEstu="+idEstu,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			
+			var nombreEstu = response[0]['apellidos_estu'] + " " + response[0]['nombres_estu']; 
+			$scope.cadete = nombreEstu.toUpperCase();
+			var cursoPa = response[0]['nombre_curs'] + " / " + response[0]['paralelo_matr'];
+			$scope.cursoParalelo = cursoPa.toUpperCase();
+			$scope.cedula = response[0]['cedula_estu'];
+			$scope.anioLectivo = response[0]['fechainicio_matr'] + " / " + response[0]['fechafin_matr'];
+			$scope.especialidad = "NINGUNA ESPECIALIDAD";
+			$scope.nivel = response[0]['nivel_matr'].toUpperCase();
+			$scope.fechaActual = obtenerFechaActual();
+			$scope.periodo = verificarQuimestreBoletin();
+
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	function obtenerFechaActual(){
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var date = new Date();
+        var fechaA = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        return fechaA;
+    }
+
+	function verificarQuimestreBoletin (){
+		var quimestre = $scope.QuimestreInfo+"";
+		var periodo = "";
+		switch (quimestre) {
+			case '1ero':
+				periodo = 'PRIMER QUIMESTRE';
+				break;
+			case '2do':
+				periodo = 'SEGUNDO QUIMESTRE';
+				break;
+		
+			default:
+				alert("No hay parcial");
+				break;
+		}
+		return periodo;
 	}
 ////////////////////////QUIMESTRALES
 	$scope.verificarQuimestre = function(event){
@@ -305,11 +360,49 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				$scope.mensajeNotas = false;
 				$scope.notasParcial.push(response[0]);
 			}
-            
+
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);
         });	
+	}
+
+	
+
+	$scope.printToCart = function(printSectionId) {
+        var innerContents = document.getElementById(printSectionId).innerHTML;
+        var popupWinindow = window.open('', '_blank', 'width=1000px,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWinindow.document.open();
+        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css"/></head><body onload="window.print()">' + innerContents + '</html>');
+        popupWinindow.document.close();
+    }
+
+	$scope.descargarPdf = function()
+	{
+		var columns = ["ID", "Name", "Country"];
+		var rows = [
+			[1, "Shaw", "Tanzania"],
+			[2, "Nelson", "Kazakhstan"],
+			[3, "Garcia", "Madagascar"]
+		];
+
+		var doc = new jsPDF();
+
+		doc.setFontSize(18);
+		doc.text('Titulo', 14, 22);
+		doc.setFontSize(11);
+		doc.setTextColor(100);
+		
+		doc.text('text', 14, 30);
+
+		//columns.splice(0, 2);
+		doc.autoTable(columns, rows, {startY: 50, showHeader: 'firstPage'});
+		
+		doc.text('hola', 14, doc.autoTable.previous.finalY + 10);
+
+		doc.save('table.pdf');
+
+
 	}
 
 

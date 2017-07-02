@@ -147,4 +147,24 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		//imprimiendo datos asi se puede tomar desde angular ok 
 		echo $datosE;
 	}
+
+	public function getDataJsonDatosBoletin()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosNotas = $this->input->post();
+		$fila = $this->reporte_notasadmin_model->getDatosBoletin($datosNotas);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
 }

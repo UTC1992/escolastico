@@ -319,6 +319,39 @@
 			return $result;
 		}
 
+		public function getDatosBoletin($datos = null)
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idEstu = $datos['idEstu'];
+
+			$result = $this->db->query("SELECT 
+												estudiante.id_estu,
+												id_matr,
+												cedula_estu, 
+												nombres_estu, 
+												apellidos_estu, 
+												nombre_curs, 
+												paralelo_matr, 
+												nivel_matr, 
+												fechainicio_matr, 
+												fechafin_matr
+
+										FROM 
+												estudiante, 
+												matricula, 
+												curso
+										WHERE 
+												estudiante.id_estu = matricula.id_estu AND 
+												curso.id_curs = matricula.id_curs AND 
+												matricula.fechainicio_matr LIKE '" . $anioI . "%' AND 
+												matricula.fechafin_matr LIKE '" . $anioF . "%' AND 
+												estudiante.id_estu = '" . $idEstu . "';	
+			");
+			//return $result->row();
+			return $result;
+		}
+
 	}
 
 
