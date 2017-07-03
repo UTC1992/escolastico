@@ -20,8 +20,12 @@
 		
 		<!--buscar asignaturas segun id del Curso-->
 		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
-	
+		
+		<!--buscar datos de boletin-->
 		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonDatosBoletin">
+
+		<!--buscar nota de supletorio-->
+		<input type="hidden" id="urlNotasSuple" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaSuple">
 	<!--urls-->
 
 	<!--url para años lectivos-->
@@ -244,18 +248,18 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="n in notasParcial">
+											<tr ng-repeat="n in notasParcial track by $index">
 												<td>{{ $index + 1 }}</td>
 												<td>{{n.asignatura}}</td>
 												<td>{{n.Q1}}</td>
 												<td>{{n.Q2}}</td>
-												<td>{{}}</td>
-												<td>{{}}</td>
-												<td>{{}}</td>
-												<td>{{}}</td>
-												<td>{{}}</td>
-												<td>{{}}</td>
-												<td>{{}}</td>
+												<td>{{n.promedioF}}</td>
+												<td>{{mejora}}</td>
+												<td>{{suple}}</td>
+												<td>{{remedial}}</td>
+												<td>{{gracia}}</td>
+												<td>{{promedioFinal}}</td>
+												<td>{{equivalencia}}</td>
 											</tr>
 										</tbody>
 									</table>

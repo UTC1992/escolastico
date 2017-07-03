@@ -187,9 +187,19 @@
 			$idCurso = $datos['idCurso'];
 			$paralelo = $datos['paralelo'];
 			$idEstu = $datos['idEstu'];
-			$asignatura = $datos['asignatura'];
+			
+			if($datos['asignatura'] != ''){
+				$asignatura = $datos['asignatura'];
+			} else {
+				$asignatura = '';
+			}
 
-			$result = $this->db->query("SELECT T1.asignatura, T1.Promedio as 'Q1', T2.Promedio as 'Q2'
+			$result = $this->db->query("SELECT 	T1.asignatura, T1.Promedio as 'Q1', T2.Promedio as 'Q2',
+												ROUND
+												(
+													(( T1.Promedio + T2.Promedio ) / 2) , 2
+												)
+												as 'promedioF'
 										FROM
 										(
 											SELECT
@@ -351,6 +361,26 @@
 			//return $result->row();
 			return $result;
 		}
+
+		public function getNotaSuple($datos = null)
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idEstu = $datos['idEstu'];
+
+			$result = $this->db->query("SELECT mejora_suple, nota_suple, remedial_suple, gracia_suple
+										FROM 
+											examenes_anuales, estudiante
+										WHERE
+											estudiante.id_estu = examenes_anuales.id_estu
+											AND examenes_anuales.anioinicio_suple = '" . $anioI . "'
+											AND examenes_anuales.aniofin_suple = '" . $anioF . "'
+											AND examenes_anuales.id_estu = '" . $idEstu . "'
+										;");
+
+			return $result;
+		}
+
 
 	}
 

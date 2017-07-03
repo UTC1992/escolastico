@@ -606,7 +606,7 @@
 							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
 							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
 							nota_exa, nota_suple, id_suple
-						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examenemes_anuales
+						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examenes_anuales
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
 						AND matricula.id_curs = '" . $cursoId . "'
 						AND parcial_1.quimestre_p1 = '1ero'
@@ -630,10 +630,10 @@
 						AND examen.quimestre_exa = '1ero'
 						AND examen.anioInicio_exa = '" . $anioI . "'
 						AND examen.anioFin_exa = '" . $anioF . "'
-						AND examenemes_anuales.id_estu = estudiante.id_estu
-						AND examenemes_anuales.anioInicio_suple = '" . $anioI . "'
-						AND examenemes_anuales.anioFin_suple = '" . $anioF . "'
-						AND examenemes_anuales.asignatura_suple = '" . $materia . "'
+						AND examenes_anuales.id_estu = estudiante.id_estu
+						AND examenes_anuales.anioInicio_suple = '" . $anioI . "'
+						AND examenes_anuales.anioFin_suple = '" . $anioF . "'
+						AND examenes_anuales.asignatura_suple = '" . $materia . "'
 						) T1
 						inner join
 						(
@@ -645,7 +645,7 @@
 								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
 								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
 								nota_exa, nota_suple
-						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examenemes_anuales
+						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examenes_anuales
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
 						AND matricula.id_curs = '" . $cursoId . "'
 						AND parcial_1.quimestre_p1 = '2do'
@@ -669,10 +669,10 @@
 						AND examen.quimestre_exa = '2do'
 						AND examen.anioInicio_exa = '" . $anioI . "'
 						AND examen.anioFin_exa = '" . $anioF . "'
-						AND examenemes_anuales.id_estu = estudiante.id_estu
-						AND examenemes_anuales.anioInicio_suple = '" . $anioI . "'
-						AND examenemes_anuales.anioFin_suple = '" . $anioF . "'
-						AND examenemes_anuales.asignatura_suple = '" . $materia . "'
+						AND examenes_anuales.id_estu = estudiante.id_estu
+						AND examenes_anuales.anioInicio_suple = '" . $anioI . "'
+						AND examenes_anuales.anioFin_suple = '" . $anioF . "'
+						AND examenes_anuales.asignatura_suple = '" . $materia . "'
 						) T2
 						;");
 			//return $result->row();
@@ -690,15 +690,15 @@
 			$result = $this->db->query("SELECT 
 												COUNT(*) as 'conteo'
 										 FROM 
-										 		estudiante, matricula, examenemes_anuales
+										 		estudiante, matricula, examenes_anuales
 										 WHERE 
 												matricula.id_curs = '" . $cursoId . "'
 												AND matricula.paralelo_matr = '" . $paralelo . "'
-												AND examenemes_anuales.anioInicio_suple = '" . $anioI . "'
-												AND examenemes_anuales.anioFin_suple = '" . $anioF . "'
-												AND examenemes_anuales.asignatura_suple = '" . $materia . "'
+												AND examenes_anuales.anioInicio_suple = '" . $anioI . "'
+												AND examenes_anuales.anioFin_suple = '" . $anioF . "'
+												AND examenes_anuales.asignatura_suple = '" . $materia . "'
 												AND matricula.id_estu = estudiante.id_estu
-												AND estudiante.id_estu = examenemes_anuales.id_estu 
+												AND estudiante.id_estu = examenes_anuales.id_estu 
 										;");
 			//return $result->row();
 			return $result;
@@ -715,14 +715,14 @@
 					'id_estu' 							=> $notas['id_estu']
 
 				);
-				return $this->db->insert('examenemes_anuales', $data);
+				return $this->db->insert('examenes_anuales', $data);
 			}
 			return false;
 		}
 
 		public function getNotasSupleEdit($id = '')
 		{
-			$result = $this->db->query("SELECT * FROM examenemes_anuales WHERE id_suple = '" . $id . "'");
+			$result = $this->db->query("SELECT * FROM examenes_anuales WHERE id_suple = '" . $id . "'");
 			//return $result->row();
 			return $result;
 		}
@@ -734,7 +734,7 @@
 					'nota_suple' 		=> $notasEdit['notaSuple']
 				);
 				$this->db->where('id_suple', $id);
-				return $this->db->update('examenemes_anuales', $data);
+				return $this->db->update('examenes_anuales', $data);
 			}
 			return false;
 		}

@@ -341,8 +341,10 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 
 	$scope.mensajeNotas = false;
 	$scope.notasParcial = [];
+	$scope.suple = '';
 	$scope.mostrarNotasFinales = function(idCurso, idEstu, asignatura){
 		var urlNotaFinalAsig = $('#urlNotasAnual').val();
+		$scope.suple = '';
         $http({
             method: "post",
             url: urlNotaFinalAsig,
@@ -354,24 +356,61 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			//console.log(response[0]);
+			
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
-				$scope.notasParcial.push(" ");
+				//$scope.notasParcial.push(response[0]);
 			} else {
-				$scope.mensajeNotas = false;
-				$scope.notasParcial.push(response[0]);
+				if (response.length > 0) {
+					//añadir un elemento en el interior de un array en un elemento JSON
+					//response[0].mejora = 'hola';
+					
+					obtenerNotaSupletorio($scope.anioI, $scope.anioF, idEstu, asignatura);
+					
+					$scope.mensajeNotas = false;
+					$scope.notasParcial.push(response[0]);
+					
+				}
 			}
-
 			llenarBoletin($scope.anioI, $scope.anioF, idEstu);
 
-            //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);
         });	
 	}
 
 	
+	function obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura){
+		var urlNotaSuple = $('#urlNotasSuple').val();
+        
+		$http({
+            method: "post",
+            url: urlNotaSuple,
+            data:   "&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&idEstu="+idEstu
+					+"&asignatura="+asignatura,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response[0]);
+			if(response.length == 0){
+
+			} else {
+				if (response.length > 0) {
+					//console.log(response[0].nota_suple);
+					//se asigna el valor a la variable suple de scope para mostrar en la tabla
+					$scope.mejora = response[0].mejora_suple;
+					$scope.suple = response[0].nota_suple;
+					$scope.remedial = response[0].remedial_suple;
+					$scope.gracia = response[0].gracia_suple;
+				}	
+			}
+        }, function (error) {
+                console.log(error);
+        });
+		
+		
+	}
 
 	$scope.printToCart = function(printSectionId) {
         var innerContents = document.getElementById(printSectionId).innerHTML;
