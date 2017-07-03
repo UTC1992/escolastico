@@ -43,7 +43,11 @@
 					'asignatura_p1' 					=> $notas['asignatura'],
 					'anioInicio_p1' 					=> $notas['anioInicio'],
 					'anioFin_p1' 						=> $notas['anioFin'],
-					'id_estu' 							=> $notas['id_estu']
+					'id_estu' 							=> $notas['id_estu'],
+					'faltas_jus_p1' 					=> $notas['faltasJus'],
+					'faltas_in_p1' 						=> $notas['faltasInjus'],
+					'dias_asis_p1' 						=> $notas['diasAsis'],
+					'comportamiento_p1' 				=> $notas['comporta']
 
 				);
 				return $this->db->insert('parcial_1', $data);
@@ -63,7 +67,11 @@
 					'asignatura_p2' 					=> $notas['asignatura'],
 					'anioInicio_p2' 					=> $notas['anioInicio'],
 					'anioFin_p2' 						=> $notas['anioFin'],
-					'id_estu' 							=> $notas['id_estu']
+					'id_estu' 							=> $notas['id_estu'],
+					'faltas_jus_p2' 					=> $notas['faltasJus'],
+					'faltas_in_p2' 						=> $notas['faltasInjus'],
+					'dias_asis_p2' 						=> $notas['diasAsis'],
+					'comportamiento_p2' 				=> $notas['comporta']
 
 				);
 				return $this->db->insert('parcial_2', $data);
@@ -83,7 +91,11 @@
 					'asignatura_p3' 					=> $notas['asignatura'],
 					'anioInicio_p3' 					=> $notas['anioInicio'],
 					'anioFin_p3' 						=> $notas['anioFin'],
-					'id_estu' 							=> $notas['id_estu']
+					'id_estu' 							=> $notas['id_estu'],
+					'faltas_jus_p3' 					=> $notas['faltasJus'],
+					'faltas_in_p3' 						=> $notas['faltasInjus'],
+					'dias_asis_p3' 						=> $notas['diasAsis'],
+					'comportamiento_p3' 				=> $notas['comporta']
 
 				);
 				return $this->db->insert('parcial_3', $data);
@@ -110,6 +122,10 @@
 												parametro2_p1 as 'parametro2', 
 												parametro3_p1 as 'parametro3', 
 												parametro4_p1 as 'parametro4',
+												faltas_jus_p1 as 'faltasJus',
+												faltas_in_p1 as 'faltasInjus',
+												dias_asis_p1 as 'diasAsis',
+												comportamiento_p1 as 'comporta',
 												(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria',
 												ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio'
 										 FROM 
@@ -147,6 +163,10 @@
 												parametro2_p2 as 'parametro2', 
 												parametro3_p2 as 'parametro3', 
 												parametro4_p2 as 'parametro4',
+												faltas_jus_p2 as 'faltasJus',
+												faltas_in_p2 as 'faltasInjus',
+												dias_asis_p2 as 'diasAsis',
+												comportamiento_p2 as 'comporta',
 												(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria',
 												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio'
 										 FROM 
@@ -184,6 +204,10 @@
 												parametro2_p3 as 'parametro2', 
 												parametro3_p3 as 'parametro3', 
 												parametro4_p3 as 'parametro4',
+												faltas_jus_p3 as 'faltasJus',
+												faltas_in_p3 as 'faltasInjus',
+												dias_asis_p3 as 'diasAsis',
+												comportamiento_p3 as 'comporta',
 												(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria',
 												ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio'
 										 FROM 
@@ -290,7 +314,11 @@
 											parametro1_p1 as 'parametro1', 
 											parametro2_p1 as 'parametro2', 
 											parametro3_p1 as 'parametro3', 
-											parametro4_p1 as 'parametro4'
+											parametro4_p1 as 'parametro4',
+											faltas_jus_p1 as 'faltasJus',
+											faltas_in_p1 as 'faltasInjus',
+											dias_asis_p1 as 'diasAsis',
+											comportamiento_p1 as 'comporta'
 										 FROM parcial_1 WHERE id_p1 = '" . $id . "'");
 			//return $result->row();
 			return $result;
@@ -303,7 +331,11 @@
 											parametro1_p2 as 'parametro1', 
 											parametro2_p2 as 'parametro2', 
 											parametro3_p2 as 'parametro3', 
-											parametro4_p2 as 'parametro4'
+											parametro4_p2 as 'parametro4',
+											faltas_jus_p2 as 'faltasJus',
+											faltas_in_p2 as 'faltasInjus',
+											dias_asis_p2 as 'diasAsis',
+											comportamiento_p2 as 'comporta'
 										 FROM parcial_2 WHERE id_p2 = '" . $id . "'");
 			//return $result->row();
 			return $result;
@@ -316,7 +348,11 @@
 											parametro1_p3 as 'parametro1', 
 											parametro2_p3 as 'parametro2', 
 											parametro3_p3 as 'parametro3', 
-											parametro4_p3 as 'parametro4'
+											parametro4_p3 as 'parametro4',
+											faltas_jus_p3 as 'faltasJus',
+											faltas_in_p3 as 'faltasInjus',
+											dias_asis_p3 as 'diasAsis',
+											comportamiento_p3 as 'comporta'
 										FROM parcial_3 WHERE id_p3 = '" . $id . "'");
 			//return $result->row();
 			return $result;
@@ -329,7 +365,11 @@
 					'parametro1_p1' 		=> $parcial['parametro1'],
 					'parametro2_p1' 		=> $parcial['parametro2'],
 					'parametro3_p1' 		=> $parcial['parametro3'],
-					'parametro4_p1' 		=> $parcial['parametro4']
+					'parametro4_p1' 		=> $parcial['parametro4'],
+					'faltas_jus_p1' 		=> $parcial['faltasJus'],
+					'faltas_in_p1'	 		=> $parcial['faltasInjus'],
+					'dias_asis_p1' 			=> $parcial['diasAsis'],
+					'comportamiento_p1' 	=> $parcial['comporta']
 				);
 				$this->db->where('id_p1', $id);
 				return $this->db->update('parcial_1', $data);
@@ -344,7 +384,11 @@
 					'parametro1_p2' 		=> $parcial['parametro1'],
 					'parametro2_p2' 		=> $parcial['parametro2'],
 					'parametro3_p2' 		=> $parcial['parametro3'],
-					'parametro4_p2' 		=> $parcial['parametro4']
+					'parametro4_p2' 		=> $parcial['parametro4'],
+					'faltas_jus_p2' 		=> $parcial['faltasJus'],
+					'faltas_in_p2'	 		=> $parcial['faltasInjus'],
+					'dias_asis_p2' 			=> $parcial['diasAsis'],
+					'comportamiento_p2' 	=> $parcial['comporta']
 				);
 				$this->db->where('id_p2', $id);
 				return $this->db->update('parcial_2', $data);
@@ -359,7 +403,11 @@
 					'parametro1_p3' 		=> $parcial['parametro1'],
 					'parametro2_p3' 		=> $parcial['parametro2'],
 					'parametro3_p3' 		=> $parcial['parametro3'],
-					'parametro4_p3' 		=> $parcial['parametro4']
+					'parametro4_p3' 		=> $parcial['parametro4'],
+					'faltas_jus_p3' 		=> $parcial['faltasJus'],
+					'faltas_in_p3'	 		=> $parcial['faltasInjus'],
+					'dias_asis_p3' 			=> $parcial['diasAsis'],
+					'comportamiento_p3' 	=> $parcial['comporta']
 				);
 				$this->db->where('id_p3', $id);
 				return $this->db->update('parcial_3', $data);

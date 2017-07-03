@@ -23,6 +23,9 @@
 		<input type="hidden" id="urlNumRegistros3" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar3">
 	<!--urls-->
 
+	<!--buscar asignaturas segun id del Curso-->
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+		
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
@@ -50,7 +53,7 @@
 						<tr>
 							<td><label>Curso:</label></td>
 							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" required>
+								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
 									<option value="">Seleccione</option>
 									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
 								</select>
@@ -76,7 +79,8 @@
 							<td>
 								<select class="form-control" style="width: 350px;" ng-model="materia" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="a in asignatura" style="font-size: 10pt;" value="{{a.nombre_asig}}">{{a.nombre_asig}}</option>
+									<option ng-repeat="a in asignatura | orderBy: 'asig'" 
+									style="font-size: 10pt;" value="{{a.asig}}">{{a.asig}}</option>
 								</select>
 							</td>
 						</tr>
@@ -116,10 +120,10 @@
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
             <form name="fIngresoNotas" ng-submit="mostrarDatos()">
-				<table class="table table-bordered table-striped table-sm">
+				<table class="table table-bordered table-striped table-sm" style="font-size: 10pt;">
 				<thead class="thead-inverse">
 					<tr ng-show="mensajeNumRegistros">
-						<td colspan="6" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>La informamos que las notas ya se registraron, puede consultarlo 
@@ -129,7 +133,7 @@
 						</td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="6" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -138,27 +142,27 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="6"><center>ALUMNOS</center></th>
+					<th colspan="10"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Parcial:</strong></label><label> {{ParcialInfo}}</label>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Materia:</strong></label><label> {{MateriaInfo}}</label>
 						</td>
-						<td colspan="2">
+						<td colspan="4">
 							<label style="margin-right: 5px;">
 							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
@@ -168,32 +172,45 @@
 						<th></th>
 						<th></th>
 						<th colspan="4">
-							<center> Parámetros </center>
+							<center> PARÁMETROS </center>
 						</th>
+						<th colspan="2">
+							<center> FALTAS </center>
+						</th>
+						<th></th>
+						<th></th>
 					</tr>
 					<tr>
-						<th rowspan="2">N°</th>
-						<th rowspan="2" style="width: 300px;">Estudiantes</th>
+						<th>N°</th>
+						<th style="width: 200px;">Estudiantes</th>
 						<th>Deberes</th>
 						<th>Lecciones orales o escritas</th>
 						<th>Trabajos grupales</th>
 						<th>Trabajos de investigación</th>
+						<th>Falt. Just.</th>
+						<th>Falt. Injus.</th>
+						<th>Dias Asis.</th>
+						<th>Comportamiento</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
 					<tr ng-repeat="estu in estudiantesMatriculados">
 						<td>{{$index + 1}}</td>
 						<td>
-							<label style="width: 400px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
+							<label style="width: 200px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="6" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -202,14 +219,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6" >
+						<td colspan="10" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="6" >
+						<td colspan="10" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -218,7 +235,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6">
+						<td colspan="10">
 							<center>
 								<button ng-disabled="ingresarDesactivar" type="submit" class="btn btn-outline-warning">Enviar Datos</button>
 							</center>

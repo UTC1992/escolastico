@@ -2,7 +2,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	listarAnios();
 	listarCursos();
 	listarParalelos();
-	listarAsginaturas();
+	//listarAsginaturas();
 	listarAniosLectivos();
 
 	//listar años desde 1900 hasta 2100
@@ -65,6 +65,23 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
             $scope.mensaje = "No existen datos por el momento.";
         }
     }
+
+////////////////////BUSCAR ASIGNATURA DEL CURSO SELECCIONADO
+
+	$scope.cargarAsignaturas = function(){
+		var urlAsig = $('#urlAsignaturasCurso').val();
+		$http({
+            method: "post",
+            url: urlAsig,
+            data:   "idCurso="+$scope.cursoId,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			$scope.asignatura = response;
+        }, function (error) {
+                console.log(error);
+        });
+	}
 
 //////////////////////////////////////////////////////////////////////////
 	$scope.mensajeNumRegistros = false;
@@ -188,7 +205,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 
 	$scope.mostrarDatos = function(){
 		var notas = document.getElementsByName('notaE');
-		for(var i = 0; i < notas.length; i+=5){
+		for(var i = 0; i < notas.length; i+=9){
 			/*alert(notas[i].value + " - "+ notas[i+1].value + " - "+ notas[i+2].value+ " - "+ notas[i+3].value + "-"+ notas[i+4].value);
 			*/
 			var idEstu = notas[i].value;
@@ -196,33 +213,41 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			var lecciones = notas[i+2].value;
 			var trabajos = notas[i+3].value;
 			var investigacion = notas[i+4].value;
+			var faltasJus = notas[i+5].value;
+			var faltasInjus = notas[i+6].value;
+			var diasAsis = notas[i+7].value;
+			var comporta = notas[i+8].value;
+
+			//alert(notas[i+8].value);
+
 			var parcial = $scope.parcial+"";
 
 			switch (parcial) {
 			case '1ero':
 				$scope.getUrl = $('#urlIngresarNotasParcial1').val();
-				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl);
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl,faltasJus, faltasInjus, diasAsis, comporta);
 				break;
 			case '2do':
 				$scope.getUrl = $('#urlIngresarNotasParcial2').val();
-				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl);
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl,faltasJus, faltasInjus, diasAsis, comporta);
 				break;
 			case '3ero':
 				$scope.getUrl = $('#urlIngresarNotasParcial3').val();
-				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl);
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl, faltasJus, faltasInjus, diasAsis, comporta);
 				break;
 		
 			default:
 				alert("No hay parcial");
 				break;
 			}
+			
 		}
 	}
 
 	//desactivar boton de inrgeso
 	$scope.ingresarDesactivar = false;
 	$scope.mensajeIngreso = false;
-	function ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, urlIngresoNotas){
+	function ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, urlIngresoNotas,faltasJus, faltasInjus, diasAsis, comporta){
 		//alert(idEstu + " - "+ deberes + " - "+ lecciones+ " - " + trabajos + "-"+ investigacion);
 		$scope.mostrarCargando = true;
 		//desaparecer el boton de envio de datos
@@ -239,7 +264,11 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 					+"&asignatura="+$scope.MateriaInfo
 					+"&anioInicio="+$scope.anioIInfo
 					+"&anioFin="+$scope.anioFInfo
-					+"&id_estu="+idEstu,
+					+"&id_estu="+idEstu
+					+"&faltasJus="+parseInt(faltasJus)
+					+"&faltasInjus="+parseInt(faltasInjus)
+					+"&diasAsis="+parseInt(diasAsis)
+					+"&comporta="+comporta,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
 				$scope.estudiantesMatriculados = [];
@@ -361,6 +390,11 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			$scope.leccionesP 		= 	response[0]['parametro2'];
 			$scope.trabajosP 		= 	response[0]['parametro3'];
 			$scope.investigacionP 	= 	response[0]['parametro4'];
+			
+			$scope.faltasJus 	= 	response[0]['faltasJus'];
+			$scope.faltasInjus 	= 	response[0]['faltasInjus'];
+			$scope.diasAsis 	= 	response[0]['diasAsis'];
+			$scope.comporta 	= 	response[0]['comporta'];
         }, function (error) {
                 console.log(error);
         });
@@ -400,7 +434,11 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
             data: 	"parametro1="+$scope.deberesP
 					+"&parametro2="+$scope.leccionesP
 					+"&parametro3="+$scope.trabajosP
-					+"&parametro4="+$scope.investigacionP,
+					+"&parametro4="+$scope.investigacionP
+					+"&faltasJus="+$scope.faltasJus
+					+"&faltasInjus="+$scope.faltasInjus
+					+"&diasAsis="+$scope.diasAsis
+					+"&comporta="+$scope.comporta,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             mostrarDatosActualizados();

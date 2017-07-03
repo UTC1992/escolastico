@@ -18,15 +18,27 @@
 			<li class="nav-item">
 				<ul class="flex-column" style="margin-bottom: 10px;">
 					<li class="nav-item">
-						<a class="nav-link btn-outline-warning" href="#/ingreso_notas" >Notas parciales</a>
+						<a class="nav-link btn-outline-warning" href="#/ingreso_notas" >Notas Parciales</a>
 						<input id="urlIngresarNotas" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotas">
 					</li>
 					<li class="nav-item">
-						<a class="nav-link btn-outline-warning" href="#/ingresar_examenes">Exámenes quimestrales</a>
+						<a class="nav-link btn-outline-warning" href="#/ingresar_examenes">Exámen Quimestral</a>
 						<input id="urlIngresarExamenes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotasExa">
 					</li>
 					<li class="nav-item">
-						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámenes supletorio</a>
+						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Mejora</a>
+						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Supletorio</a>
+						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Remedial</a>
+						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Gracia</a>
 						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
 					</li>
 				</ul>
@@ -45,7 +57,19 @@
 						<input id="urlMostrarExa" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultarExa">
 					</li>
 					<li class="nav-item">
-						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámenes supletorio</a>
+						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Mejora</a>
+						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Supletorio</a>
+						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Remedial</a>
+						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Gracia</a>
 						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
 					</li>
 				</ul>

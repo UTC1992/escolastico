@@ -35,6 +35,10 @@
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
 
+	<!--buscar asignaturas segun id del Curso-->
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+	
+
 	<!--head -->
 	<div class="container">
 		<center><h2>Notas parciales</h2></center>
@@ -58,7 +62,8 @@
 						<tr>
 							<td><label>Curso:</label></td>
 							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" required>
+								<select class="form-control" style="width: 200px;" ng-model="cursoId" 
+								ng-change="cargarAsignaturas()" required>
 									<option value="">Seleccione</option>
 									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
 								</select>
@@ -84,7 +89,8 @@
 							<td>
 								<select class="form-control" style="width: 350px;" ng-model="materia" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="a in asignatura" style="font-size: 10pt;" value="{{a.nombre_asig}}">{{a.nombre_asig}}</option>
+									<option ng-repeat="a in asignatura | orderBy: 'asig'" 
+									style="font-size: 10pt;" value="{{a.asig}}">{{a.asig}}</option>
 								</select>
 							</td>
 						</tr>
@@ -124,11 +130,11 @@
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
             <form ng-submit="">
-				<table class="table table-bordered table-striped table-sm">
+				<table class="table table-bordered table-striped table-sm" style="font-size: 10pt;">
 					
 				<thead class="thead-inverse">
 					<tr ng-show="mensaje">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -137,74 +143,73 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="10"><center>ALUMNOS</center></th>
+					<th colspan="11"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Parcial:</strong></label><label> {{ParcialInfo}}</label>
 						</td>
-						<td></td>
-						<td></td>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Materia:</strong></label><label> {{MateriaInfo}}</label>
 						</td>
-						<td colspan="3">
+						<td colspan="4">
 							<label style="margin-right: 5px;">
 							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
-						<td></td>
-						<td></td>
 					</tr>
 
 					<tr>
 						<th></th>
 						<th></th>
-						<th></th>
 						<th colspan="4">
-							<center> Parámetros </center>
+							<center> PARÁMETROS </center>
 						</th>
 						<th colspan="2">
-							<center>Totalizados</center>
+							<center> FALTAS </center>
 						</th>
+						<th></th>
+						<th></th>
 						<th></th>
 					</tr>
 					<tr>
-						<th rowspan="2">N°</th>
-						<th rowspan="2" style="width: 300px;">Estudiantes</th>
-						<th>Materia</th>
+						<th>N°</th>
+						<th style="width: 200px;">Estudiantes</th>
 						<th>Deberes</th>
 						<th>Lecciones orales o escritas</th>
 						<th>Trabajos grupales</th>
 						<th>Trabajos de investigación</th>
-						<th>Sumatoria</th>
-						<th>Promedio</th>
-						<th>Acciones</th>
+						<th>Falt. Just.</th>
+						<th>Falt. Injus.</th>
+						<th>Dias Asis.</th>
+						<th>Comportamiento</th>
+						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="estu in estudiantesInformes">
 						<td>{{$index + 1}}</td>
 						<td>
-							<label style="width: 400px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
+							<label style="width: 200px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 						</td>
-						<td>{{estu.asignatura}}</td>
 						<td>{{estu.parametro1}}</td>
 						<td>{{estu.parametro2}}</td>
 						<td>{{estu.parametro3}}</td>
 						<td>{{estu.parametro4}}</td>
-						<td>{{estu.sumatoria}}</td>
-						<td>{{estu.promedio}}</td>
+						<td>{{estu.faltasJus}}</td>
+						<td>{{estu.faltasInjus}}</td>
+						<td>{{estu.diasAsis}}</td>
+						<td>{{estu.comporta}}</td>
 						<td>
 							<button style="width: 100px;" class="btn btn-outline-warning editar" 
 							ng-click="mostrarNotasEditar($event)" 
@@ -214,7 +219,7 @@
 						</td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -223,14 +228,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -344,6 +349,75 @@
 											</div>
 											<div class="col-4" style="color: crimson" 
 												ng-show="fParcialEditar.investigacionP.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Faltas Justificadas:</label>
+											<div class="col-4">
+												<input class="form-control" name="faltasJus" id="faltasJus" 
+												ng-model="faltasJus"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.faltasJus.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.faltasJus.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Faltas Injustificadas:</label>
+											<div class="col-4">
+												<input class="form-control" name="faltasInjus" id="faltasInjus" 
+												ng-model="faltasInjus"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.faltasInjus.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.faltasInjus.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Días asistidos:</label>
+											<div class="col-4">
+												<input class="form-control" name="diasAsis" id="diasAsis" 
+												ng-model="diasAsis"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.diasAsis.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.diasAsis.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Comportamiento:</label>
+											<div class="col-4">
+												<input class="form-control" name="comporta" id="comporta" 
+												ng-model="comporta"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.comporta.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.comporta.$invalid">
 												* Campo Obligatorio.
 											</div>
 											
