@@ -3,7 +3,7 @@ app.controller('ingresoExaSupleCtrl', function($scope, $http) {
 	listarAnios();
 	listarCursos();
 	listarParalelos();
-	listarAsginaturas();
+	//listarAsginaturas();
 	listarAniosLectivos();
 
 	//listar años desde 1900 hasta 2100
@@ -404,5 +404,19 @@ app.controller('ingresoExaSupleCtrl', function($scope, $http) {
         });
 	}
 	
+	$scope.cargarAsignaturas = function(){
+		var urlAsig = $('#urlAsignaturasCurso').val();
+		$http({
+            method: "post",
+            url: urlAsig,
+            data:   "idCurso="+$scope.cursoId,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			$scope.asignatura = response;
+        }, function (error) {
+                console.log(error);
+        });
+	}
 
 });

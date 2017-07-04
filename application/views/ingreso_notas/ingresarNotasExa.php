@@ -22,6 +22,10 @@
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
+
+	<!--buscar asignaturas segun id del Curso-->
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+	
 	
 	<!--head -->
 	<div class="container">
@@ -46,7 +50,7 @@
 						<tr>
 							<td><label>Curso:</label></td>
 							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" required>
+								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
 									<option value="">Seleccione</option>
 									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
 								</select>
@@ -72,7 +76,8 @@
 							<td>
 								<select class="form-control" style="width: 350px;" ng-model="materia" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="a in asignatura" style="font-size: 10pt;" value="{{a.nombre_asig}}">{{a.nombre_asig}}</option>
+									<option ng-repeat="a in asignatura | orderBy: 'asig'" 
+									style="font-size: 10pt;" value="{{a.asig}}">{{a.asig}}</option>
 								</select>
 							</td>
 						</tr>

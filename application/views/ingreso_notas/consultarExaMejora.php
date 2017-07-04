@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="notasIngresoExaCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaMejoraCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -15,14 +15,15 @@
 		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
 		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
 
+		<input type="hidden" id="urlNotasTotales" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotalesSupletorio">
+		
 		<!--MOSTRAR INFORMES DE NOTAS-->
-		<input type="hidden" id="urlInformes1" value="<?= base_url()?>ingresar_notas_controller/getDataJsonConsultaExa">
 
 		<!--MOSTRAR NOTAS DE CADA ESTUDIANTES POR PARCIAL PARA EDITAR-->
-		<input type="hidden" id="urlNotasEdit1" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditExa">
+		<input type="hidden" id="urlNotasSupleEdit" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditSuple">
 
 		<!--URL PARA ACTUALIZAR LAS NOTAS DE UN PARCIAL-->
-		<input type="hidden" id="urlActualizarExa" value="<?= base_url()?>ingresar_notas_controller/actualizarExa/">
+		<input type="hidden" id="urlActualizarSuple" value="<?= base_url()?>ingresar_notas_controller/actualizarSuple/">
 	<!--urls-->
 
 	<!--url para las paginas-->
@@ -34,7 +35,7 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Exámenes Quimestrales</h2></center>
+		<center><h2>Exámenes de Mejora</h2></center>
 		<center><h3>Consulta y edición</h3></center>
 	</div>
 	<br>
@@ -42,7 +43,7 @@
 
 	<!--datos consultar-->
 		<div class="table-responsive">
-			<form ng-submit="mostrarDatosInformes()">
+			<form ng-submit="consultaSupletorios()">
 				<table class="table table-striped table-bordered table-sm">
 					<thead class="thead-inverse">
 						<tr>
@@ -87,19 +88,6 @@
 							</td>
 						</tr>
 						<tr>
-							</td>
-							<td><label>Quimestre:</label></td>
-							<td>
-								<select class="form-control" style="width: 200px;" ng-model="quimestre" required>
-									<option value="">Seleccione</option>
-									<option value="1ero">1ero</option>
-									<option value="2do">2do</option>
-								</select>
-							</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
 							<td colspan="4">
 								<center>
 									<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
@@ -119,7 +107,7 @@
 					
 				<thead class="thead-inverse">
 					<tr ng-show="mensaje">
-						<td colspan="10" >
+						<td colspan="6" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -128,7 +116,7 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="10"><center>ALUMNOS</center></th>
+					<th colspan="6"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
 						<td colspan="2"><label style="margin-right: 5px;">
@@ -138,8 +126,6 @@
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
 						<td colspan="2">
-							<label style="margin-right: 5px;">
-							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
 					</tr>
 					<tr>
@@ -153,23 +139,33 @@
 						</td>
 					</tr>
 					<tr>
-						<th colspan="2">N°</th>
+						<th>N°</th>
 						<th colspan="2">Estudiantes</th>
-						<th>Exámen Quimestral</th>
+						<th>Nota final</th>
+						<th>Exámen Supletorio</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="estu in estudiantesInformes">
-						<td colspan="2">{{$index + 1}}</td>
+					<tr ng-repeat="estu in estudiantesMatriculados | orderBy: 'apellidos_estu'">
+						<td>{{$index + 1}}</td>
 						<td colspan="2">
-							<label style="width: 400px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
+							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
+							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
-						<td>{{estu.nota_exa}}</td>
+						<td>
+							<label>{{estu.NotaF}}</label>
+						</td>
+						<td>
+							<!--
+								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
+								-->
+							{{estu.notaSuple}}
+						</td>
 						<td>
 							<button style="width: 100px;" class="btn btn-outline-warning editar" 
-							ng-click="mostrarNotasEditar($event)" 
-							id="{{estu.id_exa}}" data-toggle="modal" data-target="#modalEditar">
+							ng-click="mostrarNotasSupleEditar($event)" 
+							id="{{estu.id_suple}}" data-toggle="modal" data-target="#modalEditar">
 								Editar
 							</button>
 						</td>
@@ -238,20 +234,20 @@
 								</div>
 								<form name="fExaEditar" ng-submit="procesoActualizar()" class="form-horizontal">
 									
-									<input type="hidden" id="idExaEdit" value="{{idExa}}">
+									<input type="hidden" id="idSupleEdit" value="{{idSuple}}">
 
 									<div class="form-group row">
-											<label class="col-3 col-form-label">Nota de Exámen:</label>
+											<label class="col-3 col-form-label">Nota de Exámen supletorio:</label>
 											<div class="col-4">
-												<input class="form-control" name="notaExa" id="notaExa" ng-model="notaExa"
+												<input class="form-control" name="notaSuple" id="notaSuple" ng-model="notaSuple"
 												type="text" placeholder="00.00" required>
 											</div>
 											<div class="col-4" style="color: #28B463" 
-												ng-show="fExaEditar.notaExa.$valid">
+												ng-show="fExaEditar.notaSuple.$valid">
 												<strong> Correcto.</strong>
 											</div>
 											<div class="col-4" style="color: crimson" 
-												ng-show="fExaEditar.notaExa.$invalid">
+												ng-show="fExaEditar.notaSuple.$invalid">
 												* Campo Obligatorio.
 											</div>
 											

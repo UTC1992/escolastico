@@ -29,6 +29,10 @@
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
+
+	<!--buscar asignaturas segun id del Curso-->
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+	
 	
 	<!--head -->
 	<div class="container">
@@ -53,7 +57,7 @@
 						<tr>
 							<td><label>Curso:</label></td>
 							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" required>
+								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
 									<option value="">Seleccione</option>
 									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
 								</select>
@@ -79,7 +83,8 @@
 							<td>
 								<select class="form-control" style="width: 350px;" ng-model="materia" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="a in asignatura" style="font-size: 10pt;" value="{{a.nombre_asig}}">{{a.nombre_asig}}</option>
+									<option ng-repeat="a in asignatura | orderBy: 'asig'" 
+									style="font-size: 10pt;" value="{{a.asig}}">{{a.asig}}</option>
 								</select>
 							</td>
 						</tr>
@@ -143,7 +148,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="estu in estudiantesMatriculados">
+					<tr ng-repeat="estu in estudiantesMatriculados | orderBy: 'apellidos_estu'">
 						<td>{{$index + 1}}</td>
 						<td colspan="2">
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
@@ -153,7 +158,10 @@
 							<label>{{estu.NotaF}}</label>
 						</td>
 						<td>
-							<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
+							<!--
+								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
+								-->
+							{{estu.notaSuple}}
 						</td>
 						<td>
 							<button style="width: 100px;" class="btn btn-outline-warning editar" 

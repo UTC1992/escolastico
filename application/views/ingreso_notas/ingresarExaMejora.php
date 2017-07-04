@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaSupleCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaMejoraCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -24,13 +24,14 @@
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
-	
+
 	<!--buscar asignaturas segun id del Curso-->
 		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
 	
+	
 	<!--head -->
 	<div class="container">
-		<center><h2>Exámenes de Supletorio</h2></center>
+		<center><h2>Exámenes de Mejora</h2></center>
 		<center><h3>Registro</h3></center>
 	</div>
 	<br>

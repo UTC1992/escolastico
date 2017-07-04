@@ -368,14 +368,14 @@
 			$anioF = $datos['anioF'];
 			$idEstu = $datos['idEstu'];
 
-			$result = $this->db->query("SELECT mejora_suple, nota_suple, remedial_suple, gracia_suple
+			$result = $this->db->query("SELECT nota_suple
 										FROM 
-											examenes_anuales, estudiante
+											examen_suple, estudiante
 										WHERE
-											estudiante.id_estu = examenes_anuales.id_estu
-											AND examenes_anuales.anioinicio_suple = '" . $anioI . "'
-											AND examenes_anuales.aniofin_suple = '" . $anioF . "'
-											AND examenes_anuales.id_estu = '" . $idEstu . "'
+											estudiante.id_estu = examen_suple.id_estu
+											AND examen_suple.anioinicio_suple = '" . $anioI . "'
+											AND examen_suple.aniofin_suple = '" . $anioF . "'
+											AND examen_suple.id_estu = '" . $idEstu . "'
 										;");
 
 			return $result;

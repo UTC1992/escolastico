@@ -399,10 +399,8 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 				if (response.length > 0) {
 					//console.log(response[0].nota_suple);
 					//se asigna el valor a la variable suple de scope para mostrar en la tabla
-					$scope.mejora = response[0].mejora_suple;
+					
 					$scope.suple = response[0].nota_suple;
-					$scope.remedial = response[0].remedial_suple;
-					$scope.gracia = response[0].gracia_suple;
 				}	
 			}
         }, function (error) {

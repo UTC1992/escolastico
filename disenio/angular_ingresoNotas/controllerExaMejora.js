@@ -1,4 +1,4 @@
-app.controller('notasIngresoExaCtrl', function($scope, $http) {
+app.controller('ingresoExaMejoraCtrl', function($scope, $http) {
 
 	listarAnios();
 	listarCursos();
@@ -70,18 +70,18 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
 //////////////////////////////////////////////////////////////////////////
 	$scope.mensajeNumRegistros = false;
 	$scope.verificarRegistro = function(){
-
+		
 		var anioslectivos = $scope.aniosL+"";
 		var vectorAL = anioslectivos.split('-');
 		$scope.anioI = vectorAL[0];
 		$scope.anioF = vectorAL[1];
 		$scope.mensajeIngreso = false;
 		//var parcial = $scope.quimestre+"";
-		$scope.getUrl = $('#urlNumRegistros1').val();
-		conntarRegistros($scope.getUrl);
+		$scope.getUrl = $('#urlNumRegistrosSuple').val();
+		contarRegistros($scope.getUrl);
 	}
 
-	function conntarRegistros(url){
+	function contarRegistros(url){
 		$http({
             method: "post",
             url: url,
@@ -97,7 +97,7 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
 			//alert(numNotas);
 			if(numNotas == 0){
 				$scope.mensajeNumRegistros = false;
-				mostrarEstudiantes();
+				consultarEstudiantes();
 			} else {
 				limpiarVariables();
 				$scope.mensajeNumRegistros = true;
@@ -110,10 +110,12 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
         });
 	}
 
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////CONSULTAR ESTUDIANTES CON NOTAS FINALES////////////////////////////
 	$scope.mensaje = false;
-	function mostrarEstudiantes(){
-		$scope.mensajeIngreso = false;
+	$scope.estudiantesMatriculados = [];
+	function consultarEstudiantes(){
+		$scope.estudiantesMatriculados = [];
+		array = [];
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
         $http({
             method: "post",
@@ -127,16 +129,23 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
 			if(response.length == 0){
 				$scope.mensaje = true;
 				limpiarVariables();
-				$scope.estudiantesMatriculados = response;
+				$scope.estudiantesMatriculados = [];
+				array = [];
 				$scope.ingresarDesactivar = false;
 				
 			} else {
+				for (var i = 0; i < response.length; i++) {
+					var cedula = response[i]['cedula_estu'];
+					consultarNotasFinales(cedula);
+				}
 				$scope.mensaje = false;
 				llenarDatosInformativos($scope.cursoId, $scope.paralelo, $scope.anioI, 
 				$scope.anioF, $scope.materia, $scope.parcial, $scope.quimestre);
-				$scope.estudiantesMatriculados = response;
+				$scope.estudiantesMatriculados = array;
 				//desaparecer el boton de envio de datos
 				$scope.ingresarDesactivar = false;
+				//mostrar array lleno de datos
+				console.log($scope.estudiantesMatriculados);
 			}
             
             //$scope.mensajeInsertC = false;
@@ -145,6 +154,43 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
         });
 	}
 
+	var array = [];
+	function consultarNotasFinales(cedula){
+		var url = $('#urlNotasTotales').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoId="+$scope.cursoId
+                    +"&paralelo="+$scope.paralelo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&materia="+$scope.materia
+					+"&quimestre="+$scope.quimestre
+					+"&cedula="+cedula,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			if(response.length == 0){
+				$scope.mensaje = true;
+				limpiarVariables();
+				$scope.ingresarDesactivar = false;
+				$scope.estudiantesMatriculados = [];
+				array = [];
+				
+			} else {
+				if (response[0]['NotaF'] < 7) {
+					array.push(response[0]);
+				}
+				//array.push(response[0]);
+			}
+            //$scope.mensajeInsertC = false;
+        }, function (error) {
+                console.log(error);
+        });
+
+	}
+
+/////////////////////////////////////////////////////////////////////////
+	
 	function llenarDatosInformativos(cursoId, paralelo, anioI, anioF, materia, parcial, quimestre){
 		//$scope.CursoInfo = cursoId;
 		consultarNombreCurso(cursoId);
@@ -176,26 +222,25 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
 			/*alert(notas[i].value + " - "+ notas[i+1].value + " - "+ notas[i+2].value+ " - "+ notas[i+3].value + "-"+ notas[i+4].value);
 			*/
 			var idEstu = notas[i].value;
-			var examenQuimestral = notas[i+1].value;
-			$scope.getUrl = $('#urlIngresarNotasExamen').val();
-			ingresarNotasExa(idEstu, examenQuimestral, $scope.getUrl);
+			var notaSuple = notas[i+1].value;
+			$scope.getUrl = $('#urlIngresarSupletorio').val();
+			//alert($scope.getUrl+"-"+idEstu + "-" + notaSuple);
+			ingresarNotasExa(idEstu, notaSuple, $scope.getUrl);
 		}
 	}
 
 	//desactivar boton de inrgeso
 	$scope.ingresarDesactivar = false;
 	$scope.mensajeIngreso = false;
-	function ingresarNotasExa(idEstu, examenQuimestral, urlIngresoNotasExa){
-		//alert(idEstu + " - "+ deberes + " - "+ lecciones+ " - " + trabajos + "-"+ investigacion);
+	function ingresarNotasExa(idEstu, notaSuple, urlIngresoExaSuple){
 		$scope.mostrarCargando = true;
 		//desaparecer el boton de envio de datos
 		$scope.ingresarDesactivar = true;
 		//alert($scope.getUrl);
 		$http({
             method: "post",
-            url: urlIngresoNotasExa,
-            data:   "examen="+examenQuimestral
-					+"&quimestre="+$scope.QuimestreInfo
+            url: urlIngresoExaSuple,
+            data:   "examen="+notaSuple
 					+"&asignatura="+$scope.MateriaInfo
 					+"&anioInicio="+$scope.anioIInfo
 					+"&anioFin="+$scope.anioFInfo
@@ -216,40 +261,52 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
 	/**
 	 * INFORMES ==========================================================0
 	 */
-	$scope.mostrarDatosInformes = function(){
+	///////////////////////////////CONSULTAR ESTUDIANTES CON NOTAS FINALES////////////////////////////
+	$scope.consultaSupletorios = function(){
 		var anioslectivos = $scope.aniosL+"";
 		var vectorAL = anioslectivos.split('-');
 		$scope.anioI = vectorAL[0];
 		$scope.anioF = vectorAL[1];
-
-		$scope.mensajeIngreso = false;
-		var parcial = $scope.parcial+"";
-		$scope.getUrl = $('#urlInformes1').val();
-		consultarExamenes($scope.getUrl);
+		consultarEstudiantesSuple();
 	}
-
-	function consultarExamenes(urlInforme){
-		$scope.mensajeIngreso = false;
+	
+	$scope.mensaje = false;
+	var array = [];
+	$scope.estudiantesMatriculados = [];
+	function consultarEstudiantesSuple(){
+		$scope.estudiantesMatriculados = [];
+		array = [];
+		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
         $http({
             method: "post",
-            url: urlInforme,
+            url: $scope.getUrl,
             data:   "cursoId="+$scope.cursoId
                     +"&paralelo="+$scope.paralelo
                     +"&anioI="+$scope.anioI
-                    +"&anioF="+$scope.anioF
-					+"&materia="+$scope.materia
-					+"&quimestre="+$scope.quimestre,
+                    +"&anioF="+$scope.anioF,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
 			if(response.length == 0){
 				$scope.mensaje = true;
 				limpiarVariables();
-				$scope.estudiantesInformes = response;
+				$scope.estudiantesMatriculados = [];
+				array = [];
+				$scope.ingresarDesactivar = false;
+				
 			} else {
+				for (var i = 0; i < response.length; i++) {
+					var cedula = response[i]['cedula_estu'];
+					consultarNotasFinalesSuple(cedula);
+				}
 				$scope.mensaje = false;
 				llenarDatosInformativos($scope.cursoId, $scope.paralelo, $scope.anioI, 
 				$scope.anioF, $scope.materia, $scope.parcial, $scope.quimestre);
-				$scope.estudiantesInformes = response;
+				$scope.estudiantesMatriculados = array;
+				//desaparecer el boton de envio de datos
+				$scope.ingresarDesactivar = false;
+				//mostrar array lleno de datos
+				console.log($scope.estudiantesMatriculados);
+				
 			}
             
             //$scope.mensajeInsertC = false;
@@ -257,7 +314,35 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
                 console.log(error);
         });
 	}
+	
+	function consultarNotasFinalesSuple(cedula){
+		var url = $('#urlNotasTotales').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoId="+$scope.cursoId
+                    +"&paralelo="+$scope.paralelo
+                    +"&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&materia="+$scope.materia
+					+"&cedula="+cedula,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			if(response.length == 0){
+				
+			} else {
+				if (response[0]['NotaF'] < 7) {
+					array.push(response[0]);
+				}
+				//array.push(response[0]);
+			}
+        }, function (error) {
+                console.log(error);
+        });
 
+	}
+
+////////////////////////////////////////////////////////////////////////
 	
 	function limpiarVariables(){
 		$scope.ParaleloInfo = "";
@@ -269,63 +354,54 @@ app.controller('notasIngresoExaCtrl', function($scope, $http) {
 		$scope.CursoInfo = "";
 	}
 
-	$scope.mostrarNotasEditar = function(event){
-		var parcial = $scope.parcial+"";
-		var idExa = event.target.id;
-		//alert(parcial+idParcial);
+	$scope.mostrarNotasSupleEditar = function(event){
+		var idSuple = event.target.id;
 		
-		$scope.getUrl = $('#urlNotasEdit1').val();
-		consultarNotasExamenes($scope.getUrl, idExa);
+		$scope.getUrl = $('#urlNotasSupleEdit').val();
+		consultarNotasSupletorio($scope.getUrl, idSuple);
 	}
 
-	function consultarNotasExamenes(url, id){
+	function consultarNotasSupletorio(url, id){
 		$scope.edicionExitosa = false;
 		$scope.edicionFallida = false;
-		var urlExa = url +'/'+id;
-		$http.get(urlExa).success(function(response){
+		var urlSuple = url +'/'+id;
+		$http.get(urlSuple).success(function(response){
 			//console.log(response);
 			$scope.datos = response;
 
-			$scope.idExa 		= 	response[0]['id_exa'];
-			$scope.notaExa 		= 	response[0]['nota_exa'];
+			$scope.idSuple 		= 	response[0]['id_suple'];
+			$scope.notaSuple 	= 	response[0]['nota_suple'];
         }, function (error) {
                 console.log(error);
         });
 	}
 
 	$scope.procesoActualizar = function(){
-		var idExaEdit = $('#idExaEdit').val();
+		var idSupleEdit = $('#idSupleEdit').val();
 
-		$scope.getUrl = $('#urlActualizarExa').val();
-		actualizarNotasExa($scope.getUrl, idExaEdit);
+		$scope.getUrl = $('#urlActualizarSuple').val();
+		actualizarNotasSuple($scope.getUrl, idSupleEdit);
 		
 	}
 
 	$scope.edicionExitosa = false;
 	$scope.edicionFallida = false;
-	function actualizarNotasExa(url, id){
+	function actualizarNotasSuple(url, id){
 		$scope.urlActualizar = url + id;
         $http({
             method: "post",
             url: $scope.urlActualizar,
-            data: 	"notaExa="+$scope.notaExa,
+            data: 	"notaSuple="+$scope.notaSuple,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            mostrarDatosActualizados();
+			//se muestran los datos actualizdos
+            consultarEstudiantesSuple();
 			$scope.edicionExitosa = true;
         }, function (error) {
                 $scope.edicionFallida = true;
 				console.log(error);
 
         });
-	}
-
-	function mostrarDatosActualizados(){
-		$scope.mensajeIngreso = false;
-		
-		$scope.getUrl = $('#urlInformes1').val();
-		consultarExamenes($scope.getUrl);
-
 	}
 	
 	$scope.cargarAsignaturas = function(){

@@ -47,6 +47,16 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$this->load->view('/ingreso_notas/consultaExaSuple');
 	}
 
+	public function ingresoExaMejora()
+	{
+		$this->load->view('/ingreso_notas/ingresarExaMejora');
+	}
+
+	public function consultaExaMejora()
+	{
+		$this->load->view('/ingreso_notas/consultarExaMejora');
+	}
+
 	public function consultarInformeFinal()
 	{
 		
