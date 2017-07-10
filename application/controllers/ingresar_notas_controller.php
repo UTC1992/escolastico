@@ -470,4 +470,79 @@ class Ingresar_Notas_Controller extends CI_Controller
 		
 	}
 
+/*===============================EXAMENES MEJORA=============================================*/
+	
+	public function getDataJsonContarExaMejora()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContarExaMejora($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
+	public function insertarExaMejora()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertExaMejora($notas);
+	}
+
+	public function getDataJsonConsultaNotasTotalesMejora()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getNotasTotalesMejora($matricula);
+		
+		//$fila = $this->ingresar_notas_model->getNotasTotales();
+
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+	
+	public function getDataJsonNotasEditMejora($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasMejoraEdit($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+	
+	public function actualizarMejora($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateMejora($notasEdit, $id);
+		
+	}
+
+
 }

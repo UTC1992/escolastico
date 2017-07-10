@@ -25,13 +25,11 @@
 						<a class="nav-link btn-outline-warning" href="#/ingresar_examenes">Exámen Quimestral</a>
 						<input id="urlIngresarExamenes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotasExa">
 					</li>
-					
-					<!--
 						<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_mejora">Exámen Mejora</a>
 						<input id="urlIngresarExaMejora" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaMejora">
 					</li>
-					-->
+					
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Supletorio</a>
 						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
@@ -61,12 +59,10 @@
 						<a class="nav-link btn-outline-warning" href="#/consultas_examenes">Exámenes quimestrales</a>
 						<input id="urlMostrarExa" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultarExa">
 					</li>
-					<!--
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_mejora">Exámen Mejora</a>
 						<input id="urlMostrarExaMejora" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaMejora">
 					</li>
-					-->
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Supletorio</a>
 						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">

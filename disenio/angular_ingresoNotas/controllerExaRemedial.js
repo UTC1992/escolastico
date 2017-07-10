@@ -1,4 +1,4 @@
-app.controller('ingresoExaMejoraCtrl', function($scope, $http) {
+app.controller('ingresoExaRemedialCtrl', function($scope, $http) {
 
 	listarAnios();
 	listarCursos();
