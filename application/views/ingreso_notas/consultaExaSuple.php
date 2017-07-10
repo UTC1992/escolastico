@@ -142,7 +142,9 @@
 					<tr>
 						<th>N°</th>
 						<th colspan="2">Estudiantes</th>
-						<th>Nota final</th>
+						<!--
+							<th>Nota final</th>
+						-->
 						<th>Exámen Supletorio</th>
 						<th>Acciones</th>
 					</tr>
@@ -154,9 +156,11 @@
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
+						<!--
 						<td>
 							<label>{{estu.NotaF}}</label>
 						</td>
+						-->
 						<td>
 							<!--
 								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>

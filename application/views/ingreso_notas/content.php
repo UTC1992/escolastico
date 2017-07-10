@@ -1,6 +1,6 @@
 <style>
     .notasIngreso {
-        margin-top: 50px;
+        margin-top: 5px;
     }
 </style>
 <link href="<?= base_url() ?>disenio/css/dashboard.css" rel="stylesheet">
@@ -34,11 +34,12 @@
 						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Supletorio</a>
 						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
 					</li>
-					<!--
+					
 					<li class="nav-item">
-						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Remedial</a>
-						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
+						<a class="nav-link btn-outline-warning" href="#/ingresar_remedial">Exámen Remedial</a>
+						<input id="urlIngresarExaRemedial" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaRemedial">
 					</li>
+					<!--
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Gracia</a>
 						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
@@ -67,11 +68,12 @@
 						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Supletorio</a>
 						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
 					</li>
-					<!--
+					
 					<li class="nav-item">
-						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Remedial</a>
-						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
+						<a class="nav-link btn-outline-warning" href="#/consultas_remedial">Exámen Remedial</a>
+						<input id="urlMostrarExaRemedial" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaRemedial">
 					</li>
+					<!--
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Gracia</a>
 						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
@@ -119,4 +121,5 @@
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExa.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaSuple.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaMejora.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaRemedial.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/routes.js"></script>

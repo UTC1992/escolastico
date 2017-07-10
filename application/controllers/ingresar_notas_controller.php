@@ -57,6 +57,16 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$this->load->view('/ingreso_notas/consultarExaMejora');
 	}
 
+	public function ingresoExaRemedial()
+	{
+		$this->load->view('/ingreso_notas/ingresarExaRemedial');
+	}
+
+	public function consultaExaRemedial()
+	{
+		$this->load->view('/ingreso_notas/consultarExaRemedial');
+	}
+
 	public function consultarInformeFinal()
 	{
 		
@@ -470,6 +480,25 @@ class Ingresar_Notas_Controller extends CI_Controller
 		
 	}
 
+	public function getDataJsonConsultaNotaMejoraId()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		//se optiene los datos mediante el metodo POST
+		$dato = $this->input->post();
+		$fila = $this->ingresar_notas_model->getNotasMejoraId($dato);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+
 /*===============================EXAMENES MEJORA=============================================*/
 	
 	public function getDataJsonContarExaMejora()
@@ -544,5 +573,77 @@ class Ingresar_Notas_Controller extends CI_Controller
 		
 	}
 
+/*======================================EXAMEN REMEDIAL==============================================*/
 
+	public function getDataJsonContarExaRemedial()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getContarExaRemedial($matricula);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+	
+	public function insertarExaRemedial()
+	{	
+		//se optiene los datos mediante el metodo POST
+		$notas = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->insertExaRemedial($notas);
+	}
+	
+	public function getDataJsonConsultaNotasTotalesRemedial()
+	{
+		$json = new Services_JSON();
+		$datos = array();
+		//se optiene los datos mediante el metodo POST
+		$matricula = $this->input->post();
+		$fila = $this->ingresar_notas_model->getNotasTotalesRemedial($matricula);
+		
+		//$fila = $this->ingresar_notas_model->getNotasTotales();
+
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+	
+	public function getDataJsonNotasEditRemedial($id = '')
+	{
+		$json = new Services_JSON();
+		$datos = array();
+
+		$fila = $this->ingresar_notas_model->getNotasRemedialEdit($id);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosE = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosE;
+	}
+	
+	public function actualizarRemedial($id = '')
+	{
+		//se optiene los datos mediante el metodo POST
+		$notasEdit = $this->input->post();
+		//se envian los datos del formulario al modelo al metodo insert
+		$bool = $this->ingresar_notas_model->updateRemedial($notasEdit, $id);
+		
+	}
 }

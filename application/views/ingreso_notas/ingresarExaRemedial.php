@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaMejoraCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaRemedialCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -14,9 +14,9 @@
 		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
 		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
 
-		<input type="hidden" id="urlIngresarMejora" value="<?= base_url() ?>ingresar_notas_controller/insertarExaMejora">
+		<input type="hidden" id="urlIngresarRemedial" value="<?= base_url() ?>ingresar_notas_controller/insertarExaRemedial">
 
-		<input type="hidden" id="urlNumRegistrosMejora" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContarExaMejora">
+		<input type="hidden" id="urlNumRegistrosRemedial" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContarExaRemedial">
 		
 		<input type="hidden" id="urlNotasTotales" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotales">
 	<!--urls-->
@@ -31,7 +31,7 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Exámenes de Mejora</h2></center>
+		<center><h2>Exámen Remedial</h2></center>
 		<center><h3>Registro</h3></center>
 	</div>
 	<br>
@@ -145,25 +145,29 @@
 					</tr>
 					<tr>
 						<th>N°</th>
-						<th>Estudiantes</th>
+						<th colspan="2">Estudiantes</th>
+						<!--
 						<th>Nota Q1</th>
 						<th>Nota Q2</th>
-						<th>Exámen Mejora</th>
+						-->
+						<th colspan="2">Exámen Remedial</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="estu in estudiantesMatriculados">
 						<td>{{$index + 1}}</td>
-						<td>
+						<td colspan="2">
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
+						<!--
 						<td>
 							<label>{{estu.NotaQ1}}</label>
 						</td>
 						<td>
 							<label>{{estu.NotaQ2}}</label>
 						</td>
+						-->
 						<td colspan="2">
 							<input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required>
 						</td>

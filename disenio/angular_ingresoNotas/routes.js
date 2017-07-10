@@ -8,6 +8,8 @@ app.config(function($routeProvider) {
 	var urlConsultasExaSuple = $('#urlMostrarExaSuple').val();
 	var urlIngresarExaMejora = $('#urlIngresarExaMejora').val();
 	var urlConsultasExaMejora = $('#urlMostrarExaMejora').val();
+	var urlIngresarExaRemedial = $('#urlIngresarExaRemedial').val();
+	var urlConsultasExaRemedial = $('#urlMostrarExaRemedial').val();
 	//informes
 	var urlInformeFinal = $('#urlInformeFinal').val();
 
@@ -43,6 +45,14 @@ app.config(function($routeProvider) {
 	.when("/consultas_mejora", {
         templateUrl : urlConsultasExaMejora,
         controller : "ingresoExaMejoraCtrl"
+    })
+	.when("/ingresar_remedial", {
+        templateUrl : urlIngresarExaRemedial,
+        controller : "ingresoExaRemedialCtrl"
+    })
+	.when("/consultas_remedial", {
+        templateUrl : urlConsultasExaRemedial,
+        controller : "ingresoExaRemedialCtrl"
     })
 	.when("/informe_final", {
         templateUrl : urlInformeFinal,

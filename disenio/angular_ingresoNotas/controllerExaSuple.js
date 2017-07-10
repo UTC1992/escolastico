@@ -165,7 +165,6 @@ app.controller('ingresoExaSupleCtrl', function($scope, $http) {
                     +"&anioI="+$scope.anioI
                     +"&anioF="+$scope.anioF
 					+"&materia="+$scope.materia
-					+"&quimestre="+$scope.quimestre
 					+"&cedula="+cedula,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
@@ -177,10 +176,8 @@ app.controller('ingresoExaSupleCtrl', function($scope, $http) {
 				array = [];
 				
 			} else {
-				if (response[0]['NotaF'] < 7) {
-					array.push(response[0]);
-				}
-				//array.push(response[0]);
+				
+				consultarExaMejora(response, response[0]['id_estu']);
 			}
             //$scope.mensajeInsertC = false;
         }, function (error) {
@@ -188,6 +185,46 @@ app.controller('ingresoExaSupleCtrl', function($scope, $http) {
         });
 
 	}
+
+	$scope.mejora = '';
+	function consultarExaMejora(responseEstu, id_estu){
+		$scope.mejora = '';
+		var url = $('#urlNotaExaMejora').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&materia="+$scope.materia
+					+"&idEstu="+id_estu,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			if(response.length == 0){
+				responseEstu[0].mejora = '';
+				array.push(responseEstu[0]);
+			} else {
+				responseEstu[0].mejora = response[0]['nota_mejo'];
+				var Q1 = responseEstu[0]['NotaQ1'];
+				var Q2 = responseEstu[0]['NotaQ2'];
+				var mejora = responseEstu[0]['mejora'];
+				var notaFinal = '';
+				if(Q1 < Q2){
+					notaFinal = (((parseFloat(Q1) + parseFloat(mejora) ) / 2) + parseFloat(Q2) )  / 2;
+					//alert(notaMejora);
+				} else {
+					notaFinal = (((parseFloat(Q2) + parseFloat(mejora) ) / 2) + parseFloat(Q1) )  / 2;
+					//alert(notaMejora);
+				}
+				responseEstu[0].notaFinal = notaFinal.toFixed(2);
+				array.push(responseEstu[0]);
+				//obtenerNotasFinales(Q1, Q2, $scope.mejora);
+			}
+            
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
 
 /////////////////////////////////////////////////////////////////////////
 	
@@ -331,9 +368,9 @@ app.controller('ingresoExaSupleCtrl', function($scope, $http) {
 			if(response.length == 0){
 				
 			} else {
-				if (response[0]['NotaF'] < 7) {
-					array.push(response[0]);
-				}
+				
+				array.push(response[0]);
+				
 				//array.push(response[0]);
 			}
         }, function (error) {

@@ -77,7 +77,7 @@ app.controller('ingresoExaRemedialCtrl', function($scope, $http) {
 		$scope.anioF = vectorAL[1];
 		$scope.mensajeIngreso = false;
 		//var parcial = $scope.quimestre+"";
-		$scope.getUrl = $('#urlNumRegistrosMejora').val();
+		$scope.getUrl = $('#urlNumRegistrosRemedial').val();
 		contarRegistros($scope.getUrl);
 	}
 
@@ -219,7 +219,7 @@ app.controller('ingresoExaRemedialCtrl', function($scope, $http) {
 			*/
 			var idEstu = notas[i].value;
 			var notaSuple = notas[i+1].value;
-			$scope.getUrl = $('#urlIngresarMejora').val();
+			$scope.getUrl = $('#urlIngresarRemedial').val();
 			//alert($scope.getUrl+"-"+idEstu + "-" + notaSuple);
 			ingresarNotasExa(idEstu, notaSuple, $scope.getUrl);
 		}
@@ -312,7 +312,7 @@ app.controller('ingresoExaRemedialCtrl', function($scope, $http) {
 	}
 	
 	function consultarNotasFinalesMejora(cedula){
-		var url = $('#urlNotasTotalesMejora').val();
+		var url = $('#urlNotasTotalesRemedial').val();
 		$http({
             method: "post",
             url: url,
@@ -347,10 +347,10 @@ app.controller('ingresoExaRemedialCtrl', function($scope, $http) {
 		$scope.CursoInfo = "";
 	}
 
-	$scope.mostrarNotasMejoraEditar = function(event){
+	$scope.mostrarNotasRemdialEditar = function(event){
 		var idSuple = event.target.id;
 		
-		$scope.getUrl = $('#urlNotasMejoraEdit').val();
+		$scope.getUrl = $('#urlNotasRemedialEdit').val();
 		consultarNotasMejora($scope.getUrl, idSuple);
 	}
 
@@ -362,17 +362,17 @@ app.controller('ingresoExaRemedialCtrl', function($scope, $http) {
 			//console.log(response);
 			$scope.datos = response;
 
-			$scope.idSuple 		= 	response[0]['id_mejo'];
-			$scope.notaSuple 	= 	response[0]['nota_mejo'];
+			$scope.idSuple 		= 	response[0]['id_reme'];
+			$scope.notaSuple 	= 	response[0]['nota_reme'];
         }, function (error) {
                 console.log(error);
         });
 	}
 
 	$scope.procesoActualizar = function(){
-		var idEdit = $('#idMejoraEdit').val();
+		var idEdit = $('#idRemedialEdit').val();
 
-		$scope.getUrl = $('#urlActualizarMejora').val();
+		$scope.getUrl = $('#urlActualizarRemedial').val();
 		actualizarNotasSuple($scope.getUrl, idEdit);
 		
 	}

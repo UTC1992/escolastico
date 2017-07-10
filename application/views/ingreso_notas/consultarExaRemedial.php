@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaMejoraCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaRemedialCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -15,14 +15,14 @@
 		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
 		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
 
-		<input type="hidden" id="urlNotasTotalesMejora" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotalesMejora">
+		<input type="hidden" id="urlNotasTotalesRemedial" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotalesRemedial">
 		
 		<!--MOSTRAR INFORMES DE NOTAS-->
 		<!---->
-		<input type="hidden" id="urlNotasMejoraEdit" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditMejora">
+		<input type="hidden" id="urlNotasRemedialEdit" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditRemedial">
 
 		<!---->
-		<input type="hidden" id="urlActualizarMejora" value="<?= base_url()?>ingresar_notas_controller/actualizarMejora/">
+		<input type="hidden" id="urlActualizarRemedial" value="<?= base_url()?>ingresar_notas_controller/actualizarRemedial/">
 	<!--urls-->
 
 	<!--url para las paginas-->
@@ -34,7 +34,7 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Exámenes de Mejora</h2></center>
+		<center><h2>Exámen Remedial</h2></center>
 		<center><h3>Consulta y edición</h3></center>
 	</div>
 	<br>
@@ -136,9 +136,11 @@
 					<tr>
 						<th>N°</th>
 						<th colspan="2">Estudiantes</th>
+						<!--
 						<th>Nota Q1</th>
 						<th>Nota Q2</th>
-						<th>Examen mejora</th>
+						-->
+						<th>Examen remedial</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -149,22 +151,24 @@
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
+						<!--
 						<td>
 							<label>{{estu.NotaQ1}}</label>
 						</td>
 						<td>
 							<label>{{estu.NotaQ2}}</label>
 						</td>
+						-->
 						<td>
 							<!--
 								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
 								-->
-							{{estu.notaMejora}}
+							{{estu.notaRemedial}}
 						</td>
 						<td>
 							<button style="width: 100px;" class="btn btn-outline-warning editar" 
-							ng-click="mostrarNotasMejoraEditar($event)" 
-							id="{{estu.id_mejo}}" data-toggle="modal" data-target="#modalEditar">
+							ng-click="mostrarNotasRemdialEditar($event)" 
+							id="{{estu.id_reme}}" data-toggle="modal" data-target="#modalEditar">
 								Editar
 							</button>
 						</td>
@@ -233,7 +237,7 @@
 								</div>
 								<form name="fExaEditar" ng-submit="procesoActualizar()" class="form-horizontal">
 									
-									<input type="hidden" id="idMejoraEdit" value="{{idSuple}}">
+									<input type="hidden" id="idRemedialEdit" value="{{idSuple}}">
 
 									<div class="form-group row">
 											<label class="col-3 col-form-label">Nota de Exámen de mejora:</label>

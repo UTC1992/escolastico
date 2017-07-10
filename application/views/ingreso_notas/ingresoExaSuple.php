@@ -19,6 +19,9 @@
 		<input type="hidden" id="urlNumRegistrosSuple" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContarExaSuple">
 		
 		<input type="hidden" id="urlNotasTotales" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotales">
+
+		<input type="hidden" id="urlNotaExaMejora" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotaMejoraId">
+	
 	<!--urls-->
 
 	<!--url para las paginas-->
@@ -101,7 +104,7 @@
 				<table class="table table-bordered table-striped table-sm">
 				<thead class="thead-inverse">
 					<tr ng-show="mensajeNumRegistros">
-						<td colspan="6" >
+						<td colspan="7" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>La informamos que las notas ya se registraron, puede consultarlo 
@@ -111,7 +114,7 @@
 						</td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="6" >
+						<td colspan="7" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes en supletorio relacionados con los datos ingresados.</strong>
@@ -120,44 +123,52 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="6"><center>ALUMNOS</center></th>
+					<th colspan="7"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
-						</td>
-						<td colspan="2">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Materia:</strong></label><label> {{MateriaInfo}}</label>
-						</td>
-						<td colspan="2">
 						</td>
 					</tr>
 					<tr>
 						<th>N°</th>
-						<th colspan="2">Estudiantes</th>
+						<th>Estudiantes</th>
+						<th>Nota Q1</th>
+						<th>Nota Q2</th>
+						<th>Exa. Mejora</th>
 						<th>Nota final</th>
-						<th colspan="2">Exámen Supletorio</th>
+						<th>Exámen Supletorio</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="estu in estudiantesMatriculados">
+					<tr ng-repeat="estu in estudiantesMatriculados | orderBy : 'apellidos_estu'">
 						<td>{{$index + 1}}</td>
-						<td colspan="2">
+						<td>
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
 						<td>
-							<label>{{estu.NotaF}}</label>
+							<label >{{estu.NotaQ1}}</label>
+						</td>
+						<td>
+							<label >{{estu.NotaQ2}}</label>
+						</td>
+						<td>
+							<label >{{estu.mejora}}</label>
+						</td>
+						<td>
+							<label>{{estu.notaFinal}}</label>
 						</td>
 						<td colspan="2">
 							<input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required>
@@ -165,7 +176,7 @@
 						
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="6" >
+						<td colspan="7" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes en supletorio relacionados con los datos ingresados.</strong>
@@ -174,14 +185,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6" >
+						<td colspan="7" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="6" >
+						<td colspan="7" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -190,7 +201,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="6">
+						<td colspan="7">
 							<center>
 								<button ng-disabled="ingresarDesactivar" type="submit" class="btn btn-outline-warning">Enviar Datos</button>
 							</center>
