@@ -17,6 +17,11 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$this->load->view('/layout/footer_ingresoNotas');
 	}
 
+	public function inicioNotas()
+	{
+		$this->load->view('/ingreso_notas/inicioNotas');
+	}
+	
 	public function ingresoNotas()
 	{
 		$this->load->view('/ingreso_notas/ingresoNotas');

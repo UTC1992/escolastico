@@ -63,8 +63,8 @@
           <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-left">
-              <h1>Imagen 1</h1>
-              <p></p>
+              <h1>Docentes</h1>
+              <p><img src="<?= base_url() ?>disenio/img/docentes.jpg" class="img-fluid"></p>
               <p></p>
             </div>
           </div>
@@ -73,8 +73,8 @@
           <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
           <div class="container">
             <div class="carousel-caption d-none d-md-block">
-              <h1>Imagen 2</h1>
-              <p></p>
+              <h1>Estudiantes</h1>
+              <p><img src="<?= base_url() ?>disenio/img/estudiantes.jpg" class="img-fluid"></p>
               <p></p>
             </div>
           </div>
@@ -83,8 +83,8 @@
           <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-right">
-              <h1>Imagen 3</h1>
-              <p></p>
+              <h1>Calificaciones</h1>
+              <p><img src="<?= base_url() ?>disenio/img/notasEstu.jpg" class="img-fluid"></p>
               <p></p>
             </div>
           </div>

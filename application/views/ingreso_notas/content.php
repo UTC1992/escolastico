@@ -7,6 +7,8 @@
 <div  class="notasIngreso"  ng-app="appNotasIngreso" >
         
 	<!--Nav menu-->
+	<input id="urlInicio" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/inicioNotas">
+
 		<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">

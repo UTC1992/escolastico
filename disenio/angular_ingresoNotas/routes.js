@@ -1,5 +1,6 @@
 //configuracion de rutas 
 app.config(function($routeProvider) {
+	var urlInicio = $('#urlInicio').val();
     var urlIngresoN = $('#urlIngresarNotas').val();
     var urlConsultasN = $('#urlMostrarInformes').val();
 	var urlIngresarExa = $('#urlIngresarExamenes').val();
@@ -16,6 +17,10 @@ app.config(function($routeProvider) {
 	var urlInformeFinal = $('#urlInformeFinal').val();
 
     $routeProvider
+	.when("/", {
+        templateUrl : urlInicio,
+        controller : ""
+    })
     .when("/ingreso_notas", {
         templateUrl : urlIngresoN,
         controller : "notasIngresoCtrl"
