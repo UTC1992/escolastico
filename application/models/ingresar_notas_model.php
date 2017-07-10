@@ -1173,5 +1173,184 @@
 			return false;
 		}
 
+		/*==============================================EXAMEN GRACIA===========================================================*/
+		
+		public function getContarExaGracia($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+
+			$result = $this->db->query("SELECT 
+												COUNT(*) as 'conteo'
+										 FROM 
+										 		estudiante, matricula, examen_gracia
+										 WHERE 
+												matricula.id_curs = '" . $cursoId . "'
+												AND matricula.paralelo_matr = '" . $paralelo . "'
+												AND examen_gracia.anioInicio_gra = '" . $anioI . "'
+												AND examen_gracia.anioFin_gra = '" . $anioF . "'
+												AND examen_gracia.asignatura_gra = '" . $materia . "'
+												AND matricula.id_estu = estudiante.id_estu
+												AND estudiante.id_estu = examen_gracia.id_estu 
+										;");
+			//return $result->row();
+			return $result;
+		}
+		
+		public function insertExaGracia($notas = null)
+		{
+			if ($notas != null) {
+				$data = array(
+					'nota_gra'		 				=> $notas['examen'],
+					'asignatura_gra' 				=> $notas['asignatura'],
+					'anioInicio_gra' 				=> $notas['anioInicio'],
+					'anioFin_gra' 					=> $notas['anioFin'],
+					'id_estu' 						=> $notas['id_estu']
+
+				);
+				return $this->db->insert('examen_gracia', $data);
+			}
+			return false;
+		}
+		
+		public function getNotasTotalesGracia($matricula = '')
+		{
+			$cursoId = $matricula['cursoId'];
+			$paralelo = $matricula['paralelo'];
+			$anioI = $matricula['anioI'];
+			$anioF = $matricula['anioF'];
+			$materia = $matricula['materia'];
+			$cedula = $matricula['cedula'];
+			
+			$result = $this->db->query("SELECT 
+							T1.id_estu, T1.nombres_estu, T1.apellidos_estu, T1.asignatura_p1, T1.id_gra,
+							T1.promedio1, T1.promedio2,T1.promedio3,
+							(((T1.promedio1 + T1.promedio2 + T1.promedio3) / 3)*0.8) as '80nota', T1.nota_exa,
+							(T1.nota_exa * 0.2) as '20nota',
+							ROUND
+							(
+								( (((T1.promedio1 + T1.promedio2 + T1.promedio3) / 3)*0.8) + (T1.nota_exa * 0.2) ), 2
+							)
+							as 'NotaQ1',
+							T2.promedio1, T2.promedio2, T2.promedio3,
+
+							(((T2.promedio1 + T2.promedio2 + T2.promedio3) / 3)*0.8) as '80%  de la Nota', T2.nota_exa,
+							(T2.nota_exa * 0.2) as '20% de nota',
+							ROUND
+							(
+								( (((T2.promedio1 + T2.promedio2 + T2.promedio3) / 3)*0.8) + (T2.nota_exa * 0.2) ), 2
+							)
+							as 'NotaQ2',
+							ROUND(
+							(  ((((T2.promedio1 + T2.promedio2 + T2.promedio3) / 3)*0.8) + (T2.nota_exa * 0.2)) 
+							+ ((((T1.promedio1 + T1.promedio2 + T1.promedio3) / 3)*0.8) + (T1.nota_exa * 0.2))  ) / 2
+							, 2) as 'NotaF',
+							T1.nota_gra as 'notaGracia'
+    
+						FROM(
+						SELECT
+							estudiante.id_estu as 'id_estu',nombres_estu, apellidos_estu, asignatura_p1,
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							nota_exa, nota_gra, id_gra
+						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_gracia
+						WHERE estudiante.cedula_estu = '" . $cedula . "'
+						AND matricula.id_curs = '" . $cursoId . "'
+						AND parcial_1.quimestre_p1 = '1ero'
+						AND parcial_1.anioInicio_p1 = '" . $anioI . "'
+						AND parcial_1.anioFin_p1 = '" . $anioF . "'
+						AND parcial_2.quimestre_p2 = '1ero'
+						AND parcial_2.anioInicio_p2 = '" . $anioI . "'
+						AND parcial_2.anioFin_p2 = '" . $anioF . "'
+						AND parcial_3.quimestre_p3 = '1ero'
+						AND parcial_3.anioInicio_p3 = '" . $anioI . "'
+						AND parcial_3.anioFin_p3 = '" . $anioF . "'
+						AND parcial_1.asignatura_p1 = '" . $materia . "'
+						AND parcial_2.asignatura_p2 = '" . $materia . "'
+						AND parcial_3.asignatura_p3 = '" . $materia . "'
+						AND estudiante.id_estu = parcial_1.id_estu
+						AND estudiante.id_estu = parcial_2.id_estu
+						AND estudiante.id_estu = parcial_3.id_estu
+						AND matricula.id_estu = estudiante.id_estu
+						AND examen.id_estu = estudiante.id_estu
+						AND examen.asignatura_exa = '" . $materia . "'
+						AND examen.quimestre_exa = '1ero'
+						AND examen.anioInicio_exa = '" . $anioI . "'
+						AND examen.anioFin_exa = '" . $anioF . "'
+						AND examen_gracia.id_estu = estudiante.id_estu
+						AND examen_gracia.anioInicio_gra = '" . $anioI . "'
+						AND examen_gracia.anioFin_gra = '" . $anioF . "'
+						AND examen_gracia.asignatura_gra = '" . $materia . "'
+						) T1
+						inner join
+						(
+						SELECT 	nombres_estu, apellidos_estu, asignatura_p1,
+								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
+								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
+								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
+								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
+								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
+								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+								nota_exa, nota_gra
+						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_gracia
+						WHERE estudiante.cedula_estu = '" . $cedula . "'
+						AND matricula.id_curs = '" . $cursoId . "'
+						AND parcial_1.quimestre_p1 = '2do'
+						AND parcial_1.anioInicio_p1 = '" . $anioI . "'
+						AND parcial_1.anioFin_p1 = '" . $anioF . "'
+						AND parcial_2.quimestre_p2 = '2do'
+						AND parcial_2.anioInicio_p2 = '" . $anioI . "'
+						AND parcial_2.anioFin_p2 = '" . $anioF . "'
+						AND parcial_3.quimestre_p3 = '2do'
+						AND parcial_3.anioInicio_p3 = '" . $anioI . "'
+						AND parcial_3.anioFin_p3 = '" . $anioF . "'
+						AND parcial_1.asignatura_p1 = '" . $materia . "'
+						AND parcial_2.asignatura_p2 = '" . $materia . "'
+						AND parcial_3.asignatura_p3 = '" . $materia . "'
+						AND estudiante.id_estu = parcial_1.id_estu
+						AND estudiante.id_estu = parcial_2.id_estu
+						AND estudiante.id_estu = parcial_3.id_estu
+						AND matricula.id_estu = estudiante.id_estu
+						AND examen.id_estu = estudiante.id_estu
+						AND examen.asignatura_exa = '" . $materia . "'
+						AND examen.quimestre_exa = '2do'
+						AND examen.anioInicio_exa = '" . $anioI . "'
+						AND examen.anioFin_exa = '" . $anioF . "'
+						AND examen_gracia.id_estu = estudiante.id_estu
+						AND examen_gracia.anioInicio_gra = '" . $anioI . "'
+						AND examen_gracia.anioFin_gra = '" . $anioF . "'
+						AND examen_gracia.asignatura_gra = '" . $materia . "'
+						) T2
+						;");
+			//return $result->row();
+			return $result;
+		}
+		
+		public function getNotasGraciaEdit($id = '')
+		{
+			$result = $this->db->query("SELECT * FROM examen_gracia WHERE id_gra = '" . $id . "'");
+			//return $result->row();
+			return $result;
+		}
+		
+		public function updateGracia($notasEdit = '', $id = '')
+		{
+			if ($notasEdit != null) {
+				$data = array(
+					'nota_gra' 		=> $notasEdit['nota']
+				);
+				$this->db->where('id_gra', $id);
+				return $this->db->update('examen_gracia', $data);
+			}
+			return false;
+		}
+
 	}
 

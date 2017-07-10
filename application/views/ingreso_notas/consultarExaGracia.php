@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaRemedialCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaGraciaCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -15,14 +15,14 @@
 		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
 		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
 
-		<input type="hidden" id="urlNotasTotalesRemedial" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotalesRemedial">
+		<input type="hidden" id="urlNotasTotalesGracia" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotalesGracia">
 		
 		<!--MOSTRAR INFORMES DE NOTAS-->
 		<!---->
-		<input type="hidden" id="urlNotasRemedialEdit" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditRemedial">
+		<input type="hidden" id="urlNotasGraciaEdit" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditGracia">
 
 		<!---->
-		<input type="hidden" id="urlActualizarRemedial" value="<?= base_url()?>ingresar_notas_controller/actualizarRemedial/">
+		<input type="hidden" id="urlActualizarGracia" value="<?= base_url()?>ingresar_notas_controller/actualizarGracia/">
 	<!--urls-->
 
 	<!--url para las paginas-->
@@ -34,7 +34,7 @@
 	
 	<!--head -->
 	<div class="container">
-		<center><h2>Exámen Remedial</h2></center>
+		<center><h2>Exámen Gracia</h2></center>
 		<center><h3>Consulta y edición</h3></center>
 	</div>
 	<br>
@@ -140,7 +140,7 @@
 						<th>Nota Q1</th>
 						<th>Nota Q2</th>
 						-->
-						<th>Examen remedial</th>
+						<th>Examen Gracia</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -163,12 +163,12 @@
 							<!--
 								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
 								-->
-							{{estu.notaRemedial}}
+							{{estu.notaGracia}}
 						</td>
 						<td>
 							<button style="width: 100px;" class="btn btn-outline-warning editar" 
-							ng-click="mostrarNotasRemdialEditar($event)" 
-							id="{{estu.id_reme}}" data-toggle="modal" data-target="#modalEditar">
+							ng-click="mostrarNotasGraciaEditar($event)" 
+							id="{{estu.id_gra}}" data-toggle="modal" data-target="#modalEditar">
 								Editar
 							</button>
 						</td>
@@ -237,10 +237,10 @@
 								</div>
 								<form name="fExaEditar" ng-submit="procesoActualizar()" class="form-horizontal">
 									
-									<input type="hidden" id="idRemedialEdit" value="{{idSuple}}">
+									<input type="hidden" id="idGraciaEdit" value="{{idSuple}}">
 
 									<div class="form-group row">
-											<label class="col-3 col-form-label">Nota de Exámen de remedial:</label>
+											<label class="col-3 col-form-label">Nota de Exámen de gracia:</label>
 											<div class="col-4">
 												<input class="form-control" name="notaSuple" id="notaSuple" ng-model="notaSuple"
 												type="text" placeholder="00.00" required>

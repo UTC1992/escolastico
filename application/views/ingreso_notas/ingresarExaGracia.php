@@ -6,43 +6,40 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaRemedialCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="ingresoExaGraciaCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
 		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
 		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
 		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
-		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
 
-		<input type="hidden" id="urlNotasTotalesRemedial" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotalesRemedial">
+		<input type="hidden" id="urlIngresarGracia" value="<?= base_url() ?>ingresar_notas_controller/insertarExaGracia">
+
+		<input type="hidden" id="urlNumRegistrosGracia" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContarExaGracia">
 		
-		<!--MOSTRAR INFORMES DE NOTAS-->
-		<!---->
-		<input type="hidden" id="urlNotasRemedialEdit" value="<?= base_url()?>ingresar_notas_controller/getDataJsonNotasEditRemedial">
-
-		<!---->
-		<input type="hidden" id="urlActualizarRemedial" value="<?= base_url()?>ingresar_notas_controller/actualizarRemedial/">
+		<input type="hidden" id="urlNotasTotales" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotales">
 	<!--urls-->
 
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
-	
+
 	<!--buscar asignaturas segun id del Curso-->
 		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
 	
+	
 	<!--head -->
 	<div class="container">
-		<center><h2>Exámen Remedial</h2></center>
-		<center><h3>Consulta y edición</h3></center>
+		<center><h2>Exámen Gracia</h2></center>
+		<center><h3>Registro</h3></center>
 	</div>
 	<br>
 	<!--head -->
 
 	<!--datos consultar-->
 		<div class="table-responsive">
-			<form ng-submit="consultaExaMejora()">
+			<form  ng-submit="verificarRegistro()">
 				<table class="table table-striped table-bordered table-sm">
 					<thead class="thead-inverse">
 						<tr>
@@ -73,8 +70,8 @@
 							<td>
 								<div class="form-inline">
 									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
-									 <input  type="text" class="form-control" style="width: 300px;" ng-disabled="true"
-									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
+									<input  type="text" class="form-control" style="width: 300px;" ng-disabled="true"
+									value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
 								</div>
 							</td>
 							<td><label>Materia:</label></td>
@@ -101,36 +98,49 @@
 		
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
-            <form ng-submit="">
+            <form name="fIngresoNotas" ng-submit="enviarDatosExa()">
 				<table class="table table-bordered table-striped table-sm">
-					
 				<thead class="thead-inverse">
-					<tr ng-show="mensaje">
-						<td colspan="7" >
+					<tr ng-show="mensajeNumRegistros">
+						<td colspan="5" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
-									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
+									<strong>La informamos que las notas ya se registraron, puede consultarlo 
+									dando clic en el menú (superior o lateral) en opción Consulta y Edición.</strong>
+								</div>
+							</center>
+						</td>
+					</tr>
+					<tr ng-show="mensaje">
+						<td colspan="5" >
+							<center>
+								<div  class="alert alert-danger" style="color: crimson;">
+									<strong>* No existen estudiantes en supletorio relacionados con los datos ingresados.</strong>
 								</div>
 							</center>
 						</td>
 					</tr>
 					<tr>
-					<th colspan=7><center>ALUMNOS</center></th>
+					<th colspan="5"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="2"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
-						<td colspan="4"><label style="margin-right: 5px;">
+						<td colspan="2"><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
+						</td>
+						<td>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="2"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
-						<td colspan="4"><label style="margin-right: 5px;">
+						<td colspan="2"><label style="margin-right: 5px;">
 							<strong>Materia:</strong></label><label> {{MateriaInfo}}</label>
+						</td>
+						<td>
 						</td>
 					</tr>
 					<tr>
@@ -140,12 +150,11 @@
 						<th>Nota Q1</th>
 						<th>Nota Q2</th>
 						-->
-						<th>Examen remedial</th>
-						<th>Acciones</th>
+						<th colspan="2">Exámen Gracia</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="estu in estudiantesMatriculados | orderBy: 'apellidos_estu'">
+					<tr ng-repeat="estu in estudiantesMatriculados | orderBy : 'apellidos_estu'">
 						<td>{{$index + 1}}</td>
 						<td colspan="2">
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
@@ -159,38 +168,29 @@
 							<label>{{estu.NotaQ2}}</label>
 						</td>
 						-->
-						<td>
-							<!--
-								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
-								-->
-							{{estu.notaRemedial}}
+						<td colspan="2">
+							<input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 100px;" required>
 						</td>
-						<td>
-							<button style="width: 100px;" class="btn btn-outline-warning editar" 
-							ng-click="mostrarNotasRemdialEditar($event)" 
-							id="{{estu.id_reme}}" data-toggle="modal" data-target="#modalEditar">
-								Editar
-							</button>
-						</td>
+						
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="7" >
+						<td colspan="6" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
-									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
+									<strong>* No existen estudiantes en supletorio relacionados con los datos ingresados.</strong>
 								</div>
 							</center>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="7" >
+						<td colspan="6" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="7" >
+						<td colspan="6" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -199,80 +199,17 @@
 						</td>
 					</tr>
 					<tr>
-						<!--
-						<td colspan="9">
+						<td colspan="6">
 							<center>
-								<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
+								<button ng-disabled="ingresarDesactivar" type="submit" class="btn btn-outline-warning">Enviar Datos</button>
 							</center>
 						</td>
-						-->
 					</tr>
 				</tbody>
 				</table>
             </form>
           </div>
 		  <!--tabla de estudiantes-->
-
-		  <!--INICIO MODAL EDITAR-->
-			<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
-				<div class="modal-dialog  modal-lg" role="document">
-					<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="modalEditarLabel">Editar la nota del Exámen.</h3>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-							<input type="hidden" value="">
-						
-							<div class="row justify-content-md-center">
-								<div class="col-12">
-								
-								<div  class="alert alert-success" ng-show="edicionExitosa">
-									<strong>* Las notas fueron actualizadas con éxito.</strong>
-								</div>
-								<div  class="alert alert-danger" ng-show="edicionFallida">
-									<strong>* Error al actualizar las notas.</strong>
-								</div>
-								<form name="fExaEditar" ng-submit="procesoActualizar()" class="form-horizontal">
-									
-									<input type="hidden" id="idRemedialEdit" value="{{idSuple}}">
-
-									<div class="form-group row">
-											<label class="col-3 col-form-label">Nota de Exámen de remedial:</label>
-											<div class="col-4">
-												<input class="form-control" name="notaSuple" id="notaSuple" ng-model="notaSuple"
-												type="text" placeholder="00.00" required>
-											</div>
-											<div class="col-4" style="color: #28B463" 
-												ng-show="fExaEditar.notaSuple.$valid">
-												<strong> Correcto.</strong>
-											</div>
-											<div class="col-4" style="color: crimson" 
-												ng-show="fExaEditar.notaSuple.$invalid">
-												* Campo Obligatorio.
-											</div>
-											
-										</div>
-									<div class="modal-footer">
-										<button class="col-3 btn btn-primary" type="submit" 
-										ng-disabled="fExaEditar.$error.required">
-											<span class="glyphicon glyphicon-floppy-saved"></span>
-											Actualizar
-										</button>
-										<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
-									</div>
-								</form>
-								</div>
-							</div>
-					</div>
-					
-					</div>
-				</div>
-			</div>
-			<!--FIN MODAL EDITAR-->
-
 
 </div>
 <!--INICIO CONTENEDOR-->
