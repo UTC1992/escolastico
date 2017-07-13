@@ -1200,7 +1200,7 @@
                                     <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
                                     <center>
                                         <div class="">
-                                            <img class="img-fluid" style="width: 70px; height: 100px;" src="<?= base_url() ?>disenio/img/logo.png">
+                                            <img class="img-fluid" style="width: 150px; height: 100px;" src="<?= base_url() ?>disenio/img/logo2.jpg">
                                             <h4>UNIDAD EDUCATIVA FISCAL</h4>
                                             <h4>PATRIA</h4>
                                             <br>

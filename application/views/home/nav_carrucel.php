@@ -7,7 +7,9 @@
 <body>
 <header>   
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+			data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" 
+			aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     
@@ -56,15 +58,16 @@
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
           <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-left">
-              <h1>Docentes</h1>
-              <p><img src="<?= base_url() ?>disenio/img/docentes.jpg" class="img-fluid"></p>
+              <h1></h1>
+              <p><img src="<?= base_url() ?>disenio/img/patria1-1.jpg" class="img-fluid" style="height: 400px;"></p>
               <p></p>
             </div>
           </div>
@@ -73,8 +76,8 @@
           <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
           <div class="container">
             <div class="carousel-caption d-none d-md-block">
-              <h1>Estudiantes</h1>
-              <p><img src="<?= base_url() ?>disenio/img/estudiantes.jpg" class="img-fluid"></p>
+              <h1></h1>
+              <p><img src="<?= base_url() ?>disenio/img/patria4.jpg" class="img-fluid" style="height: 400px;"></p>
               <p></p>
             </div>
           </div>
@@ -83,8 +86,19 @@
           <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-right">
-              <h1>Calificaciones</h1>
-              <p><img src="<?= base_url() ?>disenio/img/notasEstu.jpg" class="img-fluid"></p>
+              <h1></h1>
+              <p><img src="<?= base_url() ?>disenio/img/patria5.jpg" class="img-fluid" style="height: 400px;"></p>
+              <p></p>
+            </div>
+          </div>
+				</div>
+				
+				<div class="carousel-item">
+          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption d-none d-md-block text-right">
+              <h1></h1>
+              <p><img src="<?= base_url() ?>disenio/img/patria3.jpg" class="img-fluid" style="height: 400px;"></p>
               <p></p>
             </div>
           </div>
