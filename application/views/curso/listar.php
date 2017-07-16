@@ -33,7 +33,8 @@
                 <tbody>
                     <tr ng-repeat="c in $data">
                         <td data-title="'N°'" >{{ $index +1 }}</td>
-                        <td data-title="'Cursos'" filter="{nombre_curs: 'text'}">{{ c.nombre_curs }}</td>
+                        <td data-title="'Curso'" filter="{nombre_curs: 'text'}">{{ c.nombre_curs }}</td>
+						<td data-title="'Nivel'" filter="{nivel_curs: 'text'}">{{ c.nivel_curs }}</td>
                         <td data-title="'Acciones'" style="width: 500px;">
                             <div>
 								<center>
@@ -107,27 +108,32 @@
                                     
                                 </div>
 
-								<!--
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Número de paralelos:</label>
+                                    <label class="col-3 col-form-label">Nivel al que pertenece:</label>
                                     <div class="col-4">
-                                        <input class="form-control" name="numParalelos" id="numParalelos" ng-model="numParalelos"
-                                         type="text" placeholder="Número de paralelos" required>
+										<select class="form-control" id="nivelCurs" 
+										name="nivelCurs" ng-model="nivelCurs" required>
+											<option value="">Seleccionar</option>
+											<option value="Inicial">Inicial</option>
+											<option value="Preparatoria">Preparatoria</option>
+											<option value="Educacion General Basica">Educación General Básica</option>
+											<option value="Educacion General Superior">Educación General Superior</option>	
+										</select>
+										
                                     </div>
                                     <div class="col-4" style="color: #28B463" 
-                                        ng-show="fCurso.numParalelos.$valid">
-                                        Correcto.
+                                        ng-show="fCurso.nivelCurs.$valid">
+                                        <strong>* Correcto.</strong>
                                     </div>
                                     <div class="col-4" style="color: crimson" 
-                                        ng-show="fCurso.numParalelos.$invalid">
-                                        * Debe ingresar el numero de paralelos que tiene el curso.
+                                        ng-show="fCurso.nivelCurs.$invalid">
+                                        <strong>* Campo Obligatorio.</strong>
                                     </div>
-                                    
                                 </div>
-								-->
+								
                                 <div class="modal-footer">
                                     <button class="col-3 btn btn-primary" type="submit"
-                                    ng-disabled="fCurso.nombreC.$invalid && fCurso.numParalelos.$invalid">
+                                    ng-disabled="fCurso.$error.required">
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Guardar
                                     </button>
@@ -182,25 +188,28 @@
                                     </div>
                                     
                                 </div>
-								<!--
-                                <div class="form-group row">
-                                    <label class="col-3 col-form-label">Número de paralelos:</label>
+								<div class="form-group row">
+                                    <label class="col-3 col-form-label">Nivel al que pertenece:</label>
                                     <div class="col-4">
-                                        <input class="form-control" name="paralelosEditC" id="paralelosEditC" 
-                                        ng-model="paralelosEditC"
-                                         type="text" placeholder="Número de paralelos" required>
+										<select class="form-control" id="nivelCurs" 
+										name="nivelCurs" ng-model="nivelCurs" required>
+											<option value="">Seleccionar</option>
+											<option value="Inicial">Inicial</option>
+											<option value="Preparatoria">Preparatoria</option>
+											<option value="Educacion General Basica">Educación General Básica</option>
+											<option value="Educacion General Superior">Educación General Superior</option>	
+										</select>
+										
                                     </div>
-                                    <div class="col-4" style="color: #28B463"
-                                        ng-show="fCursoEditar.paralelosEditC.$valid">
+                                    <div class="col-4" style="color: #28B463" 
+                                        ng-show="fCurso.nivelCurs.$valid">
                                         <strong>* Correcto.</strong>
                                     </div>
-                                    <div class="col-4" style="color: crimson"
-                                        ng-show="fCursoEditar.paralelosEditC.$invalid">
+                                    <div class="col-4" style="color: crimson" 
+                                        ng-show="fCurso.nivelCurs.$invalid">
                                         <strong>* Campo Obligatorio.</strong>
                                     </div>
-                                    
                                 </div>
-								-->
                             <div class="modal-footer">
                                 <button class="col-3 btn btn-primary" type="submit" 
                                 ng-disabled="fCursoEditar.nombreEditC.$invalid && fCursoEditar.paralelosEditC.$invalid">

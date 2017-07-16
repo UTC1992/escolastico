@@ -16,7 +16,7 @@
 			if ($curso != null) {
 				$data = array(
 					'nombre_curs' => $curso['nombre_curs'],
-					'numparalelos_curs' => $curso['numparalelos_curs']
+					'nivel_curs' => $curso['nivel_curs']
 				);
 				return $this->db->insert('curso', $data);
 			}
@@ -36,7 +36,7 @@
 
 				$data = array(
 					'nombre_curs' => $cursoEdit['nombre_curs'],
-					'numparalelos_curs' => $cursoEdit['numparalelos_curs']
+					'nivel_curs' => $cursoEdit['nivel_curs']
 				);
 				$this->db->where('id_curs', $id);
 				return $this->db->update('curso', $data);

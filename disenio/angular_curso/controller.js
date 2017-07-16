@@ -47,7 +47,8 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
     }
 
     function inicializarInput(){
-        $scope.nombreC = "";
+		$scope.nombreC = "";
+		$scope.nivelCurs = "";
     };
 
 	$scope.limpiarVariables = function(){
@@ -62,7 +63,7 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
         $http({
             method: "post",
             url: $scope.getUrl,
-            data: "nombre_curs="+$scope.nombreC+"&numparalelos_curs="+$scope.numParalelos,
+            data: "nombre_curs="+$scope.nombreC+"&nivel_curs="+$scope.nivelCurs,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             inicializarInput();
@@ -83,7 +84,7 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
             
             $scope.idCurso =  datosP[0]['id_curs'];
             $scope.nombreEditC =  datosP[0]['nombre_curs'];
-            $scope.paralelosEditC =  datosP[0]['numparalelos_curs'];
+            $scope.nivelCurs =  datosP[0]['nivel_curs'];
         });
     }
 
@@ -97,7 +98,8 @@ app.controller('cursoCtrl', function($scope, $http, $location, $route, $filter, 
         $http({
             method: "post",
             url: $scope.urlActualizar,
-            data: "nombre_curs="+$scope.nombreEditC+"&numparalelos_curs="+$scope.paralelosEditC,
+			data: 	"nombre_curs="+$scope.nombreEditC
+					+"&nivel_curs="+$scope.nivelCurs,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             $scope.actualizarMensaje = true;
