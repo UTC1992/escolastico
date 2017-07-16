@@ -85,4 +85,23 @@ class Curso_Controller extends CI_Controller
 		
 	}
 
+	public function getDataJsonCursoNivel()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$datosNivel = $this->input->post();
+		$fila = $this->curso_model->getCursoNivel($datosNivel);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
+
 }

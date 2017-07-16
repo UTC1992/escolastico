@@ -8,6 +8,7 @@
 	
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+		<input type="hidden" id="urlCursoNivel" value="<?= base_url()?>curso_controller/getDataJsonCursoNivel">
 	<!--url para las paginas-->
 
 	<!-- tabla -->
@@ -20,7 +21,7 @@
 		<div class="col-lg-6">
 			<label>Seleccione el año lectivo:</label>
 			<form ng-submit="mostrarEstudiantes()">
-				<input type="hidden" id="nivelEstudiantes" value="Inicial 2">
+				<input type="hidden" id="nivelEstudiantes" value="Inicial">
 				<div class="form-inline">
 					<select class="form-control" style="margin-right: 5px;" 
 					name="aniosL" id="aniosL" ng-model="aniosL" required>
@@ -37,26 +38,6 @@
 			</form>
 			
 		</div>
-		<!--
-		<div class="row justify-content-md-center">
-	
-			<input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
-				<div class="col-lg-6">
-					<label class="col-form-label">Ingrese los siguientes datos para buscar al estudiante:</label>
-					<div class="input-group">
-						<button class="btn btn-info nuevo" ng-click="buscarEstudiante()">
-							Bucar
-						</button>
-						<input class="form-control" ng-model="cedulaEstu" type="text" name="" value=""
-						placeholder="Ingrese la cédula del estudiante porfavor">
-					</div>
-					<div class="" style="color: crimson;" 
-						ng-show="validarBuscar">
-						<strong>* Debe ingresar los 10 digitos de la cédula.</strong>
-					</div>
-				</div>		
-		</div>
-		-->
 		<br>
 		<center>
 			<button class="btn btn-primary nuevo" ng-click="inicializarInput()" data-toggle="modal" data-target="#modalNuevo">

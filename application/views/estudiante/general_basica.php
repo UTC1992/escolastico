@@ -8,6 +8,7 @@
 	
 	<!--url para las paginas-->
 		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+		<input type="hidden" id="urlCursoNivel" value="<?= base_url()?>curso_controller/getDataJsonCursoNivel">
 	<!--url para las paginas-->
 
 	<!-- tabla -->

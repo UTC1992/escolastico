@@ -140,8 +140,12 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
         $scope.madre = "";
         $scope.cedulaMadre = "";
 		$scope.telefonoRepre = "";
-		var vector = $scope.aniosL.split("/");
-		$scope.anioLectivoMatri=vector[1];
+		var vector;
+		if ($scope.aniosL != null) {
+			vector = $scope.aniosL.split("/");
+			$scope.anioLectivoMatri=vector[1];
+		}
+		
 	}
 
     // declaro la función enviar
@@ -401,10 +405,17 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 	inicializarInputMatricula();
 
 	function listarCursos() {
-        $scope.getUrl = $('#urlCursos').val();
+		$scope.getUrl = $('#urlCursoNivel').val();
+		var nivel = $('#nivelEstudiantes').val();
+		
         if ($scope.getUrl != null) {
-            $http.post($scope.getUrl)
-            .success(function(response){
+            $http({
+				method: "post",
+				url: $scope.getUrl,
+				data: "nivel_curs="+nivel,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).success(function(response){
+				//console.log(response);
                 $scope.cursos = response;
             }, function (error) {
                 console.log(error);

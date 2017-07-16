@@ -25,7 +25,7 @@
 
 		public function getById($id = '')
 		{
-			$result = $this->db->query("SELECT * FROM curso WHERE id_curs = '" . $id . "'");
+			$result = $this->db->query("SELECT * FROM curso WHERE id_curs = '" . $id . "';");
 			//return $result->row();
 			return $result;
 		}
@@ -42,6 +42,14 @@
 				return $this->db->update('curso', $data);
 			}
 			return false;
+		}
+
+		public function getCursoNivel($datosNivel = "")
+		{
+			$nivel = $datosNivel['nivel_curs']; 
+			$result = $this->db->query("SELECT * FROM curso WHERE nivel_curs = '" . $nivel . "' ;");
+			//return $result->row();
+			return $result;
 		}
 
     }
