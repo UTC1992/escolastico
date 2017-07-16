@@ -123,7 +123,7 @@
 				<table class="table table-bordered table-striped table-sm" style="font-size: 10pt;">
 				<thead class="thead-inverse">
 					<tr ng-show="mensajeNumRegistros">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>La informamos que las notas ya se registraron, puede consultarlo 
@@ -133,7 +133,7 @@
 						</td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -142,10 +142,10 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="10"><center>ALUMNOS</center></th>
+					<th colspan="11"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
 						<td colspan="3"><label style="margin-right: 5px;">
@@ -156,7 +156,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
 						<td colspan="3"><label style="margin-right: 5px;">
@@ -174,6 +174,7 @@
 						<th colspan="4">
 							<center> PARÁMETROS </center>
 						</th>
+						<th></th>
 						<th colspan="2">
 							<center> FALTAS </center>
 						</th>
@@ -187,9 +188,10 @@
 						<th>Lecciones orales o escritas</th>
 						<th>Trabajos grupales</th>
 						<th>Trabajos de investigación</th>
+						<th>Evaluación</th>
 						<th>Falt. Just.</th>
 						<th>Falt. Injus.</th>
-						<th>Dias Asis.</th>
+						<th>Horas Asis.</th>
 						<th>Comportamiento</th>
 					</tr>
 				</thead>
@@ -205,12 +207,13 @@
 						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
 						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
 						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
-						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" ></td>
+						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" ></td>
 						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
 						<td><input class="form-control" name="notaE" type="text" value="" placeholder="00.00" style="width: 70px;" required></td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -219,14 +222,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="10" >
+						<td colspan="11" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -235,7 +238,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="10">
+						<td colspan="11">
 							<center>
 								<button ng-disabled="ingresarDesactivar" type="submit" class="btn btn-outline-warning">Enviar Datos</button>
 							</center>

@@ -109,7 +109,7 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
     function listarAnios(){
         $scope.anios = [];
         var contador = 0;
-        for (var i = 1900; i < 2100; i++) {
+        for (var i = 1990; i < 2050; i++) {
             $scope.anios[contador] = i;
             contador++;
         }
@@ -120,6 +120,8 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 		inicializarInputMatricula();
 		$scope.confirmarMatri = false;
 		$scope.confirmarMatriEdit = false;
+
+
     }
 
 	function inicializarVariablesEstu(){
@@ -137,7 +139,9 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
         $scope.cedulaPadre = "";
         $scope.madre = "";
         $scope.cedulaMadre = "";
-        $scope.telefonoRepre = "";
+		$scope.telefonoRepre = "";
+		var vector = $scope.aniosL.split("/");
+		$scope.anioLectivoMatri=vector[1];
 	}
 
     // declaro la función enviar
@@ -154,14 +158,23 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
                                             +$scope.diaNacimiento
                     +"&direccion_estu="+$scope.domicilio
                     +"&lugar_nacimiento_estu="+$scope.lugarNacimiento
+                    +"&correo_estu="+$scope.correoEstu
+                    +"&telefono_estu="+$scope.telefonoEstu
                     +"&representante_estu="+$scope.representante
                     +"&cedula_representante_estu="+$scope.cedulaRepre
+                    +"&telefono_representante_estu="+$scope.telefonoRepre
+                    +"&correo_repre_estu="+$scope.correoRepre
                     +"&nombre_padre_estu="+$scope.padre
                     +"&cedula_padre_estu="+$scope.cedulaPadre
+                    +"&telefono_padre_estu="+$scope.telefonoPadre
+                    +"&lugartrabajo_p_estu="+$scope.LugarTrabP
                     +"&nombre_madre_estu="+$scope.madre
                     +"&cedula_madre_estu="+$scope.cedulaMadre
-                    +"&telefono_representante_estu="+$scope.telefonoRepre
-					+"&correo_repre_estu="+$scope.correoRepre,
+                    +"&telefono_madre_estu="+$scope.telefonoMadre
+					+"&lugartrabajo_m_estu="+$scope.LugarTrabM
+					+"&discapasidadSiNo_estu="+$scope.discapacidadSiNo
+					+"&nombre_dis_estu="+$scope.discapacidad
+					+"&asociadoSiNo_estu="+$scope.asociadoSiNo,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
 			obtenerIdEstudiante($scope.cedula);
@@ -186,18 +199,26 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 	$scope.confirmarMatri = false;
 	// declaro la función enviar
     function registrarMatricula(idEstu) {
-        $scope.getUrl = $('#urlInsertarM').val();
+		$scope.getUrl = $('#urlInsertarM').val();
+		var vectorRegistroAL = $scope.anioLectivoMatri.split("-");
+		var vectorPart1 = vectorRegistroAL[0].split(" ");
+		var mesInicioMatri = vectorPart1[0];
+		var numMesDiaInicio = obtenerFechaMatricula(mesInicioMatri);
+		//alert(numMesDiaInicio);
+		var vectorPart2 = vectorRegistroAL[1].split(" ");
+		var mesFinMatri = vectorPart2[1];
+        //alert(mesFinMatri);
+		var numMesDiaFin = obtenerFechaMatricula(mesFinMatri);
+		//alert(numMesDiaFin);
         $http({
             method: "post",
             url: $scope.getUrl,
             data:   "id_curs="+$scope.cursosID
                     +"&id_estu="+idEstu
-                    +"&fechainicio_matr="+$scope.anioInicio+"-"
-                                            +$scope.mesInicio+"-"
-                                            +$scope.diaInicio
-                    +"&fechafin_matr="+$scope.anioFin+"-"
-                                            +$scope.mesFin+"-"
-                                            +$scope.diaFin
+                    +"&fechainicio_matr="+vectorPart1[1]+"-"
+                                            +numMesDiaInicio
+                    +"&fechafin_matr="+vectorPart2[2]+"-"
+                                            +numMesDiaFin
                     +"&paralelo_matr="+$scope.paralelo
                     +"&nivel_matr="+$scope.categoriaNivel,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -212,6 +233,18 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
         });
     }
 	
+	function obtenerFechaMatricula(mes){
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+		var numMes = 0;
+		for (var i = 0; i < meses.length; i++) {
+			if(meses[i] == mes) {
+				numMes = i+1;
+			} 
+		}
+		var date = new Date();
+        var dia = date.getDate();
+        return numMes+"-"+dia;
+    }
 
 	////////////////////////MATRICULA
 
@@ -233,15 +266,27 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
             $scope.mesNacimiento = vectorFN[1];
             $scope.diaNacimiento = vectorFN[2];
             $scope.domicilio = datosP[0]['direccion_estu'];
-            $scope.lugarNacimiento = datosP[0]['lugar_nacimiento_estu'];
+			$scope.lugarNacimiento = datosP[0]['lugar_nacimiento_estu'];
+            $scope.correoEstuEdit = datosP[0]['correo_estu'];
+            $scope.telefonoEstuEdit = datosP[0]['telefono_estu'];
+			
             $scope.representante = datosP[0]['representante_estu'];
             $scope.cedulaRepre = datosP[0]['cedula_representante_estu'];
+            $scope.correoRepre = datosP[0]['correo_repre_estu'];
+            $scope.telefonoRepreEdit = datosP[0]['telefono_representante_estu'];
+            
+            $scope.discapacidadSiNo = datosP[0]['discapacidad_sino_estu'];
+            $scope.discapacidad = datosP[0]['nombre_disca_estu'];
+            $scope.asociadoSiNo = datosP[0]['asociacion_disca_estu'];
+
             $scope.padre = datosP[0]['nombre_padre_estu'];
             $scope.cedulaPadre = datosP[0]['cedula_padre_estu'];
+            $scope.telefonoPadreEdit = datosP[0]['telefono_padre_estu'];
+            $scope.LugarTrabPEdit = datosP[0]['lugar_trabajo_p_estu'];
             $scope.madre = datosP[0]['nombre_madre_estu'];
             $scope.cedulaMadre = datosP[0]['cedula_madre_estu'];
-            $scope.telefonoRepre = datosP[0]['telefono_representante_estu'];
-			$scope.correoRepre = datosP[0]['correo_repre_estu'];
+            $scope.telefonoMadreEdit = datosP[0]['telefono_madre_estu'];
+			$scope.LugarTrabMEdit = datosP[0]['lugar_trabajo_m_estu'];
 
 			mostrarFormEditMatricula(urlMostrarMatri);
 
@@ -255,14 +300,8 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
                 $scope.datosCertiImprimir = datosP;
 				var idMatricula = datosP[0]['id_matr'];
                 $('#idMatri').val(idMatricula);
-                var fechaI = datosP[0]['fechainicio_matr'].split("-");
-                $scope.anioInicio = fechaI[0];
-				$scope.mesInicio = fechaI[1];
-				$scope.diaInicio = fechaI[2];
-                var fechaF = datosP[0]['fechafin_matr'].split("-");
-                $scope.anioFin = fechaF[0];
-				$scope.mesFin = fechaF[1];
-				$scope.diaFin = fechaF[2];
+                var vector = $scope.aniosL.split("/");
+                $scope.anioLectivoMatriEdit = vector[1];
 				$scope.cursoID2 = datosP[0]['id_curs'];
 				var idCurso = $scope.cursoID2 + "";
 				if (idCurso != "") {
@@ -294,14 +333,23 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
                                             +$scope.diaNacimiento
                     +"&direccion_estu="+$scope.domicilio
                     +"&lugar_nacimiento_estu="+$scope.lugarNacimiento
+                    +"&correo_estu="+$scope.correoEstuEdit
+                    +"&telefono_estu="+$scope.telefonoEstuEdit
                     +"&representante_estu="+$scope.representante
                     +"&cedula_representante_estu="+$scope.cedulaRepre
+                    +"&telefono_representante_estu="+$scope.telefonoRepreEdit
+                    +"&correo_repre_estu="+$scope.correoRepre
                     +"&nombre_padre_estu="+$scope.padre
                     +"&cedula_padre_estu="+$scope.cedulaPadre
+                    +"&telefono_padre_estu="+$scope.telefonoPadreEdit
+                    +"&lugartrabajo_p_estu="+$scope.LugarTrabPEdit
                     +"&nombre_madre_estu="+$scope.madre
                     +"&cedula_madre_estu="+$scope.cedulaMadre
-                    +"&telefono_representante_estu="+$scope.telefonoRepre
-					+"&correo_repre_estu="+$scope.correoRepre,
+                    +"&telefono_madre_estu="+$scope.telefonoMadreEdit
+                    +"&lugartrabajo_m_estu="+$scope.LugarTrabMEdit
+                    +"&discapasidadSiNo_estu="+$scope.discapacidadSiNo
+                    +"&nombre_dis_estu="+$scope.discapacidad
+                    +"&asociadoSiNo_estu="+$scope.asociadoSiNo,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             actualizarMatricula();
@@ -316,16 +364,25 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
         $scope.getId = $('#idMatri').val();
         $scope.urlActualizar = $scope.getUrl + $scope.getId;
 		$scope.cursoIdEdit = $('#cursosIDEdit').val();
+        var vector = $scope.aniosL.split("/");
+        var vectorRegistroAL = $scope.anioLectivoMatriEdit.split("-");
+        var vectorPart1 = vectorRegistroAL[0].split(" ");
+        var mesInicioMatri = vectorPart1[0];
+        var numMesDiaInicio = obtenerFechaMatricula(mesInicioMatri);
+        //alert(numMesDiaInicio);
+        var vectorPart2 = vectorRegistroAL[1].split(" ");
+        var mesFinMatri = vectorPart2[1];
+        //alert(mesFinMatri);
+        var numMesDiaFin = obtenerFechaMatricula(mesFinMatri);
+        //alert(numMesDiaFin);
         $http({
             method: "post",
             url: $scope.urlActualizar,
              data:   "id_curs="+$scope.cursoIdEdit
-                    +"&fechainicio_matr="+$scope.anioInicio+"-"
-                                            +$scope.mesInicio+"-"
-                                            +$scope.diaInicio
-                    +"&fechafin_matr="+$scope.anioFin+"-"
-                                            +$scope.mesFin+"-"
-                                            +$scope.diaFin
+                    +"&fechainicio_matr="+vectorPart1[1]+"-"
+                                            +numMesDiaInicio
+                    +"&fechafin_matr="+vectorPart2[2]+"-"
+                                            +numMesDiaFin
                     +"&paralelo_matr="+$scope.paraleloEdit
                     +"&nivel_matr="+$scope.categoriaNivel,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -372,8 +429,9 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 
 		var nivel = $('#nivelEstudiantes').val();
 		var url = $('#urlEstudiantes').val();
-		var anioslectivos = $scope.aniosL+"";
-		var vectorAL = anioslectivos.split('-');
+
+		var vector = $scope.aniosL.split("/");
+		var vectorAL = vector[0].split("-");
 
 		$http({
 			method: "post",
@@ -446,7 +504,7 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
         $scope.anioFin = "";
         $scope.mesFin = "";
         $scope.diaFin = "";
-        $scope.categoriaNivel = "";
+        $scope.categoriaNivel = $("#nivelEstudiantes").val();
         $scope.cursosID = "";
         $scope.paralelo = "";
     }

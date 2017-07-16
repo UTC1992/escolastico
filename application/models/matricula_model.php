@@ -59,21 +59,7 @@
 		public function getCertificadoImprimir($idEstu = '', $fechaI = "", $fechaF = "")
 		{
 			$result = $this->db->query("SELECT 
-												estudiante.id_estu,
-												id_matr,
-												cedula_estu, 
-												nombres_estu, 
-												apellidos_estu, 
-												nombre_curs, 
-												paralelo_matr, 
-												nivel_matr, 
-												fechainicio_matr, 
-												fechafin_matr,
-												nombre_padre_estu,
-												nombre_madre_estu,
-												fechanacimiento_estu,
-												direccion_estu,
-												curso.id_curs
+												*
 										FROM 
 												estudiante, 
 												matricula, 
