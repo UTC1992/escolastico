@@ -128,6 +128,7 @@
 												faltas_jus_p1 as 'faltasJus',
 												faltas_in_p1 as 'faltasInjus',
 												dias_asis_p1 as 'diasAsis',
+												evaluacion_p1 as 'evaluacion',
 												comportamiento_p1 as 'comporta',
 												(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria',
 												ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio'
@@ -169,6 +170,7 @@
 												faltas_jus_p2 as 'faltasJus',
 												faltas_in_p2 as 'faltasInjus',
 												dias_asis_p2 as 'diasAsis',
+												evaluacion_p2 as 'evaluacion',
 												comportamiento_p2 as 'comporta',
 												(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria',
 												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio'
@@ -210,6 +212,7 @@
 												faltas_jus_p3 as 'faltasJus',
 												faltas_in_p3 as 'faltasInjus',
 												dias_asis_p3 as 'diasAsis',
+												evaluacion_p3 as 'evaluacion',
 												comportamiento_p3 as 'comporta',
 												(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria',
 												ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio'
@@ -321,7 +324,8 @@
 											faltas_jus_p1 as 'faltasJus',
 											faltas_in_p1 as 'faltasInjus',
 											dias_asis_p1 as 'diasAsis',
-											comportamiento_p1 as 'comporta'
+											comportamiento_p1 as 'comporta',
+											evaluacion_p1 as 'evaluacion'
 										 FROM parcial_1 WHERE id_p1 = '" . $id . "'");
 			//return $result->row();
 			return $result;
@@ -338,7 +342,8 @@
 											faltas_jus_p2 as 'faltasJus',
 											faltas_in_p2 as 'faltasInjus',
 											dias_asis_p2 as 'diasAsis',
-											comportamiento_p2 as 'comporta'
+											comportamiento_p2 as 'comporta',
+											evaluacion_p2 as 'evaluacion'
 										 FROM parcial_2 WHERE id_p2 = '" . $id . "'");
 			//return $result->row();
 			return $result;
@@ -355,7 +360,8 @@
 											faltas_jus_p3 as 'faltasJus',
 											faltas_in_p3 as 'faltasInjus',
 											dias_asis_p3 as 'diasAsis',
-											comportamiento_p3 as 'comporta'
+											comportamiento_p3 as 'comporta',
+											evaluacion_p3 as 'evaluacion'
 										FROM parcial_3 WHERE id_p3 = '" . $id . "'");
 			//return $result->row();
 			return $result;

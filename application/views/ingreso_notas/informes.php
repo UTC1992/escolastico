@@ -143,10 +143,10 @@
 						</td>
 					</tr>
 					<tr>
-					<th colspan="11"><center>ALUMNOS</center></th>
+					<th colspan="12"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
 						<td colspan="4"><label style="margin-right: 5px;">
@@ -157,7 +157,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3"><label style="margin-right: 5px;">
+						<td colspan="4"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
 						<td colspan="4"><label style="margin-right: 5px;">
@@ -175,6 +175,7 @@
 						<th colspan="4">
 							<center> PARÁMETROS </center>
 						</th>
+						<th></th>
 						<th colspan="2">
 							<center> FALTAS </center>
 						</th>
@@ -189,9 +190,10 @@
 						<th>Lecciones orales o escritas</th>
 						<th>Trabajos grupales</th>
 						<th>Trabajos de investigación</th>
+						<th>Evaluación</th>
 						<th>Falt. Just.</th>
 						<th>Falt. Injus.</th>
-						<th>Dias Asis.</th>
+						<th>Horas Asis.</th>
 						<th>Comportamiento</th>
 						<th>Acción</th>
 					</tr>
@@ -206,6 +208,7 @@
 						<td>{{estu.parametro2}}</td>
 						<td>{{estu.parametro3}}</td>
 						<td>{{estu.parametro4}}</td>
+						<td>{{estu.evaluacion}}</td>
 						<td>{{estu.faltasJus}}</td>
 						<td>{{estu.faltasInjus}}</td>
 						<td>{{estu.diasAsis}}</td>
@@ -219,7 +222,7 @@
 						</td>
 					</tr>
 					<tr ng-show="mensaje">
-						<td colspan="11" >
+						<td colspan="12" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
 									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
@@ -228,14 +231,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="11" >
+						<td colspan="12" >
 							<center>
 								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
 							</center>
 						</td>
 					</tr>
 					<tr ng-show="mensajeIngreso">
-						<td colspan="11" >
+						<td colspan="12" >
 							<center>
 								<div  class="alert alert-success">
 									<strong>* Las notas fueron ingresadas con exito.</strong>
@@ -389,7 +392,7 @@
 											
 										</div>
 										<div class="form-group row">
-											<label class="col-3 col-form-label">Días asistidos:</label>
+											<label class="col-3 col-form-label">Horas asistidas:</label>
 											<div class="col-4">
 												<input class="form-control" name="diasAsis" id="diasAsis" 
 												ng-model="diasAsis"
