@@ -46,6 +46,7 @@
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesNotas/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesNotas/controller.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesNotas/routes.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesNotas/factory.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/ng-table.min.js"></script>
 <script src="<?= base_url() ?>disenio/js/jspdf.min.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>disenio/js/jspdf.plugin.autotable.js" type="text/javascript"></script>

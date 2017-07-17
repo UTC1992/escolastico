@@ -1,4 +1,4 @@
-app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTableParams) {
+app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $filter, NgTableParams) {
     listarAnios();
 	listarCursos();
 	listarParalelos();
@@ -8,6 +8,12 @@ app.controller('repoNotasAdminCtrl', function($scope, $http, $filter, NgTablePar
 	function activarMenu(){
 		$('#notasMenu').addClass('active');
 		$('#dropdownMenuButtonRepo').addClass('active');
+	}
+
+	//exportar tabla a formato xls
+	$scope.exportToExcel=function(tableId){ // ex: '#my-table'
+		$scope.exportHref=Excel.tableToExcel(tableId,'sheet name');
+		$timeout(function(){location.href=$scope.exportHref;},100); // trigger download
 	}
 
 	//listar años desde 1900 hasta 2100

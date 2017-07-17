@@ -59,9 +59,18 @@
 			</form>
 			
 		</div>
+
+
+		<br>
+		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')"
+		data-toggle="tooltip" data-placement="top" title="Exportar la tabla a Excel">
+				<span class="glyphicon glyphicon-share"></span>
+			Descargar Excel
+		</button>
+		<br>
 		<br>
 		<div class="table-responsive">
-			<table class="table table-bordered table-condensed table-striped table-sm">
+			<table class="table table-bordered table-condensed table-striped table-sm" id="tableToExport">
 				
 				<thead class="thead-inverse">
 					<tr>
@@ -79,16 +88,20 @@
 				<tbody>
 					<tr ng-repeat="repo in datosMatri | orderBy : 'apellidos_estu'">
 						<td>{{ $index + 1 }}</td>
-						<td>{{repo.cedula_estu}}</td>
+						<td>'{{repo.cedula_estu}}</td>
 						<td>{{repo.apellidos_estu}}</td>
 						<td>{{repo.nombres_estu}}</td>
 						<td>{{repo.paralelo_matr}}</td>
 						<td>{{repo.direccion_estu}}</td>
 						<td>{{repo.id_matr}}</td>
 						<td>{{repo.id_matr}}</td>
-						<td>{{repo.telefono_representante_estu}}</td>
+						<td>'{{repo.telefono_representante_estu}}</td>
 					</tr>
 				</tbody>
+				
+			</table>
+
+			<table>
 				<tr ng-show="mensajeEstudiantes">
 					<td colspan="9" >
 						<center>
@@ -107,3 +120,9 @@
 
 	</div>
 <!--FIN CONTENEDOR-->
+
+<script>
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip(); 
+	});
+</script>

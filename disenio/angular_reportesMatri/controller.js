@@ -1,4 +1,4 @@
-app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTableParams) {
+app.controller('repoMatriculasCtrl', function(Excel, $timeout, $scope, $http, $filter, NgTableParams) {
 	
 	listarAnios();
 	listarCursos();
@@ -20,6 +20,12 @@ app.controller('repoMatriculasCtrl', function($scope, $http, $filter, NgTablePar
             contador++;
         }
     }
+
+	//exportar tabla a formato xls
+	$scope.exportToExcel=function(tableId){ // ex: '#my-table'
+		$scope.exportHref=Excel.tableToExcel(tableId,'sheet name');
+		$timeout(function(){location.href=$scope.exportHref;},100); // trigger download
+	}
 
 	function listarAniosLectivos(){
 		if ($('#urlBuscarAniosLectivos').val() != null) {

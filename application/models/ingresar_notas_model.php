@@ -39,6 +39,7 @@
 					'parametro2_p1' 					=> $notas['parametro2'],
 					'parametro3_p1' 					=> $notas['parametro3'],
 					'parametro4_p1' 					=> $notas['parametro4'],
+					'evaluacion_p1' 					=> $notas['evaluacion'],
 					'quimestre_p1' 						=> $notas['quimestre'],
 					'asignatura_p1' 					=> $notas['asignatura'],
 					'anioInicio_p1' 					=> $notas['anioInicio'],
@@ -63,6 +64,7 @@
 					'parametro2_p2' 					=> $notas['parametro2'],
 					'parametro3_p2' 					=> $notas['parametro3'],
 					'parametro4_p2' 					=> $notas['parametro4'],
+					'evaluacion_p2' 					=> $notas['evaluacion'],
 					'quimestre_p2' 						=> $notas['quimestre'],
 					'asignatura_p2' 					=> $notas['asignatura'],
 					'anioInicio_p2' 					=> $notas['anioInicio'],
@@ -87,6 +89,7 @@
 					'parametro2_p3' 					=> $notas['parametro2'],
 					'parametro3_p3' 					=> $notas['parametro3'],
 					'parametro4_p3' 					=> $notas['parametro4'],
+					'evaluacion_p3' 					=> $notas['evaluacion'],
 					'quimestre_p3' 						=> $notas['quimestre'],
 					'asignatura_p3' 					=> $notas['asignatura'],
 					'anioInicio_p3' 					=> $notas['anioInicio'],
@@ -550,12 +553,12 @@
 						FROM(
 						SELECT
 							estudiante.id_estu as 'id_estu',nombres_estu, apellidos_estu, asignatura_p1,
-							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 							nota_exa
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -585,12 +588,12 @@
 						inner join
 						(
 						SELECT 	nombres_estu, apellidos_estu, asignatura_p1,
-								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 								nota_exa
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -655,12 +658,12 @@
 						FROM(
 						SELECT
 							estudiante.id_estu as 'id_estu',nombres_estu, apellidos_estu, asignatura_p1,
-							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 							nota_exa, nota_suple, id_suple
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_suple
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -694,12 +697,12 @@
 						inner join
 						(
 						SELECT 	nombres_estu, apellidos_estu, asignatura_p1,
-								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 								nota_exa, nota_suple
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_suple
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -895,12 +898,12 @@
 						FROM(
 						SELECT
 							estudiante.id_estu as 'id_estu',nombres_estu, apellidos_estu, asignatura_p1,
-							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 							nota_exa, nota_mejo, id_mejo
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_mejora
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -934,12 +937,12 @@
 						inner join
 						(
 						SELECT 	nombres_estu, apellidos_estu, asignatura_p1,
-								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 								nota_exa, nota_mejo
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_mejora
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -1074,12 +1077,12 @@
 						FROM(
 						SELECT
 							estudiante.id_estu as 'id_estu',nombres_estu, apellidos_estu, asignatura_p1,
-							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 							nota_exa, nota_reme, id_reme
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_remedial
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -1113,12 +1116,12 @@
 						inner join
 						(
 						SELECT 	nombres_estu, apellidos_estu, asignatura_p1,
-								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 								nota_exa, nota_reme
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_remedial
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -1253,12 +1256,12 @@
 						FROM(
 						SELECT
 							estudiante.id_estu as 'id_estu',nombres_estu, apellidos_estu, asignatura_p1,
-							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+							(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+							ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+							(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+							ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+							(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+							ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 							nota_exa, nota_gra, id_gra
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_gracia
 						WHERE estudiante.cedula_estu = '" . $cedula . "'
@@ -1292,12 +1295,12 @@
 						inner join
 						(
 						SELECT 	nombres_estu, apellidos_estu, asignatura_p1,
-								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) as 'sumatoria1',
-								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'promedio1',
-								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) as 'sumatoria2',
-								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'promedio2',
-								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) as 'sumatoria3',
-								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'promedio3',
+								(parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) as 'sumatoria1',
+								ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'promedio1',
+								(parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) as 'sumatoria2',
+								ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'promedio2',
+								(parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) as 'sumatoria3',
+								ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'promedio3',
 								nota_exa, nota_gra
 						FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen, examen_gracia
 						WHERE estudiante.cedula_estu = '" . $cedula . "'

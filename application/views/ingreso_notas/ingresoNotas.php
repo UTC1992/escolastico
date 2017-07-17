@@ -41,7 +41,7 @@
 	<!--datos consultar-->
 		<div class="table-responsive">
 			<form  ng-submit="verificarRegistro()">
-				<table class="table table-striped table-bordered table-sm">
+				<table class="table table-striped table-bordered table-sm" style="font-size: 10pt;">
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="4">

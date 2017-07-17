@@ -49,4 +49,6 @@
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesMatri/model.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesMatri/controller.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesMatri/routes.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_reportesMatri/factory.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/ng-table.min.js"></script>
+

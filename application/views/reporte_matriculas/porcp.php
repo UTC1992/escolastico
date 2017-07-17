@@ -53,8 +53,14 @@
 			
 		</div>
 		<br>
+		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
+				<span class="glyphicon glyphicon-share"></span>
+			Descargar Excel
+		</button>
+		<br>
+		<br>
 		<div class="table-responsive">
-			<table class="table table-bordered table-condensed table-striped table-sm">
+			<table class="table table-bordered table-condensed table-striped table-sm" id="tableToExport">
 				
 				<thead class="thead-inverse">
 					<tr>
@@ -81,15 +87,18 @@
 					<tr ng-repeat="repo in datosMatri">
 						<td>{{ $index + 1 }}</td>
 						<td>{{repo.apellidos_estu}} {{repo.nombres_estu}}</td>
-						<td>{{repo.cedula_estu}}</td>
+						<td>'{{repo.cedula_estu}}</td>
 						<td>{{repo.fechanacimiento_estu}}</td>
 						<td>{{repo.direccion_estu}}</td>
 						<td>{{repo.representante_estu}}</td>
-						<td>{{repo.cedula_representante_estu}}</td>
-						<td>{{repo.telefono_representante_estu}}</td>
+						<td>'{{repo.cedula_representante_estu}}</td>
+						<td>'{{repo.telefono_representante_estu}}</td>
 						<td>{{repo.correo_repre_estu}}</td>
 					</tr>
 				</tbody>
+				
+			</table>
+			<table>
 				<tr ng-show="mensajeEstudiantes">
 					<td colspan="9" >
 						<center>

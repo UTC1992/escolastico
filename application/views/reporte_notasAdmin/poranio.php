@@ -96,14 +96,16 @@
 			</form>
 		</div>
 	<!--datos consultar-->
-		
+		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
+				<span class="glyphicon glyphicon-share"></span>
+			Descargar Excel
+		</button>
+		<br>
+		<br>
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
-            <form ng-submit="">
-				<table class="table table-bordered table-striped table-sm">
-					
-				<thead class="thead-inverse">
-					<tr ng-show="mensaje">
+			  <table>
+				  <tr ng-show="mensaje">
 						<td colspan="5" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
@@ -112,6 +114,12 @@
 							</center>
 						</td>
 					</tr>
+			  </table>
+            <form ng-submit="">
+				<table class="table table-bordered table-striped table-sm" id="tableToExport">
+					
+				<thead class="thead-inverse">
+					
 					<tr>
 					<th colspan="5"><center>ALUMNOS</center></th>
 					</tr>
@@ -143,7 +151,7 @@
 				<tbody>
 					<tr ng-repeat="e in estudiantesMatriculados | orderBy : apellidos_estu">
 						<td style="width: 50px;">{{$index + 1}}</td>
-						<td>{{e.cedula_estu}}</td>
+						<td>'{{e.cedula_estu}}</td>
 						<td colspan="2">
 							<label style="width: 400px;">
 								{{e.apellidos_estu}} {{e.nombres_estu}}
@@ -158,6 +166,17 @@
 							</button>
 						</td>
 					</tr>
+					
+					<tr>
+						<td colspan="5" >
+							<center>
+								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
+							</center>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="5" >
 							<center>
@@ -167,14 +186,6 @@
 							</center>
 						</td>
 					</tr>
-					<tr>
-						<td colspan="5" >
-							<center>
-								<img ng-if="mostrarCargando" src="<?= base_url()?>disenio/img/cargando.gif">
-							</center>
-						</td>
-					</tr>
-				</tbody>
 				</table>
             </form>
           </div>

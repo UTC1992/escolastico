@@ -213,10 +213,11 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			var lecciones = notas[i+2].value;
 			var trabajos = notas[i+3].value;
 			var investigacion = notas[i+4].value;
-			var faltasJus = notas[i+5].value;
-			var faltasInjus = notas[i+6].value;
-			var diasAsis = notas[i+7].value;
-			var comporta = notas[i+8].value;
+			var evaluacion = notas[i+5].value;
+			var faltasJus = notas[i+6].value;
+			var faltasInjus = notas[i+7].value;
+			var diasAsis = notas[i+8].value;
+			var comporta = notas[i+9].value;
 
 			//alert(notas[i+8].value);
 
@@ -225,15 +226,15 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			switch (parcial) {
 			case '1ero':
 				$scope.getUrl = $('#urlIngresarNotasParcial1').val();
-				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl,faltasJus, faltasInjus, diasAsis, comporta);
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, evaluacion, $scope.getUrl,faltasJus, faltasInjus, diasAsis, comporta);
 				break;
 			case '2do':
 				$scope.getUrl = $('#urlIngresarNotasParcial2').val();
-				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl,faltasJus, faltasInjus, diasAsis, comporta);
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, evaluacion, $scope.getUrl,faltasJus, faltasInjus, diasAsis, comporta);
 				break;
 			case '3ero':
 				$scope.getUrl = $('#urlIngresarNotasParcial3').val();
-				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, $scope.getUrl, faltasJus, faltasInjus, diasAsis, comporta);
+				ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, evaluacion, $scope.getUrl, faltasJus, faltasInjus, diasAsis, comporta);
 				break;
 		
 			default:
@@ -247,7 +248,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 	//desactivar boton de inrgeso
 	$scope.ingresarDesactivar = false;
 	$scope.mensajeIngreso = false;
-	function ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, urlIngresoNotas,faltasJus, faltasInjus, diasAsis, comporta){
+	function ingresarNotasParcial(idEstu, deberes, lecciones, trabajos, investigacion, evaluacion, urlIngresoNotas,faltasJus, faltasInjus, diasAsis, comporta){
 		//alert(idEstu + " - "+ deberes + " - "+ lecciones+ " - " + trabajos + "-"+ investigacion);
 		$scope.mostrarCargando = true;
 		//desaparecer el boton de envio de datos
@@ -265,6 +266,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 					+"&anioInicio="+$scope.anioIInfo
 					+"&anioFin="+$scope.anioFInfo
 					+"&id_estu="+idEstu
+					+"&evaluacion="+evaluacion
 					+"&faltasJus="+parseInt(faltasJus)
 					+"&faltasInjus="+parseInt(faltasInjus)
 					+"&diasAsis="+parseInt(diasAsis)
