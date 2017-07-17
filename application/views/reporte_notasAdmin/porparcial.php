@@ -291,6 +291,8 @@
 													<th></th>
 													<th colspan="4"><center>PARÁMETROS</center></th>
 													<th></th>
+													<th></th>
+													<th></th>
 												</tr>
 												<tr style="background: black; color: white;">
 													<th>ASIGNATURAS</th>
@@ -298,7 +300,9 @@
 													<th>LECCIONES ORALES Y ESCRITAS</th>
 													<th>TRABAJOS GRUPALES</th>
 													<th>TRABAJOS DE INVESTIGACIÓN</th>
+													<th>EVALUACIÓN</th>
 													<th>PROMEDIO</th>
+													<th>COMPORTAMIENTO</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -308,7 +312,9 @@
 													<td>{{n.p2}}</td>
 													<td>{{n.p3}}</td>
 													<td>{{n.p4}}</td>
+													<td>{{n.evaluacion}}</td>
 													<td>{{n.Promedio}}</td>
+													<td>{{n.comporta}}</td>
 												</tr>
 											</tbody>
 										</table>

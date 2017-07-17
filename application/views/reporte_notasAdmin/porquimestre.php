@@ -250,7 +250,9 @@
 										<thead class="thead-inverse">
 											<tr style="background: black; color: white;">
 												<th></th>
-												<th colspan="4"><center>PARCIALES</center></th>
+												<th colspan="3"><center>PARCIALES</center></th>
+												<th></th>
+												<th></th>
 											</tr>
 											<tr style="background: black; color: white;">
 												<th>ASIGNATURAS</th>
@@ -258,6 +260,7 @@
 												<th>PARCIAL 2</th>
 												<th>PARCIAL 3</th>
 												<th>EXAMEN</th>
+												<th>PROMEDIO</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -267,6 +270,7 @@
 												<td>{{n.parcial2}}</td>
 												<td>{{n.parcial3}}</td>
 												<td>{{n.nota_exa}}</td>
+												<td>{{n.Promedio}}</td>
 											</tr>
 										</tbody>
 									</table>

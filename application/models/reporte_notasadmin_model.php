@@ -16,7 +16,9 @@
 
 			$result = $this->db->query("SELECT 	asignatura_p1 as 'asignatura', parametro1_p1 as 'p1', 
 												parametro2_p1 as 'p2', parametro3_p1 as 'p3', parametro4_p1 as 'p4',
-												ROUND(((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1)/4), 2) as 'Promedio'
+												evaluacion_p1 as 'evaluacion',
+												ROUND(((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1)/5), 2) as 'Promedio',
+												comportamiento_p1 as 'comporta'
 										FROM estudiante, matricula, parcial_1
 										WHERE 
 											matricula.fechainicio_matr LIKE '" . $anioI . "%'
@@ -103,9 +105,9 @@
 
 			$result = $this->db->query("SELECT
 												asignatura_p1 as 'asignatura',
-												ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'parcial1',
-												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'parcial2',
-												ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'parcial3',
+												ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'parcial1',
+												ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'parcial2',
+												ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'parcial3',
 												nota_exa,
 												ROUND
 												(
@@ -113,9 +115,9 @@
 														( 
 															(
 																(
-																	((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ) +
-																	((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ) +
-																	((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 )
+																	((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ) +
+																	((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ) +
+																	((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 )
 																) / 3
 															) * 0.8
 														)
@@ -125,8 +127,11 @@
 														)
 													)
 													, 2
-												) as 'Promedio'
-
+												) as 'Promedio', 
+												ROUND(
+												((comportamiento_p1 + comportamiento_p2 + comportamiento_p3)/3)
+												, 2) as 'comporta'
+										
 										FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
 										WHERE estudiante.id_estu = '" . $idEstu . "'
 										AND matricula.id_curs = '" . $idCurso . "'

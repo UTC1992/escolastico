@@ -100,8 +100,9 @@
 							<th></th>
 							<th></th>
 							<th colspan="3"><center>NOTAS PARCIALES</center></th>
-							<th><center>EVALUACIÓN</center></th>
-							<th colspan="2"><center>PROMEDIO</center></th>
+							<th><center></center></th>
+							<th colspan=""><center></center></th>
+							<th></th>
 						</tr>
 						<tr>
 							<th>N°</th>
@@ -125,7 +126,7 @@
 							<td>
 								<strong>{{n.Promedio}}</strong>
 							</td>
-							<th></th>
+							<th>{{n.comporta}}</th>
 						</tr>
 					</tbody>
 					<tr ng-show="mensajeNotas">

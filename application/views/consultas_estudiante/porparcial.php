@@ -109,7 +109,10 @@
 							<th></th>
 							<th></th>
 							<th colspan="4"><center>PARÁMETROS</center></th>
-							<th colspan="2"><center>PROMEDIO</center></th>
+							<th></th>
+							<th colspan=""><center>PROMEDIO</center></th>
+							<th></th>
+
 						</tr>
 						<tr>
 							<th>N°</th>
@@ -118,6 +121,7 @@
 							<th>Lecciones orales o escritas</th>
 							<th>Trabajos grupales</th>
 							<th>Trabajos de investigación</th>
+							<th>Evaluación</th>
 							<th>Promedio</th>
 							<th>Comportamiento</th>
 						</tr>
@@ -130,10 +134,11 @@
 							<td>{{n.p2}}</td>
 							<td>{{n.p3}}</td>
 							<td>{{n.p4}}</td>
+							<td>{{n.evaluacion}}</td>
 							<td>
 								<strong>{{n.Promedio}}</strong>
 							</td>
-							<th></th>
+							<th>{{n.comporta}}</th>
 						</tr>
 					</tbody>
 					<tr ng-show="mensajeNotas">

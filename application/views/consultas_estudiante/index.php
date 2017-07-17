@@ -27,9 +27,10 @@
 			<li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#/quimestrales" role="tab">Quimestrales</a>
             </li>
-			<li class="nav-item">
+			<!--<li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#/anuales" role="tab">Anuales</a>
-            </li>
+			</li>
+			-->
         </ul>
     </div>
     <!-- Nav tabs fin -->
