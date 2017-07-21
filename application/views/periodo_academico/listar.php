@@ -34,9 +34,13 @@
         </div>
         <br>
 		-->
-        <center><button class="btn btn-primary nuevoP" ng-click="limpiarVarianles()" data-toggle="modal" data-target="#modalNuevo">
-            Registrar Año lectivo
-        </button></center>
+		<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>	
+			<center><button class="btn btn-primary nuevoP" ng-click="limpiarVarianles()" data-toggle="modal" data-target="#modalNuevo">
+				Registrar Año lectivo
+			</button></center>
+		<?php }else{ ?>
+
+        <?php } ?>
 		<h3>Lista de años lectivos</h3>
         <br>
         <div class="table-responsive">
@@ -61,7 +65,8 @@
                         <td data-title="'Mes Fin'"  filter="{mesfin_pera: 'text'}">{{ p.mesfin_pera }}</td>
                         <td data-title="'Año Fin'"  sortable="'aniofin_pera'" filter="{aniofin_pera: 'text'}">{{ p.aniofin_pera }}</td>
 						<td data-title="'Estado'"  filter="{estado_pera: 'text'}">{{ p.estado_pera }}</td>
-                        <td data-title="'Acciones'">
+                        <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
+						<td data-title="'Acciones'">
                             <div>
                                 <button class="btn btn-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoId/{{p.id_pera}}" 
@@ -75,6 +80,9 @@
                                 -->
                             </div>
                         </td>
+						<?php }else{ ?>
+
+						<?php } ?>
                     </tr>
                 </tbody>
             </table>

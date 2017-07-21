@@ -9,12 +9,15 @@
     
     <div >	
         <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
-        
+        <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
 		<center>
 			<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
 				Registrar Docente
 			</button>
 		</center>
+		<?php }else{ ?>
+
+        <?php } ?>
         <h3>Lista de Docentes</h3>
 		<br>
         <div class="table-responsive">
@@ -39,21 +42,16 @@
                         <td data-title="'Cédula'" filter="{cedula_doce: 'text'}">{{ d.cedula_doce }}</td>
                         <td data-title="'Apellidos'" sortable="'apellidos_doce'" filter="{apellidos_doce: 'text'}">{{ d.apellidos_doce }}</td>
 						<td data-title="'Nombres'" filter="{nombres_doce: 'text'}">{{ d.nombres_doce }}</td>
-						<!--
-						<td>{{ d.relacion_laboral_doce }}</td>
-                        <td>{{ d.funcion_doce }}</td>
-                        <td>{{ d.estado_doce }}</td>
-						-->
+						
                         <td data-title="'Acciones'">
+						<center>
                             <div style="width: 250px;">
-                                
-
                                 <button class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
                                 data-toggle="modal" data-target="#modalMostrarDatos">
                                     Datos
                                 </button>
-
+							<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
 								<button class="btn btn-outline-primary editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
                                 data-toggle="modal" data-target="#modalClave">
@@ -65,13 +63,12 @@
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
-
-                                <!--<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
-                                    Eliminar
-                                </a>
-                                -->
+							<?php }else{ ?>
+							<?php } ?>
                             </div>
+						</center>
                         </td>
+						
                     </tr>
                 </tbody>
             </table>

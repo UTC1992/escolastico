@@ -11,11 +11,15 @@
     <div >	
         <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
         
-		<center>
-			<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
-				Registrar Curso
-			</button>
-		</center>
+		<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
+			<center>
+				<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
+					Registrar Curso
+				</button>
+			</center>
+		<?php }else{ ?>
+
+        <?php } ?>
 		<h3>Lista de Cursos</h3>
         <br>
         <div class="table-responsive">
@@ -35,8 +39,11 @@
                         <td data-title="'N°'" >{{ $index +1 }}</td>
                         <td data-title="'Curso'" filter="{nombre_curs: 'text'}">{{ c.nombre_curs }}</td>
 						<td data-title="'Nivel'" filter="{nivel_curs: 'text'}">{{ c.nivel_curs }}</td>
-                        <td data-title="'Acciones'" style="width: 500px;">
+                        
+						<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
+						<td data-title="'Acciones'" style="width: 500px;">
                             <div>
+							
 								<center>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>curso_controller/getDataJsonCursoId/{{c.id_curs}}" 
@@ -50,19 +57,12 @@
                                     Mostrar asignaturas
                                 </button>
 								</center>
-								<!--
-                                <button class="btn btn-outline-primary nuevaAsig" ng-click="obtenerIdCurso($event)" 
-                                id="{{c.id_curs}}" name="{{c.nombre_curs}}"
-                                data-toggle="modal" data-target="#modalNewAsig">
-                                    Añadir asignatura
-                                </button>
-								
-								<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
-                                    Eliminar
-                                </a>
-                                -->
+							
                             </div>
                         </td>
+						<?php }else{ ?>
+
+        				<?php } ?>
                     </tr>
                 </tbody>
             </table>

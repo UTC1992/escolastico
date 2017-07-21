@@ -9,19 +9,16 @@
     
     <div >	
         <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
-        <!--
-		<h4>Filtro:</h4>
-        <div class="input-group">
-            <input type="text" class="col-4 form-control" name="buscarAsignatura" id="buscarAsignatura"
-            ng-model="buscar.nombre_asig" placeholder="Buscar asignatura por nombre">
-        </div>
-        <br>
-		-->
-		<center>
-			<button class="btn btn-primary nuevoP" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
-				Registrar Asignatura
-			</button>
-		</center>
+    
+		<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
+			<center>
+				<button class="btn btn-primary nuevoP" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
+					Registrar Asignatura
+				</button>
+			</center>
+		<?php }else{ ?>
+
+        <?php } ?>
 		<h3>Lista de Asignaturas</h3>
         <br>
         <div class="table-responsive">
@@ -40,8 +37,10 @@
                     <tr ng-repeat="a in $data">
                         <td data-title="'N°'">{{ $index + 1 }}</td>
                         <td data-title="'Asignatura'" sortable="'nombre_asig'" filter="{nombre_asig: 'text'}">{{ a.nombre_asig }}</td>
-                        <td data-title="'Acciones'">
-                            <div>
+
+                        <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
+						<td data-title="'Acciones'">
+                            <div>	
 								<center>
                                 <button class="btn btn-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>asignaturas_controller/getDataJsonAsignaturaId/{{a.id_asig}}" 
@@ -49,13 +48,10 @@
                                     Editar
                                 </button>
 								</center>
-
-                                <!--<a id="periodo{{p.id_pera}}" ng-mousemove="myFunc($event)" class="btn btn-danger" href="<?= base_url() ?>admin_/periodoacademico/eliminar/{{p.id_pera}}">
-                                    Eliminar
-                                </a>
-                                -->
                             </div>
                         </td>
+						<?php }else{ ?>
+           				<?php } ?>
                     </tr>
                 </tbody>
             </table>
