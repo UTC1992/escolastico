@@ -179,7 +179,27 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 				$scope.notasParcial = [];
 			} else {
 				$scope.mensajeNotas = false;
-				$scope.notasParcial = response;
+				$scope.notasParcial = [];
+
+				for (var i = 0; i < response.length; i++) {
+					var comportaLetras = '';
+					if( (parseFloat(response[i].comporta) >=9) && (parseFloat(response[i].comporta) <= 10) ){
+						comportaLetras = 'A';
+					}
+					if( (parseFloat(response[i].comporta) >=6) && (parseFloat(response[i].comporta) <= 8) ){
+						comportaLetras = 'B';
+					}
+					if( (parseFloat(response[i].comporta) >=4) && (parseFloat(response[i].comporta) <= 5) ){
+						comportaLetras = 'C';
+					}
+					if( (parseFloat(response[i].comporta) >=1) && (parseFloat(response[i].comporta) <= 3) ){
+						comportaLetras = 'D';
+					}
+
+					response[i].comporLetra = comportaLetras;
+					$scope.notasParcial.push(response[i]);	
+				}
+				
 				
 			}
             
@@ -293,7 +313,27 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 				$scope.notasParcial = [];
 			} else {
 				$scope.mensajeNotas = false;
-				$scope.notasParcial = response;
+				$scope.notasParcial = [];
+
+				for (var i = 0; i < response.length; i++) {
+					var comportaLetras = '';
+					if( (parseFloat(response[i].comporta) >=9) && (parseFloat(response[i].comporta) <= 10) ){
+						comportaLetras = 'A';
+					}
+					if( (parseFloat(response[i].comporta) >=6) && (parseFloat(response[i].comporta) <= 8) ){
+						comportaLetras = 'B';
+					}
+					if( (parseFloat(response[i].comporta) >=4) && (parseFloat(response[i].comporta) <= 5) ){
+						comportaLetras = 'C';
+					}
+					if( (parseFloat(response[i].comporta) >=1) && (parseFloat(response[i].comporta) <= 3) ){
+						comportaLetras = 'D';
+					}
+
+					response[i].comporLetra = comportaLetras;
+					$scope.notasParcial.push(response[i]);	
+				}
+				
 				
 			}
 
@@ -502,7 +542,10 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 			if(response.length == 0){
 					datosGracia[0].gracia = 0;
 					//sacar el promedio
-					var promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
+					var promedio = 0;
+					if(parseFloat(datosGracia[0].Q1) > 0 && parseFloat(datosGracia[0].Q2) > 0){
+						promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
+					}
 					datosGracia[0].promedio1 = promedio.toFixed(2);
 
 					var subPromedio = 0;
@@ -516,32 +559,50 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 							subPromedio = (subPromedio + parseFloat(datosGracia[0].Q1) ) / 2;
 						}
 					}
-
+					//calcular nota suple
 					if(parseFloat(datosGracia[0].suple) > 0){
 						if(parseFloat(datosGracia[0].suple) >= 7){
 							subPromedio = 7;
 						}
 					}
-
+					//calcular nota remedial
 					if(parseFloat(datosGracia[0].remedial) > 0){
 						if(parseFloat(datosGracia[0].remedial) >= 7){
 							subPromedio = 7;
 						}
 					}
-
+					//calcular nota gracia
 					if(parseFloat(datosGracia[0].gracia) > 0){
 						if(parseFloat(datosGracia[0].gracia) >= 7){
 							subPromedio = 7;
 						}
 					}
-					
+					//calculando equivalencias de comportamiento
+					var comportaLetras = '';
+					if( (parseFloat(datosGracia[0].comportaF) >=9) && (parseFloat(datosGracia[0].comportaF) <= 10) ){
+						comportaLetras = 'A';
+					}
+					if( (parseFloat(datosGracia[0].comportaF) >=6) && (parseFloat(datosGracia[0].comportaF) <= 8) ){
+						comportaLetras = 'B';
+					}
+					if( (parseFloat(datosGracia[0].comportaF) >=4) && (parseFloat(datosGracia[0].comportaF) <= 5) ){
+						comportaLetras = 'C';
+					}
+					if( (parseFloat(datosGracia[0].comportaF) >=1) && (parseFloat(datosGracia[0].comportaF) <= 3) ){
+						comportaLetras = 'D';
+					}
+
+					datosGracia[0].comporLetra = comportaLetras;
 					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					$scope.notasParcial.push(datosGracia[0]);
 			} else {
 				if (response.length > 0) {
 					//se asigna el valor a la variable suple de scope para mostrar en la tabla
 					datosGracia[0].gracia = response[0].nota_gra;
-					var promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
+					var promedio = 0;
+					if(parseFloat(datosGracia[0].Q1) > 0 && parseFloat(datosGracia[0].Q2) > 0){
+						promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
+					}
 					datosGracia[0].promedio1 = promedio.toFixed(2);
 
 					var subPromedio = 0;
@@ -555,24 +616,40 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 							subPromedio = (subPromedio + parseFloat(datosGracia[0].Q1) ) / 2;
 						}
 					}
-
+					//calcular nota suple
 					if(parseFloat(datosGracia[0].suple) > 0){
 						if(parseFloat(datosGracia[0].suple) >= 7){
 							subPromedio = 7;
 						}
 					}
-
+					//calcular nota remedial
 					if(parseFloat(datosGracia[0].remedial) > 0){
 						if(parseFloat(datosGracia[0].remedial) >= 7){
 							subPromedio = 7;
 						}
 					}
-
+					//calcular nota gracia
 					if(parseFloat(datosGracia[0].gracia) > 0){
 						if(parseFloat(datosGracia[0].gracia) >= 7){
 							subPromedio = 7;
 						}
 					}
+					//calculando equivalencias de comportamiento
+					var comportaLetras = '';
+					if( (parseFloat(datosGracia[0].comportaF) >=9) && (parseFloat(datosGracia[0].comportaF) <= 10) ){
+						comportaLetras = 'A';
+					}
+					if( (parseFloat(datosGracia[0].comportaF) >=6) && (parseFloat(datosGracia[0].comportaF) <= 8) ){
+						comportaLetras = 'B';
+					}
+					if( (parseFloat(datosGracia[0].comportaF) >=4) && (parseFloat(datosGracia[0].comportaF) <= 5) ){
+						comportaLetras = 'C';
+					}
+					if( (parseFloat(datosGracia[0].comportaF) >=1) && (parseFloat(datosGracia[0].comportaF) <= 3) ){
+						comportaLetras = 'D';
+					}
+
+					datosGracia[0].comporLetra = comportaLetras;
 					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					//se ingresa al json el valor de la nota de supletorio
 					$scope.notasParcial.push(datosGracia[0]);

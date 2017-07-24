@@ -276,7 +276,7 @@
 												<td>{{n.remedial}}</td>
 												<td>{{n.gracia}}</td>
 												<td>{{n.promedioFinal}}</td>
-												<td>{{n.comportaF}}</td>
+												<td><center>{{n.comporLetra}}</center></td>
 											</tr>
 										</tbody>
 									</table>

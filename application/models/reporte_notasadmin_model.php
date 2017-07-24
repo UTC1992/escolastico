@@ -48,7 +48,7 @@
 			$result = $this->db->query("SELECT 	asignatura_p2 as 'asignatura', parametro1_p2 as 'p1', 
 												parametro2_p2 as 'p2', parametro3_p2 as 'p3', parametro4_p2 as 'p4',
 												evaluacion_p2 as 'evaluacion',
-												ROUND(((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2)/4), 2) as 'Promedio'
+												ROUND(((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2)/5), 2) as 'Promedio',
 												comportamiento_p2 as 'comporta'
 										FROM estudiante, matricula, parcial_2
 										WHERE 
@@ -79,7 +79,7 @@
 			$result = $this->db->query("SELECT 	asignatura_p3 as 'asignatura', parametro1_p3 as 'p1', parametro2_p3 as 'p2', 
 												parametro3_p3 as 'p3', parametro4_p3 as 'p4',
 												evaluacion_p3 as 'evaluacion',
-												ROUND(((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3)/4), 2) as 'Promedio'
+												ROUND(((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3)/5), 2) as 'Promedio',
 												comportamiento_p3 as 'comporta'
 										FROM estudiante, matricula, parcial_3
 										WHERE 

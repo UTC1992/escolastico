@@ -305,7 +305,7 @@
 													<td>{{n.p4}}</td>
 													<td>{{n.evaluacion}}</td>
 													<td>{{n.Promedio}}</td>
-													<td>{{n.comporta}}</td>
+													<td><center>{{n.comporLetra}}</center></td>
 												</tr>
 											</tbody>
 										</table>

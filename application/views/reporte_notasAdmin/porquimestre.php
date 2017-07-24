@@ -273,7 +273,7 @@
 												<td>{{n.parcial3}}</td>
 												<td>{{n.nota_exa}}</td>
 												<td>{{n.Promedio}}</td>
-												<td>{{n.comporta}}</td>
+												<td><center>{{n.comporLetra}}</center></td>
 											</tr>
 										</tbody>
 									</table>
