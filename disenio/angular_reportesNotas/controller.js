@@ -365,7 +365,8 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 			//console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
-				//$scope.notasParcial.push(response[0]);
+				
+				
 			} else {
 				if (response.length > 0) {
 					//añadir un elemento en el interior de un array en un elemento JSON
@@ -399,7 +400,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         }).success(function(response){
 			//console.log(response);
 			if(response.length == 0){
-					//$scope.notasParcial.push(datosSuple[0]);
+					datosMejora[0].mejora = 0;
 					obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosMejora);
 			} else {
 				if (response.length > 0) {
@@ -433,7 +434,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         }).success(function(response){
 			//console.log(response);
 			if(response.length == 0){
-					//$scope.notasParcial.push(datosSuple[0]);
+					datosSuple[0].suple = 0;
 					obtenerNotaRemedial(anioI, anioF, idEstu, asignatura, datosSuple);
 			} else {
 				if (response.length > 0) {
@@ -467,7 +468,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         }).success(function(response){
 			//console.log(response);
 			if(response.length == 0){
-					//$scope.notasParcial.push(datosRemedial[0]);
+					datosRemedial[0].remedial = 0;
 					obtenerNotaGracia(anioI, anioF, idEstu, asignatura, datosRemedial);
 			} else {
 				if (response.length > 0) {
@@ -499,11 +500,80 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         }).success(function(response){
 			//console.log(response);
 			if(response.length == 0){
+					datosGracia[0].gracia = 0;
+					//sacar el promedio
+					var promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
+					datosGracia[0].promedio1 = promedio.toFixed(2);
+
+					var subPromedio = 0;
+					//onbtener promedio al calcularlo con la nota de mejora
+					if(parseFloat(datosGracia[0].mejora) > 0){
+						if(parseFloat(datosGracia[0].Q1) < parseFloat(datosGracia[0].Q2) ){
+							subPromedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].mejora)) / 2;
+							subPromedio = (subPromedio + parseFloat(datosGracia[0].Q2) ) / 2;
+						} else {
+							subPromedio = (parseFloat(datosGracia[0].Q2) + parseFloat(datosGracia[0].mejora)) / 2;
+							subPromedio = (subPromedio + parseFloat(datosGracia[0].Q1) ) / 2;
+						}
+					}
+
+					if(parseFloat(datosGracia[0].suple) > 0){
+						if(parseFloat(datosGracia[0].suple) >= 7){
+							subPromedio = 7;
+						}
+					}
+
+					if(parseFloat(datosGracia[0].remedial) > 0){
+						if(parseFloat(datosGracia[0].remedial) >= 7){
+							subPromedio = 7;
+						}
+					}
+
+					if(parseFloat(datosGracia[0].gracia) > 0){
+						if(parseFloat(datosGracia[0].gracia) >= 7){
+							subPromedio = 7;
+						}
+					}
+					
+					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					$scope.notasParcial.push(datosGracia[0]);
 			} else {
 				if (response.length > 0) {
 					//se asigna el valor a la variable suple de scope para mostrar en la tabla
 					datosGracia[0].gracia = response[0].nota_gra;
+					var promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
+					datosGracia[0].promedio1 = promedio.toFixed(2);
+
+					var subPromedio = 0;
+					//onbtener promedio al calcularlo con la nota de mejora
+					if(parseFloat(datosGracia[0].mejora) > 0){
+						if(parseFloat(datosGracia[0].Q1) < parseFloat(datosGracia[0].Q2) ){
+							subPromedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].mejora)) / 2;
+							subPromedio = (subPromedio + parseFloat(datosGracia[0].Q2) ) / 2;
+						} else {
+							subPromedio = (parseFloat(datosGracia[0].Q2) + parseFloat(datosGracia[0].mejora)) / 2;
+							subPromedio = (subPromedio + parseFloat(datosGracia[0].Q1) ) / 2;
+						}
+					}
+
+					if(parseFloat(datosGracia[0].suple) > 0){
+						if(parseFloat(datosGracia[0].suple) >= 7){
+							subPromedio = 7;
+						}
+					}
+
+					if(parseFloat(datosGracia[0].remedial) > 0){
+						if(parseFloat(datosGracia[0].remedial) >= 7){
+							subPromedio = 7;
+						}
+					}
+
+					if(parseFloat(datosGracia[0].gracia) > 0){
+						if(parseFloat(datosGracia[0].gracia) >= 7){
+							subPromedio = 7;
+						}
+					}
+					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					//se ingresa al json el valor de la nota de supletorio
 					$scope.notasParcial.push(datosGracia[0]);
 					

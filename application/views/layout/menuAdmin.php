@@ -26,11 +26,11 @@
           <li class="nav-item active" style="padding: 0px; margin: 5px; width: 120px;">
             <a class="nav-link btn btn-outline-warning" id="inicioMenu" href="<?= base_url() ?>admin_/dashboard">Inicio<span class="sr-only">(current)</span></a>
           </li>
-					<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 120px;">
+					<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 160px;">
 						<div class="dropdown active">
 							<a class="btn nav-link btn-outline-warning dropdown-toggle" 
 							href="#" id="dropdownMenuButtonTablas" data-toggle="dropdown" >
-									Tablas
+									Gestionar Datos
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonTablas" style="width: 200px;">
 									<a class="dropdown-item" id="anioMenu" href="<?= base_url() ?>admin_/periodoacademico/">Año Lectivo</a>

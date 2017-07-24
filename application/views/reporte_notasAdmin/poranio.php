@@ -270,12 +270,12 @@
 												<td>{{n.asignatura}}</td>
 												<td>{{n.Q1}}</td>
 												<td>{{n.Q2}}</td>
-												<td>{{n.promedioF}}</td>
+												<td>{{n.promedio1}}</td>
 												<td>{{n.mejora}}</td>
 												<td>{{n.suple}}</td>
 												<td>{{n.remedial}}</td>
 												<td>{{n.gracia}}</td>
-												<td>{{}}</td>
+												<td>{{n.promedioFinal}}</td>
 												<td>{{n.comportaF}}</td>
 											</tr>
 										</tbody>
