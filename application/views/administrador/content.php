@@ -30,7 +30,7 @@
 	} );
 	</script>
 	<center>
-			<h3>Menú de la Administración</h3>
+			<h3>Menú</h3>
 	</center>
 	<br>
 	<div id="tabs">

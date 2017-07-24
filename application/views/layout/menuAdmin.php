@@ -10,13 +10,37 @@
     <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_js/angular-animate1.5.5.js"></script>
     
 <body>
+<style>
+	.logo {
+			/* cambia estos dos valores para definir el tamaño de tu círculo */
+			height: 100px;
+			width: 100px;
+			/* los siguientes valores son independientes del tamaño del círculo */
+			background-repeat: no-repeat;
+			border-radius: 50%;
+			background-size: 100% auto;
+	}
+</style>
 <header>   
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     
-     <a class="navbar-brand" href="<?= base_url() ?>admin_/dashboard">Administración</a>
+		 <a class="navbar-brand" href="<?= base_url() ?>admin_/dashboard">
+		 	<!--<table  >
+					<tr>
+					<td rowspan="2"><img src="<?= base_url() ?>disenio/img/logo2.jpg"
+					class="rounded-circle" style="width: 100px; height: 100px;"></td>
+					<td ><strong>Unidad Educativa Fiscal</strong></td>
+					</tr>
+					<tr>
+					<td><strong>"Patria"</strong></td> 
+					</tr>
+			</table>
+				-->
+		Administración
+		 </a>
       <div class="collapse navbar-collapse" >
         
       </div>

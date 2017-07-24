@@ -8,7 +8,7 @@
         
 <!--head -->
 <div class="container">
-    <center><h2>Administrar Docentes</h2></center>
+    <center><h2>Docentes</h2></center>
     <input id="urlConsultarDocente" type="hidden" value="<?= base_url() ?>admin_/docente/listar">
 </div>
 <br>

@@ -8,7 +8,7 @@
         
 <!--menu -->
 <div class="container">
-    <center><h2>Administrar Año Lectivo</h2></center>
+    <center><h2>Año Lectivo</h2></center>
     <input id="urlConsultarPeriodos" type="hidden" value="<?= base_url() ?>admin_/periodoacademico/lista">
 </div>
 <br>
