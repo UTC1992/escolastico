@@ -72,7 +72,7 @@
 						<div class="dropdown active">
 							<a class="btn nav-link btn-outline-warning dropdown-toggle" 
 							href="#" id="dropdownMenuButtonTablas" data-toggle="dropdown" >
-									Tablas
+									Gestionar Datos
 							</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonTablas" style="width: 200px;">
 									<a class="dropdown-item" id="anioMenu" href="<?= base_url() ?>admin_/periodoacademico/">Año Lectivo</a>

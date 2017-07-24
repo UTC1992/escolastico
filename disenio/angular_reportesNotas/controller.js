@@ -173,7 +173,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 					+"&idEstu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			console.log(response);
+			//console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
 				$scope.notasParcial = [];
@@ -287,7 +287,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 					+"&idEstu="+idEstu,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			//console.log(response);
+			console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
 				$scope.notasParcial = [];
@@ -362,7 +362,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			
+			//console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
 				//$scope.notasParcial.push(response[0]);
@@ -371,10 +371,10 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 					//añadir un elemento en el interior de un array en un elemento JSON
 					//response[0].mejora = 'hola';
 					
-					obtenerNotaSupletorio($scope.anioI, $scope.anioF, idEstu, asignatura);
+					obtenerNotaMejora($scope.anioI, $scope.anioF, idEstu, asignatura, response);
 					
 					$scope.mensajeNotas = false;
-					$scope.notasParcial.push(response[0]);
+					//$scope.notasParcial.push(response[0]);
 					
 				}
 			}
@@ -385,8 +385,41 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         });	
 	}
 
+	function obtenerNotaMejora(anioI, anioF, idEstu, asignatura, datosMejora){
+		var urlNotaSuple = $('#urlNotasMejora').val();
+        
+		$http({
+            method: "post",
+            url: urlNotaSuple,
+            data:   "&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&idEstu="+idEstu
+					+"&asignatura="+asignatura,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			if(response.length == 0){
+					//$scope.notasParcial.push(datosSuple[0]);
+					obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosMejora);
+			} else {
+				if (response.length > 0) {
+					//se asigna el valor a la variable suple de scope para mostrar en la tabla
+
+					datosMejora[0].mejora = response[0].nota_mejo;
+					//se ingresa al json el valor de la nota de supletorio
+					//$scope.notasParcial.push(datos[0]);
+
+					obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosMejora);
+				}	
+			}
+        }, function (error) {
+                console.log(error);
+        });
+		
+		
+	}
 	
-	function obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura){
+	function obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosSuple){
 		var urlNotaSuple = $('#urlNotasSuple').val();
         
 		$http({
@@ -398,15 +431,19 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			//console.log(response[0]);
+			//console.log(response);
 			if(response.length == 0){
-
+					//$scope.notasParcial.push(datosSuple[0]);
+					obtenerNotaRemedial(anioI, anioF, idEstu, asignatura, datosSuple);
 			} else {
 				if (response.length > 0) {
-					//console.log(response[0].nota_suple);
 					//se asigna el valor a la variable suple de scope para mostrar en la tabla
-					
-					$scope.suple = response[0].nota_suple;
+
+					datosSuple[0].suple = response[0].nota_suple;
+					//se ingresa al json el valor de la nota de supletorio
+					//$scope.notasParcial.push(datosSuple[0]);
+
+					obtenerNotaRemedial(anioI, anioF, idEstu, asignatura, datosSuple);
 				}	
 			}
         }, function (error) {
@@ -414,6 +451,67 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         });
 		
 		
+	}
+
+	function obtenerNotaRemedial(anioI, anioF, idEstu, asignatura, datosRemedial){
+		var urlNotaSuple = $('#urlNotasRemedial').val();
+        
+		$http({
+            method: "post",
+            url: urlNotaSuple,
+            data:   "&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&idEstu="+idEstu
+					+"&asignatura="+asignatura,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			if(response.length == 0){
+					//$scope.notasParcial.push(datosRemedial[0]);
+					obtenerNotaGracia(anioI, anioF, idEstu, asignatura, datosRemedial);
+			} else {
+				if (response.length > 0) {
+					//se asigna el valor a la variable suple de scope para mostrar en la tabla
+
+					datosRemedial[0].remedial = response[0].nota_reme;
+					//se ingresa al json el valor de la nota de supletorio
+					//$scope.notasParcial.push(datosRemedial[0]);
+
+					obtenerNotaGracia(anioI, anioF, idEstu, asignatura, datosRemedial);
+				}	
+			}
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	function obtenerNotaGracia(anioI, anioF, idEstu, asignatura, datosGracia){
+		var urlNotaSuple = $('#urlNotasGracia').val();
+        
+		$http({
+            method: "post",
+            url: urlNotaSuple,
+            data:   "&anioI="+$scope.anioI
+                    +"&anioF="+$scope.anioF
+					+"&idEstu="+idEstu
+					+"&asignatura="+asignatura,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			if(response.length == 0){
+					$scope.notasParcial.push(datosGracia[0]);
+			} else {
+				if (response.length > 0) {
+					//se asigna el valor a la variable suple de scope para mostrar en la tabla
+					datosGracia[0].gracia = response[0].nota_gra;
+					//se ingresa al json el valor de la nota de supletorio
+					$scope.notasParcial.push(datosGracia[0]);
+					
+				}	
+			}
+        }, function (error) {
+                console.log(error);
+        });
 	}
 
 	$scope.printToCart = function(printSectionId) {

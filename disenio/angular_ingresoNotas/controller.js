@@ -392,6 +392,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 			$scope.leccionesP 		= 	response[0]['parametro2'];
 			$scope.trabajosP 		= 	response[0]['parametro3'];
 			$scope.investigacionP 	= 	response[0]['parametro4'];
+			$scope.evaluacion	 	= 	response[0]['evaluacion'];
 			
 			$scope.faltasJus 	= 	response[0]['faltasJus'];
 			$scope.faltasInjus 	= 	response[0]['faltasInjus'];
@@ -404,7 +405,7 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 
 	$scope.procesoActualizar = function(){
 		var idParcialEdit = $('#idParcialEdit').val();
-		var idParcial = event.target.id;
+		//var idParcial = event.target.id;
 		var parcial = $scope.parcial+"";
 		switch (parcial) {
 			case '1ero':
@@ -437,12 +438,14 @@ app.controller('notasIngresoCtrl', function($scope, $http) {
 					+"&parametro2="+$scope.leccionesP
 					+"&parametro3="+$scope.trabajosP
 					+"&parametro4="+$scope.investigacionP
+					+"&evaluacion="+$scope.evaluacion
 					+"&faltasJus="+$scope.faltasJus
 					+"&faltasInjus="+$scope.faltasInjus
 					+"&diasAsis="+$scope.diasAsis
 					+"&comporta="+$scope.comporta,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
+			//alert('Exitosa');
             mostrarDatosActualizados();
 			$scope.edicionExitosa = true;
         }, function (error) {

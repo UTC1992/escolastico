@@ -358,6 +358,24 @@
 										</div>
 
 										<div class="form-group row">
+											<label class="col-3 col-form-label">Evaluación:</label>
+											<div class="col-4">
+												<input class="form-control" name="evaluacion" id="evaluacion" 
+												ng-model="evaluacion"
+												type="text" placeholder="00.00" required>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fParcialEditar.evaluacion.$valid">
+												<strong> Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson" 
+												ng-show="fParcialEditar.evaluacion.$invalid">
+												* Campo Obligatorio.
+											</div>
+											
+										</div>
+
+										<div class="form-group row">
 											<label class="col-3 col-form-label">Faltas Justificadas:</label>
 											<div class="col-4">
 												<input class="form-control" name="faltasJus" id="faltasJus" 

@@ -52,16 +52,7 @@
 							<td><label>Año lectivo:</label></td>
 							<td>
 								<div class="form-inline">
-									<!--
-									<select class="form-control" style="width: 97px; margin-right: 5px;" ng-model="anioI" required>
-										<option value="">Inicio</option>
-										<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-									</select>
-									<select class="form-control" style="width: 97px;" ng-model="anioF" required>
-										<option value="">Fin</option>
-										<option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-									</select>
-									-->
+									
 									<select class="form-control" style="margin-right: 5px;" 
 									name="aniosL" id="aniosL" ng-model="aniosL" required>
 										<option value="">Seleccionar</option>

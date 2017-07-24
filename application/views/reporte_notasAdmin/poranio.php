@@ -26,6 +26,12 @@
 
 		<!--buscar nota de supletorio-->
 		<input type="hidden" id="urlNotasSuple" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaSuple">
+		<!--buscar nota de mejora-->
+		<input type="hidden" id="urlNotasMejora" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaMejora">
+		<!--buscar nota de mejora-->
+		<input type="hidden" id="urlNotasRemedial" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaRemedial">
+		<!--buscar nota de mejora-->
+		<input type="hidden" id="urlNotasGracia" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaGracia">
 	<!--urls-->
 
 	<!--url para años lectivos-->
@@ -254,23 +260,23 @@
 												<th>SUPLE</th>
 												<th>REMEDIAL</th>
 												<th>GRACIA</th>
-												<th>PROM FIN</th>
-												<th>EQUIVALENCIA</th>
+												<th>PROMEDIO FIN</th>
+												<th>COMPORTAMIENTO</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="n in notasParcial track by $index">
+											<tr ng-repeat="n in notasParcial | orderBy : 'asignatura'">
 												<td>{{ $index + 1 }}</td>
 												<td>{{n.asignatura}}</td>
 												<td>{{n.Q1}}</td>
 												<td>{{n.Q2}}</td>
 												<td>{{n.promedioF}}</td>
-												<td>{{mejora}}</td>
-												<td>{{suple}}</td>
-												<td>{{remedial}}</td>
-												<td>{{gracia}}</td>
-												<td>{{promedioFinal}}</td>
-												<td>{{equivalencia}}</td>
+												<td>{{n.mejora}}</td>
+												<td>{{n.suple}}</td>
+												<td>{{n.remedial}}</td>
+												<td>{{n.gracia}}</td>
+												<td>{{}}</td>
+												<td>{{n.comportaF}}</td>
 											</tr>
 										</tbody>
 									</table>

@@ -47,7 +47,9 @@
 
 			$result = $this->db->query("SELECT 	asignatura_p2 as 'asignatura', parametro1_p2 as 'p1', 
 												parametro2_p2 as 'p2', parametro3_p2 as 'p3', parametro4_p2 as 'p4',
+												evaluacion_p2 as 'evaluacion',
 												ROUND(((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2)/4), 2) as 'Promedio'
+												comportamiento_p2 as 'comporta'
 										FROM estudiante, matricula, parcial_2
 										WHERE 
 											matricula.fechainicio_matr LIKE '" . $anioI . "%'
@@ -76,7 +78,9 @@
 
 			$result = $this->db->query("SELECT 	asignatura_p3 as 'asignatura', parametro1_p3 as 'p1', parametro2_p3 as 'p2', 
 												parametro3_p3 as 'p3', parametro4_p3 as 'p4',
+												evaluacion_p3 as 'evaluacion',
 												ROUND(((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3)/4), 2) as 'Promedio'
+												comportamiento_p3 as 'comporta'
 										FROM estudiante, matricula, parcial_3
 										WHERE 
 											matricula.fechainicio_matr LIKE '" . $anioI . "%'
@@ -204,14 +208,20 @@
 												(
 													(( T1.Promedio + T2.Promedio ) / 2) , 2
 												)
-												as 'promedioF'
+												as 'promedioF',
+												ROUND
+												(
+													(( T1.comporta + T2.comporta ) / 2) , 2
+												)
+												as 'comportaF'
 										FROM
 										(
 											SELECT
 													asignatura_p1 as 'asignatura',
-													ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'parcial1',
-													ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'parcial2',
-													ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'parcial3',
+													ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'parcial1',
+													ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'parcial2',
+													ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'parcial3',
+													ROUND( ((comportamiento_p1 + comportamiento_p2 + comportamiento_p3) /3) , 2) as 'comporta',
 													nota_exa,
 													ROUND
 													(
@@ -219,9 +229,9 @@
 															( 
 																(
 																	(
-																		((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ) +
-																		((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ) +
-																		((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 )
+																		((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ) +
+																		((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ) +
+																		((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 )
 																	) / 3
 																) * 0.8
 															)
@@ -232,6 +242,7 @@
 														)
 														, 2
 													) as 'Promedio'
+													
 
 											FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
 											WHERE estudiante.id_estu = '" . $idEstu . "'
@@ -271,9 +282,10 @@
 										(
 											SELECT
 													asignatura_p1 as 'asignatura',
-													ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ), 2) as 'parcial1',
-													ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ), 2) as 'parcial2',
-													ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 ), 2) as 'parcial3',
+													ROUND( ((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ), 2) as 'parcial1',
+													ROUND( ((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ), 2) as 'parcial2',
+													ROUND( ((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 ), 2) as 'parcial3',
+													ROUND( ((comportamiento_p1 + comportamiento_p2 + comportamiento_p3) /3) , 2) as 'comporta',
 													nota_exa,
 													ROUND
 													(
@@ -281,9 +293,9 @@
 															( 
 																(
 																	(
-																		((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1) / 4 ) +
-																		((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2) / 4 ) +
-																		((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3) / 4 )
+																		((parametro1_p1 + parametro2_p1 + parametro3_p1 + parametro4_p1 + evaluacion_p1) / 5 ) +
+																		((parametro1_p2 + parametro2_p2 + parametro3_p2 + parametro4_p2 + evaluacion_p2) / 5 ) +
+																		((parametro1_p3 + parametro2_p3 + parametro3_p3 + parametro4_p3 + evaluacion_p3) / 5 )
 																	) / 3
 																) * 0.8
 															)
@@ -372,6 +384,7 @@
 			$anioI = $datos['anioI'];
 			$anioF = $datos['anioF'];
 			$idEstu = $datos['idEstu'];
+			$asig = $datos['asignatura'];
 
 			$result = $this->db->query("SELECT nota_suple
 										FROM 
@@ -381,11 +394,74 @@
 											AND examen_suple.anioinicio_suple = '" . $anioI . "'
 											AND examen_suple.aniofin_suple = '" . $anioF . "'
 											AND examen_suple.id_estu = '" . $idEstu . "'
+											AND examen_suple.asignatura_suple = '" . $asig . "'
+										;");
+
+			return $result;
+		}
+		
+		public function getNotaMejora($datos = null)
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idEstu = $datos['idEstu'];
+			$asig = $datos['asignatura'];
+
+			$result = $this->db->query("SELECT nota_mejo
+										FROM 
+											examen_mejora, estudiante
+										WHERE
+											estudiante.id_estu = examen_mejora.id_estu
+											AND examen_mejora.anioinicio_mejo = '" . $anioI . "'
+											AND examen_mejora.aniofin_mejo = '" . $anioF . "'
+											AND examen_mejora.id_estu = '" . $idEstu . "'
+											AND examen_mejora.asignatura_mejo = '" . $asig . "'
 										;");
 
 			return $result;
 		}
 
+		public function getNotaRemedial($datos = null)
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idEstu = $datos['idEstu'];
+			$asig = $datos['asignatura'];
+
+			$result = $this->db->query("SELECT nota_reme
+										FROM 
+											examen_remedial, estudiante
+										WHERE
+											estudiante.id_estu = examen_remedial.id_estu
+											AND examen_remedial.anioinicio_reme = '" . $anioI . "'
+											AND examen_remedial.aniofin_reme = '" . $anioF . "'
+											AND examen_remedial.id_estu = '" . $idEstu . "'
+											AND examen_remedial.asignatura_reme = '" . $asig . "'
+										;");
+
+			return $result;
+		}
+		
+		public function getNotaGracia($datos = null)
+		{
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+			$idEstu = $datos['idEstu'];
+			$asig = $datos['asignatura'];
+
+			$result = $this->db->query("SELECT nota_gra
+										FROM 
+											examen_gracia, estudiante
+										WHERE
+											estudiante.id_estu = examen_gracia.id_estu
+											AND examen_gracia.anioinicio_gra = '" . $anioI . "'
+											AND examen_gracia.aniofin_gra = '" . $anioF . "'
+											AND examen_gracia.id_estu = '" . $idEstu . "'
+											AND examen_gracia.asignatura_gra = '" . $asig . "'
+										;");
+
+			return $result;
+		}
 
 	}
 
