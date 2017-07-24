@@ -11,13 +11,13 @@ class Consultar_Notas_Controller extends CI_Controller
 		}
 		$data = array('title' => 'Califícaciones');
 		$this->load->view('/layout/head', $data);
-		$this->load->view('/layout/menuAdmin');
+		$this->load->view('/layout/menuConsultaEstu');
 		$this->load->view('/consultas_estudiante/index');
 		$this->load->view('/layout/footer_base');
 	}
 
 	public function repoParcial() {
-		$this->load->view('/layout/menuAdmin');
+		$this->load->view('/layout/menuConsultaEstu');
 		$cedula = $this->session->userdata('cedula');
 		$idEstu = $this->session->userdata('id_estu');
 		$data = array('cedula' => $cedula, 'idEstu' => $idEstu);
@@ -25,7 +25,7 @@ class Consultar_Notas_Controller extends CI_Controller
 	}
 
 	public function repoQuimestral() {
-		$this->load->view('/layout/menuAdmin');
+		$this->load->view('/layout/menuConsultaEstu');
 		$cedula = $this->session->userdata('cedula');
 		$idEstu = $this->session->userdata('id_estu');
 		$data = array('cedula' => $cedula, 'idEstu' => $idEstu);
@@ -33,7 +33,11 @@ class Consultar_Notas_Controller extends CI_Controller
 	}
 
 	public function repoAnual() {
-		$this->load->view('/consultas_estudiante/poranio');
+		$this->load->view('/layout/menuConsultaEstu');
+		$cedula = $this->session->userdata('cedula');
+		$idEstu = $this->session->userdata('id_estu');
+		$data = array('cedula' => $cedula, 'idEstu' => $idEstu);
+		$this->load->view('/consultas_estudiante/poranio', $data);
 	}
 
 	/**

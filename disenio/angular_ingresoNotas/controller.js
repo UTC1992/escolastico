@@ -1,9 +1,16 @@
-app.controller('notasIngresoCtrl', function($scope, $http) {
+app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 	listarAnios();
 	listarCursos();
 	listarParalelos();
 	//listarAsginaturas();
 	listarAniosLectivos();
+
+
+	//exportar tabla a formato xls
+	$scope.exportToExcel=function(tableId){ // ex: '#my-table'
+		$scope.exportHref=Excel.tableToExcel(tableId,'sheet name');
+		$timeout(function(){location.href=$scope.exportHref;},100); // trigger download
+	}
 
 	//listar años desde 1900 hasta 2100
     function listarAnios(){

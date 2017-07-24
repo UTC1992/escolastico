@@ -111,13 +111,16 @@
 			</form>
 		</div>
 	<!--datos consultar-->
-		
+		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
+				<span class="glyphicon glyphicon-share"></span>
+			Descargar Excel
+		</button>
+		<br>
+		<br>
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
             <form ng-submit="">
-				<table class="table table-bordered table-striped table-sm">
-					
-				<thead class="thead-inverse">
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="10" >
 							<center>
@@ -127,46 +130,52 @@
 							</center>
 						</td>
 					</tr>
+				</table>
+				<table class="table table-bordered table-striped table-sm"
+				id="tableToExport">
+					
+				<thead class="thead-inverse">
+					
 					<tr>
 					<th colspan="10"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
-						<td colspan="2">
+						<td colspan="4">
 							<label style="margin-right: 5px;">
 							<strong>Quimestre:</strong></label><label> {{QuimestreInfo}}</label>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="3"><label style="margin-right: 5px;">
 							<strong>Materia:</strong></label><label> {{MateriaInfo}}</label>
 						</td>
-						<td colspan="2">
+						<td colspan="4">
 						</td>
 					</tr>
 					<tr>
 						<th colspan="2">N°</th>
-						<th colspan="2">Estudiantes</th>
-						<th>Exámen Quimestral</th>
-						<th>Acciones</th>
+						<th colspan="4">Estudiantes</th>
+						<th colspan="2">Exámen Quimestral</th>
+						<th colspan="2">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="estu in estudiantesInformes">
 						<td colspan="2">{{$index + 1}}</td>
-						<td colspan="2">
+						<td colspan="4">
 							<label style="width: 400px;">{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 						</td>
-						<td>{{estu.nota_exa}}</td>
-						<td>
+						<td colspan="2">{{estu.nota_exa}}</td>
+						<td colspan="2">
 							<button style="width: 100px;" class="btn btn-outline-warning editar" 
 							ng-click="mostrarNotasEditar($event)" 
 							id="{{estu.id_exa}}" data-toggle="modal" data-target="#modalEditar">
@@ -174,6 +183,12 @@
 							</button>
 						</td>
 					</tr>
+					
+					<tr>
+					</tr>
+				</tbody>
+				</table>
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="10" >
 							<center>
@@ -199,16 +214,6 @@
 							</center>
 						</td>
 					</tr>
-					<tr>
-						<!--
-						<td colspan="9">
-							<center>
-								<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
-							</center>
-						</td>
-						-->
-					</tr>
-				</tbody>
 				</table>
             </form>
           </div>

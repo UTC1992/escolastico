@@ -126,13 +126,17 @@
 			</form>
 		</div>
 	<!--datos consultar-->
-		
+		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
+				<span class="glyphicon glyphicon-share"></span>
+			Descargar Excel
+		</button>
+		<br>
+		<br>
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
             <form ng-submit="">
-				<table class="table table-bordered table-striped table-sm" style="font-size: 10pt;">
-					
-				<thead class="thead-inverse">
+				
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="11" >
 							<center>
@@ -141,7 +145,13 @@
 								</div>
 							</center>
 						</td>
-					</tr>
+					</tr>	
+				</table>
+				<table class="table table-bordered table-striped table-sm"
+				id="tableToExport" style="font-size: 10pt;">
+					
+				<thead class="thead-inverse">
+					
 					<tr>
 					<th colspan="12"><center>ALUMNOS</center></th>
 					</tr>
@@ -221,6 +231,12 @@
 							</button>
 						</td>
 					</tr>
+					
+					<tr>
+					</tr>
+				</tbody>
+				</table>
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="12" >
 							<center>
@@ -246,16 +262,6 @@
 							</center>
 						</td>
 					</tr>
-					<tr>
-						<!--
-						<td colspan="9">
-							<center>
-								<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
-							</center>
-						</td>
-						-->
-					</tr>
-				</tbody>
 				</table>
             </form>
           </div>

@@ -166,7 +166,7 @@
 						
 						<td>
 							<button  class="btn btn-outline-warning editar" 
-							ng-click="verificarNotasFinales($event)" 
+							ng-click="verificarNotasFinales($event)"
 							id="{{e.id_curs}}/{{e.id_estu}}" data-toggle="modal" data-target="#modalEditar">
 								Mostrar Notas
 							</button>

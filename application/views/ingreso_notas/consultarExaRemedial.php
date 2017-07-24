@@ -98,13 +98,16 @@
 			</form>
 		</div>
 	<!--datos consultar-->
-		
+		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
+				<span class="glyphicon glyphicon-share"></span>
+			Descargar Excel
+		</button>
+		<br>
+		<br>
 		<!--tabla de estudiantes-->
           <div class="table-responsive">
             <form ng-submit="">
-				<table class="table table-bordered table-striped table-sm">
-					
-				<thead class="thead-inverse">
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="7" >
 							<center>
@@ -114,6 +117,13 @@
 							</center>
 						</td>
 					</tr>
+				</table>
+				
+				<table class="table table-bordered table-striped table-sm"
+				id="tableToExport">
+					
+				<thead class="thead-inverse">
+					
 					<tr>
 					<th colspan=7><center>ALUMNOS</center></th>
 					</tr>
@@ -135,19 +145,19 @@
 					</tr>
 					<tr>
 						<th>N°</th>
-						<th colspan="2">Estudiantes</th>
+						<th colspan="3">Estudiantes</th>
 						<!--
 						<th>Nota Q1</th>
 						<th>Nota Q2</th>
 						-->
-						<th>Examen remedial</th>
+						<th colspan="2">Examen remedial</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="estu in estudiantesMatriculados | orderBy: 'apellidos_estu'">
 						<td>{{$index + 1}}</td>
-						<td colspan="2">
+						<td colspan="3">
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
 						</td>
@@ -159,7 +169,7 @@
 							<label>{{estu.NotaQ2}}</label>
 						</td>
 						-->
-						<td>
+						<td colspan="2">
 							<!--
 								<input class="form-control" name="notaE" type="text" value="{{estu.notaSuple}}" placeholder="00.00" style="width: 100px;" required>
 								-->
@@ -173,6 +183,20 @@
 							</button>
 						</td>
 					</tr>
+					
+					<tr>
+						<!--
+						<td colspan="9">
+							<center>
+								<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
+							</center>
+						</td>
+						-->
+					</tr>
+				</tbody>
+				</table>
+
+				<table>
 					<tr ng-show="mensaje">
 						<td colspan="7" >
 							<center>
@@ -197,17 +221,7 @@
 								</div>
 							</center>
 						</td>
-					</tr>
-					<tr>
-						<!--
-						<td colspan="9">
-							<center>
-								<button type="submit" class="btn btn-outline-warning">Enviar Datos</button>
-							</center>
-						</td>
-						-->
-					</tr>
-				</tbody>
+					</tr>	
 				</table>
             </form>
           </div>

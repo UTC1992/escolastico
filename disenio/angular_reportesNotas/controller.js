@@ -372,7 +372,6 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
 			//console.log(response);
-
 			for (var i = 0; i < response.length; i++) {
 				//alert(response[i]['asig']);
 				var asignatura = response[i]['asig'];

@@ -121,4 +121,5 @@
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaMejora.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaRemedial.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/controllerExaGracia.js"></script>
+<script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/factory.js"></script>
 <script type="text/javascript" language="javascript" src="<?= base_url() ?>disenio/angular_ingresoNotas/routes.js"></script>

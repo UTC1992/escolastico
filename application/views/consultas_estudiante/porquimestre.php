@@ -96,48 +96,34 @@
             <form ng-submit="">
 				<table style="" class="table table-striped table-bordered table-sm" border="1">
 					<thead class="thead-inverse">
-						<tr>
+						<tr style="background: black; color: white;">
+							<th></th>
+							<th colspan="3"><center>PARCIALES</center></th>
 							<th></th>
 							<th></th>
-							<th colspan="3"><center>NOTAS PARCIALES</center></th>
-							<th><center></center></th>
-							<th colspan=""><center></center></th>
 							<th></th>
 						</tr>
-						<tr>
-							<th>N°</th>
-							<th>Asignaturas</th>
-							<th>Parcial 1</th>
-							<th>Parcial 2</th>
-							<th>Parcial 3</th>
-							<th>Examen</th>
-							<th>Promedio</th>
-							<th>Comportamiento</th>
+						<tr style="background: black; color: white;">
+							<th>ASIGNATURAS</th>
+							<th>PARCIAL 1</th>
+							<th>PARCIAL 2</th>
+							<th>PARCIAL 3</th>
+							<th>EXAMEN</th>
+							<th>PROMEDIO</th>
+							<th>COMPORTAMIENTO</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="n in notasParcial">
-							<td>{{ $index + 1}}</td>
+						<tr ng-repeat="n in notasParcial" >
 							<td>{{n.asignatura}}</td>
 							<td>{{n.parcial1}}</td>
 							<td>{{n.parcial2}}</td>
 							<td>{{n.parcial3}}</td>
 							<td>{{n.nota_exa}}</td>
-							<td>
-								<strong>{{n.Promedio}}</strong>
-							</td>
-							<th>{{n.comporta}}</th>
+							<td>{{n.Promedio}}</td>
+							<td><center>{{n.comporLetra}}</center></td>
 						</tr>
 					</tbody>
-					<tr ng-show="mensajeNotas">
-						<td colspan="6" >
-							<center>
-								<div  class="alert alert-danger" style="color: crimson;">
-									<strong>* No existen notas registradas por el momento.</strong>
-								</div>
-							</center>
-						</td>
-					</tr>
 				</table>
             </form>
           </div>
