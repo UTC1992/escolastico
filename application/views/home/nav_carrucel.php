@@ -13,7 +13,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     
-     <a class="navbar-brand" href="<?= base_url() ?>">Unidad Educativa Patria</a>
+     <a class="navbar-brand" href="<?= base_url() ?>">
+		 	<table  >
+					<tr>
+					<td rowspan="2"><img src="<?= base_url() ?>disenio/img/logo3.png" 
+					 style="width: 90px; height: 80px;"></td>
+					<td ><strong>Unidad Educativa Fiscal</strong></td>
+					</tr>
+					<tr>
+					<td><strong>"Patria"</strong></td> 
+					</tr>
+			</table>
+		 </a>
       <div class="collapse navbar-collapse" >
         
       </div>

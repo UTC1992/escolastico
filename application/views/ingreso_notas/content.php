@@ -4,6 +4,7 @@
     }
 </style>
 <link href="<?= base_url() ?>disenio/css/dashboard.css" rel="stylesheet">
+<br><br>
 <div  class="notasIngreso"  ng-app="appNotasIngreso" >
         
 	<!--Nav menu-->

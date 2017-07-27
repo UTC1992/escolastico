@@ -3,6 +3,7 @@
     }
 </style>
 <link href="<?= base_url() ?>disenio/angular_js/ng-table.min.css" rel="stylesheet">
+<br>
 <div class="container"  class="contenidoEstu" ng-app="appEstudiante">
 <br>
 <br>
