@@ -1,4 +1,4 @@
-app.controller('docenteCargoCtrl', function($scope, $http, $location, $route) {
+app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParams) {
     //
     listarDocenteCargo();
     listarCursos();
@@ -43,12 +43,35 @@ app.controller('docenteCargoCtrl', function($scope, $http, $location, $route) {
          $http({
             method: "post",
             url: urlSQL,
-            data: "id_curs="+idCurso+"&id_doce="+idDoce+"&id_asig="+idAsig+"&id_cargo="+idCargo,
+			data: 	"id_curs="+idCurso
+					+"&id_doce="+idDoce
+					+"&id_asig="+idAsig
+					+"&id_cargo="+idCargo,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-            //alert("Lista cargos y docentes" + response[0]['nombres_doce']);
-            //window.location.reload(false);
-            $scope.docentesCargosLista.push(response[0]);
+			$scope.docentesCargosLista.push(response[0]);
+			
+			$scope.docenteCargoTable = new NgTableParams(
+                {
+                 count: 5,
+				 sorting: {
+					apellidos_doce: 'asc'     // initial sorting
+				}
+                }, {
+                    counts: [5, 10, 20, 50, 100],
+                    getData: function (params) {
+   						$scope.dataAsig = params.filter() ? 
+						   $filter('filter')($scope.docentesCargosLista, params.filter()) : $scope.docentesCargosLista;
+						
+						var orderedData = params.sorting() ?
+								$filter('orderBy')($scope.dataAsig, params.orderBy()) : $scope.docentesCargosLista;
+
+						params.total(orderedData.length);
+                        $scope.dataAsig = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                        return $scope.dataAsig;
+                    }
+					
+                });
         });
     }
     

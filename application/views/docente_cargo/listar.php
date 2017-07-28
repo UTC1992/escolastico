@@ -6,18 +6,22 @@
 
 <!--INICIO CONTENEDOR-->
 <div id="contenidoDocente" class="container" ng-controller="docenteCargoCtrl">
-    <h3>Lista de Docentes con sus asignaciones académicas:</h3>
+    
     <div >	
         <input type="hidden" id="urlDocentesCargo" value="<?= base_url()?>docente_cargo_controller/getDataJsonDocenteCargoAll">
         <input type="hidden" id="urlDocentesCargoConsultaSQL" value="<?= base_url()?>docente_cargo_controller/getDataJsonDocenteCargo">
 
-        <button class="btn btn-primary nuevo" ng-click="" data-toggle="modal" data-target="#modalNuevo">
-            Nueva Asignacion:
-        </button>
-        <br><br>
+		<center>
+		<button class="btn btn-primary nuevo" ng-click="" data-toggle="modal" data-target="#modalNuevo">
+            Registrar docente y cargo:
+		</button>
+		</center>
+		<h3>Cargos y Docentes:</h3>
+		<br>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
+            <table class="table table-bordered table-condensed table-striped table-sm"
+			ng-table="docenteCargoTable" show-filter="true">
+                <!--<thead>
                     <tr>
                         <th>N°</th>
                         <th>Cédula</th>
@@ -30,19 +34,20 @@
                         <th>Profesor de Grado</th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
+					
+                </thead> -->
                 <tbody>
-                    <tr ng-repeat="dc in docentesCargosLista | filter:buscar | orderBy:'nombres_doce'">
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{dc.cedula_doce}}</td>
-                        <td>{{dc.nombres_doce}} {{dc.apellidos_doce}}</td>
-                        <td>{{dc.categoria_nivel_cargo}}</td>
-                        <td>{{dc.nombre_curs}}</td>
-                        <td>{{dc.paralelo_cargo}}</td>
-                        <td>{{dc.nombre_asig}}</td>
-                        <td>{{dc.periodo_academico_cargo}}</td>
-                        <td>{{dc.curso_completo_cargo}}</td>
-                        <td>
+                    <tr ng-repeat="dc in $data">
+                        <td data-title="'N°'">{{ $index + 1 }}</td>
+                        <!--<td data-title="'Cédula'">{{dc.cedula_doce}}</td>-->
+                        <td data-title="'Docente'" sortable="'apellidos_doce'" filter="{apellidos_doce: 'text'}">{{dc.apellidos_doce}} {{dc.nombres_doce}}</td>
+                        <td data-title="'Nivel'" filter="{categoria_nivel_cargo: 'text'}">{{dc.categoria_nivel_cargo}}</td>
+                        <td data-title="'Curso'" filter="{nombre_curs: 'text'}">{{dc.nombre_curs}}</td>
+                        <td data-title="'Paralelo'" filter="{paralelo_cargo: 'text'}">{{dc.paralelo_cargo}}</td>
+                        <td data-title="'Asignatura'" filter="{nombre_asig: 'text'}">{{dc.nombre_asig}}</td>
+                        <td data-title="'Año lectivo'" filter="{periodo_academico_cargo: 'text'}">{{dc.periodo_academico_cargo}}</td>
+                        <td data-title="'Curso Completo'" filter="{curso_completo_cargo: 'text'}">{{dc.curso_completo_cargo}}</td>
+                        <td data-title="'Acciones'">
                             <div>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>docente_cargo_controller/getDataJsonDocenteCargoId/{{dc.id_cargo}}" 

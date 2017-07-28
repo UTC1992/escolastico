@@ -85,7 +85,7 @@
 			<thead>
 				<tr>
 					<th>Año lectivo</th>
-					<th></th>
+					<th>Docente y Cargos</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,39 +96,13 @@
 						</a>
 					</td>
 					<td>
-					</td>
-				</tr>
-			</tbody>
-			<!--
-			<thead>
-				<tr>
-					<th>Docentes</th>
-					
-					<th>
-						Docente y Cargos
-					</th>
-					
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td>
-						<a href="<?= base_url() ?>admin_/docente/" class="btn btn-outline-warning">
-							Mostrar...
-						</a>
-					</td>
-					
-					<td>
 						<a href="<?= base_url() ?>admin_/docente_cargo/" class="btn btn-outline-warning">
 							Mostrar...
 						</a>
 					</td>
-					
 				</tr>
 			</tbody>
-			-->
-			
+						
 		</table>
 
 	</div>

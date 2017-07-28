@@ -48,6 +48,7 @@
 									<a class="dropdown-item" id="asignaturaMenu" href="<?= base_url() ?>admin_/asignaturas/">Asignaturas</a>
 									<a class="dropdown-item" id="cursosMenu" href="<?= base_url() ?>admin_/curso/">Cursos</a>
 									<a class="dropdown-item" id="docenteMenu" href="<?= base_url() ?>admin_/docente/">Docentes</a>
+									<a class="dropdown-item" id="docenteMenu" href="<?= base_url() ?>admin_/docente_cargo">Docentes y Cargos</a>
 									<a class="dropdown-item" id="estudiantesMenu" href="<?= base_url() ?>admin_/estudiantes/">Estudiantes</a>
 							</div>
 						</div>
