@@ -30,7 +30,7 @@
 					<td ><strong>Unidad Educativa Fiscal</strong></td>
 					</tr>
 					<tr>
-					<td><strong>"Patria"</strong></td> 
+					<td><strong><center>"Patria"</center></strong></td> 
 					</tr>
 			</table>
 		 </a>
@@ -40,8 +40,15 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           
-          <?php if($this->session->userdata('login_doce')) { ?>
-						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
+          <?php if($this->session->userdata('login_doce')) { 
+		  	$docente = $this->session->userdata('nombreApellido_doce');
+		  ?>
+		  				<li class="nav-item" style="padding: 0px; margin: 5px;" >
+							<label class="btn nav-link btn-outline-default" style="width: 400px; color: white;">
+								Docente:<br><strong><?= $docente ?></strong>
+							</label>	
+						</li>
+						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 180px;">
 								<div class="dropdown active">
 									<a class="btn nav-link btn-outline-warning dropdown-toggle" 
 									href="#" id="dropdownMenuButton" data-toggle="dropdown" >
@@ -53,7 +60,7 @@
 									</div>
 								</div>
 						</li>
-						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
+						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 180px;">
 								<div class="dropdown active">
 									<a class="btn nav-link btn-outline-warning dropdown-toggle" 
 									href="#" id="dropdownMenuButton" data-toggle="dropdown" >
@@ -66,7 +73,7 @@
 								</div>
 						</li>
           	
-						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
+						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 180px;">
 							<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>notas_/ingresar_notas/logout">Cerrar Sesión</a>
 						</li>
 					<?php }else{ ?>

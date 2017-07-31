@@ -87,9 +87,12 @@ app.controller('docenteCtrl', function($scope, $http, $location, $route, $filter
 
     //listar años desde 1900 hasta 2100
     function listarAnios(){
+		var date = new Date();
+        var anio = date.getFullYear();
+        
         $scope.anios = [];
         var contador = 0;
-        for (var i = 1900; i < 2100; i++) {
+        for (var i = 1900; i <= anio; i++) {
             $scope.anios[contador] = i;
             contador++;
         }

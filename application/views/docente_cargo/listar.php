@@ -13,7 +13,7 @@
 
 		<center>
 		<button class="btn btn-primary nuevo" ng-click="" data-toggle="modal" data-target="#modalNuevo">
-            Registrar docente y cargo:
+            Registrar docente y cargo
 		</button>
 		</center>
 		<h3>Cargos y Docentes:</h3>

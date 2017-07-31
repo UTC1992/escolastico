@@ -24,7 +24,7 @@
 					<td ><strong>Unidad Educativa Fiscal</strong></td>
 					</tr>
 					<tr>
-					<td><strong>"Patria"</strong></td> 
+					<td><strong><center> "Patria"</center></strong></td> 
 					</tr>
 			</table>
 		 </a>

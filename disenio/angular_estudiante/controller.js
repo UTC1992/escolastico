@@ -107,9 +107,12 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 
     //listar años desde 1900 hasta 2100
     function listarAnios(){
+		var date = new Date();
+        var anio = date.getFullYear();
+        
         $scope.anios = [];
         var contador = 0;
-        for (var i = 1990; i < 2050; i++) {
+        for (var i = 1900; i <= anio; i++) {
             $scope.anios[contador] = i;
             contador++;
         }
@@ -224,7 +227,8 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
                     +"&fechafin_matr="+vectorPart2[2]+"-"
                                             +numMesDiaFin
                     +"&paralelo_matr="+$scope.paralelo
-                    +"&nivel_matr="+$scope.categoriaNivel,
+					+"&nivel_matr="+$scope.categoriaNivel
+					+"&estado_matr="+$scope.estadoMatri,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             inicializarVariablesEstu();
@@ -301,6 +305,7 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 		$scope.confirmarMatriEdit = false;
         $http.get(url)
             .success(function(datosP){
+				console.log(datosP);
                 $scope.datosCertiImprimir = datosP;
 				var idMatricula = datosP[0]['id_matr'];
                 $('#idMatri').val(idMatricula);
@@ -316,7 +321,8 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
 				
                 $scope.cursoNombre = datosP[0]['nombre_curs'];
                 $scope.paraleloEdit = datosP[0]['paralelo_matr'];
-                $scope.categoriaNivel = datosP[0]['nivel_matr'];
+				$scope.categoriaNivel = datosP[0]['nivel_matr'];
+				$scope.estadoEdit = datosP[0]['estado_matr'];
             });
 	}
 
@@ -388,7 +394,8 @@ app.controller('estudianteCtrl', function($scope, $http, $filter, NgTableParams)
                     +"&fechafin_matr="+vectorPart2[2]+"-"
                                             +numMesDiaFin
                     +"&paralelo_matr="+$scope.paraleloEdit
-                    +"&nivel_matr="+$scope.categoriaNivel,
+					+"&nivel_matr="+$scope.categoriaNivel
+					+"&estado_matr="+$scope.estadoEdit,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
             $scope.confirmarMatriEdit = true;

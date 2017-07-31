@@ -5,7 +5,8 @@
     <link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
     
 <body>
-<header>   
+<header> 
+		<br>
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
 			data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" 
@@ -21,7 +22,7 @@
 					<td ><strong>Unidad Educativa Fiscal</strong></td>
 					</tr>
 					<tr>
-					<td><strong>"Patria"</strong></td> 
+					<td><strong><center>"Patria"</center></strong></td> 
 					</tr>
 			</table>
 		 </a>

@@ -21,7 +21,8 @@
 					'fechainicio_matr' 	=> $matricula['fechainicio_matr'],
 					'fechafin_matr' 	=> $matricula['fechafin_matr'],
 					'paralelo_matr' 	=> $matricula['paralelo_matr'],
-					'nivel_matr' 		=> $matricula['nivel_matr']
+					'nivel_matr' 		=> $matricula['nivel_matr'],
+					'estado_matr' 		=> $matricula['estado_matr']
 				);
 				return $this->db->insert('matricula', $data);
 			}
@@ -83,7 +84,8 @@
 					'fechainicio_matr' 	=> $matricula['fechainicio_matr'],
 					'fechafin_matr' 	=> $matricula['fechafin_matr'],
 					'paralelo_matr' 	=> $matricula['paralelo_matr'],
-					'nivel_matr' 		=> $matricula['nivel_matr']
+					'nivel_matr' 		=> $matricula['nivel_matr'],
+					'estado_matr' 		=> $matricula['estado_matr']
 				);
 				$this->db->where('id_matr', $id);
 				return $this->db->update('matricula', $data);

@@ -208,6 +208,26 @@
 											</div>
 										</div>
 
+										<div class="form-group row">
+											<label class="col-3 col-form-label">Estado:</label>
+											<div class="col-5">
+												<select class="form-control" name="estadoMatri" id="estadoMatri" 
+												ng-model="estadoMatri" required>
+													<option value="">Seleccionar</option>
+													<option value="Activo">Activo</option>
+													<option value="Inactivo">Inactivo</option>
+												</select>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fEstudiante.estadoMatri.$valid">
+											<strong>* Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson"
+												ng-show="fEstudiante.estadoMatri.$invalid">
+												<strong>* Campo obligatorio.</strong>
+											</div>
+										</div>
+
 									</fieldset>
 									<br>
 
@@ -755,6 +775,25 @@
 										</div>
 									</div>
 
+									<div class="form-group row">
+											<label class="col-3 col-form-label">Estado:</label>
+											<div class="col-5">
+												<select class="form-control" name="estadoEdit" id="estadoEdit" 
+												ng-model="estadoEdit" required>
+													<option value="">Seleccionar</option>
+													<option value="Activo">Activo</option>
+													<option value="Inactivo">Inactivo</option>
+												</select>
+											</div>
+											<div class="col-4" style="color: #28B463" 
+												ng-show="fEstudianteEdit.estadoEdit.$valid">
+											<strong>* Correcto.</strong>
+											</div>
+											<div class="col-4" style="color: crimson"
+												ng-show="fEstudianteEdit.estadoEdit.$invalid">
+												<strong>* Campo obligatorio.</strong>
+											</div>
+										</div>
 								</fieldset>
 								<br>
 
@@ -1234,6 +1273,13 @@
 												<label class="col-3 col-form-label">Paralelo:</label>
 												<div class="col-5">
 													<label class="col-form-label">{{paraleloEdit}}</label>
+												</div>
+											</div>
+											
+											<div class="form-group row justify-content-md-center">
+												<label class="col-3 col-form-label">Estado:</label>
+												<div class="col-5">
+													<label class="col-form-label">{{estadoEdit}}</label>
 												</div>
 											</div>
 
