@@ -5,10 +5,22 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
     listarParalelos();
     listarAsginaturas();
     listarDocente();
-    listarPeriodos();
+	listarPeriodos();
+	
+	$scope.inicializarVariables = function(){
+		$scope.docenteID = "";
+		$scope.categoriaNivel = "";
+		$scope.cursosID = "";
+		$scope.paralelo = "";
+		$scope.asignaturaID = "";
+		$scope.cursoCompleto = "";
+		$scope.periodoA = "";
+		$scope.registroExitoso = false;
+	}
 
     //obtener todos los periodos de la tabla
     function listarDocenteCargo() {
+		
         $scope.getUrl = $('#urlDocentesCargo').val();
         if ($scope.getUrl != null) {
             $http.post($scope.getUrl)
@@ -39,6 +51,7 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
     $scope.docentesCargosLista = [];
 
     function crearListaDocentesCargos (idCurso, idDoce, idAsig, idCargo) {
+		$scope.docentesCargosLista = [];
         var urlSQL = $('#urlDocentesCargoConsultaSQL').val();
          $http({
             method: "post",
@@ -110,12 +123,7 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
             'A', 'B', 'C',
             'D', 'E', 'F',
             'G', 'H', 'I',
-            'J', 'K', 'L',
-            'M', 'N', 'O',
-            'P', 'Q', 'R',
-            'S', 'T', 'U',
-            'V', 'W', 'X',
-            'Y', 'Z'
+            'J'
         ];
     }
 
@@ -150,7 +158,14 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
     }
 
      // declaro la función enviar
-    $scope.registrarNuevo = function () {
+	
+	$scope.registroExitoso = false;
+	 $scope.registrarNuevo = function () {
+		
+		//anio lectivo
+		var vector = $scope.periodoA.split("/");
+		var vectorAL = vector[0].split("-");
+
         $scope.getUrl = $('#urlInsertarDC').val();
         $http({
             method: "post",
@@ -161,10 +176,14 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
                     +"&paralelo_cargo="+$scope.paralelo
                     +"&id_asig="+$scope.asignaturaID
                     +"&curso_completo_cargo="+$scope.cursoCompleto
-                    +"&periodo_academico_cargo="+$scope.periodoA,
+					+"&periodo_academico_cargo="+vector[1]
+					+"&anioinicio_cargo="+vectorAL[0]
+					+"&aniofin_cargo="+vectorAL[1],
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+			$scope.registroExitoso = true;
+			listarDocenteCargo();
+			$scope.inicializarVariables();
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);
@@ -173,6 +192,7 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
 
     // declaro la función para mostrar el formulario de edicion
     $scope.mostrarFormEditar = function (event) {
+		$scope.edicionExitosa = false;
         var url = event.target.id;
         //alert(url);
         $http.get(url)
@@ -195,12 +215,16 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
 
 
     function consultarDatosEditar (idCurso, idDoce, idAsig, idCargo) {
+		$scope.edicionExitosa = false;
         var urlSQL = $('#urlDocentesCargoConsultaSQL').val();
         //alert(urlSQL);
          $http({
             method: "post",
             url: urlSQL,
-            data: "id_curs="+idCurso+"&id_doce="+idDoce+"&id_asig="+idAsig+"&id_cargo="+idCargo,
+			data: 	"id_curs="+idCurso
+					+"&id_doce="+idDoce
+					+"&id_asig="+idAsig
+					+"&id_cargo="+idCargo,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
             $scope.docenteCargoEditar = response;
@@ -226,11 +250,16 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
         });
     }
 
+	$scope.edicionExitosa = false;
     $scope.actualizarDocenteCardo = function (){
 
         $scope.getUrl = $('#urlActualizarDC').val();
         $scope.getId = $('#idDC').val();
-        $scope.urlActualizar = $scope.getUrl + $scope.getId;
+		$scope.urlActualizar = $scope.getUrl + $scope.getId;
+		
+		//anio lectivo
+		var vectorAL = $scope.periodoAcademicoEdit.split("-");
+		//var vectorAL = vector[0].split("-");
 
         $http({
             method: "post",
@@ -241,10 +270,13 @@ app.controller('docenteCargoCtrl', function($scope, $http, $filter, NgTableParam
                     +"&paralelo_cargo="+$scope.paraleloCargoEdit
                     +"&id_asig="+$('#idAsignatura').val()
                     +"&curso_completo_cargo="+$scope.cursoCompletoEdit
-                    +"&periodo_academico_cargo="+$scope.periodoAcademicoEdit,
+                    +"&periodo_academico_cargo="+$scope.periodoAcademicoEdit
+					+"&anioinicio_cargo="+vectorAL[1]
+					+"&aniofin_cargo="+vectorAL[3],
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
-            window.location.reload(false);
+			$scope.edicionExitosa = true;
+            listarDocenteCargo();
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);

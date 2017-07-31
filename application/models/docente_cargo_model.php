@@ -15,13 +15,15 @@
 		{
 			if ($docenteC != null) {
 				$data = array(
-					'id_doce' => $docenteC['id_doce'],
-					'categoria_nivel_cargo' => $docenteC['categoria_nivel_cargo'],
-					'id_curs' => $docenteC['id_curs'],
-					'paralelo_cargo' => $docenteC['paralelo_cargo'],
-					'id_asig' => $docenteC['id_asig'],
-					'curso_completo_cargo' => $docenteC['curso_completo_cargo'],
-					'periodo_academico_cargo' => $docenteC['periodo_academico_cargo']
+					'id_doce' 					=> $docenteC['id_doce'],
+					'categoria_nivel_cargo' 	=> $docenteC['categoria_nivel_cargo'],
+					'id_curs' 					=> $docenteC['id_curs'],
+					'paralelo_cargo' 			=> $docenteC['paralelo_cargo'],
+					'id_asig' 					=> $docenteC['id_asig'],
+					'curso_completo_cargo' 		=> $docenteC['curso_completo_cargo'],
+					'periodo_academico_cargo' 	=> $docenteC['periodo_academico_cargo'],
+					'anioinicio_cargo' 			=> $docenteC['anioinicio_cargo'],
+					'aniofin_cargo' 			=> $docenteC['aniofin_cargo']
 				);
 				return $this->db->insert('cargo_docente_asignatura', $data);
 			}
@@ -69,13 +71,15 @@
 		{
 			if ($docenteCargo != null) {
 				$data = array(
-					'id_doce' => $docenteCargo['id_doce'],
-					'categoria_nivel_cargo' => $docenteCargo['categoria_nivel_cargo'],
-					'id_curs' => $docenteCargo['id_curs'],
-					'paralelo_cargo' => $docenteCargo['paralelo_cargo'],
-					'id_asig' => $docenteCargo['id_asig'],
-					'curso_completo_cargo' => $docenteCargo['curso_completo_cargo'],
-					'periodo_academico_cargo' => $docenteCargo['periodo_academico_cargo']
+					'id_doce' 						=> $docenteCargo['id_doce'],
+					'categoria_nivel_cargo' 		=> $docenteCargo['categoria_nivel_cargo'],
+					'id_curs' 						=> $docenteCargo['id_curs'],
+					'paralelo_cargo' 				=> $docenteCargo['paralelo_cargo'],
+					'id_asig' 						=> $docenteCargo['id_asig'],
+					'curso_completo_cargo' 			=> $docenteCargo['curso_completo_cargo'],
+					'periodo_academico_cargo' 		=> $docenteCargo['periodo_academico_cargo'],
+					'anioinicio_cargo' 				=> $docenteCargo['anioinicio_cargo'],
+					'aniofin_cargo' 				=> $docenteCargo['aniofin_cargo']
 				);
 				$this->db->where('id_cargo', $id);
 				return $this->db->update('cargo_docente_asignatura', $data);

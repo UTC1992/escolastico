@@ -12,7 +12,7 @@
         <input type="hidden" id="urlDocentesCargoConsultaSQL" value="<?= base_url()?>docente_cargo_controller/getDataJsonDocenteCargo">
 
 		<center>
-		<button class="btn btn-primary nuevo" ng-click="" data-toggle="modal" data-target="#modalNuevo">
+		<button class="btn btn-primary nuevo" ng-click="inicializarVariables()" data-toggle="modal" data-target="#modalNuevo">
             Registrar docente y cargo
 		</button>
 		</center>
@@ -74,7 +74,7 @@
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modalNuevoLabel">Registrar un nuevo curso.</h3>
+                    <h3 class="modal-title" id="modalNuevoLabel">Registrar un nuevo cargo.</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -83,6 +83,10 @@
                       <div class="row justify-content-md-center">
                             <div class="col-12">
                                 
+								<div class="col-12 alert alert-success" 
+									ng-show="registroExitoso">
+									* Se registró el nuevo cargo exitosamente.
+								</div>
                             <form name="fDocenteCargo" ng-submit="registrarNuevo()" class="form-horizontal" >
                                 <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
                                 <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -116,12 +120,10 @@
                                         <select class="form-control" name="categoriaNivel" id="categoriaNivel" 
                                         ng-model="categoriaNivel" required>
                                             <option value="">Seleccionar</option>
-                                            <option value="Inicial 1/2">Inicial 1/2</option>
+                                            <option value="Inicial">Inicial</option>
                                             <option value="Preparatoria">Preparatoria</option>
-                                            <option value="Básica Elemental">Básica Elemental</option>
-                                            <option value="Básica Media">Básica Media</option>
-                                            <option value="Basica Superior">Basica Superior</option>
-                                            <option value="Bachillerato">Bachillerato</option>
+                                            <option value="Educacion General Basica">Educación General Básica</option>
+                                            <option value="Educacion General Superior">Educación General Superior</option>
                                         </select>
                                     </div>
                                     <div class="col-4" style="color: #28B463" 
@@ -213,13 +215,13 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Periodo Académico:</label>
+                                    <label class="col-3 col-form-label">Año Lectivo:</label>
                                     <div class="col-5">
                                         <select class="form-control" name="periodoA" id="periodoA" 
                                         ng-model="periodoA" required>
                                             <option value="">Seleccionar</option>
                                             <option ng-repeat="p in periodos" 
-                                            value="{{p.mesinicio_pera}}-{{p.anioinicio_pera}}-{{p.mesfin_pera}}-{{p.aniofin_pera}}">
+                                            value="{{p.anioinicio_pera}}-{{p.aniofin_pera}}/{{p.mesinicio_pera}}-{{p.anioinicio_pera}}-{{p.mesfin_pera}}-{{p.aniofin_pera}}">
                                             {{p.mesinicio_pera}}-{{p.anioinicio_pera}}-{{p.mesfin_pera}}-{{p.aniofin_pera}}</option>
                                         </select>
                                     </div>
@@ -239,7 +241,7 @@
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
                                         Guardar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
                             </div>
@@ -266,7 +268,10 @@
                 
                     <div class="row justify-content-md-center">
                         <div class="col-12">
-
+							<div class="col-12 alert alert-success" 
+								ng-show="edicionExitosa">
+								* Los datos se actualizarón exitosamente.
+							</div>
                         <form name="fDocenteCargoEdit" ng-submit="actualizarDocenteCardo()" class="form-horizontal" >
                                 
                                 <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
@@ -290,12 +295,11 @@
                                     <div class="col-7">
                                         <select class="form-control" name="categoriaNivelEdit" id="categoriaNivelEdit" 
                                         ng-model="categoriaNivelEdit" required>
-                                            <option value="Inicial 1/2">Inicial 1/2</option>
+                                            <option value="">Seleccionar</option>
+                                            <option value="Inicial">Inicial</option>
                                             <option value="Preparatoria">Preparatoria</option>
-                                            <option value="Básica Elemental">Básica Elemental</option>
-                                            <option value="Básica Media">Básica Media</option>
-                                            <option value="Basica Superior">Basica Superior</option>
-                                            <option value="Bachillerato">Bachillerato</option>
+                                            <option value="Educacion General Basica">Educación General Básica</option>
+                                            <option value="Educacion General Superior">Educación General Superior</option>
                                         </select>
                                     </div>
                                     
@@ -348,7 +352,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Periodo Académico:</label>
+                                    <label class="col-3 col-form-label">Año Lectivo:</label>
                                     <div class="col-7">
                                         <select class="form-control" name="periodoAcademicoEdit" id="periodoAcademicoEdit" 
                                         ng-model="periodoAcademicoEdit" required>
@@ -364,9 +368,9 @@
                                 <div class="modal-footer">
                                     <button class="col-3 btn btn-primary" type="submit">
                                         <span class="glyphicon glyphicon-floppy-saved"></span>
-                                        Guardar
+                                        Actualizar
                                     </button>
-                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Close</button>
+                                    <button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </form>
 

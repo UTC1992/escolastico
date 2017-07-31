@@ -25,7 +25,7 @@
     <div class="">	
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" style="margin-right: 5px;">
-                <a class="nav-link active" data-toggle="tab" href="#/" role="tab">Inicial 2</a>
+                <a class="nav-link active" data-toggle="tab" href="#/" role="tab">Inicial</a>
             </li>
 			<li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#/preparatoria" role="tab">Preparatoria</a>

@@ -997,7 +997,7 @@
                                 <div class="form-group row justify-content-md-center">
                                     <label class="col-3 col-form-label">Email:</label>
                                     <div class="col-5">
-                                        <label class="col-form-label">{{telefono}}</label>
+                                        <label class="col-form-label">{{correo}}</label>
                                     </div>
                                 </div>
                                 </fieldset>
