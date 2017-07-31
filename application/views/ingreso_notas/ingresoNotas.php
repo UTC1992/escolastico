@@ -51,22 +51,6 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><label>Curso:</label></td>
-							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
-									<option value="">Seleccione</option>
-									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
-								</select>
-							</td>
-							<td><label>Paralelo:</label></td>
-							<td>
-								<select class="form-control" style="width: 150px;" ng-model="paralelo" required>
-									<option value="">Seleccione</option>
-									<option ng-repeat="p in paralelos" value="{{p}}">{{p}}</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
 							<td><label>Año lectivo:</label></td>
 							<td>
 								<div class="form-inline">
@@ -85,6 +69,14 @@
 							</td>
 						</tr>
 						<tr>
+							<td><label>Curso:</label></td>
+							<td>
+								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
+									<option value="">Seleccione</option>
+									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
+								</select>
+							</td>
+							
 							<td><label>Parcial:</label></td>
 							<td>
 								<select class="form-control" style="width: 200px;" ng-model="parcial" required>
@@ -92,6 +84,15 @@
 									<option value="1ero">1ero</option>
 									<option value="2do">2do</option>
 									<option value="3ero">3ero</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Paralelo:</label></td>
+							<td>
+								<select class="form-control" style="width: 200px;" ng-model="paralelo" required>
+									<option value="">Seleccione</option>
+									<option ng-repeat="p in paralelos" value="{{p}}">{{p}}</option>
 								</select>
 							</td>
 							</td>

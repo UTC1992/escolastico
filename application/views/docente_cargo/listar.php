@@ -40,11 +40,11 @@
                     <tr ng-repeat="dc in $data">
                         <td data-title="'N°'">{{ $index + 1 }}</td>
                         <!--<td data-title="'Cédula'">{{dc.cedula_doce}}</td>-->
-                        <td data-title="'Docente'" sortable="'apellidos_doce'" filter="{apellidos_doce: 'text'}">{{dc.apellidos_doce}} {{dc.nombres_doce}}</td>
+                        <td data-title="'Docente'" sortable="'docente_cargo'" filter="{docente_cargo: 'text'}">{{dc.docente_cargo}}</td>
                         <td data-title="'Nivel'" filter="{categoria_nivel_cargo: 'text'}">{{dc.categoria_nivel_cargo}}</td>
-                        <td data-title="'Curso'" filter="{nombre_curs: 'text'}">{{dc.nombre_curs}}</td>
+                        <td data-title="'Curso'" filter="{curso_cargo: 'text'}">{{dc.curso_cargo}}</td>
                         <td data-title="'Paralelo'" filter="{paralelo_cargo: 'text'}">{{dc.paralelo_cargo}}</td>
-                        <td data-title="'Asignatura'" filter="{nombre_asig: 'text'}">{{dc.nombre_asig}}</td>
+                        <td data-title="'Asignatura'" filter="{asignatura_cargo: 'text'}">{{dc.asignatura_cargo}}</td>
                         <td data-title="'Año lectivo'" filter="{periodo_academico_cargo: 'text'}">{{dc.periodo_academico_cargo}}</td>
                         <td data-title="'Curso Completo'" filter="{curso_completo_cargo: 'text'}">{{dc.curso_completo_cargo}}</td>
                         <td data-title="'Acciones'">
@@ -97,18 +97,19 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Docente:</label>
                                     <div class="col-5">
-                                        <select class="form-control" name="docenteID" id="docenteID" 
-                                        ng-model="docenteID" required>
+                                        <select class="form-control" name="docente" id="docente" 
+                                        ng-model="docente" required>
                                             <option value="">Seleccionar</option>
-                                            <option ng-repeat="d in docentes" value="{{d.id_doce}}">{{d.nombres_doce}} {{d.apellidos_doce}}</option>
+                                            <option ng-repeat="d in docentes" value="{{d.apellidos_doce}} {{d.nombres_doce}}">
+												{{d.apellidos_doce}} {{d.nombres_doce}}</option>
                                         </select>
                                     </div>
                                     <div class="col-4" style="color: #28B463"
-                                        ng-show="fDocenteCargo.docenteID.$valid">
+                                        ng-show="fDocenteCargo.docente.$valid">
                                         <strong>Correcto.</strong>
                                     </div>
                                     <div class="col-4" style="color: crimson"
-                                        ng-show="fDocenteCargo.docenteID.$invalid">
+                                        ng-show="fDocenteCargo.docente.$invalid">
                                         * Campo obligatorio.
                                     </div>
                                     
@@ -139,18 +140,18 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Curso:</label>
                                     <div class="col-5">
-                                        <select class="form-control" name="cursosID" id="cursosID" 
-                                        ng-model="cursosID" required>
+                                        <select class="form-control" name="cursoNombre" id="cursoNombre" 
+                                        ng-model="cursoNombre" required>
                                             <option value="">Seleccionar</option>
-                                            <option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
+                                            <option ng-repeat="c in cursos" value="{{c.nombre_curs}}">{{c.nombre_curs}}</option>
                                         </select>
                                     </div>
                                     <div class="col-4" style="color: #28B463" 
-                                        ng-show="fDocenteCargo.cursosID.$valid">
+                                        ng-show="fDocenteCargo.cursoNombre.$valid">
                                         <strong>Correcto.</strong>
                                     </div>
                                     <div class="col-4" style="color: crimson"
-                                        ng-show="fDocenteCargo.cursosID.$invalid">
+                                        ng-show="fDocenteCargo.cursoNombre.$invalid">
                                        * Campo obligatorio.
                                     </div>
                                     
@@ -178,18 +179,18 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Asignatura:</label>
                                     <div class="col-5">
-                                        <select class="form-control" name="asignaturaID" id="asignaturaID" 
-                                        ng-model="asignaturaID" required>
+                                        <select class="form-control" name="nombreAsig" id="nombreAsig" 
+                                        ng-model="nombreAsig" required>
                                             <option value="">Seleccionar</option>
-                                            <option ng-repeat="a in asignatura" value="{{a.id_asig}}">{{a.nombre_asig}}</option>
+                                            <option ng-repeat="a in asignatura" value="{{a.nombre_asig}}">{{a.nombre_asig}}</option>
                                         </select>
                                     </div>
                                     <div class="col-4" style="color: #28B463" 
-                                        ng-show="fDocenteCargo.asignaturaID.$valid">
+                                        ng-show="fDocenteCargo.nombreAsig.$valid">
                                         <strong>Correcto.</strong>
                                     </div>
                                     <div class="col-4" style="color: crimson"
-                                        ng-show="fDocenteCargo.asignaturaID.$invalid">
+                                        ng-show="fDocenteCargo.nombreAsig.$invalid">
                                         * Campo obligatorio.
                                     </div>
                                 </div>
@@ -283,9 +284,10 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Docente:</label>
                                     <div class="col-7">
-                                        <select class="form-control" name="idDocente" id="idDocente" required>
-                                            <option value="{{datosDocenteEdit[0]['id']}}">{{datosDocenteEdit[0]['nombre']}}</option>
-                                            <option ng-repeat="d in docentes" value="{{d.id_doce}}">{{d.nombres_doce}} {{d.apellidos_doce}}</option>
+                                        <select class="form-control" name="docenteEdit" id="docenteEdit" ng-model="docenteEdit" required>
+                                            <option value="">Seleccionar</option>
+                                            <option ng-repeat="d in docentes" value="{{d.apellidos_doce}} {{d.nombres_doce}}">
+												{{d.apellidos_doce}} {{d.nombres_doce}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -308,9 +310,9 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Curso:</label>
                                     <div class="col-7">
-                                        <select class="form-control" name="idCursoCargo" id="idCursoCargo" required>
-                                            <option value="{{datosCursoEdit[0]['id']}}">{{datosCursoEdit[0]['nombre']}}</option>
-                                            <option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
+                                        <select class="form-control" name="cursoEdit" id="cursoEdit" ng-model="cursoEdit" required>
+                                            <option value="">Seleccionar</option>
+                                            <option ng-repeat="c in cursos" value="{{c.nombre_curs}}">{{c.nombre_curs}}</option>
                                         </select>
                                     </div>
                                     
@@ -330,9 +332,10 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Asignatura:</label>
                                     <div class="col-7">
-                                        <select class="form-control" name="idAsignatura" id="idAsignatura" required>
-                                            <option value="{{datosaAsignaturaEdit[0]['id']}}">{{datosaAsignaturaEdit[0]['nombre']}}</option>
-                                            <option ng-repeat="a in asignatura" value="{{a.id_asig}}">{{a.nombre_asig}}</option>
+										<select class="form-control" name="asignaturaEdit" id="asignaturaEdit" 
+										ng-model="asignaturaEdit" required>
+                                            <option value="">Seleccionar</option>
+                                            <option ng-repeat="a in asignatura" value="{{a.nombre_asig}}">{{a.nombre_asig}}</option>
                                         </select>
                                     </div>
                                     

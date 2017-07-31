@@ -11,19 +11,19 @@
 			return $result;
 		}
 
-		public function insertDC($docenteC = null)
+		public function insertDC($docenteCargo = null)
 		{
-			if ($docenteC != null) {
+			if ($docenteCargo != null) {
 				$data = array(
-					'id_doce' 					=> $docenteC['id_doce'],
-					'categoria_nivel_cargo' 	=> $docenteC['categoria_nivel_cargo'],
-					'id_curs' 					=> $docenteC['id_curs'],
-					'paralelo_cargo' 			=> $docenteC['paralelo_cargo'],
-					'id_asig' 					=> $docenteC['id_asig'],
-					'curso_completo_cargo' 		=> $docenteC['curso_completo_cargo'],
-					'periodo_academico_cargo' 	=> $docenteC['periodo_academico_cargo'],
-					'anioinicio_cargo' 			=> $docenteC['anioinicio_cargo'],
-					'aniofin_cargo' 			=> $docenteC['aniofin_cargo']
+					'docente_cargo' 				=> $docenteCargo['docente_cargo'],
+					'categoria_nivel_cargo' 		=> $docenteCargo['categoria_nivel_cargo'],
+					'curso_cargo' 					=> $docenteCargo['curso_cargo'],
+					'paralelo_cargo' 				=> $docenteCargo['paralelo_cargo'],
+					'asignatura_cargo' 				=> $docenteCargo['asignatura_cargo'],
+					'curso_completo_cargo' 			=> $docenteCargo['curso_completo_cargo'],
+					'periodo_academico_cargo' 		=> $docenteCargo['periodo_academico_cargo'],
+					'anioinicio_cargo' 				=> $docenteCargo['anioinicio_cargo'],
+					'aniofin_cargo' 				=> $docenteCargo['aniofin_cargo']
 				);
 				return $this->db->insert('cargo_docente_asignatura', $data);
 			}
@@ -32,30 +32,7 @@
 
 		public function getDocenteCargoListar($idCurso = '', $idDoce = '', $idAsig = '', $idCargo = '')
 		{
-			$result = $this->db->query("SELECT 	
-												id_cargo,
-												cedula_doce,
-												nombres_doce,
-												apellidos_doce, 
-												categoria_nivel_cargo, 
-												nombre_curs, paralelo_cargo, 
-												nombre_asig, 
-												curso_completo_cargo,
-												periodo_academico_cargo
-										FROM 
-												curso, 
-												docente, 
-												asignatura, 
-												cargo_docente_asignatura 
-										WHERE
-											curso.id_curs = cargo_docente_asignatura.id_curs 
-											and asignatura.id_asig = cargo_docente_asignatura.id_asig
-											and docente.id_doce = cargo_docente_asignatura.id_doce
-											and	cargo_docente_asignatura.id_curs = '" . $idCurso . "' 
-											and cargo_docente_asignatura.id_asig = '" . $idAsig . "'
-											and cargo_docente_asignatura.id_doce = '" . $idDoce . "'
-											and cargo_docente_asignatura.id_cargo = '" . $idCargo . "';
-											");
+			$result = $this->db->query("SELECT * FROM cargo_docente_asignatura;");
 			//return $result->row();
 			return $result;
 		}
@@ -71,11 +48,11 @@
 		{
 			if ($docenteCargo != null) {
 				$data = array(
-					'id_doce' 						=> $docenteCargo['id_doce'],
+					'docente_cargo' 				=> $docenteCargo['docente_cargo'],
 					'categoria_nivel_cargo' 		=> $docenteCargo['categoria_nivel_cargo'],
-					'id_curs' 						=> $docenteCargo['id_curs'],
+					'curso_cargo' 					=> $docenteCargo['curso_cargo'],
 					'paralelo_cargo' 				=> $docenteCargo['paralelo_cargo'],
-					'id_asig' 						=> $docenteCargo['id_asig'],
+					'asignatura_cargo' 				=> $docenteCargo['asignatura_cargo'],
 					'curso_completo_cargo' 			=> $docenteCargo['curso_completo_cargo'],
 					'periodo_academico_cargo' 		=> $docenteCargo['periodo_academico_cargo'],
 					'anioinicio_cargo' 				=> $docenteCargo['anioinicio_cargo'],
