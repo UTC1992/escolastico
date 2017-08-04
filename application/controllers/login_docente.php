@@ -39,6 +39,7 @@
 							'email' 		=>  $email ,
 							'id_doce' 			=>  $fila->id_doce,
 							'nombreApellido_doce' 	=>  $fila->nombres_doce . " " . $fila->apellidos_doce,
+							'docenteCargo_doce' 	=>  $fila->apellidos_doce . " " . $fila->nombres_doce,
 							'tipo_admin' 	=>	'docente',
 							'login_doce'	=> 	true
 							);

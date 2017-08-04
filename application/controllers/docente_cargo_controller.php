@@ -112,4 +112,25 @@ class Docente_Cargo_Controller extends CI_Controller
 		
 	}
 
+	/////////////////////
+	
+	public function getDataJsonCargoDocente()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$docente = $this->input->post();
+		$fila = $this->docente_cargo_model->getDatosCargo($docente);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
+
 }

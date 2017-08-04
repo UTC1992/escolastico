@@ -30,6 +30,10 @@
 		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
 	
+	<!--CONSULTAR CARGOS Y DATOS ASIGNADOS AL DOCENTE-->
+		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>docente_cargo_controller/getDataJsonCargoDocente">
+	<!--url para las paginas-->
+
 	<!--head -->
 	<div class="container">
 		<center><h2>Notas parciales</h2></center>
@@ -38,6 +42,15 @@
 	<br>
 	<!--head -->
 
+	<!--ID DEL DOCENTE-->
+	<?php
+		$docenteCargo = $this->session->userdata('docenteCargo_doce');
+		$idDocente = $this->session->userdata('id_doce');
+		?>
+		<input name="nombreDoce" id="nombreDoce" type="hidden" value="<?= $docenteCargo?>">
+
+	<!--ID DEL DOCENTE-->
+	
 	<!--datos consultar-->
 		<div class="table-responsive">
 			<form  ng-submit="verificarRegistro()">
@@ -57,23 +70,26 @@
 									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
 									 <input  type="text" class="form-control" style="width: 300px;" ng-disabled="true"
 									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
+									
 								</div>
 							</td>
 							<td><label>Materia:</label></td>
 							<td>
 								<select class="form-control" style="width: 350px;" ng-model="materia" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="a in asignatura | orderBy: 'asig'" 
-									style="font-size: 10pt;" value="{{a.asig}}">{{a.asig}}</option>
+									<option ng-repeat="a in docenteMaterias" 
+									style="font-size: 10pt;" value="{{a}}">{{a}}</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
 							<td><label>Curso:</label></td>
 							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
+								<select class="form-control" style="width: 200px; color: black;" 
+								ng-model="cursoId" ng-change="" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
+									<option ng-repeat="c in docenteCursos" 
+									value="{{c}}">{{c}}</option>
 								</select>
 							</td>
 							
@@ -92,7 +108,8 @@
 							<td>
 								<select class="form-control" style="width: 200px;" ng-model="paralelo" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="p in paralelos" value="{{p}}">{{p}}</option>
+									<option ng-repeat="p in docenteParalelo" 
+									value="{{p}}">{{p}}</option>
 								</select>
 							</td>
 							</td>

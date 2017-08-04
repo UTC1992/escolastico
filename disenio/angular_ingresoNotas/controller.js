@@ -5,6 +5,8 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 	//listarAsginaturas();
 	listarAniosLectivos();
 
+	
+
 
 	//exportar tabla a formato xls
 	$scope.exportToExcel=function(tableId){ // ex: '#my-table'
@@ -22,6 +24,8 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
         }
     }
 
+	$scope.anioIDoce = '';
+	$scope.anioFDoce = '';
 	function listarAniosLectivos(){
 		if ($('#urlBuscarAniosLectivosActivo').val() != null) {
 			var url = $('#urlBuscarAniosLectivosActivo').val();
@@ -30,9 +34,15 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 				//console.log(response);
 				$scope.AL = response[0];
 				$scope.aniosL = response[0]['anioinicio_pera'] + "-" + response[0]['aniofin_pera'];
+
+				$scope.anioIDoce = response[0]['anioinicio_pera'];
+				$scope.anioFDoce = response[0]['aniofin_pera'];
+
+				obtenerDatosCargos();	
 			});
+			
 		}
-	
+		
 	}
 
 	function listarCursos() {
@@ -71,8 +81,45 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
         } else {
             $scope.mensaje = "No existen datos por el momento.";
         }
-    }
+	}
+	
+////////////////////OBTENER CARGOS
+	function obtenerDatosCargos (){
+		
+		var url = $('#urlCargosDocente').val();
 
+		$http({
+            method: "post",
+            url: url,
+			data:   "docente="+$('#nombreDoce').val()
+					+"&anioI="+$scope.anioIDoce
+					+"&anioF="+$scope.anioFDoce,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			
+			$scope.datosCargo = response.unique();
+
+			var cursos = [];
+			var materia = [];
+			var paralelo = [];
+			for (var i = 0; i < response.length; i++) {
+				cursos[i] = response[i]['curso_cargo'];
+				materia[i] = response[i]['asignatura_cargo'];
+				paralelo[i] = response[i]['paralelo_cargo'];
+				
+			}
+			$scope.docenteCursos = cursos.unique();
+			$scope.docenteMaterias = materia.unique();
+			$scope.docenteParalelo = paralelo.unique();
+			
+        }, function (error) {
+                console.log(error);
+        });
+	}	
+
+	Array.prototype.unique=function(a){
+	return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+	});
 ////////////////////BUSCAR ASIGNATURA DEL CURSO SELECCIONADO
 
 	$scope.cargarAsignaturas = function(){

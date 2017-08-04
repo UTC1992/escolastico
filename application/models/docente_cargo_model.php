@@ -63,4 +63,21 @@
 			}
 			return false;
 		}
+		
+		public function getDatosCargo($datos = null)
+		{
+			$docente = $datos['docente'];
+			$anioI = $datos['anioI'];
+			$anioF = $datos['anioF'];
+
+			$result = $this->db->query("SELECT * 
+										FROM cargo_docente_asignatura 
+										WHERE 
+										docente_cargo = '" . $docente . "'
+										AND anioinicio_cargo = '" . $anioI . "'
+										AND aniofin_cargo = '" . $anioF . "'
+										;");
+			
+			return $result;
+		}
     }
