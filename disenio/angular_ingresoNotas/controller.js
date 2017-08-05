@@ -96,7 +96,8 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 					+"&anioF="+$scope.anioFDoce,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			
+			//console.log(response);
+
 			$scope.datosCargo = response.unique();
 
 			var cursos = [];
@@ -145,46 +146,73 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 		$scope.anioI = vectorAL[0];
 		$scope.anioF = vectorAL[1];
 		$scope.mensajeIngreso = false;
-		var parcial = $scope.parcial+"";
-		switch (parcial) {
-			case '1ero':
-				$scope.getUrl = $('#urlNumRegistros1').val();
-				conntarRegistros($scope.getUrl);
-				break;
-			case '2do':
-				$scope.getUrl = $('#urlNumRegistros2').val();
-				conntarRegistros($scope.getUrl);
-				break;
-			case '3ero':
-				$scope.getUrl = $('#urlNumRegistros3').val();
-				conntarRegistros($scope.getUrl);
-				break;
+
+		var vectorCargos = $scope.cargoCPM.split("-");
 		
-			default:
-				alert("No hay parcial");
-				break;
-		}
+		buscarIdCurso(vectorCargos[0]+"");
 
 	}
 
-	function conntarRegistros(url){
+	function buscarIdCurso(nombreCurs){
+		var url = $('#urlNombreCurso').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoNombre="+nombreCurs,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			
+			var parcial = $scope.parcial+"";
+			switch (parcial) {
+				case '1ero':
+					$scope.getUrl = $('#urlNumRegistros1').val();
+					conntarRegistros($scope.getUrl, response[0]['id_curs']);
+					break;
+				case '2do':
+					$scope.getUrl = $('#urlNumRegistros2').val();
+					conntarRegistros($scope.getUrl, response[0]['id_curs']);
+					break;
+				case '3ero':
+					$scope.getUrl = $('#urlNumRegistros3').val();
+					conntarRegistros($scope.getUrl, response[0]['id_curs']);
+					break;
+			
+				default:
+					alert("No hay parcial");
+					break;
+			}
+			
+			
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+
+	function conntarRegistros(url, idCurso){
+		$scope.cursoId = idCurso;
+		var vectorCargos = $scope.cargoCPM.split("-");
+		$scope.paralelo = vectorCargos[1];
+		$scope.materia = vectorCargos[2];
+
 		$http({
             method: "post",
             url: url,
             data:   "cursoId="+$scope.cursoId
-                    +"&paralelo="+$scope.paralelo
+                    +"&paralelo="+vectorCargos[1]
                     +"&anioI="+$scope.anioI
                     +"&anioF="+$scope.anioF
-					+"&materia="+$scope.materia
+					+"&materia="+vectorCargos[2]
 					+"&quimestre="+$scope.quimestre,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			
+			//console.log(response);
 			var numNotas = response[0]['conteo'];
 			//alert(numNotas);
 			if(numNotas == 0){
 				$scope.mensajeNumRegistros = false;
-				mostrarEstudiantes();
+				mostrarEstudiantes($scope.cursoId, vectorCargos[1]);
 			} else {
 				limpiarVariables();
 				$scope.mensajeNumRegistros = true;
@@ -199,14 +227,14 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 
 //////////////////////////////////////////////////////////////////////////
 	$scope.mensaje = false;
-	function mostrarEstudiantes(){
+	function mostrarEstudiantes(idcurso, paralelo){
 		$scope.mensajeIngreso = false;
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
         $http({
             method: "post",
             url: $scope.getUrl,
-            data:   "cursoId="+$scope.cursoId
-                    +"&paralelo="+$scope.paralelo
+            data:   "cursoId="+idcurso
+                    +"&paralelo="+paralelo
                     +"&anioI="+$scope.anioI
                     +"&anioF="+$scope.anioF,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}

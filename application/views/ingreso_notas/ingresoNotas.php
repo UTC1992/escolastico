@@ -32,6 +32,7 @@
 	
 	<!--CONSULTAR CARGOS Y DATOS ASIGNADOS AL DOCENTE-->
 		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>docente_cargo_controller/getDataJsonCargoDocente">
+		<input id="urlNombreCurso" type="hidden" value="<?= base_url() ?>curso_controller/getDataJsonNombreCurso">
 	<!--url para las paginas-->
 
 	<!--head -->
@@ -68,11 +69,12 @@
 							<td>
 								<div class="form-inline">
 									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
-									 <input  type="text" class="form-control" style="width: 300px;" ng-disabled="true"
+									 <input  type="text" class="form-control" style="width: 500px;" ng-disabled="true"
 									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
 									
 								</div>
 							</td>
+							<!--
 							<td><label>Materia:</label></td>
 							<td>
 								<select class="form-control" style="width: 350px;" ng-model="materia" required>
@@ -81,8 +83,21 @@
 									style="font-size: 10pt;" value="{{a}}">{{a}}</option>
 								</select>
 							</td>
+							-->
 						</tr>
 						<tr>
+							<td><label>Cursos, paralelo y materia:</label></td>
+							<td colspan="3">
+								<select class="form-control" ng-model="cargoCPM" style="width: 500px;" required>
+									<option value="">Seleccione</option>
+									<option ng-repeat="dc in datosCargo" 
+									value="{{dc.curso_cargo}}-{{dc.paralelo_cargo}}-{{dc.asignatura_cargo}}">
+									{{dc.curso_cargo}} - {{dc.paralelo_cargo}} - {{dc.asignatura_cargo}}</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+						<!--
 							<td><label>Curso:</label></td>
 							<td>
 								<select class="form-control" style="width: 200px; color: black;" 
@@ -92,7 +107,7 @@
 									value="{{c}}">{{c}}</option>
 								</select>
 							</td>
-							
+							-->
 							<td><label>Parcial:</label></td>
 							<td>
 								<select class="form-control" style="width: 200px;" ng-model="parcial" required>
@@ -104,6 +119,7 @@
 							</td>
 						</tr>
 						<tr>
+						<!--
 							<td><label>Paralelo:</label></td>
 							<td>
 								<select class="form-control" style="width: 200px;" ng-model="paralelo" required>
@@ -113,6 +129,7 @@
 								</select>
 							</td>
 							</td>
+						-->
 							<td><label>Quimestre:</label></td>
 							<td>
 								<select class="form-control" style="width: 200px;" ng-model="quimestre" required>
@@ -122,6 +139,7 @@
 								</select>
 							</td>
 						</tr>
+						
 						<tr>
 							<td colspan="4">
 								<center>

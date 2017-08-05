@@ -52,4 +52,12 @@
 			return $result;
 		}
 
+		public function getCursoNombre($nombreCurso = "")
+		{ 
+			$curso = $nombreCurso['cursoNombre']; 
+			$result = $this->db->query("SELECT * FROM curso WHERE nombre_curs = '" . $curso . "' ;");
+			//return $result->row();
+			return $result;
+		}
+
     }

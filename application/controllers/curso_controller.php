@@ -104,4 +104,23 @@ class Curso_Controller extends CI_Controller
 		echo $datosP;
 	}
 
+	public function getDataJsonNombreCurso()
+	{
+		$json = new Services_JSON();
+
+		$datos = array();
+
+		$nombreCurso = $this->input->post();
+		$fila = $this->curso_model->getCursoNombre($nombreCurso);
+		
+		//llenamos el arreglo con los datos resultados de la consulta
+		foreach ($fila->result_array() as $row) {
+			$datos[] = $row;
+		}
+		//convertimos en datos json nuestros datos
+		$datosP = $json->encode($datos);
+		//imprimiendo datos asi se puede tomar desde angular ok 
+		echo $datosP;
+	}
+
 }
