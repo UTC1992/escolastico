@@ -30,10 +30,54 @@ app.controller('ingresoExaSupleCtrl', function(Excel, $timeout,$scope, $http) {
 				//console.log(response);
 				$scope.AL = response[0];
 				$scope.aniosL = response[0]['anioinicio_pera'] + "-" + response[0]['aniofin_pera'];
+
+				$scope.anioIDoce = response[0]['anioinicio_pera'];
+				$scope.anioFDoce = response[0]['aniofin_pera'];
+				obtenerDatosCargos();
 			});
 		}
 	
 	}
+
+	/////////////////////CARGOS
+	function obtenerDatosCargos (){
+		
+		var url = $('#urlCargosDocente').val();
+
+		$http({
+            method: "post",
+            url: url,
+			data:   "docente="+$('#nombreDoce').val()
+					+"&anioI="+$scope.anioIDoce
+					+"&anioF="+$scope.anioFDoce,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+
+			$scope.datosCargo = response.unique();
+
+			var cursos = [];
+			var materia = [];
+			var paralelo = [];
+			for (var i = 0; i < response.length; i++) {
+				cursos[i] = response[i]['curso_cargo'];
+				materia[i] = response[i]['asignatura_cargo'];
+				paralelo[i] = response[i]['paralelo_cargo'];
+				
+			}
+			$scope.docenteCursos = cursos.unique();
+			$scope.docenteMaterias = materia.unique();
+			$scope.docenteParalelo = paralelo.unique();
+			
+        }, function (error) {
+                console.log(error);
+        });
+	}	
+
+	Array.prototype.unique=function(a){
+	return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+	});
+	////////////////////FIN CARGOS LISTAR
 
 	function listarCursos() {
         $scope.getUrl = $('#urlCursos').val();
@@ -83,11 +127,39 @@ app.controller('ingresoExaSupleCtrl', function(Excel, $timeout,$scope, $http) {
 		$scope.anioF = vectorAL[1];
 		$scope.mensajeIngreso = false;
 		//var parcial = $scope.quimestre+"";
-		$scope.getUrl = $('#urlNumRegistrosSuple').val();
-		contarRegistros($scope.getUrl);
+
+		var vectorCargos = $scope.cargoCPM.split("-");
+		buscarIdCurso(vectorCargos[0]+"");
+
+		
 	}
 
-	function contarRegistros(url){
+
+	function buscarIdCurso(nombreCurs){
+		var url = $('#urlNombreCurso').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoNombre="+nombreCurs,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			
+			$scope.getUrl = $('#urlNumRegistrosSuple').val();
+			contarRegistros($scope.getUrl, response[0]['id_curs']);
+			
+			
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	function contarRegistros(url, idCurso){
+		$scope.cursoId = idCurso;
+		var vectorCargos = $scope.cargoCPM.split("-");
+		$scope.paralelo = vectorCargos[1];
+		$scope.materia = vectorCargos[2];
+
 		$http({
             method: "post",
             url: url,
@@ -310,13 +382,38 @@ app.controller('ingresoExaSupleCtrl', function(Excel, $timeout,$scope, $http) {
 		var vectorAL = anioslectivos.split('-');
 		$scope.anioI = vectorAL[0];
 		$scope.anioF = vectorAL[1];
-		consultarEstudiantesSuple();
+		
+
+		var vectorCargos = $scope.cargoCPM.split("-");
+		buscarIdCursoConsulta(vectorCargos[0]+"");
+	}
+
+	function buscarIdCursoConsulta(nombreCurs){
+		var url = $('#urlNombreCurso').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoNombre="+nombreCurs,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+
+			consultarEstudiantesSuple(response[0]['id_curs']);
+			
+        }, function (error) {
+                console.log(error);
+        });
 	}
 	
 	$scope.mensaje = false;
 	var array = [];
 	$scope.estudiantesMatriculados = [];
-	function consultarEstudiantesSuple(){
+	function consultarEstudiantesSuple(idCurso){
+		$scope.cursoId = idCurso;
+		var vectorCargos = $scope.cargoCPM.split("-");
+		$scope.paralelo = vectorCargos[1];
+		$scope.materia = vectorCargos[2];
+
 		$scope.estudiantesMatriculados = [];
 		array = [];
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
@@ -438,7 +535,7 @@ app.controller('ingresoExaSupleCtrl', function(Excel, $timeout,$scope, $http) {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
 			//se muestran los datos actualizdos
-            consultarEstudiantesSuple();
+            $scope.consultaSupletorios();
 			$scope.edicionExitosa = true;
         }, function (error) {
                 $scope.edicionFallida = true;
