@@ -366,6 +366,8 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 		$scope.mostrarCargando = false;
 	}
 
+
+
 	$scope.mostrarDatosInformes = function(){
 		var anioslectivos = $scope.aniosL+"";
 		var vectorAL = anioslectivos.split('-');
@@ -373,30 +375,53 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 		$scope.anioF = vectorAL[1];
 		
 		$scope.mensajeIngreso = false;
-		var parcial = $scope.parcial+"";
-		
-		switch (parcial) {
-			case '1ero':
-				$scope.getUrl = $('#urlInformes1').val();
-				consultarParcial($scope.getUrl);
-				break;
-			case '2do':
-				$scope.getUrl = $('#urlInformes2').val();
-				consultarParcial($scope.getUrl);
-				break;
-			case '3ero':
-				$scope.getUrl = $('#urlInformes3').val();
-				consultarParcial($scope.getUrl);
-				break;
-		
-			default:
-				alert("No hay parcial");
-				break;
-		}
+		var vectorCargos = $scope.cargoCPM.split("-");
+		buscarIdCursoConsulta(vectorCargos[0]+"");
 
 	}
 
-	function consultarParcial(urlInforme){
+	function buscarIdCursoConsulta(nombreCurs){
+		var url = $('#urlNombreCurso').val();
+		$http({
+            method: "post",
+            url: url,
+            data:   "cursoNombre="+nombreCurs,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(response){
+			//console.log(response);
+			
+			var parcial = $scope.parcial+"";
+			switch (parcial) {
+				case '1ero':
+					$scope.getUrl = $('#urlInformes1').val();
+					consultarParcial($scope.getUrl, response[0]['id_curs']);
+					break;
+				case '2do':
+					$scope.getUrl = $('#urlInformes2').val();
+					consultarParcial($scope.getUrl, response[0]['id_curs']);
+					break;
+				case '3ero':
+					$scope.getUrl = $('#urlInformes3').val();
+					consultarParcial($scope.getUrl, response[0]['id_curs']);
+					break;
+			
+				default:
+					alert("No hay parcial");
+					break;
+			}
+			
+			
+        }, function (error) {
+                console.log(error);
+        });
+	}
+
+	function consultarParcial(urlInforme, idCurso){
+		$scope.cursoId = idCurso;
+		var vectorCargos = $scope.cargoCPM.split("-");
+		$scope.paralelo = vectorCargos[1];
+		$scope.materia = vectorCargos[2];
+
 		$scope.mensajeIngreso = false;
         $http({
             method: "post",
@@ -528,38 +553,13 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(){
 			//alert('Exitosa');
-            mostrarDatosActualizados();
+            $scope.mostrarDatosInformes();
 			$scope.edicionExitosa = true;
         }, function (error) {
                 $scope.edicionFallida = true;
 				console.log(error);
 
         });
-	}
-
-	function mostrarDatosActualizados(){
-		$scope.mensajeIngreso = false;
-		var parcial = $scope.parcial+"";
-		
-		switch (parcial) {
-			case '1ero':
-				$scope.getUrl = $('#urlInformes1').val();
-				consultarParcial($scope.getUrl);
-				break;
-			case '2do':
-				$scope.getUrl = $('#urlInformes2').val();
-				consultarParcial($scope.getUrl);
-				break;
-			case '3ero':
-				$scope.getUrl = $('#urlInformes3').val();
-				consultarParcial($scope.getUrl);
-				break;
-		
-			default:
-				alert("No hay parcial");
-				break;
-		}
-
 	}
 
 });

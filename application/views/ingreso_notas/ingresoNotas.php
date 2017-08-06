@@ -66,10 +66,10 @@
 					<tbody>
 						<tr>
 							<td><label>Año lectivo:</label></td>
-							<td>
+							<td colspan="3">
 								<div class="form-inline">
 									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
-									 <input  type="text" class="form-control" style="width: 500px;" ng-disabled="true"
+									 <input  type="text" class="form-control" style="width: 600px;" ng-disabled="true"
 									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
 									
 								</div>
@@ -88,7 +88,7 @@
 						<tr>
 							<td><label>Cursos, paralelo y materia:</label></td>
 							<td colspan="3">
-								<select class="form-control" ng-model="cargoCPM" style="width: 500px;" required>
+								<select class="form-control" ng-model="cargoCPM" style="width: 600px;" required>
 									<option value="">Seleccione</option>
 									<option ng-repeat="dc in datosCargo" 
 									value="{{dc.curso_cargo}}-{{dc.paralelo_cargo}}-{{dc.asignatura_cargo}}">
@@ -117,6 +117,14 @@
 									<option value="3ero">3ero</option>
 								</select>
 							</td>
+							<td><label>Quimestre:</label></td>
+							<td>
+								<select class="form-control" style="width: 200px;" ng-model="quimestre" required>
+									<option value="">Seleccione</option>
+									<option value="1ero">1ero</option>
+									<option value="2do">2do</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 						<!--
@@ -130,14 +138,7 @@
 							</td>
 							</td>
 						-->
-							<td><label>Quimestre:</label></td>
-							<td>
-								<select class="form-control" style="width: 200px;" ng-model="quimestre" required>
-									<option value="">Seleccione</option>
-									<option value="1ero">1ero</option>
-									<option value="2do">2do</option>
-								</select>
-							</td>
+							
 						</tr>
 						
 						<tr>
