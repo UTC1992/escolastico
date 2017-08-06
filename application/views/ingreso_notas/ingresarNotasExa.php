@@ -26,6 +26,19 @@
 	<!--buscar asignaturas segun id del Curso-->
 		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
 	
+	<!--CONSULTAR CARGOS Y DATOS ASIGNADOS AL DOCENTE-->
+		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>docente_cargo_controller/getDataJsonCargoDocente">
+		<input id="urlNombreCurso" type="hidden" value="<?= base_url() ?>curso_controller/getDataJsonNombreCurso">
+	<!--url para las paginas-->
+
+	<!--ID DEL DOCENTE-->
+	<?php
+		$docenteCargo = $this->session->userdata('docenteCargo_doce');
+		$idDocente = $this->session->userdata('id_doce');
+		?>
+		<input name="nombreDoce" id="nombreDoce" type="hidden" value="<?= $docenteCargo?>">
+
+	<!--ID DEL DOCENTE-->
 	
 	<!--head -->
 	<div class="container">
@@ -48,36 +61,24 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><label>Curso:</label></td>
-							<td>
-								<select class="form-control" style="width: 200px;" ng-model="cursoId" ng-change="cargarAsignaturas()" required>
-									<option value="">Seleccione</option>
-									<option ng-repeat="c in cursos" value="{{c.id_curs}}">{{c.nombre_curs}}</option>
-								</select>
-							</td>
-							<td><label>Paralelo:</label></td>
-							<td>
-								<select class="form-control" style="width: 150px;" ng-model="paralelo" required>
-									<option value="">Seleccione</option>
-									<option ng-repeat="p in paralelos" value="{{p}}">{{p}}</option>
-								</select>
+							<td><label>Año lectivo:</label></td>
+							<td colspan="3">
+								<div class="form-inline">
+									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
+									 <input  type="text" class="form-control" style="width: 600px;" ng-disabled="true"
+									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
+									
+								</div>
 							</td>
 						</tr>
 						<tr>
-							<td><label>Año lectivo:</label></td>
-							<td>
-								<div class="form-inline">
-									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
-									 <input  type="text" class="form-control" style="width: 300px;" ng-disabled="true"
-									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
-								</div>
-							</td>
-							<td><label>Materia:</label></td>
-							<td>
-								<select class="form-control" style="width: 350px;" ng-model="materia" required>
+							<td><label>Cursos, paralelo y materia:</label></td>
+							<td colspan="3">
+								<select class="form-control" ng-model="cargoCPM" style="width: 600px;" required>
 									<option value="">Seleccione</option>
-									<option ng-repeat="a in asignatura | orderBy: 'asig'" 
-									style="font-size: 10pt;" value="{{a.asig}}">{{a.asig}}</option>
+									<option ng-repeat="dc in datosCargo" 
+									value="{{dc.curso_cargo}}-{{dc.paralelo_cargo}}-{{dc.asignatura_cargo}}">
+									{{dc.curso_cargo}} - {{dc.paralelo_cargo}} - {{dc.asignatura_cargo}}</option>
 								</select>
 							</td>
 						</tr>
@@ -156,14 +157,14 @@
 						</td>
 					</tr>
 					<tr>
-						<th colspan="2">N°</th>
+						<th>N°</th>
 						<th colspan="2">Estudiantes</th>
 						<th colspan="2">Exámen Quimestral</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="estu in estudiantesMatriculados">
-						<td colspan="2">{{$index + 1}}</td>
+						<td >{{$index + 1}}</td>
 						<td colspan="2">
 							<label>{{estu.apellidos_estu}} {{estu.nombres_estu}}</label>
 							<input type="hidden" value="{{estu.id_estu}}" name="notaE">
