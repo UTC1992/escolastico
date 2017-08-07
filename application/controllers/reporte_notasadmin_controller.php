@@ -27,6 +27,10 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 	public function repoAnual() {
 		$this->load->view('/reporte_notasAdmin/poranio');
 	}
+	
+	public function sabanaFinal() {
+		$this->load->view('/reporte_notasAdmin/sabanaFinal');
+	}
 
 	public function getDataJsonNotasParcial1()
 	{

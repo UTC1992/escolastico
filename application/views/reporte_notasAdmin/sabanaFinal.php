@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="container" ng-controller="repoNotasAdminCtrl">
+<div id="contenidoEstudiante" class="" ng-controller="repoSabanaCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -41,12 +41,13 @@
 	<!--head -->
 	<br>
 	<div class="container">
-		<center><h3>Notas Finales</h3></center>
+		<center><h3>Sábana Final</h3></center>
 	</div>
 	<br>
 	<!--head -->
 
 	<!--datos consultar-->
+	<div class="">
 		<div class="table-responsive">
 			<form ng-submit="mostrarEstudiantesNotas()">
 				<table class="table table-striped table-bordered table-sm">
@@ -101,6 +102,7 @@
 				</table>
 			</form>
 		</div>
+	
 	<!--datos consultar-->
 		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
 				<span class="glyphicon glyphicon-share"></span>
@@ -108,10 +110,9 @@
 		</button>
 		<br>
 		<br>
-
-		
+	</div>
 		<!--tabla de estudiantes-->
-          <div class="table-responsive" id="scroll">
+          <div class="table-responsive" id="">
 			  <table>
 				  <tr ng-show="mensaje">
 						<td colspan="5" >
@@ -129,39 +130,46 @@
 				<thead class="thead-inverse">
 					
 					<tr>
-					<th colspan="5"><center>ALUMNOS</center></th>
+					<th colspan="14"><center>ALUMNOS</center></th>
 					</tr>
 					<tr>
-						<td colspan="2"><label style="margin-right: 5px;">
+						<td colspan="7"><label style="margin-right: 5px;">
 							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
 						</td>
-						<td><label style="margin-right: 5px;">
+						<td colspan="7"><label style="margin-right: 5px;">
 							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
 						</td>
-						
-						<td colspan="2"></td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="7">
 							<label style="margin-right: 5px;">
 							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
 						</td>
-						<td></td>
-						<td colspan="2"></td>
+						<td colspan="7"></td>
 					</tr>
 					<tr>
 						<th>N°</th>
-						<th>Cédula</th>
-						<th colspan="2">Estudiante</th>
+						<th>Estudiante</th>
+						<th>Ciencias Sociales</th>
+						<th>Cultura física</th>
+						<th>Desarrollo del</th>
+						<th>Educación Artistica</th>
+						<th>Física</th>
+						<th>Identidad Insti</th>
+						<th>Informatica</th>
+						<th>Lengua Extrangera</th>
+						<th>Lengua y Literatura</th>
+						<th>Matematicas</th>
+						<th>Quimica general</th>
 						<th>Mostrar Notas</th>
 					</tr>
 				</thead>
 				<tbody>
+					<!--
 					<tr ng-repeat="e in estudiantesMatriculados | orderBy : apellidos_estu">
 						<td style="width: 50px;">{{$index + 1}}</td>
-						<td>'{{e.cedula_estu}}</td>
-						<td colspan="2">
-							<label style="width: 400px;">
+						<td>
+							<label style="width: 200px;">
 								{{e.apellidos_estu}} {{e.nombres_estu}}
 							</label>
 						</td>
@@ -174,7 +182,7 @@
 							</button>
 						</td>
 					</tr>
-					
+					-->
 					<tr>
 						<td colspan="5" >
 							<center>
@@ -198,6 +206,18 @@
             </form>
           </div>
 		  <!--tabla de estudiantes-->
+
+		<style>
+			#scroll {
+				overflow:scroll;
+				height:200px;
+				width:100%;
+			}
+
+			#scroll table {
+				width:100%;
+			}
+		</style>
 
 		  <!--INICIO MODAL EDITAR-->
 			<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">

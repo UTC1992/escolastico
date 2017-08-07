@@ -4,7 +4,8 @@ app.config(function($routeProvider) {
 	var urlParciales = $('#urlConsultarParciales').val();
 	var urlQuimestral = $('#urlConsultarQuimestre').val();
 	var urlAnual = $('#urlConsultarAnuales').val();
-
+	var sabanaFinal = $('#urlConsultarSabanaFinal').val();
+	
     $routeProvider
     .when("/", {
         templateUrl : urlParciales,
@@ -16,6 +17,10 @@ app.config(function($routeProvider) {
     })
 	.when("/anuales", {
         templateUrl : urlAnual,
+        controller : "repoNotasAdminCtrl"
+	})
+	.when("/sabanaFinal", {
+        templateUrl : sabanaFinal,
         controller : "repoNotasAdminCtrl"
     })
     .otherwise({
