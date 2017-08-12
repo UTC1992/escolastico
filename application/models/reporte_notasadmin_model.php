@@ -177,7 +177,10 @@
 		{
 			$idCurso = $datos['idCurso'];
 
-			$result = $this->db->query("SELECT asignatura.nombre_asig as 'asig' FROM asignatura, curso, curso_asignatura
+			$result = $this->db->query("SELECT 
+											asignatura.nombre_asig as 'asig', 
+											asignatura.id_asig as 'id_asig' 
+										FROM asignatura, curso, curso_asignatura
 										WHERE
 										asignatura.id_asig = curso_asignatura.id_asig
 										AND

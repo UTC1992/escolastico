@@ -63,6 +63,12 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 
 	$scope.estudiantesMatriculados = [];
 	$scope.mostrarEstudiantesNotas = function(){
+		$scope.notasParcial = [];
+		$scope.estudiantesMatriculados = [];
+
+		//datos finales inicializar
+		
+
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
 		var anioslectivos = $scope.aniosL+"";
 		var vectorAL = anioslectivos.split('-');
@@ -76,12 +82,22 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
 			if(response.length == 0){
+				
+				$scope.sabanaFinal = [];
+				$scope.cargando = false;
+				$scope.tablaMostrar = false;
+
 				$scope.mensaje = true;
 				limpiarVariables();
 				$scope.estudiantesMatriculados = [];
 				$scope.ingresarDesactivar = false;
 				
 			} else {
+
+				$scope.sabanaFinal = [];
+				$scope.cargando = true;
+				$scope.tablaMostrar = false;
+
 				$scope.mensaje = false;
 				var anioslectivos = $scope.aniosL+"";
 				var vectorAL = anioslectivos.split('-');
@@ -89,16 +105,9 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 				vectorAL[1], $scope.parcial, $scope.quimestre);
 				$scope.estudiantesMatriculados = [];
 
-				for (var i = 0; i < response.length; i++) {
-					
-					//response[i].materias = [{asig: "matematicas"}]
-					//console.log(response[i]);
-					$scope.estudiantesMatriculados.push(response[i]);
-					//$scope.estudiantesMatriculados[i].asig = [];
-					buscarAsignaturasDeCurso(response[i].id_curs, response[i].id_estu );
-				}
+				//ENVIAR ESTUDIANTES
+				obtenerDatosEstudiantesNotas(response);
 
-				console.log($scope.estudiantesMatriculados);
 				//desaparecer el boton de envio de datos
 				$scope.ingresarDesactivar = false;
 			}
@@ -109,38 +118,22 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
         });
 	}
 
-	function llenarDatosInformativos(cursoId, paralelo, anioI, anioF, parcial, quimestre){
-		//$scope.CursoInfo = cursoId;
-		consultarNombreCurso(cursoId);
-		$scope.ParaleloInfo = paralelo;
-		$scope.anioIInfo = anioI;
-		$scope.anioFInfo = anioF;
-		$scope.ParcialInfo = parcial;
-		$scope.QuimestreInfo = quimestre;
+	function obtenerDatosEstudiantesNotas(datosEstudiantes){
+		$scope.notas = [];
+		console.log('Hola funcion estudiantes');
+		console.log(datosEstudiantes);
+		for (var i = 0; i < datosEstudiantes.length; i++) {
+			var idCurso =  datosEstudiantes[i].id_curs;
+			var idEstu = datosEstudiantes[i].id_estu;
+			var estu = datosEstudiantes[i].apellidos_estu + " " + datosEstudiantes[i].nombres_estu;
+			
+			buscarAsignaturasDeCurso(idCurso, idEstu, estu , datosEstudiantes, i , datosEstudiantes.length);
+			
+		}
+
+		$scope.arrayEstu = datosEstudiantes;
 
 	}
-
-	function limpiarVariables(){
-		$scope.ParaleloInfo = "";
-		$scope.anioIInfo = "";
-		$scope.anioFInfo = "";
-		$scope.ParcialInfo = "";
-		$scope.QuimestreInfo = "";
-		$scope.CursoInfo = "";
-	}
-
-	//obtener el nombre del curso para mostrar en la cabecera de la tabla de los 
-	//estudiantes a los que se les ingresara las notas
-	function consultarNombreCurso(cursoId) {
-        var getUrl = $('#urlConsultarCurso').val();
-        $http.get(getUrl+cursoId)
-        .success(function(datosP){
-            $scope.lista = datosP;
-            
-            $scope.idCurso =  datosP[0]['id_curs'];
-            $scope.CursoInfo =  datosP[0]['nombre_curs'];
-        });
-    }
 
 	////////////////////////ANUALES
 	$scope.verificarNotasFinales = function(event){
@@ -160,8 +153,14 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 
 	}
 
-	function buscarAsignaturasDeCurso(idCurso, idEstu){
+	$scope.notasParcial = [];
+	$scope.notas = [];
+	$scope.sabanaFinal = [];
 
+	$scope.cargando = false;
+	$scope.tablaMostrar = false;
+	function buscarAsignaturasDeCurso(idCurso, idEstu, estu, datosEstudiantes, cont, numEstu){
+		
 		//año lectivo
 		var anioslectivos = $scope.aniosL+"";
 		var vectorAL = anioslectivos.split('-');
@@ -176,24 +175,94 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
 			//console.log(response);
+			$scope.arrayAsig = response;
+			$scope.notasParcial = [];
 			for (var i = 0; i < response.length; i++) {
-				//alert(response[i]['asig']);
+
 				var asignatura = response[i]['asig'];
-				//alert(idCurso +" - " + idEstu + " - " + asignatura);
-				$scope.mostrarNotasFinales(idCurso, idEstu, asignatura);
+				var idAsig = response[i]['id_asig'];
+				$scope.mostrarNotasFinales(idCurso, idEstu, asignatura, idAsig, estu);
+				
 			}
-			$scope.estudiantesMatriculados.push($scope.notasParcial);
+
+			$scope.sabanaFinal = datosEstudiantes;
+
+			setTimeout(function(){
+				//unitilzar apply para actualizar datos de array
+				$scope.$apply(function () {
+					if(numEstu == (cont+1) ){
+						$scope.notas.push($scope.notasParcial);
+						mostrarNotas($scope.notas, datosEstudiantes);
+					}
+				});
+			},30000,"JavaScript");
+			
         }, function (error) {
                 console.log(error);
-        });
+		});
+		
 	}
 
-	$scope.mensajeNotas = false;
-	$scope.notasParcial = [];
-	$scope.suple = '';
-	$scope.mostrarNotasFinales = function(idCurso, idEstu, asignatura){
+	//CREACION DEL ARRAY COMPLETO DE ESTUDIANTES Y NOTAS
+	function mostrarNotas(notasData, datosEstudiantes){
+		console.log('Materias finalizadas');
+		//console.log(response);
+
+		for (var i = 0; i < datosEstudiantes.length; i++) {
+
+			var nombreEstu = datosEstudiantes[i].apellidos_estu + " " + datosEstudiantes[i].nombres_estu;
+			var vectorNotas = [];
+			//console.log("Estu ==> "+nombreEstu);
+			for (var j = 0; j < notasData.length; j++) {
+
+				var vectorResponse = notasData[j]; 
+				for (var k = 0; k < vectorResponse.length; k++) {
+					
+					//console.log(vectorResponse[k].estu);
+					if(nombreEstu == vectorResponse[k].estu){
+						vectorNotas.push(vectorResponse[k]);
+
+					}
+				}
+				
+			}
+			vectorNotas = ordenarDatosNotas(vectorNotas);
+			datosEstudiantes[i].arrayNotas = vectorNotas;
+		}
+
+		$scope.sabanaFinal = datosEstudiantes;
+		console.log($scope.sabanaFinal);
+		
+		//imagenes de cargando
+		$scope.cargando = false;
+		$scope.tablaMostrar = true;
+		
+	}
+
+	function ordenarDatosNotas(array){
+		var arrayOrdenado = [];
+		var menor;
+
+		for (i=0;i<(array.length-1);i++)
+		{
+			for(j=(i+1);j<array.length;j++)
+			{
+				if(parseInt(array[j].idAsig) < parseInt(array[i].idAsig) )
+				{
+				   menor=array[j];
+				   array[j]=array[i];
+				   array[i]=menor;
+				}
+			}
+		}
+		arrayOrdenado = array;
+		console.log(arrayOrdenado);
+		return arrayOrdenado;
+	}
+
+	
+	$scope.mostrarNotasFinales = function(idCurso, idEstu, asignatura, idAsig, estu){
 		var urlNotaFinalAsig = $('#urlNotasAnual').val();
-		$scope.suple = '';
         $http({
             method: "post",
             url: urlNotaFinalAsig,
@@ -205,31 +274,27 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
+			//console.log('Notas finales');
 			//console.log(response);
 			if(response.length == 0){
+
 				$scope.mensajeNotas = true;
-				
-				
+					obtenerNotaMejora($scope.anioI, $scope.anioF, idEstu, asignatura, idAsig, response, estu);
+
 			} else {
 				if (response.length > 0) {
-					//añadir un elemento en el interior de un array en un elemento JSON
-					//response[0].mejora = 'hola';
-					
-					obtenerNotaMejora($scope.anioI, $scope.anioF, idEstu, asignatura, response);
-					
-					$scope.mensajeNotas = false;
-					//$scope.notasParcial.push(response[0]);
+
+					obtenerNotaMejora($scope.anioI, $scope.anioF, idEstu, asignatura, idAsig, response, estu);
 					
 				}
 			}
-			//llenarBoletin($scope.anioI, $scope.anioF, idEstu);
 
         }, function (error) {
                 console.log(error);
         });	
 	}
 
-	function obtenerNotaMejora(anioI, anioF, idEstu, asignatura, datosMejora){
+	function obtenerNotaMejora(anioI, anioF, idEstu, asignatura, idAsig, datosMejora, estu){
 		var urlNotaSuple = $('#urlNotasMejora').val();
         
 		$http({
@@ -241,17 +306,26 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
+			//console.log('Notas Mejora');
 			//console.log(response);
 			if(response.length == 0){
+					
+					datosMejora[0] = {};
+					datosMejora[0].estu = estu;
+					datosMejora[0].idAsig = idAsig;
+					datosMejora[0].Q1 = 0;
+					datosMejora[0].Q2 = 0;
+					datosMejora[0].asignatura = asignatura;
 					datosMejora[0].mejora = 0;
+					
 					obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosMejora);
 			} else {
 				if (response.length > 0) {
-					//se asigna el valor a la variable suple de scope para mostrar en la tabla
 
+					datosMejora[0].estu = estu;
+					datosMejora[0].idAsig = idAsig;
+					datosMejora[0].asignatura = asignatura;
 					datosMejora[0].mejora = response[0].nota_mejo;
-					//se ingresa al json el valor de la nota de supletorio
-					//$scope.notasParcial.push(datos[0]);
 
 					obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosMejora);
 				}	
@@ -275,17 +349,15 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
+			//console.log('Notas Supletorio');
 			//console.log(response);
 			if(response.length == 0){
 					datosSuple[0].suple = 0;
 					obtenerNotaRemedial(anioI, anioF, idEstu, asignatura, datosSuple);
 			} else {
 				if (response.length > 0) {
-					//se asigna el valor a la variable suple de scope para mostrar en la tabla
 
 					datosSuple[0].suple = response[0].nota_suple;
-					//se ingresa al json el valor de la nota de supletorio
-					//$scope.notasParcial.push(datosSuple[0]);
 
 					obtenerNotaRemedial(anioI, anioF, idEstu, asignatura, datosSuple);
 				}	
@@ -309,17 +381,15 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
+			//console.log('Notas Remedial');
 			//console.log(response);
 			if(response.length == 0){
 					datosRemedial[0].remedial = 0;
 					obtenerNotaGracia(anioI, anioF, idEstu, asignatura, datosRemedial);
 			} else {
 				if (response.length > 0) {
-					//se asigna el valor a la variable suple de scope para mostrar en la tabla
 
 					datosRemedial[0].remedial = response[0].nota_reme;
-					//se ingresa al json el valor de la nota de supletorio
-					//$scope.notasParcial.push(datosRemedial[0]);
 
 					obtenerNotaGracia(anioI, anioF, idEstu, asignatura, datosRemedial);
 				}	
@@ -341,10 +411,11 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
+			//console.log('Notas Gracia');
 			//console.log(response);
 			if(response.length == 0){
+
 					datosGracia[0].gracia = 0;
-					//sacar el promedio
 					var promedio = 0;
 					if(parseFloat(datosGracia[0].Q1) > 0 && parseFloat(datosGracia[0].Q2) > 0){
 						promedio = (parseFloat(datosGracia[0].Q1) + parseFloat(datosGracia[0].Q2)) / 2;
@@ -466,6 +537,39 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
                 console.log(error);
         });
 	}
+
+	function llenarDatosInformativos(cursoId, paralelo, anioI, anioF, parcial, quimestre){
+		//$scope.CursoInfo = cursoId;
+		consultarNombreCurso(cursoId);
+		$scope.ParaleloInfo = paralelo;
+		$scope.anioIInfo = anioI;
+		$scope.anioFInfo = anioF;
+		$scope.ParcialInfo = parcial;
+		$scope.QuimestreInfo = quimestre;
+
+	}
+
+	function limpiarVariables(){
+		$scope.ParaleloInfo = "";
+		$scope.anioIInfo = "";
+		$scope.anioFInfo = "";
+		$scope.ParcialInfo = "";
+		$scope.QuimestreInfo = "";
+		$scope.CursoInfo = "";
+	}
+
+	//obtener el nombre del curso para mostrar en la cabecera de la tabla de los 
+	//estudiantes a los que se les ingresara las notas
+	function consultarNombreCurso(cursoId) {
+        var getUrl = $('#urlConsultarCurso').val();
+        $http.get(getUrl+cursoId)
+        .success(function(datosP){
+            $scope.lista = datosP;
+            
+            $scope.idCurso =  datosP[0]['id_curs'];
+            $scope.CursoInfo =  datosP[0]['nombre_curs'];
+        });
+    }
 
 	$scope.printToCart = function(printSectionId) {
         var innerContents = document.getElementById(printSectionId).innerHTML;

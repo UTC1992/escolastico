@@ -6,7 +6,7 @@
 
 
 <!--INICIO CONTENEDOR-->
-<div id="contenidoEstudiante" class="" ng-controller="repoSabanaCtrl">
+<div id="contenidoEstudiante" class="container" ng-controller="repoSabanaCtrl">
 	
 	<!--urls-->
 		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
@@ -47,7 +47,7 @@
 	<!--head -->
 
 	<!--datos consultar-->
-	<div class="">
+	<div class="container">
 		<div class="table-responsive">
 			<form ng-submit="mostrarEstudiantesNotas()">
 				<table class="table table-striped table-bordered table-sm">
@@ -100,19 +100,47 @@
 						</tr>
 					</tbody>
 				</table>
+				<table class="table table-bordered table-striped table-sm">
+					
+					<thead class="thead-inverse">
+						
+						<tr>
+							<th colspan="14"><center>ALUMNOS</center></th>
+						</tr>
+						<tr>
+							<td colspan="7"><label style="margin-right: 5px;">
+								<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
+							</td>
+							<td colspan="7"><label style="margin-right: 5px;">
+								<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="7">
+								<label style="margin-right: 5px;">
+								<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
+							</td>
+							<td colspan="7"></td>
+						</tr>
+						<tr>
+							<th colspan="14"><center>SABANA FINAL</center></th>
+						</tr>
+					</thead>
+				</table>
 			</form>
 		</div>
+	</div>
 	
-	<!--datos consultar-->
+	<!--datos consultar
 		<button class="btn btn-success" ng-click="exportToExcel('#tableToExport')">
 				<span class="glyphicon glyphicon-share"></span>
 			Descargar Excel
 		</button>
 		<br>
 		<br>
-	</div>
+	-->
 		<!--tabla de estudiantes-->
-          <div class="table-responsive" id="">
+          <div class="table-responsive" id="scroll">
 			  <table>
 				  <tr ng-show="mensaje">
 						<td colspan="5" >
@@ -125,64 +153,101 @@
 					</tr>
 			  </table>
             <form ng-submit="">
-				<table class="table table-bordered table-striped table-sm" id="tableToExport">
-					
-				<thead class="thead-inverse">
-					
-					<tr>
-					<th colspan="14"><center>ALUMNOS</center></th>
-					</tr>
-					<tr>
-						<td colspan="7"><label style="margin-right: 5px;">
-							<strong>Año lectivo:</strong></label><label> {{anioIInfo}} - {{anioFInfo}}</label>
-						</td>
-						<td colspan="7"><label style="margin-right: 5px;">
-							<strong>Curso:</strong></label><label> {{CursoInfo}}</label>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="7">
-							<label style="margin-right: 5px;">
-							<strong>Paralelo:</strong></label><label> {{ParaleloInfo}}</label>
-						</td>
-						<td colspan="7"></td>
-					</tr>
-					<tr>
-						<th>N°</th>
-						<th>Estudiante</th>
-						<th>Ciencias Sociales</th>
-						<th>Cultura física</th>
-						<th>Desarrollo del</th>
-						<th>Educación Artistica</th>
-						<th>Física</th>
-						<th>Identidad Insti</th>
-						<th>Informatica</th>
-						<th>Lengua Extrangera</th>
-						<th>Lengua y Literatura</th>
-						<th>Matematicas</th>
-						<th>Quimica general</th>
-						<th>Mostrar Notas</th>
-					</tr>
-				</thead>
+			<div class="container">
+			
+			<center>
+				<img style="height: 100px; width: 100px;" src="<?=base_url()?>disenio/img/cargando.gif" ng-show="cargando">
+			</center>
+			</div>
+				<table class="table table-bordered table-striped table-sm" id="tableToExport" ng-show="tablaMostrar" >
 				<tbody>
-					<!--
-					<tr ng-repeat="e in estudiantesMatriculados | orderBy : apellidos_estu">
+					
+					<tr ng-repeat="e in sabanaFinal | orderBy : apellidos_estu">
 						<td style="width: 50px;">{{$index + 1}}</td>
 						<td>
 							<label style="width: 200px;">
 								{{e.apellidos_estu}} {{e.nombres_estu}}
 							</label>
 						</td>
-						
-						<td>
-							<button  class="btn btn-outline-warning editar" 
-							ng-click="verificarNotasFinales($event)"
-							id="{{e.id_curs}}/{{e.id_estu}}" data-toggle="modal" data-target="#modalEditar">
-								Mostrar Notas
-							</button>
+						<td ng-repeat="notas in e.arrayNotas | orderBy : asignatura">
+							<div>
+								<table style="font-size: 8pt;">
+									
+									<thead class="thead-inverse">
+										<tr>
+											<th colspan="9" >
+												<label style="width: 200px;">
+													<strong>{{notas.asignatura}}</strong>
+												</label>
+											</th>
+										</tr>
+										<tr>
+											<th>Q1</th>
+											<th>Q2</th>
+											<th>PRO</th>
+											<th>ME</th>
+											<th>SU</th>
+											<th>RE</th>
+											<th>GR</th>
+											<th>PF</th>
+											<th>COM</th>
+										</tr>
+									</thead>
+										<tr>
+											<td>
+												<label>
+													{{notas.Q1}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.Q2}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.promedio1}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.mejora}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.suple}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.remedial}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.gracia}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.promedioFinal}}
+												</label>
+											</td>
+											<td>
+												<label>
+													{{notas.comporLetra}}
+												</label>
+											</td>
+										</tr>	
+								</table>
+								
+							</div>
+							
+							
 						</td>
 					</tr>
-					-->
+					
 					<tr>
 						<td colspan="5" >
 							<center>
@@ -192,17 +257,7 @@
 					</tr>
 				</tbody>
 				</table>
-				<table>
-					<tr ng-show="mensaje">
-						<td colspan="5" >
-							<center>
-								<div  class="alert alert-danger" style="color: crimson;">
-									<strong>* No existen estudiantes relacionados con los datos ingresados.</strong>
-								</div>
-							</center>
-						</td>
-					</tr>
-				</table>
+
             </form>
           </div>
 		  <!--tabla de estudiantes-->
@@ -219,132 +274,7 @@
 			}
 		</style>
 
-		  <!--INICIO MODAL EDITAR-->
-			<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
-				<div class="modal-dialog  modal-lg" role="document">
-					<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="modalEditarLabel">Notas Finales</h3>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-							<input type="hidden" value="">
-							<div class="">
-								<div class="col-12 row justify-content-lg-center">
-								<fieldset class="form-control" id="printSectionId"
-									 style="color: black; font-size: 10pt;">
-										
-										<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-                                    	<link href="<?= base_url() ?>disenio/bootstrap/css/bootstrap.css" rel="stylesheet">
-										<center>
-											<div class="">
-												<img class="img-fluid" style="width: 150px; height: 100px;" src="<?= base_url() ?>disenio/img/logo2.jpg">
-												<h4>UNIDAD EDUCATIVA FISCAL</h4>
-												<h4>PATRIA</h4>
-												<br>
-												<h4>LIBRETA DE CALIFICACIONES FINAL</h4>
-												<br>
-											</div>
-										</center>
-										<center>
-										<table border="1" style=" font-size: 10pt; width: 700px;">
-											<tbody>
-												<tr>
-													<td>CADETE: {{cadete}}</td>
-													<td>CÉDULA: {{cedula}}</td>
-												</tr>
-												<tr>
-													<td>CURSO Y PARALELO: {{cursoParalelo}}</td>
-													<td>AÑO LECTIVO: {{anioLectivo}}</td>
-												</tr>
-												<tr>
-													<td>ESPECIALIDAD: {{especialidad}}</td>
-													<td>NIVEL / SECCIÓN: {{nivel}}</td>
-												</tr>
-												<tr>
-													<td>FECHA DE EMISIÓN: {{fechaActual}}</td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
-										<br>
-									<table style="font-size: 8pt; width: 500px;" class="" border="1">
-										<thead class="thead-inverse">
-											<tr>
-												<th>N°</th>
-												<th>ASIGNATURAS</th>
-												<th>I QUIM</th>
-												<th>II QUIM</th>
-												<th>PROM</th>
-												<th>MEJORA</th>
-												<th>SUPLE</th>
-												<th>REMEDIAL</th>
-												<th>GRACIA</th>
-												<th>PROMEDIO FIN</th>
-												<th>COMPORTAMIENTO</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr ng-repeat="n in notasParcial | orderBy : 'asignatura'">
-												<td>{{ $index + 1 }}</td>
-												<td>{{n.asignatura}}</td>
-												<td>{{n.Q1}}</td>
-												<td>{{n.Q2}}</td>
-												<td>{{n.promedio1}}</td>
-												<td>{{n.mejora}}</td>
-												<td>{{n.suple}}</td>
-												<td>{{n.remedial}}</td>
-												<td>{{n.gracia}}</td>
-												<td>{{n.promedioFinal}}</td>
-												<td><center>{{n.comporLetra}}</center></td>
-											</tr>
-										</tbody>
-									</table>
-									<br>
-										</center>
-										<label>OBSERVACIONES:</label>
-										<center>
-											<textarea class="form-control"></textarea>
-										<br>
-										<br>
-										<br>
-										<table>
-											<tr>
-                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
-                                                <td style="width: 50px;"></td>
-                                                <td><hr style="width: 15em; background: black; border-top: 1px solid;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL RECTOR</label></center>
-                                                </td>
-                                                <td style="width: 50px;"></td>
-                                                <td>
-                                                    <center><label class="col-form-label" style="font-size: 10pt;">EL SECRETARIO GENERAL</label></center>
-                                                </td>
-                                            </tr>
-										</table>
-										</center>
-									</fieldset>
-								</div>
-								<br>
-								<div class="modal-footer">
-									<button class="col-3 btn btn-primary" ng-click="printToCart('printSectionId')">
-                                        <span class="glyphicon glyphicon-floppy-saved"></span>
-                                        Imprimir
-                                    </button>
-									<button type="button" class="col-3 btn btn-warning" data-dismiss="modal">Cerrar</button>
-								</div>
-							</div>
-					</div>
-					
-					</div>
-				</div>
-			</div>
-			<!--FIN MODAL EDITAR-->
-
+		  
 
 </div>
 <!--INICIO CONTENEDOR-->
