@@ -379,6 +379,12 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 				$scope.mostrarNotasFinales(idCurso, idEstu, asignatura);
 			}
 
+			setTimeout(function(){
+				$scope.$apply(function () {
+					$scope.promedioGLobal();
+				});
+			},3000,"JavaScript");
+
         }, function (error) {
                 console.log(error);
         });
@@ -401,7 +407,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 					+"&asignatura="+asignatura,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			//console.log(response);
+			console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
 				
@@ -440,6 +446,16 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 			//console.log(response);
 			if(response.length == 0){
 					datosMejora[0].mejora = 0;
+					datosMejora[0].Q1 = 0;
+					datosMejora[0].Q2 = 0;
+
+					datosMejora[0].FaltasJQ1 = 0;
+					datosMejora[0].FaltasJQ2 = 0;
+					datosMejora[0].FaltasIJQ1 = 0;
+					datosMejora[0].FaltasIJQ2 = 0;
+
+					datosMejora[0].HorasQ1 = 0;
+					datosMejora[0].HorasQ2 = 0;
 					obtenerNotaSupletorio(anioI, anioF, idEstu, asignatura, datosMejora);
 			} else {
 				if (response.length > 0) {
@@ -668,33 +684,117 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         popupWinindow.document.close();
     }
 
-	$scope.descargarPdf = function()
-	{
-		var columns = ["ID", "Name", "Country"];
-		var rows = [
-			[1, "Shaw", "Tanzania"],
-			[2, "Nelson", "Kazakhstan"],
-			[3, "Garcia", "Madagascar"]
-		];
+	$scope.promedioGLobal = function () {
+		var Q1 = document.getElementsByClassName('Q1');
+		var Q2 = document.getElementsByClassName('Q2');
+		var promedio1 = document.getElementsByClassName('promedio1');
+		var mejora = document.getElementsByClassName('mejora');
+		var suple = document.getElementsByClassName('suple');
+		var remedial = document.getElementsByClassName('remedial');
+		var gracia = document.getElementsByClassName('gracia');
+		var promedioFinal = document.getElementsByClassName('promedioFinal');
+		var comporLetra = document.getElementsByClassName('comporLetra');
+		var faltasJQ1 = document.getElementsByClassName('faltasJQ1');
+		var faltasJQ2 = document.getElementsByClassName('faltasJQ2');
+		var faltasIJQ1 = document.getElementsByClassName('faltasIJQ1');
+		var faltasIJQ2 = document.getElementsByClassName('faltasIJQ2');
 
-		var doc = new jsPDF();
+		var horasQ1 = document.getElementsByClassName('horasQ1');
+		var horasQ2 = document.getElementsByClassName('horasQ2');
 
-		doc.setFontSize(18);
-		doc.text('Titulo', 14, 22);
-		doc.setFontSize(11);
-		doc.setTextColor(100);
+		var TQ1 = 0, TQ2 = 0, TP1 = 0, TM = 0, TS = 0, 
+			TR = 0, TG = 0, TPF = 0, TCL = 0, 
+			FalJQ1 = 0, FalJQ2 = 0, FalIJQ1 = 0, FalIJQ2 = 0,
+			hQ1 = 0, hQ2 = 0;
+		for (var i = 0; i < promedioFinal.length; i++) {
+			TQ1 = TQ1 + parseFloat(Q1[i].innerHTML);
+			TQ2 = TQ2 + parseFloat(Q2[i].innerHTML);
+			TP1 = TP1 + parseFloat(promedio1[i].innerHTML);
+			FalJQ1 = FalJQ1 + parseInt(faltasJQ1[i].innerHTML);
+			FalJQ2 = FalJQ2 + parseInt(faltasJQ2[i].innerHTML);
+			FalIJQ1 = FalIJQ1 + parseInt(faltasIJQ1[i].innerHTML);
+			FalIJQ2 = FalIJQ2 + parseInt(faltasIJQ2[i].innerHTML);
+
+			hQ1 = hQ1 + parseInt(horasQ1[i].innerHTML);
+			hQ2 = hQ2 + parseInt(horasQ2[i].innerHTML);
+			/*
+			TM = TM + parseFloat(mejora[i].innerHTML);
+			TS = TS + parseFloat(suple[i].innerHTML);
+			TR = TR + parseFloat(remedial[i].innerHTML);
+			TG = TG + parseFloat(gracia[i].innerHTML);
+			*/
+			TPF = TPF + parseFloat(promedioFinal[i].innerHTML);
+			
+		}
+		var TQ1 = TQ1 / Q1.length;
+		document.getElementById('totalQ1').innerHTML = TQ1.toFixed(2);
+		var TQ2 = TQ2 / Q1.length;
+		document.getElementById('totalQ2').innerHTML = TQ2.toFixed(2);
+		var TP1 = TP1 / Q1.length;
+		document.getElementById('totalProm1').innerHTML = TP1.toFixed(2);
+
 		
-		doc.text('text', 14, 30);
+		document.getElementById('totalQ1FJ').innerHTML = FalJQ1.toFixed(0);
+		document.getElementById('totalQ2FJ').innerHTML = FalJQ2.toFixed(0);
+		document.getElementById('totalQ1FIJ').innerHTML = FalIJQ1.toFixed(0);
+		document.getElementById('totalQ2FIJ').innerHTML = FalIJQ2.toFixed(0);
 
-		//columns.splice(0, 2);
-		doc.autoTable(columns, rows, {startY: 50, showHeader: 'firstPage'});
+		document.getElementById('HorasQ1').innerHTML = hQ1.toFixed(0);
+		document.getElementById('HorasQ2').innerHTML = hQ2.toFixed(0);
+
+		document.getElementById('totalH').innerHTML = parseInt(hQ1) + parseInt(hQ2);
+		document.getElementById('totalFJ').innerHTML = parseInt(FalJQ1) + parseInt(FalJQ2);
+		document.getElementById('totalFIJ').innerHTML = parseInt(FalIJQ1) + parseInt(FalIJQ2);
+
+		/*
+		var TM = TM / Q1.length;
+		document.getElementById('totalM').innerHTML = TM.toFixed(2);
+		var TS = TS / Q1.length;
+		document.getElementById('totalS').innerHTML = TS.toFixed(2);
+		var TR = TR / Q1.length;
+		document.getElementById('totalR').innerHTML = TR.toFixed(2);
+		var TG = TG / Q1.length;
+		document.getElementById('totalG').innerHTML = TG.toFixed(2);
+		*/
+		var TPF = TPF / Q1.length;
+		document.getElementById('totalPromF').innerHTML = TPF.toFixed(2);
+
+		var a = 0, b = 0, c = 0, d = 0;
+		for (var i = 0; i < comporLetra.length; i++) {
+
+			switch (comporLetra[i].innerHTML) {
+				case 'A':
+					a = a + 1;
+					break;
+				case 'B':
+					b = b + 1;
+					break;
+				case 'C':
+					c = c + 1;
+					break;
+				case 'D':
+					d = d + 1;
+					break;
+			}
+			//console.log(a+" "+b+" "+c+" "+d);
+		}
 		
-		doc.text('hola', 14, doc.autoTable.previous.finalY + 10);
+		//console.log(a+" "+b+" "+c+" "+d);
 
-		doc.save('table.pdf');
-
-
+		if (a > b && a > c && a > d) {
+			var TCL = 'A';
+		}
+		if (b > a && b > c && b > d) {
+			var TCL = 'B';	
+		}
+		if (c > a && c > b && c > d) {
+			var TCL = 'C';	
+		}
+		if (d > a && d > b && d > c) {
+			var TCL = 'D';	
+		}
+		
+		document.getElementById('totalComporta').innerHTML = TCL;
 	}
-
 
 });

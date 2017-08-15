@@ -216,7 +216,13 @@
 												(
 													(( T1.comporta + T2.comporta ) / 2) , 2
 												)
-												as 'comportaF'
+												as 'comportaF',
+												T1.FaltasJus as 'FaltasJQ1',
+												T2.FaltasJus as 'FaltasJQ2',
+												T1.FaltasInjus as 'FaltasIJQ1',
+												T2.FaltasInjus as 'FaltasIJQ2',
+												T1.HorasAsis as 'HorasQ1',
+												T2.HorasAsis as 'HorasQ2'
 										FROM
 										(
 											SELECT
@@ -244,7 +250,10 @@
 															)
 														)
 														, 2
-													) as 'Promedio'
+													) as 'Promedio',
+													(faltas_jus_p1 + faltas_jus_p2 + faltas_jus_p3) as 'FaltasJus',
+													(faltas_in_p1 + faltas_in_p2 + faltas_in_p3) as 'FaltasInjus',
+													(dias_asis_p1 + dias_asis_p2 + dias_asis_p3) as 'HorasAsis'
 													
 
 											FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
@@ -308,7 +317,10 @@
 															)
 														)
 														, 2
-													) as 'Promedio'
+													) as 'Promedio',
+													(faltas_jus_p1 + faltas_jus_p2 + faltas_jus_p3) as 'FaltasJus',
+													(faltas_in_p1 + faltas_in_p2 + faltas_in_p3) as 'FaltasInjus',
+													(dias_asis_p1 + dias_asis_p2 + dias_asis_p3) as 'HorasAsis'
 
 											FROM estudiante, matricula, parcial_1, parcial_2, parcial_3, examen
 											WHERE estudiante.id_estu = '" . $idEstu . "'

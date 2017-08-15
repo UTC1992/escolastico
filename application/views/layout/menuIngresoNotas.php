@@ -48,6 +48,7 @@
 								Docente:<br><strong><?= $docente ?></strong>
 							</label>	
 						</li>
+						<!--
 						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 180px;">
 								<div class="dropdown active">
 									<a class="btn nav-link btn-outline-warning dropdown-toggle" 
@@ -72,7 +73,7 @@
 									</div>
 								</div>
 						</li>
-          	
+						-->
 						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 180px;">
 							<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>notas_/ingresar_notas/logout">Cerrar Sesión</a>
 						</li>

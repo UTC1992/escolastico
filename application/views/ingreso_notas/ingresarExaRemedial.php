@@ -57,7 +57,7 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="4">
-								LLene el siguiente formulario porfavor:
+								LLene el siguiente formulario por favor:
 							</th>
 						</tr>
 					</thead>
@@ -194,7 +194,7 @@
 						<td colspan="6" >
 							<center>
 								<div  class="alert alert-success">
-									<strong>* Las notas fueron ingresadas con exito.</strong>
+									<strong>* Las notas fueron ingresadas con éxito.</strong>
 								</div>
 							</center>
 						</td>

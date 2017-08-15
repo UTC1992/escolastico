@@ -339,7 +339,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Número de horas pedagógicas:</label>
+                                    <label class="col-3 col-form-label">Número de horas Pedagógicas:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="horasPedagogicas" 
                                         id="horasPedagogicas" ng-model="horasPedagogicas"
@@ -359,7 +359,7 @@
                                 <fieldset class="form-control">
                                 <legend class="form-control"><strong>Información Domiciliaria</strong></legend>
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Lugar de recidencia:</label>
+                                    <label class="col-3 col-form-label">Lugar de residencia:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="lugarRecidencia" 
                                         id="lugarRecidencia" ng-model="lugarRecidencia"
@@ -393,7 +393,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Teléfono movil:</label>
+                                    <label class="col-3 col-form-label">Teléfono móvil:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="movil" 
                                         id="movil" ng-model="movil"
@@ -410,7 +410,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Email:</label>
+                                    <label class="col-3 col-form-label">E-mail:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="correo" 
                                         id="correo" ng-model="correo"
@@ -736,7 +736,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Número de horas pedagógicas:</label>
+                                    <label class="col-3 col-form-label">Número de horas Pedagógicas:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="horasPedagogicas" 
                                         id="horasPedagogicas" ng-model="horasPedagogicas"
@@ -756,7 +756,7 @@
                                 <fieldset class="form-control">
                                 <legend class="form-control"><strong>Información Domiciliaria</strong></legend>
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Lugar de recidencia:</label>
+                                    <label class="col-3 col-form-label">Lugar de residencia:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="lugarRecidencia" 
                                         id="lugarRecidencia" ng-model="lugarRecidencia"
@@ -790,7 +790,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Teléfono movil:</label>
+                                    <label class="col-3 col-form-label">Teléfono móvil:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="movil" 
                                         id="movil" ng-model="movil"
@@ -807,7 +807,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">Email:</label>
+                                    <label class="col-3 col-form-label">E-mail:</label>
                                     <div class="col-5">
                                         <input class="form-control" name="correo" 
                                         id="correo" ng-model="correo"
@@ -964,7 +964,7 @@
                                 </div>
 
                                 <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Número de horas pedagógicas:</label>
+                                    <label class="col-3 col-form-label">Número de horas Pedagógicas:</label>
                                     <div class="col-5">
                                         <label class="col-form-label">{{horasPedagogicas}}</label>
                                     </div>
@@ -974,7 +974,7 @@
                                 <fieldset class="form-control">
                                 <legend class="form-control"><strong>Información Domiciliaria</strong></legend>
                                 <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Lugar de recidencia:</label>
+                                    <label class="col-3 col-form-label">Lugar de residencia:</label>
                                     <div class="col-5">
                                         <label class="col-form-label">{{lugarRecidencia}}</label>
                                     </div>
@@ -988,14 +988,14 @@
                                 </div>
 
                                 <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Teléfono movil:</label>
+                                    <label class="col-3 col-form-label">Teléfono móvil:</label>
                                     <div class="col-5">
                                         <label class="col-form-label">{{movil}}</label>
                                     </div>
                                 </div>
 
                                 <div class="form-group row justify-content-md-center">
-                                    <label class="col-3 col-form-label">Email:</label>
+                                    <label class="col-3 col-form-label">E-mail:</label>
                                     <div class="col-5">
                                         <label class="col-form-label">{{correo}}</label>
                                     </div>

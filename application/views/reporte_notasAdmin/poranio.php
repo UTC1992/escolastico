@@ -53,7 +53,7 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="4">
-								LLene el siguiente formulario porfavor:
+								LLene el siguiente formulario por favor:
 							</th>
 						</tr>
 					</thead>
@@ -200,8 +200,8 @@
 		  <!--tabla de estudiantes-->
 
 		  <!--INICIO MODAL EDITAR-->
-			<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
-				<div class="modal-dialog  modal-lg" role="document">
+			<div class="modal fade"  id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+				<div class="modal-dialog  modal-lg" role="document" >
 					<div class="modal-content">
 					<div class="modal-header">
 						<h3 class="modal-title" id="modalEditarLabel">Notas Finales</h3>
@@ -250,7 +250,7 @@
 											</tbody>
 										</table>
 										<br>
-									<table style="font-size: 8pt; width: 500px;" class="" border="1">
+									<table style="font-size: 8pt; width: 700px;" class="" border="1">
 										<thead class="thead-inverse">
 											<tr>
 												<th>N°</th>
@@ -270,20 +270,68 @@
 											<tr ng-repeat="n in notasParcial | orderBy : 'asignatura'">
 												<td>{{ $index + 1 }}</td>
 												<td>{{n.asignatura}}</td>
-												<td>{{n.Q1}}</td>
-												<td>{{n.Q2}}</td>
-												<td>{{n.promedio1}}</td>
-												<td>{{n.mejora}}</td>
-												<td>{{n.suple}}</td>
-												<td>{{n.remedial}}</td>
-												<td>{{n.gracia}}</td>
-												<td>{{n.promedioFinal}}</td>
-												<td><center>{{n.comporLetra}}</center></td>
+												<td class="Q1">{{n.Q1}}</td>
+												<td class="Q2">{{n.Q2}}</td>
+												<td class="promedio1">{{n.promedio1}}</td>
+												<td class="mejora">{{n.mejora}}</td>
+												<td class="suple">{{n.suple}}</td>
+												<td class="remedial">{{n.remedial}}</td>
+												<td class="gracia">{{n.gracia}}</td>
+												<td class="promedioFinal">{{n.promedioFinal}}</td>
+												<td ><center class="comporLetra">{{n.comporLetra}}</center></td>
+												<td class="faltasJQ1" style="display: none;">{{n.FaltasJQ1}}</td>
+												<td class="faltasJQ2" style="display: none;">{{n.FaltasJQ2}}</td>
+												<td class="faltasIJQ1" style="display: none;">{{n.FaltasIJQ1}}</td>
+												<td class="faltasIJQ2" style="display: none;">{{n.FaltasIJQ2}}</td>
+												<td class="horasQ1" style="display: none;">{{n.HorasQ1}}</td>
+												<td class="horasQ2" style="display: none;">{{n.HorasQ2}}</td>
+											</tr>
+											<tr>
+												<td colspan="2"><strong>PROMEDIO GENERAL</strong></td>
+												<td id="totalQ1"></td>
+												<td id="totalQ2"></td>
+												<td id="totalProm1"></td>
+												<td colspan="4"></td>
+												<!--
+												<td id="totalM"></td>
+												<td id="totalS"></td>
+												<td id="totalR"></td>
+												<td id="totalG"></td>
+												-->
+												<td id="totalPromF"></td>
+												<td ><center id="totalComporta"></center></td>
 											</tr>
 										</tbody>
 									</table>
 									<br>
-										</center>
+									</center>
+									<table border="1">
+										<tr>
+											<td>Asistencia del Estudiante</td>
+											<td>Q1</td>
+											<td>Q2</td>
+											<td>T</td>
+										</tr>
+										<tr>
+											<td>Horas Asistidas</td>
+											<td id="HorasQ1"></td>
+											<td id="HorasQ2"></td>
+											<td id="totalH"></td>
+										</tr>
+										<tr>
+											<td>Faltas Justificadas</td>
+											<td id="totalQ1FJ"></td>
+											<td id="totalQ2FJ"></td>
+											<td id="totalFJ"></td>
+										</tr>
+										<tr>
+											<td>Faltas Injustificadas</td>
+											<td id="totalQ1FIJ"></td>
+											<td id="totalQ2FIJ"></td>
+											<td id="totalFIJ"></td>
+										</tr>
+									</table>
+									<br>
 										<label>OBSERVACIONES:</label>
 										<center>
 											<textarea class="form-control"></textarea>

@@ -25,7 +25,7 @@ app.controller('periodoAcademicoDatos', function($scope, $http, $filter, NgTable
             {name : "Septiembre", num : "9"},
             {name : "Octubre", num : "10"},
             {name : "Noviembre", num : "11"},
-            {name : "Disciembre", num : "12"}
+            {name : "Diciembre", num : "12"}
         ];
     }
     

@@ -54,7 +54,7 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="4">
-								LLene el siguiente formulario porfavor:
+								LLene el siguiente formulario por favor:
 							</th>
 						</tr>
 					</thead>
@@ -123,7 +123,7 @@
 							<td colspan="7"></td>
 						</tr>
 						<tr>
-							<th colspan="14"><center>SABANA FINAL</center></th>
+							<th colspan="14"><center>SÁBANA FINAL</center></th>
 						</tr>
 					</thead>
 				</table>

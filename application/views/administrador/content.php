@@ -36,7 +36,7 @@
 	<br>
 	<div id="tabs">
 	<ul>
-		<li><a href="#tabs-1">Tablas y Datos</a></li>
+		<li><a href="#tabs-1">Datos a Gestionar</a></li>
 		<li><a href="#tabs-2">Reportes</a></li>
 	</ul>
 	<div id="tabs-1">
@@ -84,7 +84,7 @@
 			</tbody>
 			<thead>
 				<tr>
-					<th>Año lectivo</th>
+					<th>Año Lectivo</th>
 					<th>Docente y Cargos</th>
 				</tr>
 			</thead>

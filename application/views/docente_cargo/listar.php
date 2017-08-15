@@ -46,8 +46,10 @@
                         <td data-title="'Paralelo'" filter="{paralelo_cargo: 'text'}">{{dc.paralelo_cargo}}</td>
                         <td data-title="'Asignatura'" filter="{asignatura_cargo: 'text'}">{{dc.asignatura_cargo}}</td>
                         <td data-title="'Año lectivo'" filter="{periodo_academico_cargo: 'text'}">{{dc.periodo_academico_cargo}}</td>
-                        <td data-title="'Curso Completo'" filter="{curso_completo_cargo: 'text'}">{{dc.curso_completo_cargo}}</td>
-                        <td data-title="'Acciones'">
+                        <!--
+						<td data-title="'Curso Completo'" filter="{curso_completo_cargo: 'text'}">{{dc.curso_completo_cargo}}</td>
+                        -->
+						<td data-title="'Acciones'">
                             <div>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
                                 id="<?= base_url() ?>docente_cargo_controller/getDataJsonDocenteCargoId/{{dc.id_cargo}}" 
@@ -194,7 +196,7 @@
                                         * Campo obligatorio.
                                     </div>
                                 </div>
-
+								<!--
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Se le asigna curso compleo:</label>
                                     <div class="col-5">
@@ -214,6 +216,7 @@
                                         * Campo obligatorio.
                                     </div>
                                 </div>
+								-->
 
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Año Lectivo:</label>
@@ -341,6 +344,7 @@
                                     
                                 </div>
 
+								<!--
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Se le asigna curso compleo:</label>
                                     <div class="col-7">
@@ -353,6 +357,7 @@
                                     </div>
                                     
                                 </div>
+								-->
 
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Año Lectivo:</label>

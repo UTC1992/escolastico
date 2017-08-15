@@ -55,11 +55,11 @@
 	<!--datos consultar-->
 		<div class="table-responsive">
 			<form  ng-submit="verificarRegistro()">
-				<table class="table table-striped table-bordered table-sm" style="font-size: 10pt;">
+				<table class="table table-striped table-bordered table-sm" >
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="4">
-								LLene el siguiente formulario porfavor:
+								LLene el siguiente formulario por favor:
 							</th>
 						</tr>
 					</thead>
@@ -269,7 +269,7 @@
 						<td colspan="11" >
 							<center>
 								<div  class="alert alert-success">
-									<strong>* Las notas fueron ingresadas con exito.</strong>
+									<strong>* Las notas fueron ingresadas con éxito.</strong>
 								</div>
 							</center>
 						</td>

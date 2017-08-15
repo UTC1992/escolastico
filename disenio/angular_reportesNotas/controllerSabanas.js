@@ -195,7 +195,7 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 						mostrarNotas($scope.notas, datosEstudiantes);
 					}
 				});
-			},30000,"JavaScript");
+			},28000,"JavaScript");
 			
         }, function (error) {
                 console.log(error);

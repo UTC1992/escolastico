@@ -61,7 +61,7 @@
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="4">
-								LLene el siguiente formulario porfavor:
+								LLene el siguiente formulario por favor:
 							</th>
 						</tr>
 					</thead>

@@ -65,10 +65,7 @@
 				<thead class="thead-inverse">
 					<tr>
 						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
+						<th colspan="4"><center>Estudiante</center></th>
 						<th colspan="4"><center>Representante</center></th>
 					</tr>
 					<tr>
