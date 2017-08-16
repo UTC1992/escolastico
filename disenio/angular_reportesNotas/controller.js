@@ -410,7 +410,7 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 			console.log(response);
 			if(response.length == 0){
 				$scope.mensajeNotas = true;
-				
+				obtenerNotaMejora($scope.anioI, $scope.anioF, idEstu, asignatura, response);
 				
 			} else {
 				if (response.length > 0) {
@@ -445,9 +445,11 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
         }).success(function(response){
 			//console.log(response);
 			if(response.length == 0){
+					datosMejora[0] = {};
 					datosMejora[0].mejora = 0;
 					datosMejora[0].Q1 = 0;
 					datosMejora[0].Q2 = 0;
+					datosMejora[0].asignatura = asignatura;
 
 					datosMejora[0].FaltasJQ1 = 0;
 					datosMejora[0].FaltasJQ2 = 0;
@@ -607,7 +609,11 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 						comportaLetras = 'D';
 					}
 
-					datosGracia[0].comporLetra = comportaLetras;
+					if(comportaLetras == ''){
+						datosGracia[0].comporLetra = '';
+					}else{
+						datosGracia[0].comporLetra = comportaLetras;
+					}
 					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					$scope.notasParcial.push(datosGracia[0]);
 			} else {
@@ -664,7 +670,11 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 						comportaLetras = 'D';
 					}
 
-					datosGracia[0].comporLetra = comportaLetras;
+					if(comportaLetras == ''){
+						datosGracia[0].comporLetra = 'A';
+					}else{
+						datosGracia[0].comporLetra = comportaLetras;
+					}
 					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					//se ingresa al json el valor de la nota de supletorio
 					$scope.notasParcial.push(datosGracia[0]);
@@ -793,6 +803,12 @@ app.controller('repoNotasAdminCtrl', function(Excel, $timeout, $scope, $http, $f
 		if (d > a && d > b && d > c) {
 			var TCL = 'D';	
 		}
+
+		if (a == b || a == c || a == d) {
+			var TCL = 'A';
+		}
+		
+		
 		
 		document.getElementById('totalComporta').innerHTML = TCL;
 	}

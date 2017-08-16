@@ -66,7 +66,8 @@
 							<td><label>Año lectivo:</label></td>
 							<td colspan="3">
 								<div class="form-inline">
-									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" value="">
+									<input name="aniosL" id="aniosL" ng-model="aniosL" type="hidden" 
+									value="{{AL.anioinicio_pera}}-{{AL.aniofin_pera}}">
 									 <input  type="text" class="form-control" style="width: 600px;" ng-disabled="true"
 									 value="{{AL.mesinicio_pera}} {{AL.anioinicio_pera}} - {{AL.mesfin_pera}} {{AL.aniofin_pera}}">
 									

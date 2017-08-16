@@ -265,7 +265,7 @@
 		<style>
 			#scroll {
 				overflow:scroll;
-				height:200px;
+				height:300px;
 				width:100%;
 			}
 

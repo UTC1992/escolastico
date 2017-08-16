@@ -129,6 +129,7 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 
 		var vectorCargos = $scope.cargoCPM.split("-");
 		buscarIdCurso(vectorCargos[0]+"");
+
 	}
 
 	function buscarIdCurso(nombreCurs){
@@ -139,7 +140,7 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
             data:   "cursoNombre="+nombreCurs,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			//console.log(response);
+			console.log(response);
 			
 			$scope.getUrl = $('#urlNumRegistrosMejora').val();
 			contarRegistros($scope.getUrl, response[0]['id_curs']);
@@ -190,6 +191,7 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 	$scope.mensaje = false;
 	$scope.estudiantesMatriculados = [];
 	function consultarEstudiantes(){
+		
 		$scope.estudiantesMatriculados = [];
 		array = [];
 		$scope.getUrl = $('#urlEstudiantesMatriculados').val();
@@ -235,7 +237,7 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 	function consultarNotasFinales(cedula){
 		
 		var url = $('#urlNotasTotales').val();
-
+		
 		$http({
             method: "post",
             url: url,
@@ -258,6 +260,8 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 			} else {
 				array.push(response[0]);
 			}
+
+			
             //$scope.mensajeInsertC = false;
         }, function (error) {
                 console.log(error);

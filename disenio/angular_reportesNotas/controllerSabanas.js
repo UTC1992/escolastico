@@ -453,20 +453,24 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					}
 					//calculando equivalencias de comportamiento
 					var comportaLetras = '';
-					if( (parseFloat(datosGracia[0].comportaF) >=9) && (parseFloat(datosGracia[0].comportaF) <= 10) ){
+					if( (parseInt(datosGracia[0].comportaF) >=9) && (parseInt(datosGracia[0].comportaF) <= 10) ){
 						comportaLetras = 'A';
 					}
-					if( (parseFloat(datosGracia[0].comportaF) >=6) && (parseFloat(datosGracia[0].comportaF) <= 8) ){
+					if( (parseInt(datosGracia[0].comportaF) >=6) && (parseInt(datosGracia[0].comportaF) <= 8) ){
 						comportaLetras = 'B';
 					}
-					if( (parseFloat(datosGracia[0].comportaF) >=4) && (parseFloat(datosGracia[0].comportaF) <= 5) ){
+					if( (parseInt(datosGracia[0].comportaF) >=4) && (parseInt(datosGracia[0].comportaF) <= 5) ){
 						comportaLetras = 'C';
 					}
-					if( (parseFloat(datosGracia[0].comportaF) >=1) && (parseFloat(datosGracia[0].comportaF) <= 3) ){
+					if( (parseInt(datosGracia[0].comportaF) >=1) && (parseInt(datosGracia[0].comportaF) <= 3) ){
 						comportaLetras = 'D';
 					}
 
-					datosGracia[0].comporLetra = comportaLetras;
+					if(comportaLetras == ''){
+						datosGracia[0].comporLetra = '';
+					}else{
+						datosGracia[0].comporLetra = comportaLetras;
+					}
 					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					$scope.notasParcial.push(datosGracia[0]);
 					
@@ -512,20 +516,24 @@ app.controller('repoSabanaCtrl', function(Excel, $timeout, $scope, $http, $filte
 					}
 					//calculando equivalencias de comportamiento
 					var comportaLetras = '';
-					if( (parseFloat(datosGracia[0].comportaF) >=9) && (parseFloat(datosGracia[0].comportaF) <= 10) ){
+					if( (parseInt(datosGracia[0].comportaF) >=9) && (parseInt(datosGracia[0].comportaF) <= 10) ){
 						comportaLetras = 'A';
 					}
-					if( (parseFloat(datosGracia[0].comportaF) >=6) && (parseFloat(datosGracia[0].comportaF) <= 8) ){
+					if( (parseInt(datosGracia[0].comportaF) >=6) && (parseInt(datosGracia[0].comportaF) <= 8) ){
 						comportaLetras = 'B';
 					}
-					if( (parseFloat(datosGracia[0].comportaF) >=4) && (parseFloat(datosGracia[0].comportaF) <= 5) ){
+					if( (parseInt(datosGracia[0].comportaF) >=4) && (parseInt(datosGracia[0].comportaF) <= 5) ){
 						comportaLetras = 'C';
 					}
-					if( (parseFloat(datosGracia[0].comportaF) >=1) && (parseFloat(datosGracia[0].comportaF) <= 3) ){
+					if( (parseInt(datosGracia[0].comportaF) >=1) && (parseInt(datosGracia[0].comportaF) <= 3) ){
 						comportaLetras = 'D';
 					}
 
-					datosGracia[0].comporLetra = comportaLetras;
+					if(comportaLetras == ''){
+						datosGracia[0].comporLetra = 'B';
+					}else{
+						datosGracia[0].comporLetra = comportaLetras;
+					}
 					datosGracia[0].promedioFinal = subPromedio.toFixed(2);
 					//se ingresa al json el valor de la nota de supletorio
 					$scope.notasParcial.push(datosGracia[0]);
