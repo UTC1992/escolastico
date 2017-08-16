@@ -116,8 +116,8 @@
 						<td colspan="6" >
 							<center>
 								<div  class="alert alert-danger" style="color: crimson;">
-									<strong>La informamos que las notas ya se registraron, puede consultarlo 
-									dando clic en el menú (superior o lateral) en opción Consulta y Edición.</strong>
+									<strong>Le informamos que las notas ya se registraron, puede consultarlas 
+									dando clic en el menú lateral en la sección Consulta y Edición.</strong>
 								</div>
 							</center>
 						</td>

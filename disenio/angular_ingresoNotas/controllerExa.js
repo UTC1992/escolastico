@@ -251,6 +251,7 @@ app.controller('notasIngresoExaCtrl', function(Excel, $timeout,$scope, $http) {
 			*/
 			var idEstu = notas[i].value;
 			var examenQuimestral = notas[i+1].value;
+			
 			$scope.getUrl = $('#urlIngresarNotasExamen').val();
 			ingresarNotasExa(idEstu, examenQuimestral, $scope.getUrl);
 		}

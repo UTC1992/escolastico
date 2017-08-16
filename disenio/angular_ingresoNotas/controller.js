@@ -287,7 +287,7 @@ app.controller('notasIngresoCtrl', function(Excel, $timeout,$scope, $http) {
 
 	$scope.mostrarDatos = function(){
 		var notas = document.getElementsByName('notaE');
-		for(var i = 0; i < notas.length; i+=9){
+		for(var i = 0; i < notas.length; i+=10){
 			/*alert(notas[i].value + " - "+ notas[i+1].value + " - "+ notas[i+2].value+ " - "+ notas[i+3].value + "-"+ notas[i+4].value);
 			*/
 			var idEstu = notas[i].value;

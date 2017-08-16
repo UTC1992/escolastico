@@ -151,10 +151,13 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 	}
 
 	function contarRegistros(url, idCurso){
+		
 		$scope.cursoId = idCurso;
 		var vectorCargos = $scope.cargoCPM.split("-");
 		$scope.paralelo = vectorCargos[1];
 		$scope.materia = vectorCargos[2];
+
+		
 		$http({
             method: "post",
             url: url,
@@ -199,7 +202,7 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
                     +"&anioF="+$scope.anioF,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
-			//console.log(response);
+			console.log(response);
 			if(response.length == 0){
 				$scope.mensaje = true;
 				limpiarVariables();
@@ -230,7 +233,9 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 
 	var array = [];
 	function consultarNotasFinales(cedula){
+		
 		var url = $('#urlNotasTotales').val();
+
 		$http({
             method: "post",
             url: url,
@@ -242,6 +247,7 @@ app.controller('ingresoExaMejoraCtrl', function(Excel, $timeout,$scope, $http) {
 					+"&cedula="+cedula,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(response){
+			console.log(response);
 			if(response.length == 0){
 				$scope.mensaje = true;
 				limpiarVariables();
