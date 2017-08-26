@@ -48,32 +48,7 @@
 								Docente:<br><strong><?= $docente ?></strong>
 							</label>	
 						</li>
-						<!--
-						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 180px;">
-								<div class="dropdown active">
-									<a class="btn nav-link btn-outline-warning dropdown-toggle" 
-									href="#" id="dropdownMenuButton" data-toggle="dropdown" >
-											Registro
-									</a>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
-											<a class="dropdown-item" href="#/ingreso_notas">Notas parciales</a>
-											<a class="dropdown-item" href="#/ingresar_examenes">Exámenes quimestrales</a>
-									</div>
-								</div>
-						</li>
-						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 180px;">
-								<div class="dropdown active">
-									<a class="btn nav-link btn-outline-warning dropdown-toggle" 
-									href="#" id="dropdownMenuButton" data-toggle="dropdown" >
-											Consulta y Edición
-									</a>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 200px;">
-											<a class="dropdown-item" href="#/consultar_notas">Notas parciales</a>
-											<a class="dropdown-item" href="#/consultas_examenes">Exámenes quimestrales</a>
-									</div>
-								</div>
-						</li>
-						-->
+						
 						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 180px;">
 							<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>notas_/ingresar_notas/logout">Cerrar Sesión</a>
 						</li>
@@ -81,6 +56,10 @@
 						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
 							<a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>" >
 								Inicio <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
+							<a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>home/misionVision">
+										Misión y Visión <span class="sr-only"></span></a>
 						</li>
 						<li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
 								<div class="dropdown active">

@@ -12,4 +12,14 @@ class Home extends CI_Controller
 		$this->load->view('/layout/footer');
 		
 	}
+
+	public function misionVision()
+	{
+		$data = array('title' => 'Misión y Visión');
+		$this->load->view('/layout/head', $data);
+		$this->load->view('/layout/menuIngresoNotas');
+		$this->load->view('/home/misionyVision');
+		$this->load->view('/layout/footer');
+		
+	}
 }

@@ -35,6 +35,10 @@
             <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>">
 						Inicio <span class="sr-only">(current)</span></a>
           </li>
+					<li class="nav-item active" style="padding: 0px; margin: 5px; width: 200px;">
+            <a class="nav-link btn btn-outline-warning" href="<?= base_url() ?>home/misionVision">
+						Misión y Visión <span class="sr-only"></span></a>
+          </li>
           <li class="nav-item" style="padding: 0px; margin: 5px; color: white; width: 200px;">
               <div class="dropdown active">
                 <a class="btn nav-link btn-outline-warning dropdown-toggle" 
