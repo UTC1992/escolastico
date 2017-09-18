@@ -9,30 +9,30 @@
 <div id="contenidoEstudiante" class="container" ng-controller="notasIngresoCtrl">
 	
 	<!--urls-->
-		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
-		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
-		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
+		<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
+		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>Ingresar_Notas_Controller/getDataJsonEstudiantesMatriculados">
+		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>Curso_Controller/getDataJsonCursoId/">
 
-		<input type="hidden" id="urlIngresarNotasParcial1" value="<?= base_url() ?>ingresar_notas_controller/insertar1">
-		<input type="hidden" id="urlIngresarNotasParcial2" value="<?= base_url() ?>ingresar_notas_controller/insertar2">
-		<input type="hidden" id="urlIngresarNotasParcial3" value="<?= base_url() ?>ingresar_notas_controller/insertar3">
+		<input type="hidden" id="urlIngresarNotasParcial1" value="<?= base_url() ?>Ingresar_Notas_Controller/insertar1">
+		<input type="hidden" id="urlIngresarNotasParcial2" value="<?= base_url() ?>Ingresar_Notas_Controller/insertar2">
+		<input type="hidden" id="urlIngresarNotasParcial3" value="<?= base_url() ?>Ingresar_Notas_Controller/insertar3">
 
-		<input type="hidden" id="urlNumRegistros1" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar1">
-		<input type="hidden" id="urlNumRegistros2" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar2">
-		<input type="hidden" id="urlNumRegistros3" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContar3">
+		<input type="hidden" id="urlNumRegistros1" value="<?= base_url() ?>Ingresar_Notas_Controller/getDataJsonContar1">
+		<input type="hidden" id="urlNumRegistros2" value="<?= base_url() ?>Ingresar_Notas_Controller/getDataJsonContar2">
+		<input type="hidden" id="urlNumRegistros3" value="<?= base_url() ?>Ingresar_Notas_Controller/getDataJsonContar3">
 	<!--urls-->
 
 	<!--buscar asignaturas segun id del Curso-->
-		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonAsignaturasDeCurso">
 		
 	<!--url para las paginas-->
-		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
+		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
 	
 	<!--CONSULTAR CARGOS Y DATOS ASIGNADOS AL DOCENTE-->
-		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>docente_cargo_controller/getDataJsonCargoDocente">
-		<input id="urlNombreCurso" type="hidden" value="<?= base_url() ?>curso_controller/getDataJsonNombreCurso">
+		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>Docente_Cargo_Controller/getDataJsonCargoDocente">
+		<input id="urlNombreCurso" type="hidden" value="<?= base_url() ?>Curso_Controller/getDataJsonNombreCurso">
 	<!--url para las paginas-->
 
 	<!--head -->

@@ -132,17 +132,17 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('administrador_model', 
-                                'periodoa_model', 
-                                'asignatura_model', 
-                                'curso_model',
-                                'curso_asignatura_model',
-                                'docente_model',
-                                'docente_cargo_model',
-                                'estudiante_model',
-                                'matricula_model',
-								'ingresar_notas_model',
-								'reporte_matriculas_model',
-								'reporte_notasadmin_model',
-								'consultar_notas_model'
+$autoload['model'] = array('Administrador_Model', 
+                                'Periodoa_Model', 
+                                'Asignatura_Model', 
+                                'Curso_Model',
+                                'Curso_Asignatura_Model',
+                                'Docente_Model',
+                                'Docente_Cargo_Model',
+                                'Estudiante_Model',
+                                'Matricula_Model',
+								'Ingresar_Notas_Model',
+								'Reporte_Matriculas_Model',
+								'Reporte_Notasadmin_Model',
+								'Consultar_Notas_Model'
                                 );

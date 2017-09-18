@@ -15,7 +15,7 @@
 				</center>
 			
 
-			<form  class="form-horizontal" action="<?= base_url() ?>administrador_controller/insertar" method="post">
+			<form  class="form-horizontal" action="<?= base_url() ?>Administrador_Controller/insertar" method="post">
 
 				<div class="form-group row" style="color: red;">
 					<label class="col-8 col-form-label"  ><?= $error ?></label>

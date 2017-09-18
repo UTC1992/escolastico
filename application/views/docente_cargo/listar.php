@@ -8,8 +8,8 @@
 <div id="contenidoDocente" class="container" ng-controller="docenteCargoCtrl">
     
     <div >	
-        <input type="hidden" id="urlDocentesCargo" value="<?= base_url()?>docente_cargo_controller/getDataJsonDocenteCargoAll">
-        <input type="hidden" id="urlDocentesCargoConsultaSQL" value="<?= base_url()?>docente_cargo_controller/getDataJsonDocenteCargo">
+        <input type="hidden" id="urlDocentesCargo" value="<?= base_url()?>Docente_Cargo_Controller/getDataJsonDocenteCargoAll">
+        <input type="hidden" id="urlDocentesCargoConsultaSQL" value="<?= base_url()?>Docente_Cargo_Controller/getDataJsonDocenteCargo">
 
 		<center>
 		<button class="btn btn-primary nuevo" ng-click="inicializarVariables()" data-toggle="modal" data-target="#modalNuevo">
@@ -52,7 +52,7 @@
 						<td data-title="'Acciones'">
                             <div>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>docente_cargo_controller/getDataJsonDocenteCargoId/{{dc.id_cargo}}" 
+                                id="<?= base_url() ?>Docente_Cargo_Controller/getDataJsonDocenteCargoId/{{dc.id_cargo}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
@@ -90,12 +90,12 @@
 									* Se registró el nuevo cargo exitosamente.
 								</div>
                             <form name="fDocenteCargo" ng-submit="registrarNuevo()" class="form-horizontal" >
-                                <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
-                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-                                <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
-                                <input type="hidden" id="urlPeriodos" value="<?= base_url()?>periodoa_controller/getDataJsonPeriodoAll">
+                                <input type="hidden" id="urlDocentes" value="<?= base_url()?>Docente_Controller/getDataJsonDocenteAll">
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+                                <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
+                                <input type="hidden" id="urlPeriodos" value="<?= base_url()?>Periodoa_Controller/getDataJsonPeriodoAll">
 
-                                <input type="hidden" id="urlInsertarDC" value="<?= base_url()?>docente_cargo_controller/insertar">
+                                <input type="hidden" id="urlInsertarDC" value="<?= base_url()?>Docente_Cargo_Controller/insertar">
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Docente:</label>
                                     <div class="col-5">
@@ -278,11 +278,11 @@
 							</div>
                         <form name="fDocenteCargoEdit" ng-submit="actualizarDocenteCardo()" class="form-horizontal" >
                                 
-                                <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
-                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-                                <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
+                                <input type="hidden" id="urlDocentes" value="<?= base_url()?>Docente_Controller/getDataJsonDocenteAll">
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+                                <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
 
-                                <input type="hidden" id="urlActualizarDC" value="<?= base_url()?>docente_cargo_controller/actualizar/">
+                                <input type="hidden" id="urlActualizarDC" value="<?= base_url()?>Docente_Cargo_Controller/actualizar/">
                                 <input type="hidden" id="idDC" value="{{idDC}}">
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Docente:</label>

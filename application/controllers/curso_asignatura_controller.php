@@ -8,7 +8,7 @@ class Curso_Asignatura_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$asignaturaCurso = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->curso_asignatura_model->insertAC($asignaturaCurso);
+		$bool = $this->Curso_Asignatura_Model->insertAC($asignaturaCurso);
 	}
 
 	/**
@@ -20,7 +20,7 @@ class Curso_Asignatura_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->curso_asignatura_model->getAsignaturasByCurso($id);
+		$fila = $this->Curso_Asignatura_Model->getAsignaturasByCurso($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -38,7 +38,7 @@ class Curso_Asignatura_Controller extends CI_Controller
 	*/
 	public function eliminar($id = "")
 	{
-		$bool = $this->curso_asignatura_model->deleteAC($id);
+		$bool = $this->Curso_Asignatura_Model->deleteAC($id);
 	}
 
 }

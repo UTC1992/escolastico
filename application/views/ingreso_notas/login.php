@@ -18,7 +18,7 @@
 				</div>
 				
 				<label style="color: crimson; font-size: 14pt;"><strong><?= $error ?></strong></label>
-				<form name="flogin" class="loginAdmin" action="<?= base_url() ?>login_docente/login" 
+				<form name="flogin" class="loginAdmin" action="<?= base_url() ?>Login_Docente/login" 
 					method="post" accept-charset='UTF-8' role="form">
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="Email" 

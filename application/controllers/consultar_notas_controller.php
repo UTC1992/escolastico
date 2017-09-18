@@ -50,7 +50,7 @@ class Consultar_Notas_Controller extends CI_Controller
 		$datos = array();
 
 		$datosMatri = $this->input->post();
-		$fila = $this->consultar_notas_model->getMatricula($datosMatri);
+		$fila = $this->Consultar_Notas_Model->getMatricula($datosMatri);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

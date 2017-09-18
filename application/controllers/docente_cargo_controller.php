@@ -34,7 +34,7 @@ class Docente_Cargo_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->docente_cargo_model->getDocenteCargo();
+		$fila = $this->Docente_Cargo_Model->getDocenteCargo();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -61,7 +61,7 @@ class Docente_Cargo_Controller extends CI_Controller
 		$idAsig = $docenteCargo['id_asig'];
 		$idCargo = $docenteCargo['id_cargo'];
 
-		$fila = $this->docente_cargo_model->getDocenteCargoListar($idCurso, $idDoce, $idAsig, $idCargo);
+		$fila = $this->Docente_Cargo_Model->getDocenteCargoListar($idCurso, $idDoce, $idAsig, $idCargo);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -79,7 +79,7 @@ class Docente_Cargo_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$docenteC = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->docente_cargo_model->insertDC($docenteC);
+		$bool = $this->Docente_Cargo_Model->insertDC($docenteC);
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Docente_Cargo_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->docente_cargo_model->getById($id);
+		$fila = $this->Docente_Cargo_Model->getById($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -108,7 +108,7 @@ class Docente_Cargo_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$docenteCargo = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->docente_cargo_model->updateDC($docenteCargo, $id);
+		$bool = $this->Docente_Cargo_Model->updateDC($docenteCargo, $id);
 		
 	}
 
@@ -121,7 +121,7 @@ class Docente_Cargo_Controller extends CI_Controller
 		$datos = array();
 
 		$docente = $this->input->post();
-		$fila = $this->docente_cargo_model->getDatosCargo($docente);
+		$fila = $this->Docente_Cargo_Model->getDatosCargo($docente);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

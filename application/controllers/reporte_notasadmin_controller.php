@@ -39,7 +39,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getRepoNotasParcial1($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getRepoNotasParcial1($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -59,7 +59,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getRepoNotasParcial2($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getRepoNotasParcial2($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -79,7 +79,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getRepoNotasParcial3($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getRepoNotasParcial3($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -99,7 +99,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getRepoNotasQuimestre($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getRepoNotasQuimestre($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -119,7 +119,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosCurso = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getAsignaturasCurso($datosCurso);
+		$fila = $this->Reporte_Notasadmin_Model->getAsignaturasCurso($datosCurso);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -139,7 +139,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getRepoNotasFinales($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getRepoNotasFinales($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -159,7 +159,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getDatosBoletin($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getDatosBoletin($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -179,7 +179,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getNotaSuple($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getNotaSuple($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -199,7 +199,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getNotaMejora($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getNotaMejora($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -219,7 +219,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getNotaRemedial($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getNotaRemedial($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -239,7 +239,7 @@ class Reporte_Notasadmin_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNotas = $this->input->post();
-		$fila = $this->reporte_notasadmin_model->getNotaGracia($datosNotas);
+		$fila = $this->Reporte_Notasadmin_Model->getNotaGracia($datosNotas);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

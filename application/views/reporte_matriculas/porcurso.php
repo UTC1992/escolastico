@@ -6,19 +6,19 @@
 <!--INICIO CONTENEDOR-->
 <div id="contenidoEstudiante" ng-controller="repoMatriculasCtrl">
 	<!--URLS acciones del controlador-->
-	<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-	<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>reporte_matriculas_controller/getDataJsonEstudiantesReporte">
+	<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+	<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>Reporte_Matriculas_Controller/getDataJsonEstudiantesReporte">
 		
 	<!--URLS acciones del controlador-->
 
 	<!--url para años lectivos-->
-		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoAll">
 	<!--url para años lectivos-->
 
 	<!-- tabla -->
     <div class="">
 		<br>
-		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAllInicial">
+		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>Estudiante_Controller/getDataJsonEstudiantesAllInicial">
 		
 		<center><h4>Reportes por Curso</h4></center>
 		

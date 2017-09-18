@@ -7,14 +7,14 @@
 <div id="contenidoEstudiante" ng-controller="estudianteCtrl">
 	
 	<!--url para las paginas-->
-		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
-		<input type="hidden" id="urlCursoNivel" value="<?= base_url()?>curso_controller/getDataJsonCursoNivel">
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoAll">
+		<input type="hidden" id="urlCursoNivel" value="<?= base_url()?>Curso_Controller/getDataJsonCursoNivel">
 	<!--url para las paginas-->
 
 	<!-- tabla -->
     <div class="">
 		<br>
-		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAllInicial">
+		<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>Estudiante_Controller/getDataJsonEstudiantesAllInicial">
 		
 		<center><h4>Educación General Básica</h4></center>
 		
@@ -68,21 +68,21 @@
 							<div style="width: 350px;" class="form-inline">
 								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-info editar" for="inlineFormInput" 
 								ng-click="mostrarFormEditar($event)" 
-								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
-								name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+								id="<?= base_url() ?>Estudiante_Controller/getDataJsonEstudianteId/{{e.id_estu}}" 
+								name="<?= base_url()?>Matricula_Controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 								data-toggle="modal" data-target="#modalMostrarDatos">
 									Datos
 								</button>
 								<button style="width: 100px; margin-right: 5px;" class="btn btn-outline-warning editar" for="inlineFormInput"
 								ng-click="mostrarFormEditar($event)" 
-								id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}"
-								name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+								id="<?= base_url() ?>Estudiante_Controller/getDataJsonEstudianteId/{{e.id_estu}}"
+								name="<?= base_url()?>Matricula_Controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 								data-toggle="modal" data-target="#modalEditar">
 									Editar
 								</button>
 								<button style="margin-right: 5px;" class="btn btn-outline-success" 
 									ng-click="generarCerti($event)" for="inlineFormInput" 
-									id="{{e.id_estu}}" name="<?= base_url()?>matricula_controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
+									id="{{e.id_estu}}" name="<?= base_url()?>Matricula_Controller/getDataJsonCertiImprimir/{{e.id_estu}}/{{e.fechainicio_matr}}/{{e.fechafin_matr}}"
 									data-toggle="modal" data-target="#modalCertificado">
 									Certíficado
 								</button>
@@ -122,14 +122,14 @@
 									
 								<form name="fEstudiante" ng-submit="registrarNuevo()" class="form-horizontal" >
 									
-									<input type="hidden" id="urlInsertarE" value="<?= base_url()?>estudiante_controller/insertar">
+									<input type="hidden" id="urlInsertarE" value="<?= base_url()?>Estudiante_Controller/insertar">
 
 									<!--obtener los cursos disponibles en el colegio-->
-									<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+									<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
 									
-									<input type="hidden" id="urlInsertarM" value="<?= base_url()?>matricula_controller/insertar">
+									<input type="hidden" id="urlInsertarM" value="<?= base_url()?>Matricula_Controller/insertar">
 									
-									<input type="hidden" id="urlBuscarIdEstu" value="<?= base_url()?>estudiante_controller/getDataJsonBuscarIdEstu">
+									<input type="hidden" id="urlBuscarIdEstu" value="<?= base_url()?>Estudiante_Controller/getDataJsonBuscarIdEstu">
 
 									<fieldset class="form-control">
 										<legend class="form-control"><strong>Información de la Matrícula:</strong></legend>
@@ -686,18 +686,18 @@
 
                         <form name="fEstudianteEdit" ng-submit="actualizar()" class="form-horizontal" >
                                 
-                                <input type="hidden" id="urlActualizarE" value="<?= base_url()?>estudiante_controller/actualizar/">
+                                <input type="hidden" id="urlActualizarE" value="<?= base_url()?>Estudiante_Controller/actualizar/">
                                 <input type="hidden" id="idEstu" value="{{idEstu}}">
 								
 								<!--obtener los cursos disponibles en el colegio-->
 									 <!--obtener los cursos disponibles en el colegio-->
-									<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+									<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
 									
-									<input type="hidden" id="urlActualizarM" value="<?= base_url()?>matricula_controller/actualizar/">
+									<input type="hidden" id="urlActualizarM" value="<?= base_url()?>Matricula_Controller/actualizar/">
 									
 									<input type="hidden" id="idMatri" value="">
 
-									<input type="hidden" id="urlBuscarCertiActualizado" value="<?= base_url()?>matricula_controller/getDataJsonMatriculaActualizada">
+									<input type="hidden" id="urlBuscarCertiActualizado" value="<?= base_url()?>Matricula_Controller/getDataJsonMatriculaActualizada">
 
 
 								<fieldset class="form-control">
@@ -1486,9 +1486,9 @@
                                 
                             <!--<form name="fMatricula" ng-submit="registrarNuevo()" class="form-horizontal" > -->
                                 <!--obtener los cursos disponibles en el colegio-->
-                                <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+                                <input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
                                 
-                                <input type="hidden" id="urlInsertarM" value="<?= base_url()?>matricula_controller/insertar">
+                                <input type="hidden" id="urlInsertarM" value="<?= base_url()?>Matricula_Controller/insertar">
                                 
                                 <input type="hidden" id="idEstu" value="">
 

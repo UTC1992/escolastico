@@ -9,7 +9,7 @@
 <div id="contenidoPeriodos" class="container" ng-controller="periodoAcademicoDatos">
     
     <div >	
-        <input type="hidden" id="urlPeriodos" value="<?= base_url()?>periodoa_controller/getDataJsonPeriodoAll">
+        <input type="hidden" id="urlPeriodos" value="<?= base_url()?>Periodoa_Controller/getDataJsonPeriodoAll">
         <!--
         <h4>Filtros</h4>
         <div class="input-group">
@@ -69,7 +69,7 @@
 						<td data-title="'Acciones'">
                             <div>
                                 <button class="btn btn-warning editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoId/{{p.id_pera}}" 
+                                id="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoId/{{p.id_pera}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
@@ -108,7 +108,7 @@
                         <div class="col-12">
 
                         <form name="fPeriodoEditar" ng-submit="actualizar()" class="form-horizontal">
-                            <input type="hidden" id="urlActualizarP" value="<?= base_url()?>periodoa_controller/actualizar/">
+                            <input type="hidden" id="urlActualizarP" value="<?= base_url()?>Periodoa_Controller/actualizar/">
                             <input type="hidden" id="idPeriodo" value="{{idPeriodo}}">
 
 							<div class="col-12 alert alert-success" ng-show="mensajeUpdate">
@@ -253,7 +253,7 @@
                                     El año lectivo se ingresó correctamente.
                                 </div>
 
-                                <input type="hidden" id="urlInsertarP" value="<?= base_url()?>periodoa_controller/insertar">
+                                <input type="hidden" id="urlInsertarP" value="<?= base_url()?>Periodoa_Controller/insertar">
                                 <div class="form-group row">
                                     <label class="col-4 col-form-label">Mes de inicio de clases:</label>
                                     <div class="col-4">

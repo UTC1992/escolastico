@@ -15,9 +15,9 @@
 <br>
 <!--head -->
 <!--url para las paginas-->
-<input id="urlConsultarPorCurso" type="hidden" value="<?= base_url() ?>reporte_matriculas_controller/porCurso">
-<input id="urlConsultarPorParalelo" type="hidden" value="<?= base_url() ?>reporte_matriculas_controller/porParalelo">
-<input id="urlConsultarPorCP" type="hidden" value="<?= base_url() ?>reporte_matriculas_controller/porCP">
+<input id="urlConsultarPorCurso" type="hidden" value="<?= base_url() ?>Reporte_Matriculas_Controller/porCurso">
+<input id="urlConsultarPorParalelo" type="hidden" value="<?= base_url() ?>Reporte_Matriculas_Controller/porParalelo">
+<input id="urlConsultarPorCP" type="hidden" value="<?= base_url() ?>Reporte_Matriculas_Controller/porCP">
 <!--url para las paginas-->
 
 <!-- Nav tabs -->

@@ -8,7 +8,7 @@
 <div  class="notasIngreso"  ng-app="appNotasIngreso" >
         
 	<!--Nav menu-->
-	<input id="urlInicio" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/inicioNotas">
+	<input id="urlInicio" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/inicioNotas">
 
 		<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
           <ul class="nav nav-pills flex-column">
@@ -22,29 +22,29 @@
 				<ul class="flex-column" style="margin-bottom: 10px;">
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingreso_notas" >Notas Parciales</a>
-						<input id="urlIngresarNotas" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotas">
+						<input id="urlIngresarNotas" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/ingresoNotas">
 					</li>
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_examenes">Exámen Quimestral</a>
-						<input id="urlIngresarExamenes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoNotasExa">
+						<input id="urlIngresarExamenes" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/ingresoNotasExa">
 					</li>
 						<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_mejora">Exámen Mejora</a>
-						<input id="urlIngresarExaMejora" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaMejora">
+						<input id="urlIngresarExaMejora" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/ingresoExaMejora">
 					</li>
 					
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_supletorio">Exámen Supletorio</a>
-						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaSuple">
+						<input id="urlIngresarExaSuple" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/ingresoExaSuple">
 					</li>
 					
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_remedial">Exámen Remedial</a>
-						<input id="urlIngresarExaRemedial" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaRemedial">
+						<input id="urlIngresarExaRemedial" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/ingresoExaRemedial">
 					</li>
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/ingresar_gracia">Exámen Gracia</a>
-						<input id="urlIngresarExaGracia" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/ingresoExaGracia">
+						<input id="urlIngresarExaGracia" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/ingresoExaGracia">
 					</li>
 				</ul>
             </li>
@@ -55,28 +55,28 @@
 				<ul class="flex-column" style="margin-bottom: 10px;">
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultar_notas">Notas parciales</a>
-						<input id="urlMostrarInformes" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/informesNotas">
+						<input id="urlMostrarInformes" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/informesNotas">
 					</li>
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_examenes">Exámenes quimestrales</a>
-						<input id="urlMostrarExa" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultarExa">
+						<input id="urlMostrarExa" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/consultarExa">
 					</li>
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_mejora">Exámen Mejora</a>
-						<input id="urlMostrarExaMejora" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaMejora">
+						<input id="urlMostrarExaMejora" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/consultaExaMejora">
 					</li>
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_supletorios">Exámen Supletorio</a>
-						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaSuple">
+						<input id="urlMostrarExaSuple" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/consultaExaSuple">
 					</li>
 					
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_remedial">Exámen Remedial</a>
-						<input id="urlMostrarExaRemedial" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaRemedial">
+						<input id="urlMostrarExaRemedial" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/consultaExaRemedial">
 					</li>
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/consultas_gracia">Exámen Gracia</a>
-						<input id="urlMostrarExaGracia" type="hidden" value="<?= base_url() ?>ingresar_notas_controller/consultaExaGracia">
+						<input id="urlMostrarExaGracia" type="hidden" value="<?= base_url() ?>Ingresar_Notas_Controller/consultaExaGracia">
 					</li>
 				</ul>
             </li>
@@ -89,7 +89,7 @@
 					<li class="nav-item">
 						<a class="nav-link btn-outline-warning" href="#/informe_final">Informe Final</a>
 						<input id="urlInformeFinal" type="hidden" 
-						value="<?= base_url() ?>ingresar_notas_controller/consultarInformeFinal">
+						value="<?= base_url() ?>ingresar_notas_Controller/consultarInformeFinal">
 					</li>
 				</ul>
             </li>

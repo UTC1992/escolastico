@@ -16,7 +16,7 @@ class Periodoa_Controller extends CI_Controller
 		//$this->load->view('/layout/header_admin');
 		//$this->load->view('/layout/nav_admin');
         $this->load->view('/layout/menuAdmin');
-		$result = $this->periodoa_model->getPeriodoAcademico();
+		$result = $this->Periodoa_Model->getPeriodoAcademico();
         $data = array('consulta' => $result );
 		$this->load->view('/periodo_academico/index', $data);
         $this->load->view('/layout/footer_base');
@@ -35,7 +35,7 @@ class Periodoa_Controller extends CI_Controller
 		//$this->load->view('/layout/header_admin');
 		//$this->load->view('/layout/nav_admin');
         //$this->load->view('/layout/menu_admin');
-		$result = $this->periodoa_model->getPeriodoAcademico();
+		$result = $this->Periodoa_Model->getPeriodoAcademico();
         $data = array('consulta' => $result );
 		$this->load->view('/periodo_academico/listar', $data);
         //$this->load->view('/layout/footer');
@@ -62,7 +62,7 @@ class Periodoa_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$periodo = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->periodoa_model->insertP($periodo);
+		$bool = $this->Periodoa_Model->insertP($periodo);
 		//se conprueba el registro correcto del registro
 		if ($bool) {
 			header("Location: " . base_url() . "admin_/periodoacademico");
@@ -73,7 +73,7 @@ class Periodoa_Controller extends CI_Controller
 
 	public function edit($id = '')
     {
-		//$fila = $this->periodoa_model->getById($id);
+		//$fila = $this->Periodoa_Model->getById($id);
 
 		//se comprueba que la sesion exista y se redirecciona 
 		//si existe va a la parte administrativa
@@ -102,7 +102,7 @@ class Periodoa_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$periodoEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->periodoa_model->updateP($periodoEdit, $id);
+		$bool = $this->Periodoa_Model->updateP($periodoEdit, $id);
 		//se conprueba el registro correcto del registro
 		if ($bool) {
 			header("Location: " . base_url() . "admin_/periodoacademico");
@@ -120,7 +120,7 @@ class Periodoa_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->periodoa_model->getById($id);
+		$fila = $this->Periodoa_Model->getById($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -141,7 +141,7 @@ class Periodoa_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->periodoa_model->getPeriodoAcademico();
+		$fila = $this->Periodoa_Model->getPeriodoAcademico();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -160,7 +160,7 @@ class Periodoa_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->periodoa_model->getPeriodoActivo();
+		$fila = $this->Periodoa_Model->getPeriodoActivo();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

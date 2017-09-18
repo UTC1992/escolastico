@@ -14,10 +14,10 @@
 <br>
 <!--head -->
 <!--url para las paginas-->
-<input id="urlConsultarParciales" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/repoParcial">
-<input id="urlConsultarQuimestre" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/repoQuimestral">
-<input id="urlConsultarAnuales" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/repoAnual">
-<input id="urlConsultarSabanaFinal" type="hidden" value="<?= base_url() ?>reporte_notasadmin_controller/sabanaFinal">
+<input id="urlConsultarParciales" type="hidden" value="<?= base_url() ?>Reporte_Notasadmin_Controller/repoParcial">
+<input id="urlConsultarQuimestre" type="hidden" value="<?= base_url() ?>Reporte_Notasadmin_Controller/repoQuimestral">
+<input id="urlConsultarAnuales" type="hidden" value="<?= base_url() ?>Reporte_Notasadmin_Controller/repoAnual">
+<input id="urlConsultarSabanaFinal" type="hidden" value="<?= base_url() ?>Reporte_Notasadmin_Controller/sabanaFinal">
 <!--url para las paginas-->
 
 <!-- Nav tabs -->

@@ -38,7 +38,7 @@ class Reporte_Matriculas_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNivel = $this->input->post();
-		$fila = $this->reporte_matriculas_model->getReporteMatriPorCurso($datosNivel);
+		$fila = $this->Reporte_Matriculas_Model->getReporteMatriPorCurso($datosNivel);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -58,7 +58,7 @@ class Reporte_Matriculas_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNivel = $this->input->post();
-		$fila = $this->reporte_matriculas_model->getReporteMatriPorCP($datosNivel);
+		$fila = $this->Reporte_Matriculas_Model->getReporteMatriPorCP($datosNivel);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

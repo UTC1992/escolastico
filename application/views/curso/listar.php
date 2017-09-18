@@ -9,7 +9,7 @@
 <div id="contenidoAsig" class="container" ng-controller="cursoCtrl">
     
     <div >	
-        <input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
+        <input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
         
 		<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
 			<center>
@@ -46,7 +46,7 @@
 							
 								<center>
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>curso_controller/getDataJsonCursoId/{{c.id_curs}}" 
+                                id="<?= base_url() ?>Curso_Controller/getDataJsonCursoId/{{c.id_curs}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
@@ -90,7 +90,7 @@
                                     El curso se ingresó correctamente.
                                 </div>
 
-                                <input type="hidden" id="urlInsertarC" value="<?= base_url()?>curso_controller/insertar">
+                                <input type="hidden" id="urlInsertarC" value="<?= base_url()?>Curso_Controller/insertar">
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Nombre del Curso:</label>
                                     <div class="col-4">
@@ -166,7 +166,7 @@
                         <div class="col-12">
 
                         <form name="fCursoEditar" ng-submit="actualizar()" class="form-horizontal">
-                            <input type="hidden" id="urlActualizarC" value="<?= base_url()?>curso_controller/actualizar/">
+                            <input type="hidden" id="urlActualizarC" value="<?= base_url()?>Curso_Controller/actualizar/">
                             <input type="hidden" id="idCurso" value="{{idCurso}}">
 							<div class="col-12 alert alert-success" ng-show="actualizarMensaje">
 								El curso se actualizó correctamente.
@@ -247,13 +247,13 @@
                         <form name="fAsigCurso" ng-submit="nuevaAsigCurso()" class="form-horizontal">
                             
                             <!--URL consulta de asignaturas-->
-                            <input type="hidden" id="urlNewAsigCurso" value="<?= base_url() ?>asignaturas_controller/getDataJsonAsignaturaAll">
+                            <input type="hidden" id="urlNewAsigCurso" value="<?= base_url() ?>Asignaturas_Controller/getDataJsonAsignaturaAll">
                             
                             <!--ID para registro de nueva asignatura en un curso
                             <input type="hidden" id="idCursoNewA" value="{{idCursoNewA}}">-->
 
                             <!--URL insertar-->
-                            <input type="hidden" id="urlInsertarAsigCurso" value="<?= base_url() ?>curso_asignatura_controller/insertar">
+                            <input type="hidden" id="urlInsertarAsigCurso" value="<?= base_url() ?>Curso_Asignatura_Controller/insertar">
                             
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Asignaturas:</label>
@@ -311,13 +311,13 @@
                         <form name="fAsigCurso" ng-submit="nuevaAsigCurso()" class="form-horizontal">
                             
                             <!--URL consulta de asignaturas-->
-                            <input type="hidden" id="urlNewAsigCurso" value="<?= base_url() ?>asignaturas_controller/getDataJsonAsignaturaAll">
+                            <input type="hidden" id="urlNewAsigCurso" value="<?= base_url() ?>Asignaturas_Controller/getDataJsonAsignaturaAll">
                             
                             <!--ID para registro de nueva asignatura en un curso-->
                             <input type="hidden" id="idCursoNewA" value="{{idCursoNewA}}">
 
                             <!--URL insertar-->
-                            <input type="hidden" id="urlInsertarAsigCurso" value="<?= base_url() ?>curso_asignatura_controller/insertar">
+                            <input type="hidden" id="urlInsertarAsigCurso" value="<?= base_url() ?>Curso_Asignatura_Controller/insertar">
                             
                             <div class="form-group row">
                                 <label class="col-3 col-form-label">Asignaturas:</label>
@@ -339,7 +339,7 @@
                         <label></label>
                             
                             <!--URL consulta de asignaturas-->
-                            <input type="hidden" id="urlAsigCurso" value="<?= base_url() ?>curso_asignatura_controller/getDataJsonAsigCurso">
+                            <input type="hidden" id="urlAsigCurso" value="<?= base_url() ?>Curso_Asignatura_Controller/getDataJsonAsigCurso">
                             
                             <div class="form-group row">
                                     <div class="table-responsive">
@@ -358,7 +358,7 @@
                                                                 <center>
 																	<button class="btn btn-outline-danger eliminar" 
 																	ng-click="eliminarAsignaturaDeCurso($event)" 
-																	id="<?= base_url() ?>curso_asignatura_controller/eliminar/{{a.id_cura}}">
+																	id="<?= base_url() ?>Curso_Asignatura_Controller/eliminar/{{a.id_cura}}">
 																		Eliminar
 																	</button>
 																</center>

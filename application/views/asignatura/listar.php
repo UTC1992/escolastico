@@ -8,7 +8,7 @@
 <div id="contenidoAsig" class="container" ng-controller="asignaturaCtrl">
     
     <div >	
-        <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
+        <input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
     
 		<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
 			<center>
@@ -43,7 +43,7 @@
                             <div>	
 								<center>
                                 <button class="btn btn-warning editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>asignaturas_controller/getDataJsonAsignaturaId/{{a.id_asig}}" 
+                                id="<?= base_url() ?>Asignaturas_Controller/getDataJsonAsignaturaId/{{a.id_asig}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
@@ -80,7 +80,7 @@
                                     La asignatura se ingresó correctamente.
                                 </div>
 
-                                <input type="hidden" id="urlInsertarA" value="<?= base_url()?>asignaturas_controller/insertar">
+                                <input type="hidden" id="urlInsertarA" value="<?= base_url()?>Asignaturas_Controller/insertar">
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">Nombre de la asignatura:</label>
                                     <div class="col-4">
@@ -133,7 +133,7 @@
                         <div class="col-12">
 
                         <form name="fAsignaturaEditar" ng-submit="actualizar()" class="form-horizontal">
-                            <input type="hidden" id="urlActualizarA" value="<?= base_url()?>asignaturas_controller/actualizar/">
+                            <input type="hidden" id="urlActualizarA" value="<?= base_url()?>Asignaturas_Controller/actualizar/">
                             <input type="hidden" id="idAsignatura" value="{{idAsignatura}}">
 							
 							<div class="col-12 alert alert-success" ng-show="mensajeActualizar">

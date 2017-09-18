@@ -9,31 +9,31 @@
 <div id="contenidoEstudiante" class="container" ng-controller="ingresoExaSupleCtrl">
 	
 	<!--urls-->
-		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
-		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
-		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
+		<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
+		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>Ingresar_Notas_Controller/getDataJsonEstudiantesMatriculados">
+		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>Curso_Controller/getDataJsonCursoId/">
 
-		<input type="hidden" id="urlIngresarSupletorio" value="<?= base_url() ?>ingresar_notas_controller/insertarExaSuple">
+		<input type="hidden" id="urlIngresarSupletorio" value="<?= base_url() ?>Ingresar_Notas_Controller/insertarExaSuple">
 
-		<input type="hidden" id="urlNumRegistrosSuple" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonContarExaSuple">
+		<input type="hidden" id="urlNumRegistrosSuple" value="<?= base_url() ?>Ingresar_Notas_Controller/getDataJsonContarExaSuple">
 		
-		<input type="hidden" id="urlNotasTotales" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotasTotales">
+		<input type="hidden" id="urlNotasTotales" value="<?= base_url() ?>Ingresar_Notas_Controller/getDataJsonConsultaNotasTotales">
 
-		<input type="hidden" id="urlNotaExaMejora" value="<?= base_url() ?>ingresar_notas_controller/getDataJsonConsultaNotaMejoraId">
+		<input type="hidden" id="urlNotaExaMejora" value="<?= base_url() ?>Ingresar_Notas_Controller/getDataJsonConsultaNotaMejoraId">
 	
 	<!--urls-->
 
 	<!--url para las paginas-->
-		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoActivo">
+		<input id="urlBuscarAniosLectivosActivo" type="hidden" value="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoActivo">
 	<!--url para las paginas-->
 	
 	<!--buscar asignaturas segun id del Curso-->
-		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonAsignaturasDeCurso">
 	
 	<!--CONSULTAR CARGOS Y DATOS ASIGNADOS AL DOCENTE-->
-		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>docente_cargo_controller/getDataJsonCargoDocente">
-		<input id="urlNombreCurso" type="hidden" value="<?= base_url() ?>curso_controller/getDataJsonNombreCurso">
+		<input id="urlCargosDocente" type="hidden" value="<?= base_url() ?>Docente_Cargo_Controller/getDataJsonCargoDocente">
+		<input id="urlNombreCurso" type="hidden" value="<?= base_url() ?>Curso_Controller/getDataJsonNombreCurso">
 	<!--url para las paginas-->
 
 	<!--ID DEL DOCENTE-->

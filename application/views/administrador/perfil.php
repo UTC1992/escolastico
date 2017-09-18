@@ -12,8 +12,8 @@
 			<br>
 			<form name="fAdmin"  class="form-horizontal" ng-submit="actualizarAdmin()">
 				
-				<input type="hidden" id="urlAdminEdit" value="<?= base_url() ?>administrador_controller/actualizar" >
-				<input type="hidden" id="urlAdminMostrar" value="<?= base_url() ?>administrador_controller/getDataJsonAdminId" >
+				<input type="hidden" id="urlAdminEdit" value="<?= base_url() ?>Administrador_Controller/actualizar" >
+				<input type="hidden" id="urlAdminMostrar" value="<?= base_url() ?>Administrador_Controller/getDataJsonAdminId" >
 				
 				<input type="hidden" value="<?= $idAdmin ?>" id="idAdmin">
 

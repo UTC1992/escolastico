@@ -31,7 +31,7 @@ class Docente_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->docente_model->getDocente();
+		$fila = $this->Docente_Model->getDocente();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -49,7 +49,7 @@ class Docente_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$docente = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->docente_model->insertD($docente);
+		$bool = $this->Docente_Model->insertD($docente);
 	}
 
 	/**
@@ -61,7 +61,7 @@ class Docente_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->docente_model->getById($id);
+		$fila = $this->Docente_Model->getById($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -78,7 +78,7 @@ class Docente_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$docenteEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->docente_model->updateD($docenteEdit, $id);
+		$bool = $this->Docente_Model->updateD($docenteEdit, $id);
 		
 	}
 
@@ -87,7 +87,7 @@ class Docente_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$docenteEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->docente_model->updateClave($docenteEdit, $id);
+		$bool = $this->Docente_Model->updateClave($docenteEdit, $id);
 		
 	}
 }

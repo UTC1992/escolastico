@@ -9,33 +9,33 @@
 <div id="contenidoEstudiante" class="container" ng-controller="repoSabanaCtrl">
 	
 	<!--urls-->
-		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
-		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
-		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
-		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
+		<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
+		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>Ingresar_Notas_Controller/getDataJsonEstudiantesMatriculados">
+		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>Curso_Controller/getDataJsonCursoId/">
+		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>Ingresar_Notas_Controller/insertar">
 
 		<!--MOSTRAR INFORMES DE NOTAS-->
-		<input type="hidden" id="urlNotasAnual" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasFinales">
+		<input type="hidden" id="urlNotasAnual" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonNotasFinales">
 		
 		<!--buscar asignaturas segun id del Curso-->
-		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonAsignaturasDeCurso">
+		<input type="hidden" id="urlAsignaturasCurso" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonAsignaturasDeCurso">
 		
 		<!--buscar datos de boletin-->
-		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonDatosBoletin">
+		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonDatosBoletin">
 
 		<!--buscar nota de supletorio-->
-		<input type="hidden" id="urlNotasSuple" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaSuple">
+		<input type="hidden" id="urlNotasSuple" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonNotaSuple">
 		<!--buscar nota de mejora-->
-		<input type="hidden" id="urlNotasMejora" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaMejora">
+		<input type="hidden" id="urlNotasMejora" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonNotaMejora">
 		<!--buscar nota de mejora-->
-		<input type="hidden" id="urlNotasRemedial" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaRemedial">
+		<input type="hidden" id="urlNotasRemedial" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonNotaRemedial">
 		<!--buscar nota de mejora-->
-		<input type="hidden" id="urlNotasGracia" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotaGracia">
+		<input type="hidden" id="urlNotasGracia" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonNotaGracia">
 	<!--urls-->
 
 	<!--url para años lectivos-->
-		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoAll">
 	<!--url para años lectivos-->
 	
 	<!--head -->

@@ -55,7 +55,7 @@
 								</label>	
 							</li>
 							<li class="nav-item active"  style="padding: 0px; margin: 5px; width: 200px;">
-								<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>login_estu/logout">Cerrar Sesión</a>
+								<a class="btn nav-link btn-outline-warning" href="<?= base_url() ?>Login_Estu/logout">Cerrar Sesión</a>
 							</li>
 					<?php }else{ ?>
           <?php } ?>

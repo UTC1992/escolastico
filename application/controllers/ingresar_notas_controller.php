@@ -96,7 +96,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getEstudiantesMatriculados($matricula);
+		$fila = $this->Ingresar_Notas_Model->getEstudiantesMatriculados($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -113,7 +113,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertN1($notas);
+		$bool = $this->Ingresar_Notas_Model->insertN1($notas);
 	}
 
 	public function insertar2()
@@ -121,7 +121,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertN2($notas);
+		$bool = $this->Ingresar_Notas_Model->insertN2($notas);
 	}
 
 	public function insertar3()
@@ -129,7 +129,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertN3($notas);
+		$bool = $this->Ingresar_Notas_Model->insertN3($notas);
 	}
 
 	/**
@@ -141,7 +141,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getInformeP1($matricula);
+		$fila = $this->Ingresar_Notas_Model->getInformeP1($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -162,7 +162,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getInformeP2($matricula);
+		$fila = $this->Ingresar_Notas_Model->getInformeP2($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -183,7 +183,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getInformeP3($matricula);
+		$fila = $this->Ingresar_Notas_Model->getInformeP3($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -201,7 +201,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContar1($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContar1($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -219,7 +219,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContar2($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContar2($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -237,7 +237,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContar3($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContar3($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -254,7 +254,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasEdit1($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasEdit1($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -271,7 +271,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasEdit2($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasEdit2($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -288,7 +288,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasEdit3($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasEdit3($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -305,7 +305,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateP1($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateP1($notasEdit, $id);
 		
 	}
 
@@ -314,7 +314,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateP2($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateP2($notasEdit, $id);
 		
 	}
 
@@ -323,7 +323,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateP3($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateP3($notasEdit, $id);
 		
 	}
 
@@ -334,7 +334,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContarExa1($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContarExa1($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -351,7 +351,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertExa($notas);
+		$bool = $this->Ingresar_Notas_Model->insertExa($notas);
 	}
 
 	/**
@@ -363,7 +363,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getExamenes($matricula);
+		$fila = $this->Ingresar_Notas_Model->getExamenes($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -380,7 +380,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasExaEdit($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasExaEdit($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -397,7 +397,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateExa($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateExa($notasEdit, $id);
 		
 	}
 
@@ -409,9 +409,9 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getNotasTotales($matricula);
+		$fila = $this->Ingresar_Notas_Model->getNotasTotales($matricula);
 		
-		//$fila = $this->ingresar_notas_model->getNotasTotales();
+		//$fila = $this->Ingresar_Notas_Model->getNotasTotales();
 
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -429,7 +429,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContarExaSuple($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContarExaSuple($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -446,7 +446,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertExaSuple($notas);
+		$bool = $this->Ingresar_Notas_Model->insertExaSuple($notas);
 	}
 
 	public function getDataJsonConsultaNotasTotalesSupletorio()
@@ -455,9 +455,9 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getNotasTotalesSupletorio($matricula);
+		$fila = $this->Ingresar_Notas_Model->getNotasTotalesSupletorio($matricula);
 		
-		//$fila = $this->ingresar_notas_model->getNotasTotales();
+		//$fila = $this->Ingresar_Notas_Model->getNotasTotales();
 
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -474,7 +474,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasSupleEdit($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasSupleEdit($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -491,7 +491,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateSuple($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateSuple($notasEdit, $id);
 		
 	}
 
@@ -502,7 +502,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 
 		//se optiene los datos mediante el metodo POST
 		$dato = $this->input->post();
-		$fila = $this->ingresar_notas_model->getNotasMejoraId($dato);
+		$fila = $this->Ingresar_Notas_Model->getNotasMejoraId($dato);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -522,7 +522,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContarExaMejora($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContarExaMejora($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -539,7 +539,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertExaMejora($notas);
+		$bool = $this->Ingresar_Notas_Model->insertExaMejora($notas);
 	}
 
 	public function getDataJsonConsultaNotasTotalesMejora()
@@ -548,9 +548,9 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getNotasTotalesMejora($matricula);
+		$fila = $this->Ingresar_Notas_Model->getNotasTotalesMejora($matricula);
 		
-		//$fila = $this->ingresar_notas_model->getNotasTotales();
+		//$fila = $this->Ingresar_Notas_Model->getNotasTotales();
 
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -567,7 +567,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasMejoraEdit($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasMejoraEdit($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -584,7 +584,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateMejora($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateMejora($notasEdit, $id);
 		
 	}
 
@@ -596,7 +596,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContarExaRemedial($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContarExaRemedial($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -613,7 +613,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertExaRemedial($notas);
+		$bool = $this->Ingresar_Notas_Model->insertExaRemedial($notas);
 	}
 	
 	public function getDataJsonConsultaNotasTotalesRemedial()
@@ -622,9 +622,9 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getNotasTotalesRemedial($matricula);
+		$fila = $this->Ingresar_Notas_Model->getNotasTotalesRemedial($matricula);
 		
-		//$fila = $this->ingresar_notas_model->getNotasTotales();
+		//$fila = $this->Ingresar_Notas_Model->getNotasTotales();
 
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -641,7 +641,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasRemedialEdit($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasRemedialEdit($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -658,7 +658,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateRemedial($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateRemedial($notasEdit, $id);
 		
 	}
 
@@ -670,7 +670,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getContarExaGracia($matricula);
+		$fila = $this->Ingresar_Notas_Model->getContarExaGracia($matricula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -687,7 +687,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notas = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->insertExaGracia($notas);
+		$bool = $this->Ingresar_Notas_Model->insertExaGracia($notas);
 	}
 	
 	public function getDataJsonConsultaNotasTotalesGracia()
@@ -696,9 +696,9 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$datos = array();
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
-		$fila = $this->ingresar_notas_model->getNotasTotalesGracia($matricula);
+		$fila = $this->Ingresar_Notas_Model->getNotasTotalesGracia($matricula);
 		
-		//$fila = $this->ingresar_notas_model->getNotasTotales();
+		//$fila = $this->Ingresar_Notas_Model->getNotasTotales();
 
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -715,7 +715,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		$json = new Services_JSON();
 		$datos = array();
 
-		$fila = $this->ingresar_notas_model->getNotasGraciaEdit($id);
+		$fila = $this->Ingresar_Notas_Model->getNotasGraciaEdit($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -732,7 +732,7 @@ class Ingresar_Notas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$notasEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->ingresar_notas_model->updateGracia($notasEdit, $id);
+		$bool = $this->Ingresar_Notas_Model->updateGracia($notasEdit, $id);
 		
 	}
 

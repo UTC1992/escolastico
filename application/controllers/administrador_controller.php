@@ -38,12 +38,12 @@ class Administrador_Controller extends CI_Controller
 		$admin = $this->input->post();
 		//se optiene el email para comprobar que sea unico
 		$email = $this->input->post('email');
-		if ($this->administrador_model->getAdmin($email) != null) {
+		if ($this->Administrador_Model->getAdmin($email) != null) {
 			//si ya existe un admin con el mismo correo se envia un mensaje
 			$this->nuevo("El correo ingresado ya esta siendo utilizado, intentar con otro correo.");
 		} else {
 			//se envian los datos del formulario al modelo al metodo insert
-			$bool = $this->administrador_model->insert($admin);
+			$bool = $this->Administrador_Model->insert($admin);
 			//se conprueba el registro correcto del registro
 			if ($bool) {
 				header("Location: " . base_url() . "login_admin/index");
@@ -78,7 +78,7 @@ class Administrador_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->administrador_model->getAdminId($id);
+		$fila = $this->Administrador_Model->getAdminId($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -95,7 +95,7 @@ class Administrador_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$adminEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->administrador_model->updateAdmin($adminEdit, $id);
+		$bool = $this->Administrador_Model->updateAdmin($adminEdit, $id);
 		
 	}
 

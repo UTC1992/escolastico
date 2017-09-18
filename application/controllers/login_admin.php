@@ -29,8 +29,8 @@
 			$email  	= $this->input->post('email');
 			$password  	= $this->input->post('password');
 
-			$this->load->model('administrador_model');
-			$fila = $this->administrador_model->getAdmin($email);
+			$this->load->model('Administrador_Model');
+			$fila = $this->Administrador_Model->getAdmin($email);
 
 			if ($fila != null) {
 				if ($fila->password_admin == $password) {

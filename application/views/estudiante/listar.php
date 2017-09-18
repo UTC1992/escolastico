@@ -29,7 +29,7 @@
 			</div>
 
 			<div>	
-				<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>estudiante_controller/getDataJsonEstudiantesAll">
+				<input type="hidden" id="urlEstudiantes" value="<?= base_url()?>Estudiante_Controller/getDataJsonEstudiantesAll">
 				
 
 				<!--
@@ -40,7 +40,7 @@
 
 				<div class="row justify-content-md-center">
             
-					<input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>matricula_controller/getDataJsonEstudiante"> 
+					<input type="hidden" id="urlBuscarEstu" value="<?= base_url()?>Matricula_Controller/getDataJsonEstudiante"> 
 						<div class="col-lg-6">
 							<label class="col-form-label">Ingrese los siguientes datos para buscar al estudiante:</label>
 							<div class="input-group">
@@ -85,12 +85,12 @@
 								<td>
 									<div style="width: 210px;">
 										<button style="width: 100px;" class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
-										id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
+										id="<?= base_url() ?>Estudiante_Controller/getDataJsonEstudianteId/{{e.id_estu}}" 
 										data-toggle="modal" data-target="#modalMostrarDatos">
 											Datos
 										</button>
 										<button style="width: 100px;" class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
-										id="<?= base_url() ?>estudiante_controller/getDataJsonEstudianteId/{{e.id_estu}}" 
+										id="<?= base_url() ?>Estudiante_Controller/getDataJsonEstudianteId/{{e.id_estu}}" 
 										data-toggle="modal" data-target="#modalEditar">
 											Editar
 										</button>
@@ -129,7 +129,7 @@
 									
 								<form name="fEstudiante" ng-submit="registrarNuevo()" class="form-horizontal" >
 									
-									<input type="hidden" id="urlInsertarE" value="<?= base_url()?>estudiante_controller/insertar">
+									<input type="hidden" id="urlInsertarE" value="<?= base_url()?>Estudiante_Controller/insertar">
 									<fieldset class="form-control">
 									<legend class="form-control"><strong>Información Personal</strong></legend>
 									<div class="form-group row">
@@ -414,7 +414,7 @@
 
                         <form name="fEstudiante" ng-submit="actualizar()" class="form-horizontal" >
                                 
-                                <input type="hidden" id="urlActualizarE" value="<?= base_url()?>estudiante_controller/actualizar/">
+                                <input type="hidden" id="urlActualizarE" value="<?= base_url()?>Estudiante_Controller/actualizar/">
                                 <input type="hidden" id="idEstu" value="{{idEstu}}">
 
                                 <fieldset class="form-control">

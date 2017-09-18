@@ -34,7 +34,7 @@ class Matricula_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->matricula_model->getEstudiante($cedula);
+		$fila = $this->Matricula_Model->getEstudiante($cedula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -52,7 +52,7 @@ class Matricula_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$matricula = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->matricula_model->insertM($matricula);
+		$bool = $this->Matricula_Model->insertM($matricula);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Matricula_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->matricula_model->getCertificado($cedula, $AI, $AF);
+		$fila = $this->Matricula_Model->getCertificado($cedula, $AI, $AF);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -86,7 +86,7 @@ class Matricula_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->matricula_model->getCertificadoImprimir($idEstu, $fechaI, $fechaF);
+		$fila = $this->Matricula_Model->getCertificadoImprimir($idEstu, $fechaI, $fechaF);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -104,7 +104,7 @@ class Matricula_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$matriculaEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->matricula_model->updateM($matriculaEdit, $id);
+		$bool = $this->Matricula_Model->updateM($matriculaEdit, $id);
 		
 	}
 
@@ -117,7 +117,7 @@ class Matricula_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->matricula_model->getMatriculaActualizada($idMatri);
+		$fila = $this->Matricula_Model->getMatriculaActualizada($idMatri);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

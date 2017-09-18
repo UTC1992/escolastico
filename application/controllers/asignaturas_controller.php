@@ -22,7 +22,7 @@ class Asignaturas_Controller extends CI_Controller
 		if (!$this->session->userdata('login_admin')) {
 			header('Location:' . base_url() . 'admin_/login');
 		}
-		$result = $this->asignatura_model->getAsignaturas();
+		$result = $this->Asignatura_Model->getAsignaturas();
         $data = array('consulta' => $result );
 		$this->load->view('/asignatura/listar', $data);
 	}
@@ -32,7 +32,7 @@ class Asignaturas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$asignatura = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->asignatura_model->insertA($asignatura);
+		$bool = $this->Asignatura_Model->insertA($asignatura);
 	}
 
 	/**
@@ -44,7 +44,7 @@ class Asignaturas_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->asignatura_model->getById($id);
+		$fila = $this->Asignatura_Model->getById($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -66,7 +66,7 @@ class Asignaturas_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->asignatura_model->getAsignaturas();
+		$fila = $this->Asignatura_Model->getAsignaturas();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -84,7 +84,7 @@ class Asignaturas_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$asigEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->asignatura_model->updateA($asigEdit, $id);
+		$bool = $this->Asignatura_Model->updateA($asigEdit, $id);
 		
 	}
 

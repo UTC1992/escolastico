@@ -30,8 +30,8 @@
 			$email  	= $this->input->post('email');
 			$password  	= $this->input->post('password');
 
-			$this->load->model('docente_model');
-			$fila = $this->docente_model->getDocenteLogin($email);
+			$this->load->model('Docente_Model');
+			$fila = $this->Docente_Model->getDocenteLogin($email);
 
 			if ($fila != null) {
 				if ($fila->password_doce == $password) {

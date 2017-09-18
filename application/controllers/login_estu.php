@@ -30,8 +30,8 @@
 			$username 	= $this->input->post('username');
 			$password  	= $this->input->post('password');
 
-			$this->load->model('consultar_notas_model');
-			$fila = $this->consultar_notas_model->getEstuLogin($username);
+			$this->load->model('Consultar_Notas_Model');
+			$fila = $this->Consultar_Notas_Model->getEstuLogin($username);
 
 			if ($fila != null) {
 				if ($fila->password_estu == $password) {

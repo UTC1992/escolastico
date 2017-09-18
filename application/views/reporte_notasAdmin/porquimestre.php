@@ -9,21 +9,21 @@
 <div id="contenidoEstudiante" class="container" ng-controller="repoNotasAdminCtrl">
 	
 	<!--urls-->
-		<input type="hidden" id="urlCursos" value="<?= base_url()?>curso_controller/getDataJsonCursoAll">
-		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>asignaturas_controller/getDataJsonAsignaturaAll">
-		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>ingresar_notas_controller/getDataJsonEstudiantesMatriculados">
-		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>curso_controller/getDataJsonCursoId/">
-		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>ingresar_notas_controller/insertar">
+		<input type="hidden" id="urlCursos" value="<?= base_url()?>Curso_Controller/getDataJsonCursoAll">
+		<input type="hidden" id="urlAsignaturas" value="<?= base_url()?>Asignaturas_Controller/getDataJsonAsignaturaAll">
+		<input type="hidden" id="urlEstudiantesMatriculados" value="<?= base_url()?>Ingresar_Notas_Controller/getDataJsonEstudiantesMatriculados">
+		<input type="hidden" id="urlConsultarCurso" value="<?= base_url() ?>Curso_Controller/getDataJsonCursoId/">
+		<input type="hidden" id="urlIngresarNotasParcial" value="<?= base_url() ?>Ingresar_Notas_Controller/insertar">
 
 		<!--MOSTRAR INFORMES DE NOTAS-->
-		<input type="hidden" id="urlNotasQuimestre" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonNotasQuimestre">
+		<input type="hidden" id="urlNotasQuimestre" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonNotasQuimestre">
 		
-		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>reporte_notasadmin_controller/getDataJsonDatosBoletin">
+		<input type="hidden" id="urlDatosBoletin" value="<?= base_url()?>Reporte_Notasadmin_Controller/getDataJsonDatosBoletin">
 
 	<!--urls-->
 
 	<!--url para años lectivos-->
-		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>periodoa_controller/getDataJsonPeriodoAll">
+		<input id="urlBuscarAniosLectivos" type="hidden" value="<?= base_url() ?>Periodoa_Controller/getDataJsonPeriodoAll">
 	<!--url para años lectivos-->
 	
 	<!--head -->

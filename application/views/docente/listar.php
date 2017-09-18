@@ -8,7 +8,7 @@
 <div id="contenidoDocente" class="container" ng-controller="docenteCtrl">
     
     <div >	
-        <input type="hidden" id="urlDocentes" value="<?= base_url()?>docente_controller/getDataJsonDocenteAll">
+        <input type="hidden" id="urlDocentes" value="<?= base_url()?>Docente_Controller/getDataJsonDocenteAll">
         <?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
 		<center>
 			<button class="btn btn-primary nuevo" ng-click="limpiarVariables()" data-toggle="modal" data-target="#modalNuevo">
@@ -47,19 +47,19 @@
 						<center>
                             <div style="width: 250px;">
                                 <button class="btn btn-outline-info editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
+                                id="<?= base_url() ?>Docente_Controller/getDataJsonDocenteId/{{d.id_doce}}" 
                                 data-toggle="modal" data-target="#modalMostrarDatos">
                                     Datos
                                 </button>
 							<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>
 								<button class="btn btn-outline-primary editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
+                                id="<?= base_url() ?>Docente_Controller/getDataJsonDocenteId/{{d.id_doce}}" 
                                 data-toggle="modal" data-target="#modalClave">
                                     Clave
                                 </button>
 
                                 <button class="btn btn-outline-warning editar" ng-click="mostrarFormEditar($event)" 
-                                id="<?= base_url() ?>docente_controller/getDataJsonDocenteId/{{d.id_doce}}" 
+                                id="<?= base_url() ?>Docente_Controller/getDataJsonDocenteId/{{d.id_doce}}" 
                                 data-toggle="modal" data-target="#modalEditar">
                                     Editar
                                 </button>
@@ -94,7 +94,7 @@
                             <form name="fDocente" ng-submit="registrarNuevo()" class="form-horizontal" >
                                 
 
-                                <input type="hidden" id="urlInsertarD" value="<?= base_url()?>docente_controller/insertar">
+                                <input type="hidden" id="urlInsertarD" value="<?= base_url()?>Docente_Controller/insertar">
                                 <fieldset class="form-control">
                                 <legend class="form-control"><strong>Información Personal</strong></legend>
                                 <div class="form-group row">
@@ -489,7 +489,7 @@
                         <form name="fDocente" ng-submit="actualizar()" class="form-horizontal" >
                                 
 
-                                <input type="hidden" id="urlActualizarD" value="<?= base_url()?>docente_controller/actualizar/">
+                                <input type="hidden" id="urlActualizarD" value="<?= base_url()?>Docente_Controller/actualizar/">
                                 <input type="hidden" id="idDocente" value="{{idDocente}}">
 
                                 <fieldset class="form-control">
@@ -1043,7 +1043,7 @@
 
                         <form name="fDocenteClave" ng-submit="actualizarClave()" class="form-horizontal" >
                                 
-                                <input type="hidden" id="urlAClave" value="<?= base_url()?>docente_controller/actualizarClave/">
+                                <input type="hidden" id="urlAClave" value="<?= base_url()?>Docente_Controller/actualizarClave/">
                                 <input type="hidden" id="idDocente" value="{{idDocente}}">
 
 								<div class="col-12 alert alert-success" 

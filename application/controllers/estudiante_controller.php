@@ -31,7 +31,7 @@ class Estudiante_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->estudiante_model->getEstudiante();
+		$fila = $this->Estudiante_Model->getEstudiante();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -49,7 +49,7 @@ class Estudiante_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$estudiante = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->estudiante_model->insertE($estudiante);
+		$bool = $this->Estudiante_Model->insertE($estudiante);
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class Estudiante_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->estudiante_model->getById($id);
+		$fila = $this->Estudiante_Model->getById($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -78,7 +78,7 @@ class Estudiante_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$estudianteEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->estudiante_model->updateE($estudianteEdit, $id);
+		$bool = $this->Estudiante_Model->updateE($estudianteEdit, $id);
 		
 	}
 
@@ -109,7 +109,7 @@ class Estudiante_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNivel = $this->input->post();
-		$fila = $this->estudiante_model->getInicial($datosNivel);
+		$fila = $this->Estudiante_Model->getInicial($datosNivel);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -128,7 +128,7 @@ class Estudiante_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->estudiante_model->getIdEstudiante($cedula);
+		$fila = $this->Estudiante_Model->getIdEstudiante($cedula);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {

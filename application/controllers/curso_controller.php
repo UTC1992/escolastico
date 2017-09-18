@@ -34,7 +34,7 @@ class Curso_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->curso_model->getCurso();
+		$fila = $this->Curso_Model->getCurso();
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -52,7 +52,7 @@ class Curso_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$curso = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->curso_model->insertC($curso);
+		$bool = $this->Curso_Model->insertC($curso);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Curso_Controller extends CI_Controller
 
 		$datos = array();
 
-		$fila = $this->curso_model->getById($id);
+		$fila = $this->Curso_Model->getById($id);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -81,7 +81,7 @@ class Curso_Controller extends CI_Controller
 		//se optiene los datos mediante el metodo POST
 		$cursoEdit = $this->input->post();
 		//se envian los datos del formulario al modelo al metodo insert
-		$bool = $this->curso_model->updateC($cursoEdit, $id);
+		$bool = $this->Curso_Model->updateC($cursoEdit, $id);
 		
 	}
 
@@ -92,7 +92,7 @@ class Curso_Controller extends CI_Controller
 		$datos = array();
 
 		$datosNivel = $this->input->post();
-		$fila = $this->curso_model->getCursoNivel($datosNivel);
+		$fila = $this->Curso_Model->getCursoNivel($datosNivel);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
@@ -111,7 +111,7 @@ class Curso_Controller extends CI_Controller
 		$datos = array();
 
 		$nombreCurso = $this->input->post();
-		$fila = $this->curso_model->getCursoNombre($nombreCurso);
+		$fila = $this->Curso_Model->getCursoNombre($nombreCurso);
 		
 		//llenamos el arreglo con los datos resultados de la consulta
 		foreach ($fila->result_array() as $row) {
