@@ -2,6 +2,7 @@
     .contenidoEstu {
     }
 </style>
+<meta charset="utf-8">
 <link href="<?= base_url() ?>disenio/angular_js/ng-table.min.css" rel="stylesheet">
 <br>
 <div class="container"  class="contenidoEstu" ng-app="appEstudiante">
@@ -15,10 +16,10 @@
 <br>
 <!--head -->
 <!--url para las paginas-->
-<input id="urlConsultarInicial" type="hidden" value="<?= base_url() ?>estudiante_controller/inicial">
-<input id="urlConsultarPreparatoria" type="hidden" value="<?= base_url() ?>estudiante_controller/preparatoria">
-<input id="urlConsultarBasica" type="hidden" value="<?= base_url() ?>estudiante_controller/basica">
-<input id="urlConsultarSuperior" type="hidden" value="<?= base_url() ?>estudiante_controller/superior">
+<input id="urlConsultarInicial" type="hidden" value="<?= base_url() ?>Estudiante_Controller/inicial">
+<input id="urlConsultarPreparatoria" type="hidden" value="<?= base_url() ?>Estudiante_Controller/preparatoria">
+<input id="urlConsultarBasica" type="hidden" value="<?= base_url() ?>Estudiante_Controller/basica">
+<input id="urlConsultarSuperior" type="hidden" value="<?= base_url() ?>Estudiante_Controller/superior">
 <!--url para las paginas-->
 
 <!-- Nav tabs -->
@@ -31,10 +32,10 @@
                 <a class="nav-link" data-toggle="tab" href="#/preparatoria" role="tab">Preparatoria</a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#/basica" role="tab">Educación General Básica</a>
+                <a class="nav-link" data-toggle="tab" href="#/basica" role="tab">Educacion General Basica</a>
             </li>
 			<li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#/superior" role="tab">Educación General Superior</a>
+                <a class="nav-link" data-toggle="tab" href="#/superior" role="tab">Educacion General Superior</a>
             </li>
         </ul>
     </div>

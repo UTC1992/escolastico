@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | There are three reserved routes:
 |
-|	$route['default_controller'] = 'welcome';
+|	$route['default_Controller'] = 'welcome';
 |
 | This route indicates which controller class should be loaded if the
 | URI contains no data. In the above example, the "welcome" class
@@ -46,8 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | When you set this option to TRUE, it will replace ALL dashes in the
 | controller and method URI segments.
 |
-| Examples:	my-controller/index	-> my_controller/index
-|		my-controller/my-method	-> my_controller/my_method
+| Examples:	my-controller/index	-> my_Controller/index
+|		my-controller/my-method	-> my_Controller/my_method
 |  ruta creada ==> hola/index controlador ==> controller/index
 |
 */
@@ -56,57 +56,57 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //rutas login Admin
-$route['admin_/login'] = 'login_admin/index';
-$route['admin_/logout'] = 'login_admin/logout';
+$route['admin_/login'] = 'Login_Admin/index';
+$route['admin_/logout'] = 'Login_Admin/logout';
 
 //rutas administrador CRUD
-$route['admin_/registro'] = 'administrador_controller/nuevo';
-$route['admin_/dashboard'] = 'administrador_controller/index';
-$route['admin_/perfil'] = 'administrador_controller/perfil';
+$route['admin_/registro'] = 'Administrador_Controller/nuevo';
+$route['admin_/dashboard'] = 'Administrador_Controller/index';
+$route['admin_/perfil'] = 'Administrador_Controller/perfil';
 
 //rutas periodo academico
-$route['admin_/periodoacademico'] = 'periodoa_controller/index';
-$route['admin_/periodoacademico/lista'] = 'periodoa_controller/content';
-$route['admin_/periodoacademico/nuevo'] = 'periodoa_controller/nuevo';
-$route['admin_/periodoacademico/edit/(:num)'] = 'periodoa_controller/edit/$1';
-$route['admin_/periodoacademico/actualizar/(:num)'] = 'periodoa_controller/actualizar/$1';
+$route['admin_/periodoacademico'] = 'Periodoa_Controller/index';
+$route['admin_/periodoacademico/lista'] = 'Periodoa_Controller/content';
+$route['admin_/periodoacademico/nuevo'] = 'Periodoa_Controller/nuevo';
+$route['admin_/periodoacademico/edit/(:num)'] = 'Periodoa_Controller/edit/$1';
+$route['admin_/periodoacademico/actualizar/(:num)'] = 'Periodoa_Controller/actualizar/$1';
 
 //rutas de asginaturas
-$route['admin_/asignaturas'] = 'asignaturas_controller/index';
-$route['admin_/asignaturas/listar'] = 'asignaturas_controller/listar';
+$route['admin_/asignaturas'] = 'Asignaturas_Controller/index';
+$route['admin_/asignaturas/listar'] = 'Asignaturas_Controller/listar';
 
 //rutas de cursos
-$route['admin_/curso'] = 'curso_controller/index';
-$route['admin_/curso/listar'] = 'curso_controller/listar';
+$route['admin_/curso'] = 'Curso_Controller/index';
+$route['admin_/curso/listar'] = 'Curso_Controller/listar';
 
 //rutas de docentes
-$route['admin_/docente'] = 'docente_controller/index';
-$route['admin_/docente/listar'] = 'docente_controller/listar';
+$route['admin_/docente'] = 'Docente_Controller/index';
+$route['admin_/docente/listar'] = 'Docente_Controller/listar';
 
 //rutas de docentes y cargos de materias o cursos
-$route['admin_/docente_cargo'] = 'docente_cargo_controller/index';
-$route['admin_/docente_cargo/listar'] = 'docente_cargo_controller/listar';
+$route['admin_/docente_cargo'] = 'Docente_Cargo_Controller/index';
+$route['admin_/docente_cargo/listar'] = 'Docente_Cargo_Controller/listar';
 
 //rutas de los estudiantes
-$route['admin_/estudiantes'] = 'estudiante_controller/index';
-$route['admin_/estudiante/listar'] = 'estudiante_controller/listar';
+$route['admin_/estudiantes'] = 'Estudiante_Controller/index';
+$route['admin_/estudiante/listar'] = 'Estudiante_Controller/listar';
 
 //matricular
-$route['admin_/matricular'] = 'matricula_controller/index';
-$route['admin_/matricula/resgitro'] = 'matricula_controller/registrar';
+$route['admin_/matricular'] = 'Matricula_Controller/index';
+$route['admin_/matricula/resgitro'] = 'Matricula_Controller/registrar';
 
 //rutas del ingreso de calificaciones
-$route['notas_/ingresar_notas/login'] = 'login_docente/index';
-$route['notas_/ingresar_notas/logout'] = 'login_docente/logout';
-$route['notas_/ingresar_notas/index'] = 'ingresar_notas_controller/index';
+$route['notas_/ingresar_notas/login'] = 'Login_Docente/index';
+$route['notas_/ingresar_notas/logout'] = 'Login_Docente/logout';
+$route['notas_/ingresar_notas/index'] = 'Ingresar_Notas_Controller/index';
 
 //rutas de los estudiantes
-$route['admin_/reportes/matriculas'] = 'reporte_matriculas_controller/index';
+$route['admin_/reportes/matriculas'] = 'Reporte_Matriculas_Controller/index';
 
 //rutas de los estudiantes
-$route['admin_/reportes/notas'] = 'reporte_notasadmin_controller/index';
+$route['admin_/reportes/notas'] = 'Reporte_Notasadmin_Controller/index';
 
 //rutas del ingreso de calificaciones
-$route['notas_/consultar/notas/login'] = 'login_estu/index';
-$route['notas_/consultar/notas/logout'] = 'login_estu/logout';
-$route['notas_/consultar/notas/index'] = 'consultar_notas_controller/index';
+$route['notas_/consultar/notas/login'] = 'Login_Estu/index';
+$route['notas_/consultar/notas/logout'] = 'Login_Estu/logout';
+$route['notas_/consultar/notas/index'] = 'Consultar_Notas_Controller/index';

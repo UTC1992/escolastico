@@ -10,30 +10,7 @@
     
     <div >	
         <input type="hidden" id="urlPeriodos" value="<?= base_url()?>Periodoa_Controller/getDataJsonPeriodoAll">
-        <!--
-        <h4>Filtros</h4>
-        <div class="input-group">
-            <select class="form-control" name="buscarMesInicio" id="buscarMesInicio" ng-model="buscarPeriodo.mesinicio_pera">
-                <option value="">Buscar por mes de inicio</option>
-                <option ng-repeat="m in meses" value="{{m.name}}">{{m.name}}</option>
-            </select>
-            <select class="form-control" name="buscarMesFin" id="buscarMesFin" ng-model="buscarPeriodo.mesfin_pera">
-                <option value="">Buscar por mes de finalización</option>
-                <option ng-repeat="m in meses" value="{{m.name}}">{{m.name}}</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <select class="form-control" ng-model="buscarPeriodo.anioinicio_pera" name="buscarAnioInicio" id="buscarAnioInicio">
-                <option value="">Buscar por año de inicio</option>
-                <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-            </select>
-            <select class="form-control" ng-model="buscarPeriodo.aniofin_pera" name="buscarAnioFin" id="buscarAnioFin">
-                <option value="">Buscar por año de finalización</option>
-                <option ng-repeat="a in anios" value="{{a}}">{{a}}</option>
-            </select>
-        </div>
-        <br>
-		-->
+    
 		<?php if($this->session->userdata('login_admin') && ($this->session->userdata('tipo_admin') == 'sysadmin')) { ?>	
 			<center><button class="btn btn-primary nuevoP" ng-click="limpiarVarianles()" data-toggle="modal" data-target="#modalNuevo">
 				Registrar Año lectivo
@@ -46,17 +23,7 @@
         <div class="table-responsive">
             <table class="table table-bordered table-condensed table-striped table-sm"
 			ng-table ="periodoTable" show-filter="true">
-                <!--<thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Mes de inicio</th>
-                        <th>Año de inicio</th>
-                        <th>Mes de finalización</th>
-                        <th>Año de finalización</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-				-->
+               
                 <tbody>
                     <tr ng-repeat="p in $data | orderBy:anioinicio_pera">
                         <td data-title="'N°'">{{ $index + 1 }}</td>
